@@ -3,14 +3,14 @@ extends CharacterBody2D
 @export_category("Movement")
 @export var walk_speed: float = 128
 @export var walk_time_to_full_speed: float = 1
-@export var sprint_speed: float = 20
+@export var sprint_speed: float = 256
 @export var sprint_time_to_full_speed: float = 1
 
 @export_category("Jump")
 @export var jump_velocity: float = 512
-@export var jump_gravity_factor: float = 0.5
-@export var jump_buffer: float = 1
-@export var coyote_time: float = 1
+@export var jump_gravity_factor: float = 0.4
+@export var jump_buffer: float = 0.1 # In seconds
+@export var coyote_time: float = 0.1 # In seconds
 @export var max_fall_speed: float = 980
 
 @export_category("Physics")
@@ -35,6 +35,7 @@ var health: int = MAX_HEALTH:
 # Control is in another script
 var horizontal_movement: float
 var _is_sprinting: bool = false
+var _has_jumped: bool = false
 var _walk_acceleration: float
 var _sprint_acceleration: float
 
@@ -90,11 +91,19 @@ func _physics_process(delta: float) -> void:
 
 # # # # # # # # # # # #
 func begin_jump():
-	if is_on_floor() or (Time.get_ticks_msec() - _last_on_floor) < (1000 * coyote_time):
-		_last_jump_time = Time.get_ticks_msec()
+	# Check if coyote time can apply
+	# Should not work if already jumped
+	var _can_coyote_time: bool = false
+	if not _has_jumped:
+		_can_coyote_time = _get_seconds_since(_last_on_floor) < coyote_time
+	if is_on_floor() or _can_coyote_time:
+		_has_jumped = true
 		velocity.y = min(velocity.y, -jump_velocity)
 		_gravity_factor = jump_gravity_factor
 		jumped.emit()
+	else:
+		# For jump buffering
+		_last_jump_time = Time.get_ticks_msec()
 
 func release_jump():
 	_gravity_factor = 1
@@ -110,8 +119,16 @@ func release_sprint():
 	
 # # # # # # # # # # # #
 func _landed_on_floor():
-	print("LANDED")
+	# Jump buffering
+	if _get_seconds_since(_last_jump_time) < jump_buffer:
+		begin_jump()
+		return
+	_has_jumped = false
 	
 func _left_floor():
 	_last_on_floor = Time.get_ticks_msec()
-	print("LEFT")
+	
+# # # # # # # # # # # #
+# Helpers
+func _get_seconds_since(time_msec: float) -> float:
+	return (Time.get_ticks_msec() - time_msec) / 1000
