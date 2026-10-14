@@ -15,4 +15,5 @@ func spawn():
 	player.died.connect(_on_player_died)
 
 func _on_player_died():
+	GameManager.player = null
 	spawn()
