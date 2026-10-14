@@ -10,6 +10,7 @@ class_name PlatformerEntity
 @export_category("Jump")
 @export var jump_velocity: float = 512
 @export var jump_gravity_factor: float = 0.4
+@export var max_jump_time: float = 1 # In seconds
 @export var jump_buffer: float = 0.1 # In seconds
 @export var coyote_time: float = 0.1 # In seconds
 @export var max_fall_speed: float = 980
@@ -18,7 +19,7 @@ class_name PlatformerEntity
 @export var gravity: float = 980
 
 @export_category("World")
-@export var death_y: float = 128 # Below this point the player dies
+@export var death_altitude: float = 128 # Below this point the player dies
 
 # Health
 const MAX_HEALTH: int = 3
@@ -80,14 +81,21 @@ func _physics_process(delta: float) -> void:
 	acceleration *= max_acceleration
 	acceleration = min(abs(acceleration), max_acceleration) * sign(acceleration) # Clamps acceleration
 	
+	# Check if held jumped for too long
+	if _has_jumped:
+		if _get_seconds_since(_last_jump_time) > max_jump_time:
+			release_jump()
+			
 	# Apply acceleration
 	velocity.x += acceleration * delta
+	
 	# Gravity
 	velocity.y = min(velocity.y + gravity * delta * _gravity_factor, max_fall_speed)
+	
 	# Final stuff
 	move_and_slide()
 	_was_on_floor = is_on_floor()
-	if position.y >= death_y:
+	if position.y >= death_altitude:
 		die()
 
 # # # # # # # # # # # #
@@ -96,16 +104,14 @@ func begin_jump():
 	# Should not work if already jumped
 	var _can_coyote_time: bool = false
 	if not _has_jumped:
-		
 		_can_coyote_time = _get_seconds_since(_last_on_floor) < coyote_time
 	if is_on_floor() or _can_coyote_time:
 		_has_jumped = true
 		velocity.y = min(velocity.y, -jump_velocity)
 		_gravity_factor = jump_gravity_factor
 		jumped.emit()
-	else:
-		# For jump buffering
-		_last_jump_time = Time.get_ticks_msec()
+	# For jump buffering and for checking how long you've jumped
+	_last_jump_time = Time.get_ticks_msec()
 
 func release_jump():
 	_gravity_factor = 1
