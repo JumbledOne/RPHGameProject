@@ -29,4 +29,4 @@ script = ExtResource("3_7b570")
 target = NodePath("")
 
 [node name="PlayerSpawner" parent="." unique_id=512273958 instance=ExtResource("4_ot6uy")]
-position = Vector2(16, -16)
+position = Vector2(128, -64)

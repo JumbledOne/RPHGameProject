@@ -22,6 +22,7 @@ signal died
 signal health_changed(diff: int)
 
 func _ready() -> void:
+	super()
 	GameManager.player = self
 
 func _physics_process(delta: float) -> void:
