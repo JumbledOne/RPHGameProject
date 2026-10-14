@@ -1,3 +1,27 @@
-[gd_scene format=3 uid="uid://q7hjespk1erp"]
+[gd_scene format=4 uid="uid://q7hjespk1erp"]
+
+[ext_resource type="Texture2D" uid="uid://ciaxb2mesyvra" path="res://assets/sprites/test_square.png" id="1_oftt6"]
+[ext_resource type="PackedScene" uid="uid://dyqbnaxeopk17" path="res://scripts/player/player.tscn" id="2_63nit"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_63nit"]
+texture = ExtResource("1_oftt6")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+
+[sub_resource type="TileSet" id="TileSet_so2s4"]
+tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 1
+sources/1 = SubResource("TileSetAtlasSource_63nit")
 
 [node name="PlayerTestScene" type="Node2D" unique_id=1778018696]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1378777716]
+tile_map_data = PackedByteArray("AAAAAAAAAQAAAAAAAAABAAAAAQAAAAAAAAACAAAAAQAAAAAAAAADAAAAAQAAAAAAAAAEAAAAAQAAAAAAAAAFAAAAAQAAAAAAAAAGAAAAAQAAAAAAAAAHAAAAAQAAAAAAAAAIAAAAAQAAAAAAAAAKAPz/AQAAAAAAAAALAPz/AQAAAAAAAAAMAPz/AQAAAAAAAAANAPz/AQAAAAAAAAAOAPz/AQAAAAAAAAAPAPz/AQAAAAAAAAAQAPz/AQAAAAAAAAA=")
+tile_set = SubResource("TileSet_so2s4")
+
+[node name="Player" parent="." unique_id=1043310607 instance=ExtResource("2_63nit")]
+position = Vector2(155, -99)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=358385274]
+position = Vector2(317, -101)
