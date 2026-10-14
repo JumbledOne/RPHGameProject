@@ -3,6 +3,7 @@ extends Node
 @onready var player: PlatformerEntity = $".."
 
 func _input(event: InputEvent) -> void:
+	# Movement
 	if event.is_action_pressed("jump"):
 		player.begin_jump()
 	elif event.is_action_released("jump"):
@@ -11,8 +12,9 @@ func _input(event: InputEvent) -> void:
 		player.begin_sprint()
 	elif event.is_action_released("sprint"):
 		player.release_sprint()
-	elif event.is_action_pressed("ability"):
+	# Action
+	if event.is_action_pressed("ability"):
 		player.do_action()
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	player.horizontal_movement = Input.get_axis("left", "right")
