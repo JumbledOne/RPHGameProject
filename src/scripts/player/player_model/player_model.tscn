@@ -11,7 +11,7 @@ point_count = 3
 script = ExtResource("1_mifw2")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2097157448]
-modulate = Color(1, 0.8333334, 0, 1)
+modulate = Color(0, 1, 0.3833332, 1)
 texture = ExtResource("1_6qb8h")
 
 [node name="RunParticles" type="CPUParticles2D" parent="." unique_id=2097198909]
