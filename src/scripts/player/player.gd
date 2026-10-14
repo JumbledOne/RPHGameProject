@@ -21,6 +21,9 @@ var player_action: BasePlayerAction
 signal died
 signal health_changed(diff: int)
 
+func _ready() -> void:
+	GameManager.player = self
+
 func _physics_process(delta: float) -> void:
 	super(delta)
 	if position.y >= death_altitude:

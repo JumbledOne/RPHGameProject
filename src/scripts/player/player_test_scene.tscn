@@ -1,8 +1,8 @@
 [gd_scene format=4 uid="uid://q7hjespk1erp"]
 
 [ext_resource type="Texture2D" uid="uid://ciaxb2mesyvra" path="res://assets/sprites/test_square.png" id="1_oftt6"]
-[ext_resource type="PackedScene" uid="uid://dyqbnaxeopk17" path="res://scripts/player/player.tscn" id="2_63nit"]
 [ext_resource type="Script" uid="uid://d22cgg754fheg" path="res://scripts/player/player_camera/player_camera.gd" id="3_7b570"]
+[ext_resource type="PackedScene" uid="uid://dqfx6qteghxjv" path="res://scripts/player/player_spawner/player_spawner.tscn" id="4_ot6uy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_63nit"]
 texture = ExtResource("1_oftt6")
@@ -21,16 +21,12 @@ sources/1 = SubResource("TileSetAtlasSource_63nit")
 tile_map_data = PackedByteArray("AAAAAAAAAQAAAAAAAAABAAAAAQAAAAAAAAACAAAAAQAAAAAAAAADAAAAAQAAAAAAAAAEAAAAAQAAAAAAAAAFAAAAAQAAAAAAAAAGAAAAAQAAAAAAAAAHAAAAAQAAAAAAAAAIAAAAAQAAAAAAAAAKAPz/AQAAAAAAAAALAPz/AQAAAAAAAAAMAPz/AQAAAAAAAAANAPz/AQAAAAAAAAAOAPz/AQAAAAAAAAAPAPz/AQAAAAAAAAAQAPz/AQAAAAAAAAA=")
 tile_set = SubResource("TileSet_so2s4")
 
-[node name="Player" parent="." unique_id=1043310607 instance=ExtResource("2_63nit")]
-position = Vector2(155, -99)
-walk_time_to_full_speed = 0.2
-sprint_speed = 256.0
-sprint_time_to_full_speed = 0.2
-gravity = 1960.0
-
 [node name="PlayerCamera" type="Camera2D" parent="." unique_id=358385274 node_paths=PackedStringArray("target")]
 position = Vector2(420, -182)
 position_smoothing_enabled = true
 position_smoothing_speed = 16.0
 script = ExtResource("3_7b570")
-target = NodePath("../Player")
+target = NodePath("")
+
+[node name="PlayerSpawner" parent="." unique_id=512273958 instance=ExtResource("4_ot6uy")]
+position = Vector2(16, -16)

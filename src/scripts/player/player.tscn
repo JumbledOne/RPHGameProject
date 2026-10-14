@@ -9,7 +9,6 @@ size = Vector2(32, 32)
 
 [node name="Player" type="CharacterBody2D" unique_id=1043310607]
 script = ExtResource("1_so2s4")
-sprint_speed = 512.0
 
 [node name="PlayerModel" parent="." unique_id=566320765 instance=ExtResource("2_so2s4")]
 
