@@ -40,7 +40,8 @@ var _sprint_acceleration: float
 
 # Internal vars
 var _gravity_factor: float = 1
-var _last_jump_time: float
+var _last_jump_time: float # In milliseconds
+var _last_on_floor: float # In milliseconds
 var _was_on_floor: bool = false:
 	set(v):
 		if v and not _was_on_floor:
@@ -89,12 +90,11 @@ func _physics_process(delta: float) -> void:
 
 # # # # # # # # # # # #
 func begin_jump():
-	if not is_on_floor():
-		return
-	_last_jump_time = Time.get_ticks_msec()
-	velocity.y -= jump_velocity
-	_gravity_factor = jump_gravity_factor
-	jumped.emit()
+	if is_on_floor() or (Time.get_ticks_msec() - _last_on_floor) < (1000 * coyote_time):
+		_last_jump_time = Time.get_ticks_msec()
+		velocity.y = min(velocity.y, -jump_velocity)
+		_gravity_factor = jump_gravity_factor
+		jumped.emit()
 
 func release_jump():
 	_gravity_factor = 1
@@ -113,4 +113,5 @@ func _landed_on_floor():
 	print("LANDED")
 	
 func _left_floor():
+	_last_on_floor = Time.get_ticks_msec()
 	print("LEFT")
