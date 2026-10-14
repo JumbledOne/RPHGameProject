@@ -1,7 +1,34 @@
-[gd_scene format=3 uid="uid://bl40gfmg0jtsb"]
+[gd_scene format=4 uid="uid://bl40gfmg0jtsb"]
 
 [ext_resource type="PackedScene" uid="uid://dpg1mbg7qdl6m" path="res://scenes/game_ui/game_ui.tscn" id="1_pwder"]
+[ext_resource type="Texture2D" uid="uid://ciaxb2mesyvra" path="res://assets/sprites/test_square.png" id="1_xb203"]
+[ext_resource type="Script" uid="uid://d22cgg754fheg" path="res://scripts/player/player_camera/player_camera.gd" id="2_ducuf"]
+[ext_resource type="PackedScene" uid="uid://dqfx6qteghxjv" path="res://scripts/player/player_spawner/player_spawner.tscn" id="3_j8flk"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wmtvo"]
+texture = ExtResource("1_xb203")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+
+[sub_resource type="TileSet" id="TileSet_201br"]
+tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 1
+sources/1 = SubResource("TileSetAtlasSource_wmtvo")
 
 [node name="GameScene" type="Node2D" unique_id=211181931]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1822924676]
+tile_map_data = PackedByteArray("AAAAAAAAAQAAAAAAAAABAAAAAQAAAAAAAAACAAAAAQAAAAAAAAADAAAAAQAAAAAAAAAEAAAAAQAAAAAAAAAFAAAAAQAAAAAAAAAGAAAAAQAAAAAAAAAHAAAAAQAAAAAAAAAIAAAAAQAAAAAAAAAKAPz/AQAAAAAAAAALAPz/AQAAAAAAAAAMAPz/AQAAAAAAAAANAPz/AQAAAAAAAAAOAPz/AQAAAAAAAAAPAPz/AQAAAAAAAAAQAPz/AQAAAAAAAAA=")
+tile_set = SubResource("TileSet_201br")
+
+[node name="PlayerCamera" type="Camera2D" parent="." unique_id=993769838]
+position = Vector2(420, -182)
+position_smoothing_enabled = true
+position_smoothing_speed = 16.0
+script = ExtResource("2_ducuf")
+
+[node name="PlayerSpawner" parent="." unique_id=512273958 instance=ExtResource("3_j8flk")]
+position = Vector2(128, -64)
 
 [node name="GameUi" parent="." unique_id=868102475 instance=ExtResource("1_pwder")]
