@@ -1,5 +1,6 @@
 extends CharacterBody2D
 class_name PlatformerEntity
+# A base class that only handles movement
 
 @export_category("Movement")
 @export var walk_speed: float = 128
@@ -17,20 +18,6 @@ class_name PlatformerEntity
 
 @export_category("Physics")
 @export var gravity: float = 980
-
-@export_category("World")
-@export var death_altitude: float = 128 # Below this point the player dies
-
-# Health
-const MAX_HEALTH: int = 3
-var health: int = MAX_HEALTH:
-	set(v):
-		var new_health: int = clamp(v, 0, MAX_HEALTH)
-		var health_diff: int = new_health - health
-		health = new_health
-		health_changed.emit(health_diff)
-		if health <= 0:
-			die()
 
 # Controlled by external controllers
 # This script decides only how to move.
@@ -53,20 +40,12 @@ var _was_on_floor: bool = false:
 			_left_floor()
 		_was_on_floor = v
 			
-signal died
-signal health_changed(diff: int)
 signal jumped
 signal sprint_changed
 
 func _ready() -> void:
 	_walk_acceleration = walk_speed / walk_time_to_full_speed
 	_sprint_acceleration = sprint_speed / sprint_time_to_full_speed
-
-# # # # # # # # # # # #
-# Health
-func die():
-	died.emit()
-	queue_free()
 
 # # # # # # # # # # # #
 # Movement
@@ -95,8 +74,6 @@ func _physics_process(delta: float) -> void:
 	# Final stuff
 	move_and_slide()
 	_was_on_floor = is_on_floor()
-	if position.y >= death_altitude:
-		die()
 
 # # # # # # # # # # # #
 func begin_jump():

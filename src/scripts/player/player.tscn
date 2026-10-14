@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dyqbnaxeopk17"]
 
-[ext_resource type="Script" uid="uid://bkbu3mn3is4c8" path="res://scripts/player/classes/platformer_entity.gd" id="1_so2s4"]
+[ext_resource type="Script" uid="uid://cbenqamentt44" path="res://scripts/player/player.gd" id="1_so2s4"]
 [ext_resource type="PackedScene" uid="uid://dctwav0o0dy8r" path="res://scripts/player/player_model/player_model.tscn" id="2_so2s4"]
 [ext_resource type="Script" uid="uid://bgjaig2puxra0" path="res://scripts/player/player_controller.gd" id="3_kai5h"]
 
