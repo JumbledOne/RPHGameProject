@@ -5,8 +5,11 @@ extends Node2D
 @onready var run_particles: CPUParticles2D = $RunParticles
 
 func _ready() -> void:
-	pass
-	#player.sprint_changed.connect(_on_sprint_changed)
+	player.jumped.connect(_on_jumped)
 	
-func _process(delta: float) -> void:
-	run_particles.emitting = player.get_is_sprinting() and player.is_on_floor()
+func _process(_delta: float) -> void:
+	var on_floor: bool = player.is_on_floor()
+	run_particles.emitting = player.get_is_sprinting() and on_floor
+
+func _on_jumped():
+	pass
