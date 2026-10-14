@@ -3,8 +3,25 @@
 [ext_resource type="Texture2D" uid="uid://ciaxb2mesyvra" path="res://assets/sprites/test_square.png" id="1_6qb8h"]
 [ext_resource type="Script" uid="uid://byanhy0cletsr" path="res://scripts/player/player_model/player_model.gd" id="1_mifw2"]
 
+[sub_resource type="Curve" id="Curve_2n7ho"]
+_data = [Vector2(0, 0), 0.0, 2.9389353, 0, 0, Vector2(0.65745854, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -6.3152, 0.0, 0, 0]
+point_count = 3
+
 [node name="PlayerModel" type="Node2D" unique_id=566320765]
 script = ExtResource("1_mifw2")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2097157448]
+modulate = Color(1, 0.8333334, 0, 1)
 texture = ExtResource("1_6qb8h")
+
+[node name="RunParticles" type="CPUParticles2D" parent="." unique_id=2097198909]
+position = Vector2(0, 16)
+lifetime = 0.5
+direction = Vector2(1, -1)
+spread = 90.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 32.0
+initial_velocity_max = 64.0
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_2n7ho")

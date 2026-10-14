@@ -22,7 +22,6 @@ tile_map_data = PackedByteArray("AAAAAAAAAQAAAAAAAAABAAAAAQAAAAAAAAACAAAAAQAAAAA
 tile_set = SubResource("TileSet_so2s4")
 
 [node name="Player" parent="." unique_id=1043310607 instance=ExtResource("2_63nit")]
-modulate = Color(0.74100006, 1, 0.58000004, 1)
 position = Vector2(155, -99)
 walk_time_to_full_speed = 0.2
 sprint_speed = 256.0

@@ -112,6 +112,11 @@ func _landed_on_floor():
 	
 func _left_floor():
 	_last_on_floor = Time.get_ticks_msec()
+
+# # # # # # # # # # # #
+# Getters
+func get_is_sprinting() -> bool:
+	return _is_sprinting
 	
 # # # # # # # # # # # #
 # Helpers
