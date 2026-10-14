@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name PlatformerEntity
 
 @export_category("Movement")
 @export var walk_speed: float = 128
@@ -95,6 +96,7 @@ func begin_jump():
 	# Should not work if already jumped
 	var _can_coyote_time: bool = false
 	if not _has_jumped:
+		
 		_can_coyote_time = _get_seconds_since(_last_on_floor) < coyote_time
 	if is_on_floor() or _can_coyote_time:
 		_has_jumped = true
