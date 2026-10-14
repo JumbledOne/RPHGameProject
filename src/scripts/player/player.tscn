@@ -9,6 +9,8 @@ size = Vector2(32, 32)
 
 [node name="Player" type="CharacterBody2D" unique_id=1043310607]
 script = ExtResource("1_so2s4")
+sprint_speed = 512.0
+sprint_acceleration = 100.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=882709795]
 texture = ExtResource("1_hmply")

@@ -1,19 +1,16 @@
 extends Node
 
-@export_category("Movement")
-@export var walk_speed: float = 10
-@export var sprint_speed: float = 20
-
-@export_category("Jump")
-
+@onready var player = $".."
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("sprint"):
-		pass
+	if event.is_action_pressed("jump"):
+		player.begin_jump()
+	elif event.is_action_released("jump"):
+		player.release_jump()
+	elif event.is_action_pressed("sprint"):
+		player.begin_sprint()
 	elif event.is_action_released("sprint"):
-		pass
-	elif event.is_action_pressed("ability"):
-		pass
+		player.release_sprint()
 
 func _physics_process(delta: float) -> void:
-	pass
+	player.horizontal_movement = Input.get_axis("left", "right")
