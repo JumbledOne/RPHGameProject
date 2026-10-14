@@ -11,6 +11,8 @@ func _input(event: InputEvent) -> void:
 		player.begin_sprint()
 	elif event.is_action_released("sprint"):
 		player.release_sprint()
+	elif event.is_action_pressed("ability"):
+		player.do_action()
 
 func _physics_process(delta: float) -> void:
 	player.horizontal_movement = Input.get_axis("left", "right")

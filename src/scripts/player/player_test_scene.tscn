@@ -23,17 +23,9 @@ tile_set = SubResource("TileSet_so2s4")
 
 [node name="Player" parent="." unique_id=1043310607 instance=ExtResource("2_63nit")]
 position = Vector2(155, -99)
-death_altitude = null
-walk_speed = null
 walk_time_to_full_speed = 0.2
-sprint_speed = null
+sprint_speed = 256.0
 sprint_time_to_full_speed = 0.2
-jump_velocity = null
-jump_gravity_factor = null
-max_jump_time = null
-jump_buffer = null
-coyote_time = null
-max_fall_speed = null
 gravity = 1960.0
 
 [node name="PlayerCamera" type="Camera2D" parent="." unique_id=358385274 node_paths=PackedStringArray("target")]
