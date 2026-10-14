@@ -1,6 +1,7 @@
 extends CharacterBody2D
 class_name PlatformerEntity
 # A base class that only handles movement
+# Handle everything else in subclasses
 
 @export_category("Movement")
 @export var walk_speed: float = 128
