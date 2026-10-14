@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dyqbnaxeopk17"]
 
-[ext_resource type="Texture2D" uid="uid://ciaxb2mesyvra" path="res://assets/sprites/test_square.png" id="1_hmply"]
 [ext_resource type="Script" uid="uid://bkbu3mn3is4c8" path="res://scripts/player/classes/platformer_entity.gd" id="1_so2s4"]
+[ext_resource type="PackedScene" uid="uid://dctwav0o0dy8r" path="res://scripts/player/player_model/player_model.tscn" id="2_so2s4"]
 [ext_resource type="Script" uid="uid://bgjaig2puxra0" path="res://scripts/player/player_controller.gd" id="3_kai5h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2n7ho"]
@@ -11,11 +11,10 @@ size = Vector2(32, 32)
 script = ExtResource("1_so2s4")
 sprint_speed = 512.0
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=882709795]
-texture = ExtResource("1_hmply")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1283402025]
-shape = SubResource("RectangleShape2D_2n7ho")
+[node name="PlayerModel" parent="." unique_id=566320765 instance=ExtResource("2_so2s4")]
 
 [node name="PlayerController" type="Node" parent="." unique_id=1864081540]
 script = ExtResource("3_kai5h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1283402025]
+shape = SubResource("RectangleShape2D_2n7ho")
