@@ -31,6 +31,12 @@ func _physics_process(delta: float) -> void:
 		die()
 
 # # # # # # # # # # # #
+# hurt
+func hurt():
+	health -= 1
+	print("player HP:" , health)
+	
+# # # # # # # # # # # #
 # Health
 func die():
 	died.emit()

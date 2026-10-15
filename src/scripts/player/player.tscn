@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cbenqamentt44" path="res://scripts/player/player.gd" id="1_so2s4"]
 [ext_resource type="PackedScene" uid="uid://dctwav0o0dy8r" path="res://scripts/player/player_model/player_model.tscn" id="2_so2s4"]
 [ext_resource type="Script" uid="uid://bgjaig2puxra0" path="res://scripts/player/player_controller.gd" id="3_kai5h"]
+[ext_resource type="PackedScene" uid="uid://dwiill2noqt84" path="res://scripts/hurtbox/hurtbox.tscn" id="4_kai5h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2n7ho"]
 size = Vector2(32, 32)
@@ -22,3 +23,6 @@ script = ExtResource("3_kai5h")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1283402025]
 shape = SubResource("RectangleShape2D_2n7ho")
+
+[node name="hurtbox" parent="." unique_id=1789929793 node_paths=PackedStringArray("owner_node") instance=ExtResource("4_kai5h")]
+owner_node = NodePath("..")
