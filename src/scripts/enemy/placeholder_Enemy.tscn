@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://btklg2eul7t8q"]
+
+[ext_resource type="Script" uid="uid://cmsjqxmissm1k" path="res://scripts/enemy/placeholder_Enemy.gd" id="1_12f17"]
+[ext_resource type="Texture2D" uid="uid://ciaxb2mesyvra" path="res://assets/sprites/test_square.png" id="1_uf7dd"]
+[ext_resource type="PackedScene" uid="uid://dwiill2noqt84" path="res://scripts/hurtbox/hurtbox.tscn" id="2_rhckb"]
+[ext_resource type="Script" uid="uid://crrxvrdbta3o3" path="res://scripts/enemy/AI/Follow.gd" id="4_vml4q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yf5fn"]
+size = Vector2(32, 32)
+
+[node name="placeholderEnemy" type="CharacterBody2D" unique_id=1352146507 node_paths=PackedStringArray("behavior")]
+modulate = Color(1, 0, 0, 1)
+script = ExtResource("1_12f17")
+behavior = NodePath("Behavior")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1136187306]
+texture = ExtResource("1_uf7dd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2065615575]
+shape = SubResource("RectangleShape2D_yf5fn")
+
+[node name="hurtbox" parent="." unique_id=1789929793 node_paths=PackedStringArray("owner_node") instance=ExtResource("2_rhckb")]
+owner_node = NodePath("..")
+
+[node name="Behavior" type="Node2D" parent="." unique_id=910271047]
+script = ExtResource("4_vml4q")

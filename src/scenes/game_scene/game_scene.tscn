@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://ciaxb2mesyvra" path="res://assets/sprites/test_square.png" id="1_xb203"]
 [ext_resource type="Script" uid="uid://d22cgg754fheg" path="res://scripts/player/player_camera/player_camera.gd" id="2_ducuf"]
 [ext_resource type="PackedScene" uid="uid://dqfx6qteghxjv" path="res://scripts/player/player_spawner/player_spawner.tscn" id="3_j8flk"]
+[ext_resource type="PackedScene" uid="uid://btklg2eul7t8q" path="res://scripts/enemy/placeholder_Enemy.tscn" id="5_ducuf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wmtvo"]
 texture = ExtResource("1_xb203")
@@ -17,6 +18,9 @@ physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_wmtvo")
 
 [node name="GameScene" type="Node2D" unique_id=211181931]
+
+[node name="placeholderEnemy" parent="." unique_id=1352146507 instance=ExtResource("5_ducuf")]
+position = Vector2(407, -210)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1822924676]
 tile_map_data = PackedByteArray("AAAAAAAAAQAAAAAAAAABAAAAAQAAAAAAAAACAAAAAQAAAAAAAAADAAAAAQAAAAAAAAAEAAAAAQAAAAAAAAAFAAAAAQAAAAAAAAAGAAAAAQAAAAAAAAAHAAAAAQAAAAAAAAAIAAAAAQAAAAAAAAAKAPz/AQAAAAAAAAALAPz/AQAAAAAAAAAMAPz/AQAAAAAAAAANAPz/AQAAAAAAAAAOAPz/AQAAAAAAAAAPAPz/AQAAAAAAAAAQAPz/AQAAAAAAAAA=")

@@ -1,6 +1,7 @@
 extends Node
 
 @onready var player: PlatformerEntity = $".."
+var attack_action = PlayerAttack.new()
 
 func _input(event: InputEvent) -> void:
 	# Movement
@@ -14,6 +15,9 @@ func _input(event: InputEvent) -> void:
 		player.release_sprint()
 	# Action
 	if event.is_action_pressed("ability"):
+		player.do_action()
+	if event.is_action("attack"):
+		player.player_action = attack_action
 		player.do_action()
 
 func _physics_process(_delta: float) -> void:
