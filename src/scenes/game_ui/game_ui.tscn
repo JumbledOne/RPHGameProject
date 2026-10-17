@@ -1,18 +1,32 @@
 [gd_scene format=3 uid="uid://dpg1mbg7qdl6m"]
 
 [ext_resource type="Script" uid="uid://tevhhdkniwy6" path="res://scenes/game_ui/ui_health_display.gd" id="1_sq0em"]
+[ext_resource type="Script" uid="uid://cymngya1w6kr6" path="res://scenes/game_ui/test_damage_button.gd" id="2_1i64n"]
 
 [node name="GameUi" type="CanvasLayer" unique_id=868102475]
 
-[node name="HealthDisplay" type="HBoxContainer" parent="." unique_id=586786786]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1432611933]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -20.0
+offset_left = -54.5
 offset_top = -40.0
-offset_right = 20.0
+offset_right = 54.5
 grow_horizontal = 2
 grow_vertical = 0
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=2028633506]
+layout_mode = 2
+text = "Player Health:"
+
+[node name="HealthDisplay" type="HBoxContainer" parent="VBoxContainer" unique_id=586786786]
+layout_mode = 2
+alignment = 1
 script = ExtResource("1_sq0em")
+
+[node name="TestDamageButton" type="Button" parent="VBoxContainer" unique_id=1924316124]
+layout_mode = 2
+text = "Test Damage"
+script = ExtResource("2_1i64n")
