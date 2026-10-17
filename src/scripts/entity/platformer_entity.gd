@@ -59,23 +59,16 @@ func _physics_process(delta: float) -> void:
 	if _last_on_floor < MAX_TRACKED_TIME:
 		_last_on_floor += delta
 	
-	# Movement
-	var speed: float = sprint_speed if _is_sprinting else walk_speed
-	var max_acceleration: float = _sprint_acceleration if _is_sprinting else _walk_acceleration
-	
-	# Find acceleration
-	var target_vel_x: float = horizontal_movement * speed
-	var acceleration: float = target_vel_x - velocity.x
-	acceleration *= max_acceleration
-	acceleration = min(abs(acceleration), max_acceleration) * sign(acceleration) # Clamps acceleration
-	
 	# Check if held jumped for too long
 	if _has_jumped:
 		if _last_jump_time > max_jump_time:
 			release_jump()
 			
-	# Apply acceleration
-	velocity.x += acceleration * delta
+	# Movement
+	var speed: float = sprint_speed if _is_sprinting else walk_speed
+	var target_vel_x: float = horizontal_movement * speed
+	var acceleration: float =  _sprint_acceleration if _is_sprinting else _walk_acceleration
+	velocity.x = move_toward(velocity.x, target_vel_x, acceleration * delta)
 	
 	# Gravity
 	velocity.y = min(velocity.y + gravity * delta * _gravity_factor, max_fall_speed)
