@@ -8,7 +8,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2n7ho"]
 size = Vector2(32, 32)
 
-[node name="Player" type="CharacterBody2D" unique_id=1043310607]
+[node name="Player" type="CharacterBody2D" unique_id=1043310607 groups=["player"]]
 script = ExtResource("1_so2s4")
 walk_speed = 200.0
 walk_time_to_full_speed = 0.2

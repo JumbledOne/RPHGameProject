@@ -1,0 +1,97 @@
+[gd_scene format=3 uid="uid://b7cwtkfr5atuj"]
+
+[ext_resource type="Texture2D" uid="uid://cxmhprpifp5t1" path="res://assets/sprites/cacao beans-sheet-sheet.png" id="1_8p81m"]
+
+[sub_resource type="GDScript" id="GDScript_s16br"]
+resource_name = "_collectibles"
+script/source = "extends Area2D
+
+func _ready() -> void:
+	GameManager.register_collectible()
+	$AnimatedSprite2D.play(\"idle\")
+	body_entered.connect(_on_body_entered)
+
+func _on_body_entered(body: PlayerEntity) -> void:
+	if body.is_in_group(\"player\"):
+		GameManager.collect()
+		queue_free()
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_02qwn"]
+atlas = ExtResource("1_8p81m")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wdkxh"]
+atlas = ExtResource("1_8p81m")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w1bw4"]
+atlas = ExtResource("1_8p81m")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rmp6a"]
+atlas = ExtResource("1_8p81m")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0i81w"]
+atlas = ExtResource("1_8p81m")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_50wpb"]
+atlas = ExtResource("1_8p81m")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7q1v0"]
+atlas = ExtResource("1_8p81m")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rcaxt"]
+atlas = ExtResource("1_8p81m")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8p81m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_02qwn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wdkxh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w1bw4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rmp6a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0i81w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_50wpb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7q1v0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rcaxt")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 6.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_02qwn"]
+radius = 13.038404
+
+[node name="Area2D" type="Area2D" unique_id=197133062]
+script = SubResource("GDScript_s16br")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1235829111]
+sprite_frames = SubResource("SpriteFrames_8p81m")
+animation = &"idle"
+frame_progress = 0.8476194
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1810863206]
+position = Vector2(0, 4)
+shape = SubResource("CircleShape2D_02qwn")

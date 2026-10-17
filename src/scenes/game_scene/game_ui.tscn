@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://vmsxvdlgsokl"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3y7pu"]
+font_size = 28
+outline_size = 12
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="GDScript" id="GDScript_3y7pu"]
+resource_name = "_tracker"
+script/source = "extends Label
+
+func _ready() -> void:
+	GameManager.collectibles_changed.connect(_update)
+	_update(GameManager.collected, GameManager.total)
+
+func _update(collected: int, total: int) -> void:
+	text = \"%d/%d\" % [collected, total]
+"
+
+[node name="GameUi" type="CanvasLayer" unique_id=271816190]
+
+[node name="ResultTable" type="Label" parent="." unique_id=1308814256]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 505.0
+offset_top = 389.0
+offset_right = -503.0
+offset_bottom = -288.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "0/0 collected!"
+label_settings = SubResource("LabelSettings_3y7pu")
+horizontal_alignment = 1
+
+[node name="Gameoverlabel" type="Label" parent="." unique_id=1368600111]
+visible = false
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 505.0
+offset_top = 353.0
+offset_right = -503.0
+offset_bottom = -328.0
+text = "Game over!"
+label_settings = SubResource("LabelSettings_3y7pu")
+horizontal_alignment = 1
+
+[node name="CollectableTracker" type="Label" parent="." unique_id=781726504]
+offset_left = 14.0
+offset_top = 11.0
+offset_right = 207.0
+offset_bottom = 57.0
+text = "0/0 collected"
+label_settings = SubResource("LabelSettings_3y7pu")
+script = SubResource("GDScript_3y7pu")
