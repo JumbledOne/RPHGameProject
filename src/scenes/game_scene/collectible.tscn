@@ -82,7 +82,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_02qwn"]
-radius = 13.038404
+radius = 17.029387
 
 [node name="Area2D" type="Area2D" unique_id=197133062]
 script = SubResource("GDScript_s16br")

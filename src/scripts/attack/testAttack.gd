@@ -12,13 +12,13 @@ func do(doer: Node2D) -> void:
 	is_currently_attacking = true
 	
 	var hitbox = HitboxScene.instantiate() as Hitbox
-
 	hitbox.owner_node = doer
-	
 	doer.add_child(hitbox)
 	
-	#duration
-	await doer.get_tree().create_timer(0.15).timeout
+	# duration, shortened by the attack speed buff
+	var duration := GameManager.base_attack_duration / GameManager.get_attack_speed()
+	print("collected: ", GameManager.collected, " speed: ", GameManager.get_attack_speed(), " duration: ", duration)
+	await doer.get_tree().create_timer(duration).timeout
 	
 	if is_instance_valid(hitbox):
 		hitbox.queue_free()
