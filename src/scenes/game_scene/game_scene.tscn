@@ -27,7 +27,8 @@ tile_map_data = PackedByteArray("AAAAAAAAAQAAAAAAAAABAAAAAQAAAAAAAAACAAAAAQAAAAA
 tile_set = SubResource("TileSet_201br")
 
 [node name="PlayerCamera" type="Camera2D" parent="." unique_id=993769838]
-position = Vector2(420, -182)
+position = Vector2(420, -164)
+zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 position_smoothing_speed = 16.0
 script = ExtResource("2_ducuf")
