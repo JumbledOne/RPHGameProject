@@ -1,5 +1,5 @@
-extends CharacterBody2D
 class_name PlatformerEntity
+extends Entity
 # A base class that only handles movement
 # Handle everything else in subclasses
 
