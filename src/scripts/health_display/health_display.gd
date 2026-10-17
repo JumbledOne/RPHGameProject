@@ -1,4 +1,4 @@
-extends Node
+extends HBoxContainer
 
 var linked_entity: Entity
 
@@ -10,6 +10,8 @@ var linked_entity: Entity
 # # # # # # # ## # # #
 # Entity linking
 func link_entity(entity: Entity):
+	if not entity:
+		return
 	if linked_entity:
 		linked_entity.healed.disconnect(_update_health_display)
 		linked_entity.damaged.disconnect(_update_health_display)
@@ -23,10 +25,11 @@ func link_entity(entity: Entity):
 func _initialize_entity_health_disp():
 	# Clear previous
 	for e: Control in get_children():
+		remove_child(e)
 		e.queue_free()
 	for i in range(linked_entity.max_health):
 		_create_health_unit()
-	_update_health_display()	
+	_update_health_display.call_deferred()	
 	
 func _update_health_display():
 	var i: int = 0
@@ -40,6 +43,7 @@ func _update_health_display():
 func _create_health_unit():
 	var c_rect: ColorRect = ColorRect.new()
 	c_rect.custom_minimum_size = Vector2.ONE * 8
+	size.y = 8
 	add_child(c_rect)
 	
 func _set_filled(unit: Control):

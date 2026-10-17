@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://dpg1mbg7qdl6m"]
 
+[ext_resource type="Script" uid="uid://tevhhdkniwy6" path="res://scenes/game_ui/ui_health_display.gd" id="1_sq0em"]
+
 [node name="GameUi" type="CanvasLayer" unique_id=868102475]
 
 [node name="HealthDisplay" type="HBoxContainer" parent="." unique_id=586786786]
@@ -13,3 +15,4 @@ offset_top = -40.0
 offset_right = 20.0
 grow_horizontal = 2
 grow_vertical = 0
+script = ExtResource("1_sq0em")
