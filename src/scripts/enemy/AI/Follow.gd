@@ -1,7 +1,8 @@
 class_name FollowBehavior
 extends EnemyBehavior
 
-@export var speed: float = 200.0
+func _ready() -> void:
+	speed = 200.0
 
 func tick(enemy: CharacterBody2D, _delta: float) -> void:
 	var player = GameManager.player
