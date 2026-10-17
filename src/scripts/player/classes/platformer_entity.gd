@@ -31,8 +31,8 @@ var _sprint_acceleration: float
 
 # Internal vars
 var _gravity_factor: float = 1
-var _last_jump_time: float # In milliseconds
-var _last_on_floor: float # In milliseconds
+var _last_jump_time: float # In seconds
+var _last_on_floor: float # In seconds
 var _was_on_floor: bool = false:
 	set(v):
 		if v and not _was_on_floor:
@@ -40,7 +40,9 @@ var _was_on_floor: bool = false:
 		elif not v and _was_on_floor:
 			_left_floor()
 		_was_on_floor = v
-			
+
+const MAX_TRACKED_TIME: float = 100
+
 signal jumped
 signal sprint_changed
 
@@ -51,6 +53,12 @@ func _ready() -> void:
 # # # # # # # # # # # #
 # Movement
 func _physics_process(delta: float) -> void:
+	# Track time
+	if _last_jump_time < MAX_TRACKED_TIME:
+		_last_jump_time += delta
+	if _last_on_floor < MAX_TRACKED_TIME:
+		_last_on_floor += delta
+	
 	# Movement
 	var speed: float = sprint_speed if _is_sprinting else walk_speed
 	var max_acceleration: float = _sprint_acceleration if _is_sprinting else _walk_acceleration
@@ -63,7 +71,7 @@ func _physics_process(delta: float) -> void:
 	
 	# Check if held jumped for too long
 	if _has_jumped:
-		if _get_seconds_since(_last_jump_time) > max_jump_time:
+		if _last_jump_time > max_jump_time:
 			release_jump()
 			
 	# Apply acceleration
@@ -82,14 +90,14 @@ func begin_jump():
 	# Should not work if already jumped
 	var _can_coyote_time: bool = false
 	if not _has_jumped:
-		_can_coyote_time = _get_seconds_since(_last_on_floor) < coyote_time
+		_can_coyote_time = _last_on_floor < coyote_time
 	if is_on_floor() or _can_coyote_time:
 		_has_jumped = true
 		velocity.y = min(velocity.y, -jump_velocity)
 		_gravity_factor = jump_gravity_factor
 		jumped.emit()
 	# For jump buffering and for checking how long you've jumped
-	_last_jump_time = Time.get_ticks_msec()
+	_last_jump_time = 0
 
 func release_jump():
 	_gravity_factor = 1
@@ -106,20 +114,15 @@ func release_sprint():
 # # # # # # # # # # # #
 func _landed_on_floor():
 	# Jump buffering
-	if _get_seconds_since(_last_jump_time) < jump_buffer:
+	if _last_jump_time < jump_buffer:
 		begin_jump()
 		return
 	_has_jumped = false
 	
 func _left_floor():
-	_last_on_floor = Time.get_ticks_msec()
+	_last_on_floor = 0
 
 # # # # # # # # # # # #
 # Getters
 func get_is_sprinting() -> bool:
 	return _is_sprinting
-	
-# # # # # # # # # # # #
-# Helpers
-func _get_seconds_since(time_msec: float) -> float:
-	return (Time.get_ticks_msec() - time_msec) / 1000
