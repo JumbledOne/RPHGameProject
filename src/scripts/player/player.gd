@@ -3,6 +3,18 @@ extends PlatformerEntity
 
 @export_category("World")
 @export var death_altitude: float = 128 # Below this point the player dies
+
+# Action vars
+var player_action: BasePlayerAction
+			
+func _ready() -> void:
+	super()
+	GameManager.player = self
+
+func _physics_process(delta: float) -> void:
+	super(delta)
+	if position.y >= death_altitude:
+		die()
 	
 # # # # # # # # # # # #
 # Actions

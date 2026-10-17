@@ -16,9 +16,6 @@ extends CharacterBody2D
 		if health <= 0:
 			die()
 
-# Action vars
-var player_action: BasePlayerAction
-			
 signal died
 signal damaged
 signal healed
