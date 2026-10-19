@@ -12,9 +12,9 @@ func _physics_process(_delta: float) -> void:
 		return
 	var x_diff: float = target.global_position.x - global_position.x
 	if x_diff > dead_zone_right:
-		position.x = target.global_position.x - dead_zone_right
+		position.x = floor(target.global_position.x - dead_zone_right)
 	elif x_diff < dead_zone_left:
-		position.x = target.global_position.x - dead_zone_left
+		position.x = floor(target.global_position.x - dead_zone_left)
 
 func _on_player_set():
 	target = GameManager.player
