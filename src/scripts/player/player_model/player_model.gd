@@ -1,4 +1,4 @@
-extends Node2D
+extends PixelPerfectNode2D
 
 @onready var player: PlatformerEntity = $".."
 @onready var run_particles: CPUParticles2D = $RunParticles
@@ -6,10 +6,12 @@ extends Node2D
 var tween: Tween
 
 func _ready() -> void:
+	super()
 	player.jumped.connect(_on_jumped)
 	player.damaged.connect(_on_damaged)
 	
 func _process(_delta: float) -> void:
+	super(_delta)
 	var on_floor: bool = player.is_on_floor()
 	run_particles.emitting = player.get_is_sprinting() and on_floor
 
