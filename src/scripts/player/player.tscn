@@ -20,4 +20,6 @@ script = ExtResource("3_kai5h")
 shape = SubResource("RectangleShape2D_2n7ho")
 
 [node name="hurtbox" parent="." unique_id=1789929793 node_paths=PackedStringArray("owner_node") instance=ExtResource("4_kai5h")]
+visibility_layer = 2
+collision_layer = 2
 owner_node = NodePath("..")
