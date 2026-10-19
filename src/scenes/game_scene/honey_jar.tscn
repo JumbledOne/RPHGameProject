@@ -1,0 +1,164 @@
+[gd_scene format=3 uid="uid://b2t6itv4f21fr"]
+
+[ext_resource type="Texture2D" uid="uid://cef21ngce2plk" path="res://assets/sprites/honey -sheet.png" id="1_w8bo0"]
+
+[sub_resource type="GDScript" id="GDScript_ykn7a"]
+resource_name = "_honeyjar"
+script/source = "extends Area2D
+
+@export var tile_size := 16            # match your TileSet tile size
+@export var field_tiles := 5           # field is 5 tiles wide
+@export var slow_factor := 0.5         # enemies move at 50% speed
+@export var field_duration := 0.0      # seconds, 0 = stays forever
+@export var trigger_on_touch := true
+@export var trigger_on_hitbox := true
+
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var slow_field: Area2D = $SlowField
+
+var activated := false
+
+func _ready() -> void:
+	# Hold on frame 1 until triggered
+	sprite.animation = \"default\"
+	sprite.stop()
+	sprite.frame = 0
+
+	# Size the field in code: a circle 5 tiles across
+	var shape := CircleShape2D.new()
+	shape.radius = field_tiles * tile_size / 2.0
+	$SlowField/CollisionShape2D.shape = shape
+	slow_field.monitoring = false
+
+	body_entered.connect(_on_body_entered)
+	area_entered.connect(_on_area_entered)
+
+func _on_body_entered(body: Node2D) -> void:
+	if trigger_on_touch and body == GameManager.player:
+		_activate()
+
+func _on_area_entered(area: Area2D) -> void:
+	if trigger_on_hitbox and area is Hitbox and area.owner_node == GameManager.player:
+		_activate()
+
+func _activate() -> void:
+	if activated:
+		return
+	activated = true
+	set_deferred(\"monitoring\", false)   # trigger is done
+	sprite.play()
+
+	slow_field.body_entered.connect(_apply_slow)
+	slow_field.body_exited.connect(_release_slow)
+	slow_field.set_deferred(\"monitoring\", true)
+
+	if field_duration > 0.0:
+		get_tree().create_timer(field_duration).timeout.connect(_end_field)
+
+func _apply_slow(body: Node2D) -> void:
+	if not body.is_in_group(\"enemy\"):
+		return
+	body.set_meta(\"slow_count\", body.get_meta(\"slow_count\", 0) + 1)
+	body.set_meta(\"slow_multiplier\", slow_factor)
+
+func _release_slow(body: Node2D) -> void:
+	if not body.is_in_group(\"enemy\"):
+		return
+	var count: int = body.get_meta(\"slow_count\", 1) - 1
+	body.set_meta(\"slow_count\", count)
+	if count <= 0:
+		body.set_meta(\"slow_multiplier\", 1.0)
+
+func _end_field() -> void:
+	slow_field.body_exited.disconnect(_release_slow)
+	for body in slow_field.get_overlapping_bodies():
+		_release_slow(body)
+	slow_field.set_deferred(\"monitoring\", false)
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xdl6u"]
+atlas = ExtResource("1_w8bo0")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xeve5"]
+atlas = ExtResource("1_w8bo0")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q0ev8"]
+atlas = ExtResource("1_w8bo0")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nc0rh"]
+atlas = ExtResource("1_w8bo0")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_681kc"]
+atlas = ExtResource("1_w8bo0")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0kcvt"]
+atlas = ExtResource("1_w8bo0")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jbi81"]
+atlas = ExtResource("1_w8bo0")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_82il5"]
+atlas = ExtResource("1_w8bo0")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6wgak"]
+atlas = ExtResource("1_w8bo0")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uepl2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xdl6u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xeve5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q0ev8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nc0rh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_681kc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0kcvt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jbi81")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_82il5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6wgak")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="HoneyJar" type="Area2D" unique_id=420468534]
+visibility_layer = 2
+position = Vector2(0, -5)
+collision_layer = 2
+script = SubResource("GDScript_ykn7a")
+
+[node name="SlowField" type="Area2D" parent="." unique_id=1915919857]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SlowField" unique_id=115130107]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=578646165]
+visibility_layer = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1238647455]
+sprite_frames = SubResource("SpriteFrames_uepl2")

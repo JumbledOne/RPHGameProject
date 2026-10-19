@@ -14,7 +14,7 @@ func _ready() -> void:
 	_update(GameManager.collected, GameManager.total)
 
 func _update(collected: int, total: int) -> void:
-	text = \"%d/%d\" % [collected, total]
+	text = \"%d/%d collected\" % [collected, total]
 "
 
 [node name="GameUi" type="CanvasLayer" unique_id=271816190]
@@ -48,10 +48,10 @@ label_settings = SubResource("LabelSettings_3y7pu")
 horizontal_alignment = 1
 
 [node name="CollectableTracker" type="Label" parent="." unique_id=781726504]
-offset_left = 14.0
-offset_top = 11.0
-offset_right = 207.0
-offset_bottom = 57.0
+offset_left = 17.0
+offset_top = 109.0
+offset_right = 210.0
+offset_bottom = 155.0
 text = "0/0 collected"
 label_settings = SubResource("LabelSettings_3y7pu")
 script = SubResource("GDScript_3y7pu")
