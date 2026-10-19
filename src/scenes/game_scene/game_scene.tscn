@@ -1,10 +1,10 @@
 [gd_scene format=4 uid="uid://bl40gfmg0jtsb"]
 
+[ext_resource type="PackedScene" uid="uid://b74gumldk6cuh" path="res://scripts/enemy/Cacao_Enemy.tscn" id="1_wmtvo"]
 [ext_resource type="Texture2D" uid="uid://ciaxb2mesyvra" path="res://assets/sprites/test_square.png" id="1_xb203"]
 [ext_resource type="Script" uid="uid://d22cgg754fheg" path="res://scripts/player/player_camera/player_camera.gd" id="2_ducuf"]
 [ext_resource type="Texture2D" uid="uid://p5p4kheh71sg" path="res://assets/sprites/tilemap.png" id="2_j8flk"]
 [ext_resource type="PackedScene" uid="uid://dqfx6qteghxjv" path="res://scripts/player/player_spawner/player_spawner.tscn" id="3_j8flk"]
-[ext_resource type="PackedScene" uid="uid://btklg2eul7t8q" path="res://scripts/enemy/placeholder_Enemy.tscn" id="5_ducuf"]
 [ext_resource type="PackedScene" uid="uid://vmsxvdlgsokl" path="res://scenes/game_scene/game_ui.tscn" id="7_201br"]
 [ext_resource type="PackedScene" uid="uid://b7cwtkfr5atuj" path="res://scenes/game_scene/collectible.tscn" id="7_wmtvo"]
 
@@ -107,8 +107,8 @@ sources/0 = SubResource("TileSetScenesCollectionSource_wmtvo")
 [node name="GameScene" type="Node2D" unique_id=211181931]
 script = SubResource("GDScript_8p81m")
 
-[node name="placeholderEnemy" parent="." unique_id=1352146507 instance=ExtResource("5_ducuf")]
-position = Vector2(407, -210)
+[node name="RottenCacao" parent="." unique_id=565006692 instance=ExtResource("1_wmtvo")]
+position = Vector2(358, -168)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1822924676]
 tile_map_data = PackedByteArray("AAAIAP//AQAAAAAAAAAHAP//AQAAAAAAAAAGAP//AQAAAAAAAAAFAP//AQAAAAAAAAAEAP//AQAAAAAAAAADAP//AQAAAAAAAAACAP//AQAAAAAAAAABAP//AQAAAAAAAAAAAP//AQAAAAAAAAAJAAIAAQAAAAAAAAAKAAIAAQAAAAAAAAALAAIAAQAAAAAAAAAMAAIAAQAAAAAAAAANAAIAAQAAAAAAAAAOAAIAAQAAAAAAAAAPAAIAAQAAAAAAAAAQAAIAAQAAAAAAAAAIAAIAAQAAAAAAAAAHAAIAAQAAAAAAAAAGAAIAAQAAAAAAAAAFAAIAAQAAAAAAAAAEAAIAAQAAAAAAAAADAAIAAQAAAAAAAAACAAIAAQAAAAAAAAABAAIAAQAAAAAAAAAAAAIAAQAAAAAAAAAJAPz/AQAAAAAAAAAKAPz/AQAAAAAAAAALAPz/AQAAAAAAAAAMAPz/AQAAAAAAAAANAPz/AQAAAAAAAAAOAPz/AQAAAAAAAAAPAPz/AQAAAAAAAAAQAPz/AQAAAAAAAAD/////AQAAAAAAAAD//wIAAQAAAAAAAAARAAIAAQAAAAAAAAASAAIAAQAAAAAAAAATAAIAAQAAAAAAAAAUAAIAAQAAAAAAAAAVAAIAAQAAAAAAAAAWAAIAAQAAAAAAAAAXAAIAAQAAAAAAAAAYAAIAAQAAAAAAAAAZAAIAAQAAAAAAAAAaAAIAAQAAAAAAAAAbAAIAAQAAAAAAAAAcAAIAAQAAAAAAAAAdAAIAAQAAAAAAAAAeAAIAAQAAAAAAAAAfAAIAAQAAAAAAAAARAPz/AQAAAAAAAAASAPz/AQAAAAAAAAATAPz/AQAAAAAAAAAUAPz/AQAAAAAAAAAVAPz/AQAAAAAAAAAWAPz/AQAAAAAAAAAXAPz/AQAAAAAAAAAYAPz/AQAAAAAAAAAZAPz/AQAAAAAAAAAaAPz/AQAAAAAAAAAbAPz/AQAAAAAAAAAcAPz/AQAAAAAAAAAdAPz/AQAAAAAAAAAeAPz/AQAAAAAAAAAfAPz/AQAAAAAAAAA=")
