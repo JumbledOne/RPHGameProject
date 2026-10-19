@@ -1,4 +1,4 @@
-class_name Cacao
+class_name EnemyScript
 extends Enemy_Entity
 
 func _process(delta: float) -> void:
