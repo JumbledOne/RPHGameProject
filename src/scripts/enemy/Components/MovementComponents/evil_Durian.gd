@@ -15,8 +15,6 @@ func _on_player_jumped():
 
 func tick(enemy: Enemy_Entity, delta: float) -> void:
 	
-	
-	
 	if not is_connected_to_player and GameManager.player:
 		if GameManager.player.has_signal("jumped"):
 			GameManager.player.jumped.connect(_on_player_jumped)
