@@ -6,7 +6,7 @@ extends Node2D
 # sprite sheets are consistent anyway
 
 @onready var player: PlatformerEntity = $".."
-@onready var run_particles: CPUParticles2D = $RunParticles
+@onready var run_particles: CPUParticles2D = $RunParticles # Might remove?
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 const BASE_ANIM_SCALE: float = 2.0
@@ -19,13 +19,11 @@ var tween: Tween
 func _ready() -> void:
 	player.jumped.connect(_on_jumped)
 	player.damaged.connect(_on_damaged)
-	#player.sprint_changed.connect(_on_sprint_changed)
 	
 func _process(_delta: float) -> void:
-	var on_floor: bool = player.is_on_floor()
 	#run_particles.emitting = player.get_is_sprinting() and on_floor
 	# Movement Animations
-	if on_floor:
+	if player.is_on_floor():
 		animation_player.speed_scale = RUNNING_ANIM_SCALE if player.get_is_sprinting() else BASE_ANIM_SCALE
 		if player.horizontal_movement > 0:
 			last_facing_right = true
@@ -48,7 +46,7 @@ func _process(_delta: float) -> void:
 		_reached_peak = true
 		
 func _on_jumped():
-	_reached_peak = false # Reset this variable
+	_reached_peak = false # Reseting the variable
 	if last_facing_right:
 		animation_player.play("jump_right")
 	else:
@@ -59,7 +57,6 @@ func _on_damaged():
 	# Feel free to change later
 	if tween:
 		tween.kill()
-	print("TEST")
 	tween = create_tween()
 	modulate = Color.RED
 	tween.tween_property(self, "modulate", Color.WHITE, 0.2)
