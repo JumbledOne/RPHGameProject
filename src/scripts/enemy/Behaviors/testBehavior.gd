@@ -3,7 +3,7 @@ extends Enemy_Behavior
 
 func _ready() -> void:
 	setAttackComponent(attackComponents.GUARANTEED_HIT)
-	setMovementComponent(movementComponents.CHASE)
+	setMovementComponent(movementComponents.IDLE)
 
 func GameLogic(enemy: Enemy_Entity, delta: float):
 	pass
