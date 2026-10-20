@@ -1,0 +1,6 @@
+[gd_resource type="AtlasTexture" format=3 uid="uid://c2o654lacevqd"]
+
+[ext_resource type="Texture2D" uid="uid://dnujb8ur0kfcy" path="res://assets/gfx_resources/atlas_textures/bagobo.tres" id="1_lufni"]
+
+[resource]
+atlas = ExtResource("1_lufni")

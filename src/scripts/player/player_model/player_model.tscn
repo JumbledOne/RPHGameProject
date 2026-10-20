@@ -1,14 +1,11 @@
 [gd_scene format=3 uid="uid://dctwav0o0dy8r"]
 
 [ext_resource type="Script" uid="uid://byanhy0cletsr" path="res://scripts/player/player_model/player_model.gd" id="1_mifw2"]
-[ext_resource type="Texture2D" uid="uid://db3yo38e5q37w" path="res://assets/sprites/normalperson.png" id="3_txvn2"]
+[ext_resource type="Texture2D" uid="uid://c2o654lacevqd" path="res://assets/gfx_resources/atlas_textures/friar_spanish_enemy.tres" id="2_mifw2"]
 
 [sub_resource type="Curve" id="Curve_2n7ho"]
 _data = [Vector2(0, 0), 0.0, 2.9389353, 0, 0, Vector2(0.65745854, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -6.3152, 0.0, 0, 0]
 point_count = 3
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2n7ho"]
-atlas = ExtResource("3_txvn2")
 
 [sub_resource type="Animation" id="Animation_txvn2"]
 length = 0.001
@@ -192,7 +189,7 @@ scale_amount_max = 4.0
 scale_amount_curve = SubResource("Curve_2n7ho")
 
 [node name="CharacterSprite" type="Sprite2D" parent="." unique_id=677532726]
-texture = SubResource("AtlasTexture_2n7ho")
+texture = ExtResource("2_mifw2")
 region_enabled = true
 region_rect = Rect2(0, 0, 32, 64)
 region_filter_clip_enabled = true
