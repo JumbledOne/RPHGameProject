@@ -31,8 +31,8 @@ var _sprint_acceleration: float
 
 # Internal vars
 var _gravity_factor: float = 1
-var _last_jump_time: float = -INF # In seconds
-var _last_on_floor: float = -INF # In seconds
+var _last_jump_time: float = INF # In seconds
+var _last_on_floor: float = INF # In seconds
 var _was_on_floor: bool = false:
 	set(v):
 		if v and not _was_on_floor:
