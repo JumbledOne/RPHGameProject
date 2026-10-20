@@ -1,0 +1,2 @@
+# Tilemap
+Remember that walkable tiles must also be set on collision layer 5. This is so that the player animation handler can detect if it's about to land on something

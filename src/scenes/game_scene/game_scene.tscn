@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://bl40gfmg0jtsb"]
 
-[ext_resource type="PackedScene" uid="uid://cyv4wl80p1a4t" path="res://scripts/enemy/Evil_Durian.tscn" id="1_wmtvo"]
+[ext_resource type="PackedScene" uid="uid://bilcp5l0jhoy6" path="res://scripts/enemy/Evil_Durian.tscn" id="1_wmtvo"]
 [ext_resource type="Texture2D" uid="uid://ciaxb2mesyvra" path="res://assets/sprites/test_square.png" id="1_xb203"]
 [ext_resource type="Script" uid="uid://d22cgg754fheg" path="res://scripts/player/player_camera/player_camera.gd" id="2_ducuf"]
 [ext_resource type="Texture2D" uid="uid://p5p4kheh71sg" path="res://assets/sprites/tilemap.png" id="2_j8flk"]
@@ -96,7 +96,7 @@ texture_region_size = Vector2i(32, 32)
 
 [sub_resource type="TileSet" id="TileSet_201br"]
 tile_size = Vector2i(32, 32)
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 17
 sources/1 = SubResource("TileSetAtlasSource_wmtvo")
 sources/0 = SubResource("TileSetAtlasSource_201br")
 
