@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var player: PlatformerEntity = $".."
 @onready var run_particles: CPUParticles2D = $RunParticles
+@onready var animation_player: AnimationPlayer
 
 var tween: Tween
 
