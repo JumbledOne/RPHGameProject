@@ -3,14 +3,11 @@ extends Node2D
 @onready var player: PlatformerEntity = $".."
 @onready var run_particles: CPUParticles2D = $RunParticles
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var landing_raycast: RayCast2D = $RayCast2D
 
 const BASE_ANIM_SCALE: float = 2.0
 const RUNNING_ANIM_SCALE: float = 4.0
-const LAND_ANIM_TIME: float = 0.2
-const LAND_RAYCAST_LENGHT: float = 256
 
-var _is_about_to_land: bool = false
+var _reached_peak: bool = false
 var last_facing_right: bool = true
 var tween: Tween
 
@@ -38,25 +35,19 @@ func _process(_delta: float) -> void:
 				animation_player.play("face_left")
 	# Check if about to land
 	elif player.velocity.y > 0:
-		landing_raycast.target_position.x = player.velocity.x * LAND_ANIM_TIME
-		landing_raycast.target_position.y = LAND_RAYCAST_LENGHT
-		if landing_raycast.is_colliding() and not _is_about_to_land:
-			_about_to_land()
+		if not _reached_peak:
+			if last_facing_right:
+				animation_player.play("land_right")
+			else:
+				animation_player.play("land_left")
+		_reached_peak = true
 		
 func _on_jumped():
-	_is_about_to_land = false # Reset this variable
+	_reached_peak = false # Reset this variable
 	if last_facing_right:
 		animation_player.play("jump_right")
 	else:
 		animation_player.play("jump_left")
-
-func _about_to_land():
-	_is_about_to_land = true
-	animation_player.speed_scale = 1.0 / LAND_ANIM_TIME
-	if last_facing_right:
-		animation_player.play("land_right")
-	else:
-		animation_player.play("land_left")
 
 func _on_damaged():
 	# Test animation only
