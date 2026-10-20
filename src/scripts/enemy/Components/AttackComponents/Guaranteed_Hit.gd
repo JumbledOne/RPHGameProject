@@ -1,4 +1,4 @@
-class_name RottenCacaoAttackComponent
+class_name GuaranteedHitAttackComponent
 extends Component
 
 const set_timer: float = 10.0

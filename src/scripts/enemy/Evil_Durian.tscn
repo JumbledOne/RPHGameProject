@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://bu2ib87bigt48" path="res://scripts/enemy/Enemy_Entity.gd" id="1_d3qgh"]
 [ext_resource type="Texture2D" uid="uid://ciaxb2mesyvra" path="res://assets/sprites/test_square.png" id="2_i46wp"]
 [ext_resource type="Script" uid="uid://cegn7cs0y2n02" path="res://scripts/enemy/Components/AttackComponents/none.gd" id="3_6c637"]
-[ext_resource type="Script" uid="uid://b2tfcrerivtxc" path="res://scripts/enemy/Components/MovementComponents/evil_Durian.gd" id="3_ctupp"]
+[ext_resource type="Script" uid="uid://b2tfcrerivtxc" path="res://scripts/enemy/Components/MovementComponents/Chase.gd" id="3_ctupp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
 size = Vector2(32, 32)

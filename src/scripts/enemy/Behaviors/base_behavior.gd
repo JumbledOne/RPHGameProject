@@ -10,7 +10,7 @@ enum attackComponents {
 
 const attackComponentScripts = {
 	attackComponents.IDLE: preload("res://scripts/enemy/Components/AttackComponents/none.gd"),
-	attackComponents.GUARANTEED_HIT: preload("res://scripts/enemy/Components/AttackComponents/rotten_Cacao.gd")
+	attackComponents.GUARANTEED_HIT: preload("res://scripts/enemy/Components/AttackComponents/Guaranteed_Hit.gd")
 }
 
 
@@ -21,7 +21,7 @@ enum movementComponents {
 
 const movementComponentScripts = {
 	movementComponents.IDLE: preload("res://scripts/enemy/Components/MovementComponents/Idle.gd"),
-	movementComponents.CHASE: preload("res://scripts/enemy/Components/MovementComponents/evil_Durian.gd")
+	movementComponents.CHASE: preload("res://scripts/enemy/Components/MovementComponents/Chase.gd")
 }
 
 # should be called inside func _process()
@@ -29,6 +29,22 @@ const movementComponentScripts = {
 
 # should be called inside func _physics_process()
 @onready var movement_Component = $MovementComponent
+
+# so behaviorManager can read the game
+@abstract func GameLogic(enemy: Enemy_Entity, delta: float)
+
+
+func process_tick(enemy: Enemy_Entity, delta: float) -> void:
+	GameLogic(enemy, delta)
+	
+	if attack_Component.has_method("tick"):
+		attack_Component.tick(enemy, delta)
+
+func physics_process_tick(enemy: Enemy_Entity, delta: float) -> void:
+	GameLogic(enemy, delta)
+	
+	if movement_Component.has_method("tick"):
+		movement_Component.tick(enemy, delta)
 
 # setters
 func setMovementComponent(new_component: movementComponents) -> void:
