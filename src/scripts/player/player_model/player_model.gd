@@ -1,4 +1,9 @@
 extends Node2D
+# NOTE
+# This uses an AnimationPlayer and AtlasTexture. It intentionally doesn't use an AnimatedSprite2D
+# This is because you can't easily change the base textures when using SpriteFrames
+# So we manually animate the atlas texture using an animation player since all 
+# sprite sheets are consistent anyway
 
 @onready var player: PlatformerEntity = $".."
 @onready var run_particles: CPUParticles2D = $RunParticles
@@ -54,6 +59,7 @@ func _on_damaged():
 	# Feel free to change later
 	if tween:
 		tween.kill()
+	print("TEST")
 	tween = create_tween()
 	modulate = Color.RED
 	tween.tween_property(self, "modulate", Color.WHITE, 0.2)
