@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dctwav0o0dy8r"]
 
-[ext_resource type="Script" uid="uid://byanhy0cletsr" path="res://scripts/player/player_model/player_model.gd" id="1_mifw2"]
-[ext_resource type="Texture2D" uid="uid://c2o654lacevqd" path="res://assets/gfx_resources/atlas_textures/friar_spanish_enemy.tres" id="2_mifw2"]
+[ext_resource type="Script" uid="uid://byanhy0cletsr" path="res://scripts/character_model/character_model.gd" id="1_lda60"]
+[ext_resource type="Texture2D" uid="uid://c2o654lacevqd" path="res://assets/gfx_resources/atlas_textures/friar_spanish_enemy.tres" id="2_pb81t"]
 
 [sub_resource type="Curve" id="Curve_2n7ho"]
 _data = [Vector2(0, 0), 0.0, 2.9389353, 0, 0, Vector2(0.65745854, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -6.3152, 0.0, 0, 0]
@@ -173,7 +173,7 @@ _data = {
 }
 
 [node name="PlayerModel" type="Node2D" unique_id=566320765]
-script = ExtResource("1_mifw2")
+script = ExtResource("1_lda60")
 
 [node name="RunParticles" type="CPUParticles2D" parent="." unique_id=2097198909]
 position = Vector2(0, 32)
@@ -189,7 +189,7 @@ scale_amount_max = 4.0
 scale_amount_curve = SubResource("Curve_2n7ho")
 
 [node name="CharacterSprite" type="Sprite2D" parent="." unique_id=677532726]
-texture = ExtResource("2_mifw2")
+texture = ExtResource("2_pb81t")
 region_enabled = true
 region_rect = Rect2(0, 0, 32, 64)
 region_filter_clip_enabled = true
