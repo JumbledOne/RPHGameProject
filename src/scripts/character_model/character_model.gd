@@ -9,7 +9,10 @@ extends Node2D
 @onready var run_particles: CPUParticles2D = $RunParticles # Might remove?
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
-const BASE_ANIM_SCALE: float = 2.0
+const DAMAGE_ANIM_SCALE: float = 2.0
+const LANDING_ANIM_SCALE: float = 4.0
+const JUMPING_ANIM_SCALE: float = 2.0
+const WALKING_ANIM_SCALE: float = 2.0
 const RUNNING_ANIM_SCALE: float = 4.0
 
 var _can_animate: bool = true
@@ -24,35 +27,39 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	# Movement Animations
 	if player.is_on_floor():
-		animation_player.speed_scale = RUNNING_ANIM_SCALE if player.get_is_sprinting() else BASE_ANIM_SCALE
 		# Exactly zero
 		if player.horizontal_movement == 0:
 			_play_animation("face_left", "face_right")
 		# Walking
 		else:
 			last_facing_right = player.horizontal_movement > 0
-			_play_animation("walk_left", "walk_right")
+			var anim_scale: float = RUNNING_ANIM_SCALE if player.get_is_sprinting() else WALKING_ANIM_SCALE
+			_play_animation("walk_left", "walk_right", anim_scale)
 	# Check if about to land
 	elif player.velocity.y > 0:
 		if not _reached_peak:
-			_play_animation("land_left", "land_right", true)
+			_play_animation("land_left", "land_right", LANDING_ANIM_SCALE, true)
 		_reached_peak = true
 		
 func _on_jumped():
 	_reached_peak = false # Reseting the variable
-	_play_animation("jump_left", "jump_right")
+	_play_animation("jump_left", "jump_right", JUMPING_ANIM_SCALE, false, true)
 
 func _on_damaged():
-	_play_animation("hit_left", "hit_right")
+	_play_animation("hit_left", "hit_right", DAMAGE_ANIM_SCALE, true, true)
 
 func _on_died():
 	pass
 	
 # # # # # # # # # # # #
 # Helpers
-func _play_animation(left_anim: StringName, right_anim: StringName, until_end: bool = false):
+## Remember to use this helper function and not call animation player directly
+func _play_animation(left_anim: StringName, right_anim: StringName, anim_scale: float = 1.0, until_end: bool = false, override_previous: bool = false):
+	if override_previous:
+		_can_animate = true
 	if not _can_animate:
 		return
+	animation_player.speed_scale = anim_scale
 	if last_facing_right:
 		animation_player.play(right_anim)
 	else:
@@ -63,4 +70,3 @@ func _play_animation(left_anim: StringName, right_anim: StringName, until_end: b
 				func(_anim_name: StringName): _can_animate = true,
 				CONNECT_ONE_SHOT
 		)
-		\

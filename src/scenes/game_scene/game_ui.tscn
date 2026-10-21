@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://vmsxvdlgsokl"]
 
+[ext_resource type="Script" uid="uid://cymngya1w6kr6" path="res://scenes/game_ui/test_damage_button.gd" id="1_6mwjj"]
+
 [sub_resource type="LabelSettings" id="LabelSettings_3y7pu"]
 font_size = 28
 outline_size = 12
@@ -55,3 +57,17 @@ offset_bottom = 155.0
 text = "0/0 collected"
 label_settings = SubResource("LabelSettings_3y7pu")
 script = SubResource("GDScript_3y7pu")
+
+[node name="Button" type="Button" parent="." unique_id=1443929147]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = -8.0
+offset_right = 4.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Test damage"
+script = ExtResource("1_6mwjj")
