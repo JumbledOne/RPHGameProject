@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dctwav0o0dy8r"]
 
-[ext_resource type="Script" uid="uid://byanhy0cletsr" path="res://scripts/character_model/character_model.gd" id="1_lda60"]
-[ext_resource type="Texture2D" uid="uid://c2o654lacevqd" path="res://assets/gfx_resources/atlas_textures/friar_spanish_enemy.tres" id="2_pb81t"]
+[ext_resource type="Script" uid="uid://byanhy0cletsr" path="res://scripts/character_model/character_model.gd" id="1_xjoyo"]
+[ext_resource type="Texture2D" uid="uid://c2o654lacevqd" path="res://assets/gfx_resources/atlas_textures/friar_spanish_enemy.tres" id="2_pah7v"]
 
 [sub_resource type="Curve" id="Curve_2n7ho"]
 _data = [Vector2(0, 0), 0.0, 2.9389353, 0, 0, Vector2(0.65745854, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -6.3152, 0.0, 0, 0]
@@ -54,6 +54,40 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Rect2(32, 192, 32, 64)]
+}
+
+[sub_resource type="Animation" id="Animation_51nnm"]
+resource_name = "hit_left"
+length = 1.000004196469113
+step = 0.041666668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterSprite:region_rect")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.33333334, 0.6666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Rect2(0, 128, 32, 64), Rect2(32, 128, 32, 64), Rect2(64, 128, 32, 64)]
+}
+
+[sub_resource type="Animation" id="Animation_d3yp7"]
+resource_name = "hit_right"
+length = 1.000004196469113
+step = 0.041666668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterSprite:region_rect")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.33333334, 0.6666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Rect2(64, 320, 32, 64), Rect2(32, 320, 32, 64), Rect2(0, 320, 32, 64)]
 }
 
 [sub_resource type="Animation" id="Animation_nht7j"]
@@ -164,6 +198,8 @@ _data = {
 &"RESET": SubResource("Animation_txvn2"),
 &"face_left": SubResource("Animation_jimqr"),
 &"face_right": SubResource("Animation_wwcde"),
+&"hit_left": SubResource("Animation_51nnm"),
+&"hit_right": SubResource("Animation_d3yp7"),
 &"jump_left": SubResource("Animation_nht7j"),
 &"jump_right": SubResource("Animation_0q621"),
 &"land_left": SubResource("Animation_d2gl4"),
@@ -173,7 +209,7 @@ _data = {
 }
 
 [node name="PlayerModel" type="Node2D" unique_id=566320765]
-script = ExtResource("1_lda60")
+script = ExtResource("1_xjoyo")
 
 [node name="RunParticles" type="CPUParticles2D" parent="." unique_id=2097198909]
 position = Vector2(0, 32)
@@ -189,7 +225,7 @@ scale_amount_max = 4.0
 scale_amount_curve = SubResource("Curve_2n7ho")
 
 [node name="CharacterSprite" type="Sprite2D" parent="." unique_id=677532726]
-texture = ExtResource("2_pb81t")
+texture = ExtResource("2_pah7v")
 region_enabled = true
 region_rect = Rect2(0, 0, 32, 64)
 region_filter_clip_enabled = true
