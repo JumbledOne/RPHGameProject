@@ -50,6 +50,9 @@ func _on_damaged():
 func _on_died():
 	pass
 	
+func set_texture(atlas_tex: AtlasTexture):
+	$CharacterSprite.texture = atlas_tex
+	
 # # # # # # # # # # # #
 # Helpers
 ## Remember to use this helper function and not call animation player directly
