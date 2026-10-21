@@ -11,8 +11,8 @@ extends Node2D
 const DAMAGE_ANIM_SCALE: float = 2.0
 const LANDING_ANIM_SCALE: float = 4.0
 const JUMPING_ANIM_SCALE: float = 2.0
-const WALKING_ANIM_SCALE: float = 2.0
-const RUNNING_ANIM_SCALE: float = 4.0
+const WALKING_ANIM_SCALE: float = 3.0
+const RUNNING_ANIM_SCALE: float = 5.0
 
 var _can_animate: bool = true
 var _reached_peak: bool = false
