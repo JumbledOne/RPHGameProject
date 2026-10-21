@@ -22,7 +22,6 @@ func _ready() -> void:
 	player.died.connect(_on_died)
 	
 func _process(_delta: float) -> void:
-	#run_particles.emitting = player.get_is_sprinting() and on_floor
 	# Movement Animations
 	if player.is_on_floor():
 		animation_player.speed_scale = RUNNING_ANIM_SCALE if player.get_is_sprinting() else BASE_ANIM_SCALE
@@ -36,7 +35,7 @@ func _process(_delta: float) -> void:
 	# Check if about to land
 	elif player.velocity.y > 0:
 		if not _reached_peak:
-			_play_animation("land_left", "land_right")
+			_play_animation("land_left", "land_right", true)
 		_reached_peak = true
 		
 func _on_jumped():
@@ -61,6 +60,7 @@ func _play_animation(left_anim: StringName, right_anim: StringName, until_end: b
 	if until_end:
 		_can_animate = false
 		animation_player.animation_finished.connect(
-				func(): _can_animate = false,
+				func(_anim_name: StringName): _can_animate = true,
 				CONNECT_ONE_SHOT
 		)
+		\
