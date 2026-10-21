@@ -3,10 +3,6 @@
 [ext_resource type="Script" uid="uid://byanhy0cletsr" path="res://scripts/character_model/character_model.gd" id="1_xjoyo"]
 [ext_resource type="Texture2D" uid="uid://c2o654lacevqd" path="res://assets/gfx_resources/atlas_textures/friar_spanish_enemy.tres" id="2_pah7v"]
 
-[sub_resource type="Curve" id="Curve_2n7ho"]
-_data = [Vector2(0, 0), 0.0, 2.9389353, 0, 0, Vector2(0.65745854, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -6.3152, 0.0, 0, 0]
-point_count = 3
-
 [sub_resource type="Animation" id="Animation_txvn2"]
 length = 0.001
 tracks/0/type = "value"
@@ -208,21 +204,8 @@ _data = {
 &"walk_right": SubResource("Animation_djsjp")
 }
 
-[node name="PlayerModel" type="Node2D" unique_id=566320765]
+[node name="CharacterModel" type="Node2D" unique_id=566320765]
 script = ExtResource("1_xjoyo")
-
-[node name="RunParticles" type="CPUParticles2D" parent="." unique_id=2097198909]
-position = Vector2(0, 32)
-emitting = false
-lifetime = 0.5
-direction = Vector2(1, -1)
-spread = 90.0
-gravity = Vector2(0, 0)
-initial_velocity_min = 32.0
-initial_velocity_max = 64.0
-scale_amount_min = 2.0
-scale_amount_max = 4.0
-scale_amount_curve = SubResource("Curve_2n7ho")
 
 [node name="CharacterSprite" type="Sprite2D" parent="." unique_id=677532726]
 texture = ExtResource("2_pah7v")

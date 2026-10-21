@@ -5,8 +5,7 @@ extends Node2D
 # So we manually animate the atlas texture using an animation player since all 
 # sprite sheets are consistent anyway
 
-@onready var player: PlatformerEntity = $".."
-@onready var run_particles: CPUParticles2D = $RunParticles # Might remove?
+@onready var entity: PlatformerEntity = $".."
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 const DAMAGE_ANIM_SCALE: float = 2.0
@@ -20,23 +19,23 @@ var _reached_peak: bool = false
 var last_facing_right: bool = true
 
 func _ready() -> void:
-	player.jumped.connect(_on_jumped)
-	player.damaged.connect(_on_damaged)
-	player.died.connect(_on_died)
+	entity.jumped.connect(_on_jumped)
+	entity.damaged.connect(_on_damaged)
+	entity.died.connect(_on_died)
 	
 func _process(_delta: float) -> void:
 	# Movement Animations
-	if player.is_on_floor():
+	if entity.is_on_floor():
 		# Exactly zero
-		if player.horizontal_movement == 0:
+		if entity.horizontal_movement == 0:
 			_play_animation("face_left", "face_right")
 		# Walking
 		else:
-			last_facing_right = player.horizontal_movement > 0
-			var anim_scale: float = RUNNING_ANIM_SCALE if player.get_is_sprinting() else WALKING_ANIM_SCALE
+			last_facing_right = entity.horizontal_movement > 0
+			var anim_scale: float = RUNNING_ANIM_SCALE if entity.get_is_sprinting() else WALKING_ANIM_SCALE
 			_play_animation("walk_left", "walk_right", anim_scale)
 	# Check if about to land
-	elif player.velocity.y > 0:
+	elif entity.velocity.y > 0:
 		if not _reached_peak:
 			_play_animation("land_left", "land_right", LANDING_ANIM_SCALE, true)
 		_reached_peak = true
