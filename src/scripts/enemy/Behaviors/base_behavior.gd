@@ -5,11 +5,13 @@ extends Node2D
 
 enum attackComponents {
 	IDLE,
+	BLIND,
 	GUARANTEED_HIT
 }
 
 const attackComponentScripts = {
 	attackComponents.IDLE: preload("res://scripts/enemy/Components/AttackComponents/none.gd"),
+	attackComponents.BLIND: preload("res://scripts/enemy/Components/AttackComponents/Blind.gd"),
 	attackComponents.GUARANTEED_HIT: preload("res://scripts/enemy/Components/AttackComponents/Guaranteed_Hit.gd")
 }
 

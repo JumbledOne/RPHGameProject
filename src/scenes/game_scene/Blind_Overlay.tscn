@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://cctkd37r6nwkq"]
+
+[ext_resource type="Shader" uid="uid://d3uwdljrhj737" path="res://scripts/enemy/Shaders/blind_shader.gdshader" id="1_vl6k8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3di6p"]
+shader = ExtResource("1_vl6k8")
+shader_parameter/player_screen_position = Vector2(0.5, 0.5)
+shader_parameter/radius = 0.15
+shader_parameter/feather = 0.05
+
+[node name="Blind_Overlay" type="CanvasLayer" unique_id=1339188969]
+
+[node name="BlindOverlay" type="ColorRect" parent="." unique_id=747448355 groups=["blind_overlay"]]
+material = SubResource("ShaderMaterial_3di6p")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -56.0
+offset_top = -381.0
+offset_right = 62.0
+offset_bottom = 298.0
+grow_horizontal = 2
+grow_vertical = 2

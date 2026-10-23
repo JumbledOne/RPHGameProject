@@ -2,7 +2,7 @@ class_name TestEnemyBehavior
 extends Enemy_Behavior
 
 func _ready() -> void:
-	setAttackComponent(attackComponents.GUARANTEED_HIT)
+	setAttackComponent(attackComponents.BLIND)
 	setMovementComponent(movementComponents.IDLE)
 
 func GameLogic(enemy: Enemy_Entity, delta: float):

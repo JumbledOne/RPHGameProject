@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cqigrplcns1qc"]
 
-[ext_resource type="Script" uid="uid://bu2ib87bigt48" path="res://scripts/enemy/Enemy_Entity.gd" id="1_7b3uj"]
+[ext_resource type="Script" uid="uid://bu2ib87bigt48" path="res://scripts/enemy/Enemy_Entity.gd" id="1_slfav"]
 [ext_resource type="PackedScene" uid="uid://dwiill2noqt84" path="res://scripts/hurtbox/hurtbox.tscn" id="2_slfav"]
 [ext_resource type="Texture2D" uid="uid://ciaxb2mesyvra" path="res://assets/sprites/test_square.png" id="3_we1su"]
 [ext_resource type="Script" uid="uid://fham6hc8htd6" path="res://scripts/enemy/Behaviors/testBehavior.gd" id="4_slfav"]
@@ -25,7 +25,7 @@ animations = [{
 }]
 
 [node name="test" type="CharacterBody2D" unique_id=565006692]
-script = ExtResource("1_7b3uj")
+script = ExtResource("1_slfav")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=136484504]
 shape = SubResource("RectangleShape2D_g4v7s")

@@ -1,10 +1,12 @@
 [gd_scene format=4 uid="uid://bl40gfmg0jtsb"]
 
+[ext_resource type="PackedScene" uid="uid://cqigrplcns1qc" path="res://scripts/enemy/test.tscn" id="1_dgii4"]
 [ext_resource type="PackedScene" uid="uid://s5b3uyrttyhd" path="res://scripts/enemy/Rotten_Cacao.tscn" id="1_j6s53"]
 [ext_resource type="Texture2D" uid="uid://ciaxb2mesyvra" path="res://assets/sprites/test_square.png" id="1_xb203"]
 [ext_resource type="Script" uid="uid://d22cgg754fheg" path="res://scripts/player/player_camera/player_camera.gd" id="2_ducuf"]
 [ext_resource type="Texture2D" uid="uid://p5p4kheh71sg" path="res://assets/sprites/tilemap.png" id="2_j8flk"]
 [ext_resource type="PackedScene" uid="uid://dqfx6qteghxjv" path="res://scripts/player/player_spawner/player_spawner.tscn" id="3_j8flk"]
+[ext_resource type="PackedScene" uid="uid://cctkd37r6nwkq" path="res://scenes/game_scene/Blind_Overlay.tscn" id="6_hqmgi"]
 [ext_resource type="PackedScene" uid="uid://vmsxvdlgsokl" path="res://scenes/game_scene/game_ui.tscn" id="7_201br"]
 [ext_resource type="PackedScene" uid="uid://bmnx81gdn0jd6" path="res://scenes/game_scene/durian.tscn" id="7_j6s53"]
 [ext_resource type="PackedScene" uid="uid://b7cwtkfr5atuj" path="res://scenes/game_scene/collectible.tscn" id="7_wmtvo"]
@@ -122,7 +124,10 @@ sources/0 = SubResource("TileSetScenesCollectionSource_hqmgi")
 [node name="GameScene" type="Node2D" unique_id=211181931]
 script = SubResource("GDScript_8p81m")
 
-[node name="RottenCacao" parent="." unique_id=565006692 instance=ExtResource("1_j6s53")]
+[node name="test" parent="." unique_id=565006692 instance=ExtResource("1_dgii4")]
+position = Vector2(349, -181)
+
+[node name="RottenCacao" parent="." unique_id=298806968 instance=ExtResource("1_j6s53")]
 position = Vector2(445, -181)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1822924676]
@@ -135,6 +140,8 @@ zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 position_smoothing_speed = 16.0
 script = ExtResource("2_ducuf")
+
+[node name="BlindOverlay" parent="." unique_id=1339188969 instance=ExtResource("6_hqmgi")]
 
 [node name="PlayerSpawner" parent="." unique_id=512273958 instance=ExtResource("3_j8flk")]
 position = Vector2(128, -64)
