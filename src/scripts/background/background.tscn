@@ -1,4 +1,11 @@
 [gd_scene format=3 uid="uid://73qqhe04mof4"]
 
-[node name="Background" type="CanvasLayer" unique_id=116955748]
-layer = -1
+[ext_resource type="Texture2D" uid="uid://50amvlb5jy4j" path="res://assets/sprites/stage1_ancient_trading_gulf_640x360.png" id="1_4upsu"]
+
+[node name="Background" type="Parallax2D" unique_id=1712092851]
+scroll_scale = Vector2(2, 2)
+repeat_size = Vector2(640, 0)
+repeat_times = 37
+
+[node name="Stage1AncientTradingGulf640x360" type="Sprite2D" parent="." unique_id=577926699]
+texture = ExtResource("1_4upsu")

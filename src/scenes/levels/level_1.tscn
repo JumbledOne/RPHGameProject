@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://50amvlb5jy4j" path="res://assets/sprites/stage1_ancient_trading_gulf_640x360.png" id="1_la5od"]
 [ext_resource type="PackedScene" uid="uid://bilcp5l0jhoy6" path="res://scripts/enemy/Evil_Durian.tscn" id="2_5jnu0"]
+[ext_resource type="PackedScene" uid="uid://73qqhe04mof4" path="res://scripts/background/background.tscn" id="2_sk5k4"]
 [ext_resource type="PackedScene" uid="uid://dqfx6qteghxjv" path="res://scripts/player/player_spawner/player_spawner.tscn" id="3_oh33q"]
 [ext_resource type="Texture2D" uid="uid://bmra7b1uo5a0g" path="res://assets/sprites/tilemap-updated.png" id="4_af25d"]
 [ext_resource type="Script" uid="uid://d22cgg754fheg" path="res://scripts/player/player_camera/player_camera.gd" id="5_5jnu0"]
@@ -2168,41 +2169,7 @@ sources/0 = SubResource("TileSetAtlasSource_35kre")
 [node name="Map_BG" type="TileMapLayer" unique_id=1104505614]
 tile_set = SubResource("TileSet_g4v7s")
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=1548516533]
-offset_left = -1946.0
-offset_top = -822.0
-offset_right = 112.0
-offset_bottom = 451.0
-texture = ExtResource("1_la5od")
-
-[node name="TextureRect" type="TextureRect" parent="TextureRect" unique_id=484558801]
-layout_mode = 0
-offset_left = 2057.0
-offset_right = 4115.0
-offset_bottom = 1273.0
-texture = ExtResource("1_la5od")
-
-[node name="TextureRect" type="TextureRect" parent="TextureRect/TextureRect" unique_id=1868313984]
-layout_mode = 0
-offset_left = 1991.0
-offset_right = 4049.0
-offset_bottom = 1273.0
-texture = ExtResource("1_la5od")
-
-[node name="TextureRect" type="TextureRect" parent="TextureRect/TextureRect/TextureRect" unique_id=837497903]
-layout_mode = 0
-offset_left = 1991.0
-offset_right = 4049.0
-offset_bottom = 1273.0
-texture = ExtResource("1_la5od")
-
-[node name="TextureRect" type="TextureRect" parent="TextureRect/TextureRect/TextureRect/TextureRect" unique_id=1193403491]
-layout_mode = 0
-offset_left = -8095.0
-offset_top = 1.0
-offset_right = -6037.0
-offset_bottom = 1274.0
-texture = ExtResource("1_la5od")
+[node name="Background" parent="." unique_id=1712092851 instance=ExtResource("2_sk5k4")]
 
 [node name="EvilDurian" parent="." unique_id=565006692 instance=ExtResource("2_5jnu0")]
 position = Vector2(-1804, -90)
