@@ -18,40 +18,40 @@ var score := 0
 # Dates/descriptions are PLACEHOLDERS mf. Replace with the other guys' researched text.
 const LEVELS := {
 	1:  {
-		"date": "1700s", "title": "Pre-Colonial Davao",
-		"desc": "Indigenous tribes live and trade along the Davao Gulf.",
-		"scene": "res://scenes/levels/level_1.tscn"
+			"date": "1700s", 
+			"title": "Pre-Colonial Davao",
+			"desc": "Indigenous tribes live and trade along the Davao Gulf.",
+			"scene": "res://scenes/levels/level_1.tscn"
 		},
 	2:  {
-		"date": "1800s", "title": "Spaniards Conquered Davao",
-		"desc": "Spanish colonizers arrive and take control of the region.",
-		"scene": "res://scenes/levels/level_2.tscn"
+			"date": "1800s", 
+			"title": "Spaniards Conquered Davao",
+			"desc": "Spanish colonizers arrive and take control of the region.",
+			"scene": "res://scenes/levels/level_2.tscn"
 		},
 	3:  {
-		"date": "1900s", "title": "Arrival of the Japanese",
-		"desc": "Japanese settlers arrive and Davao City is established.",
-		"scene": "res://scenes/levels/level_3.tscn"
+			"date": "1900s", 
+			"title": "Arrival of the Japanese",
+			"desc": "Japanese settlers arrive and Davao City is established.",
+			"scene": "res://scenes/levels/level_3.tscn"
 		},
 	4:  {
-		"date": "1940s", "title": "World War II",
-		"desc": "Davao during the war years.",
-		"scene": "res://scenes/levels/level_4.tscn"
+			"date": "1940s", 
+			"title": "World War II",
+			"desc": "Davao during the war years.",
+			"scene": "res://scenes/levels/level_4.tscn"
 		},
 	5:  {
-		"date": "Today", "title": "Davao Today",
-		"desc": "Modern Davao, the city we know now.",
-		"scene": "res://scenes/levels/level_5.tscn"
+			"date": "Today", 
+			"title": "Davao Today",
+			"desc": "Modern Davao, the city we know now.",
+			"scene": "res://scenes/levels/level_5.tscn"
 		},
 }
 
-func reset_run() -> void:
-	hearts = MAX_HEARTS
-	cacao = 0
-	score = 0
-	hearts_changed.emit(hearts)
-	cacao_changed.emit(cacao)
-	score_changed.emit(score)
-
+# # # # # # # # # # # #
+# Might remove the health functions since these these don't do anything?
+# In fact they shouldn't do anything you should call the player directly through GameManager
 func damage(amount: int = 1) -> void:
 	hearts = max(hearts - amount, 0)
 	hearts_changed.emit(hearts)
@@ -77,6 +77,16 @@ func get_stars() -> int:
 	if cacao >= 5: return 1
 	return 0
 
+# # # # # # # # # # # #
+# Level controls
+func reset_run() -> void:
+	hearts = MAX_HEARTS
+	cacao = 0
+	score = 0
+	hearts_changed.emit(hearts)
+	cacao_changed.emit(cacao)
+	score_changed.emit(score)
+	
 func start_level(level: int) -> void:
 	selected_level = level
 	reset_run()
@@ -86,6 +96,8 @@ func start_level(level: int) -> void:
 func restart_level() -> void:
 	start_level(selected_level)
 
+# # # # # # # # # # # #
+# Scene switching
 func go_to_menu() -> void:
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://scenes/ui/main_menu.tscn")
