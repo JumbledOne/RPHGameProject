@@ -20,7 +20,6 @@ func _ready() -> void:
 	desired_pos.y = CAMERA_Y #position.y
 
 func _physics_process(_delta: float) -> void:
-	print(position.x)
 	if not target:
 		return
 	# Move desired pos

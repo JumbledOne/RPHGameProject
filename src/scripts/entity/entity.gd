@@ -27,7 +27,7 @@ func heal(amount: int = 1):
 
 func hurt(amount: int = 1):
 	health -= amount
-	print("player HP:" , health)
+	#print("player HP:" , health)
 	
 func die():
 	died.emit()

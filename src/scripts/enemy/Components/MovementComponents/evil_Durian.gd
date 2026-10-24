@@ -11,7 +11,7 @@ func _ready() -> void:
 
 func _on_player_jumped():
 	player_pos_when_jumping.append(GameManager.player.position)
-	print("appended player jump pos")
+	#print("appended player jump pos")
 
 func tick(enemy: Enemy_Entity, delta: float) -> void:
 	
