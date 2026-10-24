@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://xacilbtjk1ht"]
+
+[ext_resource type="Script" uid="uid://bx1f4nac60iau" path="res://scripts/hud.gd" id="1_0mwgc"]
+
+[node name="HUD" type="CanvasLayer" unique_id=65388755]
+script = ExtResource("1_0mwgc")
+
+[node name="TopBar" type="MarginContainer" parent="." unique_id=1497311848]
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TopBar" unique_id=449053521]
+layout_mode = 2
+theme_override_constants/separation = 32
+alignment = 2
+
+[node name="HeartsBox" type="HBoxContainer" parent="TopBar/HBoxContainer" unique_id=473707441]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="CacaoLabel" type="Label" parent="TopBar/HBoxContainer" unique_id=633967821]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Cacao : 0"
+
+[node name="ScoreLabel" type="Label" parent="TopBar/HBoxContainer" unique_id=1158965773]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Score : 0"
+
+[node name="PowerupLabel" type="Label" parent="TopBar/HBoxContainer" unique_id=1353665908]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="TimelineTitle" type="Label" parent="." unique_id=1279107570]
+unique_name_in_owner = true
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 48
+text = "1700s - Pre-Colonial Davao"
+horizontal_alignment = 1
