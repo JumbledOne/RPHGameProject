@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bmnx81gdn0jd6" path="res://scenes/game_scene/durian.tscn" id="7_j6s53"]
 [ext_resource type="PackedScene" uid="uid://b7cwtkfr5atuj" path="res://scenes/game_scene/collectible.tscn" id="7_wmtvo"]
 [ext_resource type="PackedScene" uid="uid://b2t6itv4f21fr" path="res://scenes/game_scene/honey_jar.tscn" id="9_j6s53"]
+[ext_resource type="PackedScene" uid="uid://clvr5icyyjm0y" path="res://scripts/water/water.tscn" id="10_dgii4"]
 
 [sub_resource type="GDScript" id="GDScript_8p81m"]
 resource_name = "level_script"
@@ -1013,3 +1014,9 @@ tile_set = SubResource("TileSet_s16br")
 
 [node name="TileMapLayer2" type="TileMapLayer" parent="." unique_id=1529009657]
 tile_set = SubResource("TileSet_yf5fn")
+[node name="Water" parent="." unique_id=662158307 instance=ExtResource("10_dgii4")]
+visible = false
+offset_left = 214.0
+offset_top = -85.0
+offset_right = 714.0
+offset_bottom = 115.0

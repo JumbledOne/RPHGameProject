@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://73qqhe04mof4"]
+
+[node name="Background" type="CanvasLayer" unique_id=116955748]
+layer = -1
