@@ -1,3 +1,4 @@
+class_name PlayerCamera
 extends Camera2D
 # Do not use position smoothing in this camera!
 # Uses custom smoothing logic
@@ -14,6 +15,7 @@ const CAMERA_Y: float = -164.0 # Tuned such that you can see exactly one tile be
 const CAMERA_ZOOM: float = 2.0 # The game is 1280x720. But we only need 640x360 so we zoom in 
 
 func _ready() -> void:
+	zoom = Vector2.ONE * CAMERA_ZOOM
 	GameManager.player_set.connect(_on_player_set)
 	desired_pos.y = CAMERA_Y #position.y
 

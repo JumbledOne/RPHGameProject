@@ -1,9 +1,10 @@
 [gd_scene format=4 uid="uid://bxpn666gd3hm3"]
 
-[ext_resource type="Texture2D" uid="uid://b6x12gykfwfkp" path="res://assets/sprites/stage2_spanish_expedition_640x360.png" id="1_fw7b7"]
+[ext_resource type="PackedScene" uid="uid://73qqhe04mof4" path="res://scripts/background/background.tscn" id="1_fiq81"]
 [ext_resource type="Texture2D" uid="uid://bmra7b1uo5a0g" path="res://assets/sprites/tilemap-updated.png" id="2_8pyxl"]
 [ext_resource type="PackedScene" uid="uid://bilcp5l0jhoy6" path="res://scripts/enemy/Evil_Durian.tscn" id="3_fw7b7"]
 [ext_resource type="PackedScene" uid="uid://dqfx6qteghxjv" path="res://scripts/player/player_spawner/player_spawner.tscn" id="4_vdhr5"]
+[ext_resource type="Script" uid="uid://d22cgg754fheg" path="res://scripts/player/player_camera/player_camera.gd" id="5_l37oo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_21xmu"]
 texture = ExtResource("2_8pyxl")
@@ -645,48 +646,9 @@ sources/1 = SubResource("TileSetAtlasSource_21xmu")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8pyxl"]
 
-[node name="levels" type="Node2D" unique_id=1827980013]
+[node name="Level2" type="Node2D" unique_id=1827980013]
 
-[node name="BG" type="CanvasLayer" parent="." unique_id=511212613]
-layer = -1
-
-[node name="TextureRect" type="TextureRect" parent="BG" unique_id=1874830659]
-offset_left = 17.0
-offset_top = -132.0
-offset_right = 2291.0
-offset_bottom = 776.0
-texture = ExtResource("1_fw7b7")
-
-[node name="TextureRect2" type="TextureRect" parent="BG/TextureRect" unique_id=1874939555]
-layout_mode = 0
-offset_left = 2273.0
-offset_right = 4554.0
-offset_bottom = 908.0
-texture = ExtResource("1_fw7b7")
-
-[node name="TextureRect2" type="TextureRect" parent="BG/TextureRect/TextureRect2" unique_id=1346657604]
-layout_mode = 0
-offset_left = 2279.0
-offset_top = -1.0
-offset_right = 4560.0
-offset_bottom = 907.0
-texture = ExtResource("1_fw7b7")
-
-[node name="TextureRect2" type="TextureRect" parent="BG/TextureRect/TextureRect2/TextureRect2" unique_id=1538646908]
-layout_mode = 0
-offset_left = 2270.0
-offset_top = -1.0
-offset_right = 4551.0
-offset_bottom = 907.0
-texture = ExtResource("1_fw7b7")
-
-[node name="TextureRect2" type="TextureRect" parent="BG/TextureRect/TextureRect2/TextureRect2/TextureRect2" unique_id=1529257462]
-layout_mode = 0
-offset_left = -9097.0
-offset_top = -1.0
-offset_right = -6816.0
-offset_bottom = 907.0
-texture = ExtResource("1_fw7b7")
+[node name="Background" parent="." unique_id=1712092851 instance=ExtResource("1_fiq81")]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=615755118]
 position = Vector2(-1, 0)
@@ -700,12 +662,12 @@ position = Vector2(246, 634)
 position = Vector2(229, 513)
 disable_mode = 1
 
-[node name="Camera2D" type="Camera2D" parent="EvilDurian" unique_id=1284449620]
-position = Vector2(0, 15)
-offset = Vector2(0, 1)
-enabled = false
-zoom = Vector2(2, 2)
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EvilDurian" unique_id=294528507]
 position = Vector2(5, -6)
 shape = SubResource("CircleShape2D_8pyxl")
+
+[node name="PlayerCamera" type="Camera2D" parent="." unique_id=1990918963]
+script = ExtResource("5_l37oo")
+metadata/_custom_type_script = "uid://d22cgg754fheg"
+
+[editable path="Background"]
