@@ -17,21 +17,31 @@ var score := 0
 
 # Dates/descriptions are PLACEHOLDERS mf. Replace with the other guys' researched text.
 const LEVELS := {
-	1: {"date": "1700s", "title": "Pre-Colonial Davao",
+	1:  {
+		"date": "1700s", "title": "Pre-Colonial Davao",
 		"desc": "Indigenous tribes live and trade along the Davao Gulf.",
-		"scene": "res://scenes/levels/level_1.tscn"},
-	2: {"date": "1800s", "title": "Spaniards Conquered Davao",
+		"scene": "res://scenes/levels/level_1.tscn"
+		},
+	2:  {
+		"date": "1800s", "title": "Spaniards Conquered Davao",
 		"desc": "Spanish colonizers arrive and take control of the region.",
-		"scene": "res://scenes/levels/level_2.tscn"},
-	3: {"date": "1900s", "title": "Arrival of the Japanese",
+		"scene": "res://scenes/levels/level_2.tscn"
+		},
+	3:  {
+		"date": "1900s", "title": "Arrival of the Japanese",
 		"desc": "Japanese settlers arrive and Davao City is established.",
-		"scene": "res://scenes/levels/level_3.tscn"},
-	4: {"date": "1940s", "title": "World War II",
+		"scene": "res://scenes/levels/level_3.tscn"
+		},
+	4:  {
+		"date": "1940s", "title": "World War II",
 		"desc": "Davao during the war years.",
-		"scene": "res://scenes/levels/level_4.tscn"},
-	5: {"date": "Today", "title": "Davao Today",
+		"scene": "res://scenes/levels/level_4.tscn"
+		},
+	5:  {
+		"date": "Today", "title": "Davao Today",
 		"desc": "Modern Davao, the city we know now.",
-		"scene": "res://scenes/levels/level_5.tscn"},
+		"scene": "res://scenes/levels/level_5.tscn"
+		},
 }
 
 func reset_run() -> void:
