@@ -151,6 +151,7 @@ tile_map_data = PackedByteArray("AAAuAAMAAAAAAAAAAQAyAAMAAAAAAAAAAQA3AAMAAAAAAAA
 tile_set = SubResource("TileSet_s16br")
 
 [node name="Water" parent="." unique_id=662158307 instance=ExtResource("10_dgii4")]
+visible = false
 offset_left = 214.0
 offset_top = -85.0
 offset_right = 714.0
