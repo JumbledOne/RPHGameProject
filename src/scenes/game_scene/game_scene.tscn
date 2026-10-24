@@ -1,6 +1,5 @@
 [gd_scene format=4 uid="uid://bl40gfmg0jtsb"]
 
-[ext_resource type="Texture2D" uid="uid://b6x12gykfwfkp" path="res://assets/sprites/stage2_spanish_expedition_640x360.png" id="1_j6s53"]
 [ext_resource type="PackedScene" uid="uid://bilcp5l0jhoy6" path="res://scripts/enemy/Evil_Durian.tscn" id="1_wmtvo"]
 [ext_resource type="Texture2D" uid="uid://50amvlb5jy4j" path="res://assets/sprites/stage1_ancient_trading_gulf_640x360.png" id="2_201br"]
 [ext_resource type="Script" uid="uid://d22cgg754fheg" path="res://scripts/player/player_camera/player_camera.gd" id="2_ducuf"]
@@ -8,8 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://vmsxvdlgsokl" path="res://scenes/game_scene/game_ui.tscn" id="7_201br"]
 [ext_resource type="PackedScene" uid="uid://bmnx81gdn0jd6" path="res://scenes/game_scene/durian.tscn" id="7_j6s53"]
 [ext_resource type="PackedScene" uid="uid://b7cwtkfr5atuj" path="res://scenes/game_scene/collectible.tscn" id="7_wmtvo"]
+[ext_resource type="PackedScene" uid="uid://73qqhe04mof4" path="res://scripts/background/background.tscn" id="9_dgii4"]
 [ext_resource type="PackedScene" uid="uid://b2t6itv4f21fr" path="res://scenes/game_scene/honey_jar.tscn" id="9_j6s53"]
-[ext_resource type="PackedScene" uid="uid://clvr5icyyjm0y" path="res://scripts/water/water.tscn" id="10_dgii4"]
 
 [sub_resource type="GDScript" id="GDScript_8p81m"]
 resource_name = "level_script"
@@ -946,44 +945,8 @@ sources/0 = SubResource("TileSetAtlasSource_dgii4")
 [node name="GameScene" type="Node2D" unique_id=211181931]
 script = SubResource("GDScript_8p81m")
 
-[node name="BG" type="CanvasLayer" parent="." unique_id=1645503938]
-layer = -1
-
-[node name="TextureRect" type="TextureRect" parent="BG" unique_id=1830293418]
-offset_right = 2274.0
-offset_bottom = 908.0
-texture = ExtResource("1_j6s53")
-
-[node name="TextureRect2" type="TextureRect" parent="BG/TextureRect" unique_id=127049452]
-layout_mode = 0
-offset_left = 2273.0
-offset_right = 4554.0
-offset_bottom = 908.0
-texture = ExtResource("1_j6s53")
-
-[node name="TextureRect2" type="TextureRect" parent="BG/TextureRect/TextureRect2" unique_id=2072657054]
-layout_mode = 0
-offset_left = 2279.0
-offset_top = -1.0
-offset_right = 4560.0
-offset_bottom = 907.0
-texture = ExtResource("1_j6s53")
-
-[node name="TextureRect2" type="TextureRect" parent="BG/TextureRect/TextureRect2/TextureRect2" unique_id=1364649806]
-layout_mode = 0
-offset_left = 2270.0
-offset_top = -1.0
-offset_right = 4551.0
-offset_bottom = 907.0
-texture = ExtResource("1_j6s53")
-
-[node name="TextureRect2" type="TextureRect" parent="BG/TextureRect/TextureRect2/TextureRect2/TextureRect2" unique_id=1596997834]
-layout_mode = 0
-offset_left = -9097.0
-offset_top = -1.0
-offset_right = -6816.0
-offset_bottom = 907.0
-texture = ExtResource("1_j6s53")
+[node name="Background" parent="." unique_id=1712092851 instance=ExtResource("9_dgii4")]
+repeat_times = 7
 
 [node name="EvilDurian" parent="." unique_id=565006692 instance=ExtResource("1_wmtvo")]
 position = Vector2(403, -168)
@@ -994,7 +957,6 @@ tile_set = SubResource("TileSet_g4v7s")
 
 [node name="PlayerCamera" type="Camera2D" parent="." unique_id=993769838]
 position = Vector2(274, -74)
-zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 position_smoothing_speed = 16.0
 script = ExtResource("2_ducuf")
@@ -1014,9 +976,5 @@ tile_set = SubResource("TileSet_s16br")
 
 [node name="TileMapLayer2" type="TileMapLayer" parent="." unique_id=1529009657]
 tile_set = SubResource("TileSet_yf5fn")
-[node name="Water" parent="." unique_id=662158307 instance=ExtResource("10_dgii4")]
-visible = false
-offset_left = 214.0
-offset_top = -85.0
-offset_right = 714.0
-offset_bottom = 115.0
+
+[editable path="Background"]

@@ -9,9 +9,13 @@ extends Camera2D
 
 var desired_pos: Vector2
 
+# These variables are constants so that it is consistent for any level
+const CAMERA_Y: float = -164.0 # Tuned such that you can see exactly one tile below the x-axis
+const CAMERA_ZOOM: float = 2.0 # The game is 1280x720. But we only need 640x360 so we zoom in 
+
 func _ready() -> void:
 	GameManager.player_set.connect(_on_player_set)
-	desired_pos.y = position.y
+	desired_pos.y = CAMERA_Y #position.y
 
 func _physics_process(_delta: float) -> void:
 	print(position.x)
