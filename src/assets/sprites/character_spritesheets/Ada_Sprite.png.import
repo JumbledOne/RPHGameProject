@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cwwfbfudm4ku7"
-path="res://.godot/imported/American_Colonizer_Sprite.png-b77309123003cc29fa35b54ef5f259b7.ctex"
+uid="uid://neo5e0db7aui"
+path="res://.godot/imported/Ada_Sprite.png-064cc16847cdf09ffe9248bdfaded6c9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/American_Colonizer_Sprite.png"
-dest_files=["res://.godot/imported/American_Colonizer_Sprite.png-b77309123003cc29fa35b54ef5f259b7.ctex"]
+source_file="res://assets/sprites/character_spritesheets/Ada_Sprite.png"
+dest_files=["res://.godot/imported/Ada_Sprite.png-064cc16847cdf09ffe9248bdfaded6c9.ctex"]
 
 [params]
 

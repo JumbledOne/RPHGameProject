@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cy1svsnuc122q"
-path="res://.godot/imported/Iranun_Sprite.png-a77e64288bc136b4cf29e3a42a5804e7.ctex"
+uid="uid://cwwfbfudm4ku7"
+path="res://.godot/imported/American_Colonizer_Sprite.png-3d8344887953a18b83faa8cb43c5e6c8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Iranun_Sprite.png"
-dest_files=["res://.godot/imported/Iranun_Sprite.png-a77e64288bc136b4cf29e3a42a5804e7.ctex"]
+source_file="res://assets/sprites/character_spritesheets/American_Colonizer_Sprite.png"
+dest_files=["res://.godot/imported/American_Colonizer_Sprite.png-3d8344887953a18b83faa8cb43c5e6c8.ctex"]
 
 [params]
 

@@ -1,5 +1,6 @@
 extends Node
 
+# # # # # # # # # # # #
 # Player data
 var player: PlayerEntity:
 	set(v):
@@ -7,6 +8,7 @@ var player: PlayerEntity:
 		player_set.emit()
 signal player_set
 
+# # # # # # # # # # # #
 # Collectibles
 signal collectibles_changed(collected: int, total: int)
 var collected := 0

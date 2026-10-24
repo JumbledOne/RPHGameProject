@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b0rby7c64fnx8"
-path="res://.godot/imported/Japanese_Colonizer_Sprite.png-0717ff92b5a9363aa0a8cffb9c0dc8ba.ctex"
+uid="uid://db3yo38e5q37w"
+path="res://.godot/imported/normalperson.png-18a8d8a8e2cc9e25a6543cdc3c54f1ad.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Japanese_Colonizer_Sprite.png"
-dest_files=["res://.godot/imported/Japanese_Colonizer_Sprite.png-0717ff92b5a9363aa0a8cffb9c0dc8ba.ctex"]
+source_file="res://assets/sprites/character_spritesheets/normalperson.png"
+dest_files=["res://.godot/imported/normalperson.png-18a8d8a8e2cc9e25a6543cdc3c54f1ad.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://db3yo38e5q37w"
-path="res://.godot/imported/normalperson.png-c25b0b448ba521631f685c012ec9e9a9.ctex"
+uid="uid://3okv18u5xd2m"
+path="res://.godot/imported/KAGAN_Sprite.png-caccd4aee5da6645e5f213f86383ecd6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/normalperson.png"
-dest_files=["res://.godot/imported/normalperson.png-c25b0b448ba521631f685c012ec9e9a9.ctex"]
+source_file="res://assets/sprites/character_spritesheets/KAGAN_Sprite.png"
+dest_files=["res://.godot/imported/KAGAN_Sprite.png-caccd4aee5da6645e5f213f86383ecd6.ctex"]
 
 [params]
 

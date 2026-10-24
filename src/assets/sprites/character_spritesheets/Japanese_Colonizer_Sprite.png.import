@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d27i36itsj76k"
-path="res://.godot/imported/BAGOBO_Sprite.png-22feeb65857b5ce60e8d1645b240219e.ctex"
+uid="uid://b0rby7c64fnx8"
+path="res://.godot/imported/Japanese_Colonizer_Sprite.png-6486bd47b902d9c1fb5ae08206657461.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/BAGOBO_Sprite.png"
-dest_files=["res://.godot/imported/BAGOBO_Sprite.png-22feeb65857b5ce60e8d1645b240219e.ctex"]
+source_file="res://assets/sprites/character_spritesheets/Japanese_Colonizer_Sprite.png"
+dest_files=["res://.godot/imported/Japanese_Colonizer_Sprite.png-6486bd47b902d9c1fb5ae08206657461.ctex"]
 
 [params]
 

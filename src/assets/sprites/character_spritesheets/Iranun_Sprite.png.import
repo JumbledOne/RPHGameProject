@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://neo5e0db7aui"
-path="res://.godot/imported/Ada_Sprite.png-c3563e1f77a53aba0259039bdc29c11c.ctex"
+uid="uid://cy1svsnuc122q"
+path="res://.godot/imported/Iranun_Sprite.png-0d77a06c0b94f26ca71c25f30c6fbb1d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Ada_Sprite.png"
-dest_files=["res://.godot/imported/Ada_Sprite.png-c3563e1f77a53aba0259039bdc29c11c.ctex"]
+source_file="res://assets/sprites/character_spritesheets/Iranun_Sprite.png"
+dest_files=["res://.godot/imported/Iranun_Sprite.png-0d77a06c0b94f26ca71c25f30c6fbb1d.ctex"]
 
 [params]
 

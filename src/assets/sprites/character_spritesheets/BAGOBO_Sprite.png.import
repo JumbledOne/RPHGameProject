@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c471m8pexso6x"
-path="res://.godot/imported/friarspanishenemy.png-68ffd7970c844f0b87a252f47174ceee.ctex"
+uid="uid://d27i36itsj76k"
+path="res://.godot/imported/BAGOBO_Sprite.png-bb7a2a78084553c5ae756e6b59e77a9c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/friarspanishenemy.png"
-dest_files=["res://.godot/imported/friarspanishenemy.png-68ffd7970c844f0b87a252f47174ceee.ctex"]
+source_file="res://assets/sprites/character_spritesheets/BAGOBO_Sprite.png"
+dest_files=["res://.godot/imported/BAGOBO_Sprite.png-bb7a2a78084553c5ae756e6b59e77a9c.ctex"]
 
 [params]
 

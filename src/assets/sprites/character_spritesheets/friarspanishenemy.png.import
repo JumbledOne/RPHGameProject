@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://3okv18u5xd2m"
-path="res://.godot/imported/KAGAN_Sprite.png-b293f4bcd50854db54e5e71d44f0b5b7.ctex"
+uid="uid://c471m8pexso6x"
+path="res://.godot/imported/friarspanishenemy.png-169d3dbbb9b8c563d476f3cc35455263.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/KAGAN_Sprite.png"
-dest_files=["res://.godot/imported/KAGAN_Sprite.png-b293f4bcd50854db54e5e71d44f0b5b7.ctex"]
+source_file="res://assets/sprites/character_spritesheets/friarspanishenemy.png"
+dest_files=["res://.godot/imported/friarspanishenemy.png-169d3dbbb9b8c563d476f3cc35455263.ctex"]
 
 [params]
 
