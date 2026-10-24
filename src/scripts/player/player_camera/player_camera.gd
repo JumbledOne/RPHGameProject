@@ -15,9 +15,16 @@ const CAMERA_Y: float = -164.0 # Tuned such that you can see exactly one tile be
 const CAMERA_ZOOM: float = 2.0 # The game is 1280x720. But we only need 640x360 so we zoom in 
 
 func _ready() -> void:
-	zoom = Vector2.ONE * CAMERA_ZOOM
+	# Connect to player
 	GameManager.player_set.connect(_on_player_set)
-	desired_pos.y = CAMERA_Y #position.y
+	# Set initial values
+	zoom = Vector2.ONE * CAMERA_ZOOM
+	desired_pos.y = CAMERA_Y 
+	position.y = CAMERA_Y
+	# Start position at player if present
+	if GameManager.player:
+		desired_pos.x = GameManager.player.global_position.x
+		position.x = GameManager.player.global_position.x
 
 func _physics_process(_delta: float) -> void:
 	if not target:
