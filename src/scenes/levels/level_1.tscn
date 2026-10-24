@@ -1282,6 +1282,7 @@ sources/0 = SubResource("TileSetAtlasSource_35kre")
 [node name="Level1" type="Node2D" unique_id=10831665]
 
 [node name="Background" parent="." unique_id=1712092851 instance=ExtResource("2_sk5k4")]
+scroll_offset = Vector2(0, 98)
 
 [node name="EvilDurian" parent="." unique_id=565006692 instance=ExtResource("2_5jnu0")]
 position = Vector2(-1804, -90)

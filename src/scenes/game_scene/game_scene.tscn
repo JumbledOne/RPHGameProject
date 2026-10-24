@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://vmsxvdlgsokl" path="res://scenes/game_scene/game_ui.tscn" id="7_201br"]
 [ext_resource type="PackedScene" uid="uid://bmnx81gdn0jd6" path="res://scenes/game_scene/durian.tscn" id="7_j6s53"]
 [ext_resource type="PackedScene" uid="uid://b7cwtkfr5atuj" path="res://scenes/game_scene/collectible.tscn" id="7_wmtvo"]
-[ext_resource type="PackedScene" uid="uid://73qqhe04mof4" path="res://scripts/background/background.tscn" id="9_dgii4"]
 [ext_resource type="PackedScene" uid="uid://b2t6itv4f21fr" path="res://scenes/game_scene/honey_jar.tscn" id="9_j6s53"]
 
 [sub_resource type="GDScript" id="GDScript_8p81m"]
@@ -945,9 +944,6 @@ sources/0 = SubResource("TileSetAtlasSource_dgii4")
 [node name="GameScene" type="Node2D" unique_id=211181931]
 script = SubResource("GDScript_8p81m")
 
-[node name="Background" parent="." unique_id=1712092851 instance=ExtResource("9_dgii4")]
-repeat_times = 7
-
 [node name="EvilDurian" parent="." unique_id=565006692 instance=ExtResource("1_wmtvo")]
 position = Vector2(403, -168)
 
@@ -976,5 +972,3 @@ tile_set = SubResource("TileSet_s16br")
 
 [node name="TileMapLayer2" type="TileMapLayer" parent="." unique_id=1529009657]
 tile_set = SubResource("TileSet_yf5fn")
-
-[editable path="Background"]
