@@ -1,6 +1,6 @@
 shader_type canvas_item;
 
-uniform sampler3D noise_tex : repeat_enable;
+uniform sampler3D noise_tex : repeat_enable, filter_nearest;
 uniform float noise_scale = 16.0;
 uniform vec3 noise_movement;
 
@@ -23,5 +23,6 @@ void fragment() {
 	// Color Ramp
 	vec4 final_col = texture(color_ramp, vec2(mix(col, noise_col, 0.1).r, 0.0));
 	//
+	final_col.a = step(0.5, final_col.a);
 	COLOR = final_col;
 }
