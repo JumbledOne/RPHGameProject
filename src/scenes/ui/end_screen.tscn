@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://dmyy0rin8gq7p"]
+
+[ext_resource type="Script" uid="uid://dpoxlhhn5owuo" path="res://scripts/end_screen.gd" id="1_4ttpn"]
+
+[node name="EndScreen" type="CanvasLayer" unique_id=1791486502]
+process_mode = 3
+script = ExtResource("1_4ttpn")
+
+[node name="Dim" type="ColorRect" parent="." unique_id=209251150]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.011764706, 0.011764706, 0.011764706, 0.6862745)
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1429378677]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=516336461]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=104772199]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 56
+horizontal_alignment = 1
+
+[node name="SubLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=442685783]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+horizontal_alignment = 1
+
+[node name="StatsLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=142380038]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+
+[node name="RetryButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=953895190]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(240, 50)
+layout_mode = 2
+text = "Try Again
+"
+
+[node name="MenuButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=692436050]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(240, 50)
+layout_mode = 2
+text = "Back to Menu
+"

@@ -1,0 +1,81 @@
+[gd_scene format=3 uid="uid://21n45t63lkxk"]
+
+[ext_resource type="Script" uid="uid://djvmjdqc3pu0q" path="res://scripts/level_select.gd" id="1_x15a5"]
+
+[node name="LevelSelect" type="Control" unique_id=459523495]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_x15a5")
+
+[node name="Background" type="ColorRect" parent="." unique_id=784490840]
+layout_mode = 0
+offset_left = 576.0
+offset_top = 324.0
+offset_right = 576.0
+offset_bottom = 324.0
+color = Color(0.24455565, 0.99999994, 0.5090469, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=2121303331]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=821045428]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=550641420]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Choose Level"
+horizontal_alignment = 1
+
+[node name="LevelsBox" type="VBoxContainer" parent="CenterContainer/VBoxContainer" unique_id=1158431620]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="DescriptionLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=491554795]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(500, 40)
+layout_mode = 2
+text = "
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="TribeLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=582111696]
+layout_mode = 2
+text = "Choose Your Tribe"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="TribeBox" type="HBoxContainer" parent="CenterContainer/VBoxContainer" unique_id=1618501222]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 100)
+custom_maximum_size = Vector2(500, -1)
+layout_mode = 2
+
+[node name="TribeBox2" type="HBoxContainer" parent="CenterContainer/VBoxContainer" unique_id=1302669130]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 100)
+custom_maximum_size = Vector2(500, -1)
+layout_mode = 2
+alignment = 1
+
+[node name="StartButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1542841732]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Start"
+
+[node name="BackButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=852389670]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Back"
