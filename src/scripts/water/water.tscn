@@ -1,16 +1,10 @@
 [gd_scene format=3 uid="uid://clvr5icyyjm0y"]
 
 [ext_resource type="Shader" uid="uid://wetwovcohodc" path="res://scripts/water/water.gdshader" id="1_mvu7e"]
-
-[sub_resource type="Gradient" id="Gradient_mvu7e"]
-interpolation_mode = 1
-offsets = PackedFloat32Array(0.1124031, 0.12790698, 0.15891473, 0.32945737, 0.5697674, 0.8023256, 1)
-colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 0.26979998, 0.59261334, 0.71, 1, 0.156, 0.3683334, 0.52, 1, 0.13268274, 0.30185717, 0.4310461, 1, 0.11897318, 0.2502859, 0.34830958, 1, 0.110199995, 0.21508336, 0.29, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_jvkqr"]
-gradient = SubResource("Gradient_mvu7e")
+[ext_resource type="Texture2D" uid="uid://bkcrje57pocu6" path="res://scripts/water/water_color_ramp.tres" id="2_vg6w8"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_vg6w8"]
+seed = 1
 frequency = 0.0254
 fractal_octaves = 1
 
@@ -24,10 +18,11 @@ seamless_blend_skirt = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mvu7e"]
 shader = ExtResource("1_mvu7e")
+shader_parameter/water_height = -32.0
 shader_parameter/noise_tex = SubResource("NoiseTexture3D_mvu7e")
 shader_parameter/noise_scale = 128.0
 shader_parameter/noise_movement = Vector3(0.2, 0, 0.2)
-shader_parameter/color_ramp = SubResource("GradientTexture1D_jvkqr")
+shader_parameter/color_ramp = ExtResource("2_vg6w8")
 
 [node name="Water" type="ColorRect" unique_id=662158307]
 material = SubResource("ShaderMaterial_mvu7e")
