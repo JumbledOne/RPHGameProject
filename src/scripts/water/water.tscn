@@ -4,9 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://bkcrje57pocu6" path="res://scripts/water/water_color_ramp.tres" id="2_vg6w8"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_vg6w8"]
-seed = 1
+noise_type = 3
+seed = -1
 frequency = 0.0254
-fractal_octaves = 1
+fractal_octaves = 4
 
 [sub_resource type="NoiseTexture3D" id="NoiseTexture3D_mvu7e"]
 width = 128

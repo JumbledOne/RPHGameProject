@@ -1297,6 +1297,7 @@ shape = SubResource("CircleShape2D_03na7")
 position = Vector2(-1844, -100)
 
 [node name="Water" parent="." unique_id=662158307 instance=ExtResource("4_sk5k4")]
+visible = false
 offset_left = -1261.0
 offset_top = -98.0
 offset_right = -1202.0

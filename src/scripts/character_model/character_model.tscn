@@ -205,6 +205,7 @@ _data = {
 }
 
 [node name="CharacterModel" type="Node2D" unique_id=566320765]
+z_index = -1
 script = ExtResource("1_xjoyo")
 
 [node name="CharacterSprite" type="Sprite2D" parent="." unique_id=677532726]
