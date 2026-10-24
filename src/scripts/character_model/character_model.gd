@@ -5,7 +5,7 @@ extends Node2D
 # So we manually animate the atlas texture using an animation player since all 
 # sprite sheets are consistent anyway
 
-@onready var entity: PlatformerEntity = $".."
+@onready var entity: Entity = $".."
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 const DAMAGE_ANIM_SCALE: float = 2.0
@@ -14,18 +14,25 @@ const JUMPING_ANIM_SCALE: float = 2.0
 const WALKING_ANIM_SCALE: float = 3.0
 const RUNNING_ANIM_SCALE: float = 5.0
 
+# Animation vars
 var _can_animate: bool = true
-var _reached_peak: bool = false
 var last_facing_right: bool = true
+# Jump vars
+# Tracked so that the jump and land animations play once
+# We don't use the jumped signal so any entity can use them
+var _jumped: bool = false
+var _reached_peak: bool = false
 
 func _ready() -> void:
-	entity.jumped.connect(_on_jumped)
 	entity.damaged.connect(_on_damaged)
 	entity.died.connect(_on_died)
 	
 func _process(_delta: float) -> void:
 	# Movement Animations
 	if entity.is_on_floor():
+		# Reset jump vars
+		_jumped = false
+		_reached_peak = false
 		# Exactly zero
 		if entity.horizontal_movement == 0:
 			_play_animation("face_left", "face_right")
@@ -35,14 +42,17 @@ func _process(_delta: float) -> void:
 			var anim_scale: float = RUNNING_ANIM_SCALE if entity.get_is_sprinting() else WALKING_ANIM_SCALE
 			_play_animation("walk_left", "walk_right", anim_scale)
 	# Check if about to land
-	elif entity.velocity.y > 0:
-		if not _reached_peak:
-			_play_animation("land_left", "land_right", LANDING_ANIM_SCALE, true)
-		_reached_peak = true
-		
-func _on_jumped():
-	_reached_peak = false # Reseting the variable
-	_play_animation("jump_left", "jump_right", JUMPING_ANIM_SCALE, false, true)
+	else:
+		# Upward
+		if entity.velocity.y < 0:
+			if not _jumped:
+				_play_animation("jump_left", "jump_right", JUMPING_ANIM_SCALE, false, true)
+			_jumped = true
+		# Downward
+		else:
+			if not _reached_peak:
+				_play_animation("land_left", "land_right", LANDING_ANIM_SCALE, true)
+			_reached_peak = true
 
 func _on_damaged():
 	_play_animation("hit_left", "hit_right", DAMAGE_ANIM_SCALE, true, true)
