@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cctkd37r6nwkq"]
 
-[ext_resource type="Shader" uid="uid://d3uwdljrhj737" path="res://scripts/enemy/Shaders/blind_shader.gdshader" id="1_vl6k8"]
+[ext_resource type="Shader" uid="uid://d3uwdljrhj737" path="res://scripts/Shaders/blind_shader.gdshader" id="1_vl6k8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3di6p"]
 shader = ExtResource("1_vl6k8")
