@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dwiill2noqt84" path="res://scripts/hurtbox/hurtbox.tscn" id="1_60bss"]
 [ext_resource type="Script" uid="uid://bu2ib87bigt48" path="res://scripts/enemy/Enemy_Entity.gd" id="1_d3qgh"]
 [ext_resource type="Texture2D" uid="uid://ciaxb2mesyvra" path="res://assets/sprites/test_square.png" id="2_i46wp"]
-[ext_resource type="Script" uid="uid://fham6hc8htd6" path="res://scripts/enemy/Behaviors/testBehavior.gd" id="4_6c637"]
+[ext_resource type="Script" uid="uid://nyai6lfgjd0" path="res://scripts/enemy/Behaviors/evilDurian_behavior.gd" id="4_6c637"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
 size = Vector2(32, 32)
@@ -24,7 +24,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="test" type="CharacterBody2D" unique_id=565006692]
+[node name="EvilDurian" type="CharacterBody2D" unique_id=565006692]
 script = ExtResource("1_d3qgh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=136484504]

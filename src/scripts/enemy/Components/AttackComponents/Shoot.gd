@@ -1,7 +1,7 @@
 class_name ShootAttackComponent
 extends Component
 
-const BulletScene = preload("res://scripts/enemy/Bullet.tscn")
+const BulletScene = preload("res://scripts/enemy/Scenes/Bullet.tscn")
 
 var set_timer: float = 3.0
 var timer: float = set_timer

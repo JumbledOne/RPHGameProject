@@ -1,9 +1,9 @@
-[gd_scene format=3 uid="uid://cqigrplcns1qc"]
+[gd_scene format=3 uid="uid://cuy5uj2ycxabd"]
 
-[ext_resource type="Script" uid="uid://bu2ib87bigt48" path="res://scripts/enemy/Enemy_Entity.gd" id="1_slfav"]
-[ext_resource type="PackedScene" uid="uid://dwiill2noqt84" path="res://scripts/hurtbox/hurtbox.tscn" id="2_slfav"]
-[ext_resource type="Texture2D" uid="uid://ciaxb2mesyvra" path="res://assets/sprites/test_square.png" id="3_we1su"]
-[ext_resource type="Script" uid="uid://fham6hc8htd6" path="res://scripts/enemy/Behaviors/testBehavior.gd" id="4_slfav"]
+[ext_resource type="Script" uid="uid://bu2ib87bigt48" path="res://scripts/enemy/Enemy_Entity.gd" id="1_m6lpy"]
+[ext_resource type="PackedScene" uid="uid://dwiill2noqt84" path="res://scripts/hurtbox/hurtbox.tscn" id="2_xwwrg"]
+[ext_resource type="Texture2D" uid="uid://ciaxb2mesyvra" path="res://assets/sprites/test_square.png" id="3_nj4xi"]
+[ext_resource type="Script" uid="uid://bp6e1cqjlm0xe" path="res://scripts/enemy/Behaviors/Colonizer_behavior.gd" id="4_m6lpy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
 size = Vector2(32, 32)
@@ -17,20 +17,20 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_we1su")
+"texture": ExtResource("3_nj4xi")
 }],
 "loop": 1,
 "name": &"new_animation",
 "speed": 5.0
 }]
 
-[node name="test" type="CharacterBody2D" unique_id=565006692]
-script = ExtResource("1_slfav")
+[node name="JapaneseColonizer" type="CharacterBody2D" unique_id=565006692]
+script = ExtResource("1_m6lpy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=136484504]
 shape = SubResource("RectangleShape2D_g4v7s")
 
-[node name="hurtbox" parent="CollisionShape2D" unique_id=1789929793 node_paths=PackedStringArray("owner_node") instance=ExtResource("2_slfav")]
+[node name="hurtbox" parent="CollisionShape2D" unique_id=1789929793 node_paths=PackedStringArray("owner_node") instance=ExtResource("2_xwwrg")]
 owner_node = NodePath("../..")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=342796054]
@@ -39,7 +39,7 @@ sprite_frames = SubResource("SpriteFrames_drsj5")
 animation = &"new_animation"
 
 [node name="BehaviorManager" type="Node2D" parent="." unique_id=1897034658]
-script = ExtResource("4_slfav")
+script = ExtResource("4_m6lpy")
 
 [node name="MovementComponent" type="Node2D" parent="BehaviorManager" unique_id=1858462073]
 

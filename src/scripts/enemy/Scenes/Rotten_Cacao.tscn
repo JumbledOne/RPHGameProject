@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bu2ib87bigt48" path="res://scripts/enemy/Enemy_Entity.gd" id="1_7iipi"]
 [ext_resource type="PackedScene" uid="uid://dwiill2noqt84" path="res://scripts/hurtbox/hurtbox.tscn" id="2_qpnys"]
 [ext_resource type="Texture2D" uid="uid://bm477ytfbeld8" path="res://assets/sprites/cacaorotten.png" id="3_7iipi"]
-[ext_resource type="Script" uid="uid://c86hwckh48jnw" path="res://scripts/enemy/Behaviors/Idle.gd" id="4_7iipi"]
+[ext_resource type="Script" uid="uid://lgg28g75726t" path="res://scripts/enemy/Behaviors/rottenCacao_behavior.gd" id="4_7iipi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
 size = Vector2(32, 32)
