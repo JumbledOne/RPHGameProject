@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://p5p4kheh71sg" path="res://assets/sprites/tilemap.png" id="2_j8flk"]
 [ext_resource type="PackedScene" uid="uid://dqfx6qteghxjv" path="res://scripts/player/player_spawner/player_spawner.tscn" id="3_j8flk"]
 [ext_resource type="PackedScene" uid="uid://cctkd37r6nwkq" path="res://scenes/game_scene/Blind_Overlay.tscn" id="6_hqmgi"]
+[ext_resource type="Script" uid="uid://bohety71r5ttc" path="res://scripts/Overlays/Blind_Overlay.gd" id="7_3di6p"]
 [ext_resource type="PackedScene" uid="uid://vmsxvdlgsokl" path="res://scenes/game_scene/game_ui.tscn" id="7_201br"]
 [ext_resource type="PackedScene" uid="uid://bmnx81gdn0jd6" path="res://scenes/game_scene/durian.tscn" id="7_j6s53"]
 [ext_resource type="PackedScene" uid="uid://b7cwtkfr5atuj" path="res://scenes/game_scene/collectible.tscn" id="7_wmtvo"]
@@ -142,6 +143,7 @@ position_smoothing_speed = 16.0
 script = ExtResource("2_ducuf")
 
 [node name="BlindOverlay" parent="." unique_id=1339188969 instance=ExtResource("6_hqmgi")]
+script = ExtResource("7_3di6p")
 
 [node name="PlayerSpawner" parent="." unique_id=512273958 instance=ExtResource("3_j8flk")]
 position = Vector2(128, -64)

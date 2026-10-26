@@ -11,7 +11,7 @@ func _ready() -> void:
 	blind_overlay = get_tree().get_first_node_in_group("blind_overlay")
 	blind_overlay.visible = false
 
-func tick(enemy: Enemy_Entity, delta: float) -> void:
+func tick(_enemy: Enemy_Entity, delta: float) -> void:
 	if blind_overlay and blind_overlay.visible and GameManager.player:
 		_updatePosition()
 	
@@ -35,16 +35,18 @@ func blind(delta: float) -> void:
 		is_attacking = false
 
 func _updatePosition() -> void:
-	# I'll fix the blind effect not being centered next commit or two
 	if not blind_overlay:
 		blind_overlay = get_tree().get_first_node_in_group("blind_overlay")
 	
-	if blind_overlay.material is ShaderMaterial:
+	if blind_overlay and blind_overlay.material is ShaderMaterial:
 		var viewport = get_viewport()
+		var rect = viewport.get_visible_rect()
 		
 		var screen_pixel_pos = GameManager.player.get_global_transform_with_canvas().origin
-		
-		var normalized_screen_pos = screen_pixel_pos / viewport.get_visible_rect().size
+		var normalized_screen_pos = screen_pixel_pos / rect.size
 		
 		var mat = blind_overlay.material as ShaderMaterial
 		mat.set_shader_parameter("player_screen_position", normalized_screen_pos)
+		
+		var aspect_ratio = rect.size.x / rect.size.y
+		mat.set_shader_parameter("screen_aspect", aspect_ratio)
