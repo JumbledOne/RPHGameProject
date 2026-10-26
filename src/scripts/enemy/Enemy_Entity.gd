@@ -23,9 +23,17 @@ func _ready() -> void:
 	behaviorManager.movement_Component.flip_sprite.connect(_flip_sprite)
 
 func _process(delta: float) -> void:
+	
+	if !behaviorManager.attack_Component:
+		return
+	
 	behaviorManager.attack_Component.tick(self, delta)
 
 func _physics_process(delta: float) -> void:
+	
+	if !behaviorManager.movement_Component:
+		return
+	
 	behaviorManager.movement_Component.tick(self, delta)
 	move_and_slide()
 

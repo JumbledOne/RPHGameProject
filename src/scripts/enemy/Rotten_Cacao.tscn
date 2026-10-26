@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bu2ib87bigt48" path="res://scripts/enemy/Enemy_Entity.gd" id="1_7iipi"]
 [ext_resource type="PackedScene" uid="uid://dwiill2noqt84" path="res://scripts/hurtbox/hurtbox.tscn" id="2_qpnys"]
 [ext_resource type="Texture2D" uid="uid://bm477ytfbeld8" path="res://assets/sprites/cacaorotten.png" id="3_7iipi"]
-[ext_resource type="Script" uid="uid://fham6hc8htd6" path="res://scripts/enemy/Behaviors/testBehavior.gd" id="4_2mc4v"]
+[ext_resource type="Script" uid="uid://c86hwckh48jnw" path="res://scripts/enemy/Behaviors/Idle.gd" id="4_7iipi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
 size = Vector2(32, 32)
@@ -68,7 +68,7 @@ position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_6c637")
 
 [node name="BehaviorManager" type="Node2D" parent="." unique_id=1897034658]
-script = ExtResource("4_2mc4v")
+script = ExtResource("4_7iipi")
 
 [node name="MovementComponent" type="Node2D" parent="BehaviorManager" unique_id=1858462073]
 
