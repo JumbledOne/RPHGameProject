@@ -1,3 +1,9 @@
 [gd_scene format=3 uid="uid://cvoikx3tcb8gl"]
 
+[ext_resource type="AudioStream" uid="uid://bsv3mijk838m7" path="res://assets/audio/music/MUSICGAMEBGM.wav" id="1_52n1o"]
+
 [node name="Audio" type="Node" unique_id=374258121]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1935505021]
+stream = ExtResource("1_52n1o")
+autoplay = true
