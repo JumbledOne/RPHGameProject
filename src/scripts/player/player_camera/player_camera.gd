@@ -40,3 +40,6 @@ func _physics_process(_delta: float) -> void:
 
 func _on_player_set():
 	target = GameManager.player
+	if target:
+		desired_pos.x = GameManager.player.global_position.x
+		position.x = GameManager.player.global_position.x

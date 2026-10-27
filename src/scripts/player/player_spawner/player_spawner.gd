@@ -16,4 +16,4 @@ func spawn():
 
 func _on_player_died():
 	GameManager.player = null
-	spawn()
+	InterfaceManager.do_on_transition(spawn)
