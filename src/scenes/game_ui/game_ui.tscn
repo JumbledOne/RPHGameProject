@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cxmhprpifp5t1" path="res://assets/gfx/sprites/cacao beans-sheet-sheet.png" id="1_sq0em"]
 [ext_resource type="Script" uid="uid://23k3f2pqs75i" path="res://scenes/game_ui/collectible_tracker.gd" id="2_tracker"]
+[ext_resource type="PackedScene" uid="uid://c0egfji2ftdn3" path="res://scenes/game_ui/escape_menu/escape_menu.tscn" id="3_najyh"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_3y7pu"]
 font_size = 28
@@ -49,17 +50,18 @@ anchor_right = 0.5
 offset_left = -101.0
 offset_top = 24.0
 offset_right = 101.0
-offset_bottom = 88.0
+offset_bottom = 58.0
 grow_horizontal = 2
 alignment = 1
 
-[node name="CollectableTracker" type="Label" parent="CollectibleStats" unique_id=781726504]
+[node name="Label" type="Label" parent="CollectibleStats" unique_id=500031588]
 layout_mode = 2
 text = "0 / 0"
-label_settings = SubResource("LabelSettings_3y7pu")
 script = ExtResource("2_tracker")
 
 [node name="TextureRect" type="TextureRect" parent="CollectibleStats" unique_id=1912993614]
-custom_minimum_size = Vector2(64, 64)
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 texture = SubResource("AtlasTexture_2n7ho")
+
+[node name="EscapeMenu" parent="." unique_id=948223570 instance=ExtResource("3_najyh")]

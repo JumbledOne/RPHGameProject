@@ -2,6 +2,17 @@ extends Node
 
 const SCREEN_SIZE: Vector2 = Vector2(640, 360)
 
+var is_paused: bool = false # We use this to ensure that the rest of the game still runs and only the game is actually paused
+signal pause_toggled()
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("cancel"):
+		toggle_pause()
+
+func toggle_pause() -> void:
+	is_paused = !is_paused
+	pause_toggled.emit()
+
 # # # # # # # # # # # #
 # Player data
 var player_class: PlayerClass = UrbanCharacter.new()

@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://wvkrvdnwswou"]
+
+[ext_resource type="Script" uid="uid://c5lhm03v1l1b1" path="res://scenes/game_ui/settings_screen/audio_bus_volume_control.gd" id="1_tdlee"]
+
+[node name="AudioBusVolumeControl" type="Control" unique_id=565803367]
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+script = ExtResource("1_tdlee")
+
+[node name="LabelValue" type="Label" parent="." unique_id=178631839]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -512.0
+offset_bottom = 22.0
+grow_horizontal = 0
+text = "-100"
+horizontal_alignment = 2
+
+[node name="LabelName" type="Label" parent="LabelValue" unique_id=182634719]
+layout_mode = 1
+offset_right = 1.0
+offset_bottom = 23.0
+
+[node name="HSlider" type="HSlider" parent="." unique_id=163985074]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+page = 1.0
+
+[connection signal="value_changed" from="HSlider" to="." method="_on_h_slider_value_changed"]

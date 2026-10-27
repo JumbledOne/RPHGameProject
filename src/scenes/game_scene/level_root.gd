@@ -3,6 +3,10 @@ extends Node2D
 func _ready() -> void:
 	GameManager.game_started.connect(_on_game_started)
 	GameManager.game_ended.connect(_on_game_ended)
+	GameManager.pause_toggled.connect(_on_pause_toggled)
+
+func _on_pause_toggled() -> void:
+	process_mode = Node.PROCESS_MODE_DISABLED if GameManager.is_paused else Node.PROCESS_MODE_INHERIT
 	
 func _on_game_started():
 	_clear_children()
