@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bfkkotyt8lldh" path="res://assets/gfx/sprites/non_pixel_art/tree_leaves.png" id="3_58uhv"]
 [ext_resource type="Texture2D" uid="uid://beug7sft8lvt1" path="res://assets/gfx/gfx_resources/universal_noise.tres" id="4_noise"]
 [ext_resource type="Shader" uid="uid://by3alivs68j3g" path="res://assets/gfx/shader/swaying_plant.gdshader" id="5_sway"]
+[ext_resource type="Script" uid="uid://ce384k60pbf58" path="res://scripts/story_label/story_label.gd" id="6_jhyoq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sway"]
 shader = ExtResource("5_sway")
@@ -80,3 +81,14 @@ tile_map_data = PackedByteArray("AAACAAIAAAABAAYAAAACAAEAAAABAAUAAAACAAAAAAABAAQ
 
 [node name="Items" parent="LevelObjects" parent_id_path=PackedInt32Array(949556748) index="0" unique_id=933369512]
 tile_map_data = PackedByteArray("AAAvAPn/AAAAAAAAAQAwAPr/AAAAAAAAAQAuAPj/AAAAAAAAAQAqAPn/AAAAAAAAAQArAPj/AAAAAAAAAQAsAPf/AAAAAAAAAQAtAPf/AAAAAAAAAQA5APv/AAAAAAAAAQA6APr/AAAAAAAAAQA7APr/AAAAAAAAAQA9APn/AAAAAAAAAQA8APn/AAAAAAAAAQA+APr/AAAAAAAAAQA/APr/AAAAAAAAAQBAAPv/AAAAAAAAAQA=")
+
+[node name="StoryLabel" type="Label" parent="LevelObjects" parent_id_path=PackedInt32Array(949556748) index="1" unique_id=1127940979]
+offset_left = 193.0
+offset_top = -257.0
+offset_right = 617.0
+offset_bottom = -218.0
+theme_override_font_sizes/font_size = 24
+text = "Lorem ipsum dolor sit amet."
+autowrap_mode = 2
+script = ExtResource("6_jhyoq")
+metadata/_custom_type_script = "uid://ce384k60pbf58"

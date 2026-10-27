@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bjjpyr2xmlc7x"]
+
+[ext_resource type="Script" uid="uid://ce384k60pbf58" path="res://scripts/story_label/story_label.gd" id="1_s63ri"]
+
+[node name="StoryLabel" type="Label" unique_id=1320099435]
+script = ExtResource("1_s63ri")

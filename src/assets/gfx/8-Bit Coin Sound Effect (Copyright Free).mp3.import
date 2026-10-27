@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cnshqet7bp6ck"
+path="res://.godot/imported/8-Bit Coin Sound Effect (Copyright Free).mp3-0998c57b775800bf60957dd655842eaf.mp3str"
+
+[deps]
+
+source_file="res://assets/gfx/8-Bit Coin Sound Effect (Copyright Free).mp3"
+dest_files=["res://.godot/imported/8-Bit Coin Sound Effect (Copyright Free).mp3-0998c57b775800bf60957dd655842eaf.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
