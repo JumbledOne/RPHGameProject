@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://73qqhe04mof4" path="res://scripts/background/background.tscn" id="1_fiq81"]
 [ext_resource type="Texture2D" uid="uid://bmra7b1uo5a0g" path="res://assets/sprites/tilemap-updated.png" id="2_8pyxl"]
-[ext_resource type="PackedScene" uid="uid://bilcp5l0jhoy6" path="res://scripts/enemy/Evil_Durian.tscn" id="3_fw7b7"]
+[ext_resource type="PackedScene" uid="uid://bilcp5l0jhoy6" path="res://scripts/enemy/Scenes/Evil_Durian.tscn" id="3_fw7b7"]
 [ext_resource type="PackedScene" uid="uid://dqfx6qteghxjv" path="res://scripts/player/player_spawner/player_spawner.tscn" id="4_vdhr5"]
 [ext_resource type="Script" uid="uid://d22cgg754fheg" path="res://scripts/player/player_camera/player_camera.gd" id="5_l37oo"]
 
@@ -644,8 +644,6 @@ texture = ExtResource("2_8pyxl")
 [sub_resource type="TileSet" id="TileSet_p1u0y"]
 sources/1 = SubResource("TileSetAtlasSource_21xmu")
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_8pyxl"]
-
 [node name="Level2" type="Node2D" unique_id=1827980013]
 
 [node name="Background" parent="." unique_id=1712092851 instance=ExtResource("1_fiq81")]
@@ -659,12 +657,8 @@ tile_set = SubResource("TileSet_p1u0y")
 position = Vector2(246, 634)
 
 [node name="EvilDurian" parent="." unique_id=565006692 instance=ExtResource("3_fw7b7")]
-position = Vector2(229, 513)
+position = Vector2(293, 481)
 disable_mode = 1
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EvilDurian" unique_id=294528507]
-position = Vector2(5, -6)
-shape = SubResource("CircleShape2D_8pyxl")
 
 [node name="PlayerCamera" type="Camera2D" parent="." unique_id=1990918963]
 script = ExtResource("5_l37oo")
