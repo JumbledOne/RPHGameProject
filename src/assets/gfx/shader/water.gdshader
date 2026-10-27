@@ -6,7 +6,7 @@ uniform vec3 noise_movement;
 
 uniform sampler2D color_ramp;
 
-const float WATER_HEIGHT = -32.0;
+const float WATER_HEIGHT = 8.0;
 
 varying vec2 world_position;
 void vertex() {

@@ -17,7 +17,7 @@ var desired_pos: Vector2
 
 # These variables are constants so that it is consistent for any level
 const CAMERA_Y: float = -148.0 # Tuned such that you can see exactly one tile below the x-axis
-const CAMERA_ZOOM: float = 2.0 # The game is 1280x720. But we only need 640x360 so we zoom in 
+const CAMERA_ZOOM: float = 1.0
 
 func _ready() -> void:
 	# Define level bounds
