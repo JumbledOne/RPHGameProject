@@ -4,8 +4,8 @@ extends TextureButton
 @export var level: int = 0
 @export_tool_button("Refresh Level Info") var refresh_level_info_action = _load_level_info
 
-const INACTIVE_MODULATE: Color = Color(0.482, 0.482, 0.482, 1.0)
-const ACTIVATE_WIDTH: float = 300
+const INACTIVE_MODULATE: Color = Color(0.0, 0.0, 0.0, 1.0)
+const ACTIVATE_WIDTH: float = 256
 const DEFAULT_WIDTH: float = 0
 const ANIM_TIME: float = 0.3
 const LEVEL_INFO_PATH: String = "res://assets/data/level_info.json"
@@ -25,17 +25,18 @@ func _ready() -> void:
 	_load_level_info()
 	
 	label_title.text = "Level %s" % (level + 1)
-	label_title.visible_ratio = 0.0
-	label_description.visible_ratio = 0.0
-	texture_rect.modulate = INACTIVE_MODULATE
-	texture_rect.process_mode = Node.PROCESS_MODE_DISABLED
-
-	if not mouse_entered.is_connected(_on_mouse_entered):
-		mouse_entered.connect(_on_mouse_entered)
-	if not mouse_exited.is_connected(_on_mouse_exited):
-		mouse_exited.connect(_on_mouse_exited)
-	if not toggled.is_connected(_on_toggled):
-		toggled.connect(_on_toggled)
+	if button_pressed:
+		label_title.visible_ratio = 1.0
+		label_description.visible_ratio = 1.0
+		texture_rect.modulate = Color.WHITE
+	else:
+		label_title.visible_ratio = 0.0
+		label_description.visible_ratio = 0.0
+		texture_rect.modulate = INACTIVE_MODULATE
+	
+	mouse_entered.connect(_on_mouse_entered)
+	mouse_exited.connect(_on_mouse_exited)
+	toggled.connect(_on_toggled)
 
 
 func _ensure_button_group() -> void:

@@ -5,3 +5,4 @@
 [resource]
 default_font = ExtResource("1_xcw55")
 default_font_size = 16
+Label/constants/outline_size = 8
