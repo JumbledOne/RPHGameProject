@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://b7cwtkfr5atuj"]
 
 [ext_resource type="Texture2D" uid="uid://cxmhprpifp5t1" path="res://assets/gfx/sprites/cacao beans-sheet-sheet.png" id="1_8p81m"]
-[ext_resource type="Script" path="res://scripts/collectible/collectible.gd" id="2_collectible"]
+[ext_resource type="Script" uid="uid://1pk11kteianf" path="res://scripts/collectible/collectible.gd" id="2_collectible"]
+[ext_resource type="PackedScene" path="res://scripts/effects/eat/eat.tscn" id="3_eat"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_02qwn"]
 atlas = ExtResource("1_8p81m")
@@ -70,8 +71,9 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_02qwn"]
 radius = 17.029387
 
-[node name="Area2D" type="Area2D" unique_id=197133062]
+[node name="Cacao" type="Area2D" unique_id=197133062]
 script = ExtResource("2_collectible")
+collect_effect = ExtResource("3_eat")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1235829111]
 sprite_frames = SubResource("SpriteFrames_8p81m")

@@ -13,13 +13,14 @@
 [ext_resource type="Shader" uid="uid://b1n6pjakatxik" path="res://assets/gfx/shader/pixelate.gdshader" id="8_jnmbr"]
 [ext_resource type="Script" uid="uid://c0lwl17fypqvn" path="res://scenes/base_level/back_pixel_layer.gd" id="9_dojjm"]
 [ext_resource type="PackedScene" uid="uid://dyqbnaxeopk17" path="res://scripts/player/player.tscn" id="10_dojjm"]
+[ext_resource type="Script" uid="uid://c8oauhrkmfmdo" path="res://scenes/base_level/base_level.gd" id="11_base"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2n7ho"]
 shader = ExtResource("8_jnmbr")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dojjm"]
 shader = ExtResource("3_0rn38")
-shader_parameter/outline_color = Color(0.0322113, 0.14771053, 0.2423644, 1)
+shader_parameter/outline_color = Color(0, 0, 0, 1)
 shader_parameter/outline_size = 1.0
 
 [sub_resource type="Gradient" id="Gradient_6nho2"]
@@ -49,6 +50,7 @@ tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetScenesCollectionSource_a8gkr")
 
 [node name="BaseLevel" type="Node2D" unique_id=154879563]
+script = ExtResource("11_base")
 
 [node name="Background" parent="." unique_id=1712092851 instance=ExtResource("1_k2up0")]
 scroll_offset = Vector2(-9, 112)
@@ -64,6 +66,7 @@ z_index = -5
 material = SubResource("ShaderMaterial_dojjm")
 
 [node name="Fog" type="ColorRect" parent="BackgroundEffects" unique_id=322353296]
+visible = false
 material = SubResource("ShaderMaterial_c2ddb")
 offset_left = -96.0
 offset_top = -784.0
