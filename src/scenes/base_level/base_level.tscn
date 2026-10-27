@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://d3sq81x0hgxf0"]
+
+[ext_resource type="PackedScene" uid="uid://73qqhe04mof4" path="res://scripts/background/background.tscn" id="1_k2up0"]
+[ext_resource type="TileSet" uid="uid://dl2yu8rgguk6u" path="res://assets/gfx_resources/level_tile_set.tres" id="2_8eac3"]
+[ext_resource type="PackedScene" uid="uid://dqfx6qteghxjv" path="res://scripts/player/player_spawner/player_spawner.tscn" id="2_jlp5g"]
+[ext_resource type="Script" uid="uid://d22cgg754fheg" path="res://scripts/player/player_camera/player_camera.gd" id="3_jlp5g"]
+
+[node name="BaseLevel" type="Node2D" unique_id=154879563]
+
+[node name="Background" parent="." unique_id=1712092851 instance=ExtResource("1_k2up0")]
+scroll_offset = Vector2(0, 98)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1571259154]
+tile_set = ExtResource("2_8eac3")
+
+[node name="PlayerSpawner" parent="." unique_id=512273958 instance=ExtResource("2_jlp5g")]
+position = Vector2(16, -16)
+
+[node name="PlayerCamera" type="Camera2D" parent="." unique_id=1770321113]
+script = ExtResource("3_jlp5g")
+metadata/_custom_type_script = "uid://d22cgg754fheg"

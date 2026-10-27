@@ -1,5 +1,7 @@
 extends Node
 
+const SCREEN_SIZE: Vector2 = Vector2(640, 360)
+
 # # # # # # # # # # # #
 # Player data
 var player: PlayerEntity:
@@ -21,6 +23,8 @@ signal game_started
 signal game_ended
 var current_level: int = 0 # Used in GameScene to load the scene
 func start_game(level: int):
+	level_left_boundary = -INF
+	level_right_boundary = INF
 	game_started.emit()
 	current_level = level
 	InterfaceManager.open_ui("GameUi")
@@ -35,6 +39,9 @@ func get_level_scene() -> PackedScene:
 	
 func get_level_count() -> int:
 	return len(LEVELS)
+
+var level_left_boundary: float
+var level_right_boundary: float
 
 # # # # # # # # # # # #
 # Collectibles
