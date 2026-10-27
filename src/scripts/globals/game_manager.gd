@@ -61,9 +61,45 @@ var level_right_boundary: float
 # # # # # # # # # # # #
 # Level stats
 signal collectibles_changed(collected: int, total: int)
+signal score_changed(score: int)
 var collected := 0
 var total := 0
+var score := 0
 
+const SCORE_PER_COLLECTIBLE := 100
+const STAR_STEP := 5
+const MAX_STARS := 3
+
+func register_collectible() -> void:
+	total += 1
+	collectibles_changed.emit(collected, total)
+	
+func collectibles_summary() -> String:
+	return "%d/%d collected!" % [collected, total]
+	
+func collect() -> void:
+	collected += 1
+	activate_attack_buff()
+	collectibles_changed.emit(collected, total)
+	add_score(SCORE_PER_COLLECTIBLE)
+
+func add_score(amount: int) -> void:
+	score += amount
+	score_changed.emit(score)
+
+func get_stars() -> int:
+	return mini(collected / STAR_STEP, MAX_STARS)
+
+func _reset_level_stats():
+	collected = 0
+	total = 0
+	score = 0
+	buff_end_msec = 0
+	collectibles_changed.emit(collected, total)
+	score_changed.emit(score)
+
+# # # # # # # # # # # #
+# Attack buff
 const base_attack_duration := 0.75
 const attackspeedpercollectible := 0.65
 const maxattackspeed := 2
@@ -81,24 +117,3 @@ func is_buff_active() -> bool:
 
 func get_attack_speed() -> float:
 	return BUFF_ATTACK_SPEED if is_buff_active() else 1.0
-	
-func register_collectible() -> void:
-	total += 1
-	collectibles_changed.emit(collected, total)
-	
-func collectibles_summary() -> String:
-	return "%d/%d collected!" % [collected, total]
-	
-func collect() -> void:
-	collected += 1
-	activate_attack_buff()
-	collectibles_changed.emit(collected, total)
-
-func reset_collectibles() -> void:
-	collected = 0
-	total = 0
-	buff_end_msec = 0
-	collectibles_changed.emit(collected, total)
-	
-func _reset_level_stats():
-	pass
