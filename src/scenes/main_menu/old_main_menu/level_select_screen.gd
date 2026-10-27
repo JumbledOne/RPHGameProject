@@ -6,43 +6,18 @@ const TRIBES: Dictionary = {
 	"bagobo": "Bagobo Tagabawa",
 }
 
-# Dates/descriptions are PLACEHOLDERS mf. Replace with the other guys' researched text.
-const LEVEL_INFO: Array[Dictionary] = [
-	{
-		"date": "1700s", 
-		"title": "Pre-Colonial Davao",
-		"desc": "Indigenous tribes live and trade along the Davao Gulf.",
-	},
-	{
-		"date": "1800s", 
-		"title": "Spaniards Conquered Davao",
-		"desc": "Spanish colonizers arrive and take control of the region.",
-	},
-	{
-		"date": "1900s", 
-		"title": "Arrival of the Japanese",
-		"desc": "Japanese settlers arrive and Davao City is established.",
-	},
-	{
-		"date": "1940s", 
-		"title": "World War II",
-		"desc": "Davao during the war years.",
-	},
-	{
-		"date": "Today", 
-		"title": "Davao Today",
-		"desc": "Modern Davao, the city we know now.",
-	},
-]
+const LEVEL_INFO_PATH: String = "res://assets/data/level_info.json"
 
 var level_group: ButtonGroup
 
 func _ready() -> void:
+	var level_info: Array = _load_level_info()
+
 	# Level buttons
 	var level_button: PackedScene = load("uid://duh7we0h3louf")
 	level_group = ButtonGroup.new()
 	for i in GameManager.get_level_count():
-		var info_dict: Dictionary = LEVEL_INFO[i]
+		var info_dict: Dictionary = level_info["levels"][i]
 		var btn: Button = level_button.instantiate()
 		btn.set_level_data(i, info_dict)
 		btn.button_group = level_group
@@ -64,6 +39,20 @@ func _ready() -> void:
 	%StartButton.pressed.connect(func(): GameState.start_level(GameState.selected_level))
 	%BackButton.pressed.connect(func():
 		get_tree().change_scene_to_file("res://scenes/ui/main_menu.tscn"))
+
+
+func _load_level_info() -> Array:
+	var file: FileAccess = FileAccess.open(LEVEL_INFO_PATH, FileAccess.READ)
+	if file == null:
+		push_error("Unable to open %s" % LEVEL_INFO_PATH)
+		return []
+
+	var parsed: Variant = JSON.parse_string(file.get_as_text())
+	if parsed is Dictionary and parsed.has("levels") and parsed["levels"] is Array:
+		return parsed["levels"]
+
+	push_error("Expected an array in %s" % LEVEL_INFO_PATH)
+	return []
 		
 		
 func _on_start_button_pressed() -> void:

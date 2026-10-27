@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://d3bfiabn6g2ob"]
+
+[ext_resource type="PackedScene" uid="uid://wvkrvdnwswou" path="res://scenes/game_ui/settings_screen/audio_bus_volume_control.tscn" id="1_jvbgh"]
+[ext_resource type="Script" uid="uid://bfi1pmucsq02k" path="res://scripts/ui/panel_back_button.gd" id="2_y0u0h"]
+
+[node name="SettingsScreen" type="VBoxContainer" unique_id=1327590448]
+offset_right = 244.0
+offset_bottom = 172.0
+
+[node name="AudioBusVolumeControl" parent="." unique_id=565803367 instance=ExtResource("1_jvbgh")]
+layout_mode = 2
+
+[node name="AudioBusVolumeControl2" parent="." unique_id=2068755127 instance=ExtResource("1_jvbgh")]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="." unique_id=810789435 node_paths=PackedStringArray("target")]
+layout_mode = 2
+text = "Back"
+script = ExtResource("2_y0u0h")
+target = NodePath("..")

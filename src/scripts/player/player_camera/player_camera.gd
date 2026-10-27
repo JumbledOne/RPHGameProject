@@ -17,7 +17,7 @@ var desired_pos: Vector2
 
 # These variables are constants so that it is consistent for any level
 const CAMERA_Y: float = -148.0 # Tuned such that you can see exactly one tile below the x-axis
-const CAMERA_ZOOM: float = 2.0 # The game is 1280x720. But we only need 640x360 so we zoom in 
+const CAMERA_ZOOM: float = 1.0
 
 func _ready() -> void:
 	# Define level bounds
@@ -32,24 +32,26 @@ func _ready() -> void:
 	position.y = CAMERA_Y
 	# Start position at player if present
 	if GameManager.player:
-		desired_pos.x = GameManager.player.global_position.x
-		position.x = GameManager.player.global_position.x
+		_on_player_set()
 
 func _physics_process(_delta: float) -> void:
 	if not target:
 		return
-	# Move desired pos
+	_update_desired_position()
+	# Move toward the desired position.
+	position.x = floor(lerp(position.x, desired_pos.x, lerp_amount))
+
+
+func _update_desired_position() -> void:
 	var x_diff: float = target.global_position.x - global_position.x
 	if x_diff > dead_zone_right:
 		desired_pos.x = target.global_position.x - dead_zone_right
 	elif x_diff < dead_zone_left:
 		desired_pos.x = target.global_position.x - dead_zone_left
 	desired_pos.x = clamp(desired_pos.x, left_boundary, right_boundary)
-	# Move to desired pos
-	position = floor(lerp(position, desired_pos, lerp_amount))
 
 func _on_player_set():
 	target = GameManager.player
 	if target:
-		desired_pos.x = GameManager.player.global_position.x
-		position.x = GameManager.player.global_position.x
+		_update_desired_position()
+		position.x = desired_pos.x

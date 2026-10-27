@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://iss850swxtfi"]
+
+[ext_resource type="Script" uid="uid://ccg3ytvwc0sso" path="res://scenes/main_menu/level_selector_2/level_selector_2.gd" id="1_ctum4"]
+[ext_resource type="Shader" uid="uid://yh0uso7vei1d" path="res://assets/gfx/shader/level_selector.gdshader" id="1_e5rmc"]
+[ext_resource type="Texture2D" uid="uid://50amvlb5jy4j" path="res://assets/gfx/sprites/stage1_ancient_trading_gulf_640x360.png" id="3_m8g8t"]
+[ext_resource type="Texture2D" uid="uid://b3fenrwnk2k4c" path="res://assets/gfx/sprites/non_pixel_art/gradient_vertical_squared.png" id="4_m8g8t"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_vd27y"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8feud"]
+shader = ExtResource("1_e5rmc")
+shader_parameter/inactive_color = Vector4(0.3, 0.3, 0.3, 1)
+shader_parameter/movement = Vector2(0.01, 0)
+
+[node name="LevelSelector2" type="TextureButton" unique_id=335874537]
+offset_right = 615.0
+offset_bottom = 356.0
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = SubResource("ButtonGroup_vd27y")
+script = ExtResource("1_ctum4")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=300375067]
+process_mode = 4
+modulate = Color(0, 0, 0, 1)
+texture_repeat = 2
+material = SubResource("ShaderMaterial_8feud")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("3_m8g8t")
+expand_mode = 1
+
+[node name="Gradient" type="TextureRect" parent="." unique_id=620130344]
+visible = false
+modulate = Color(0, 0, 0, 0.627451)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("4_m8g8t")
+expand_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=600345352]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 107
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=562619567]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="LabelTitle" type="Label" parent="MarginContainer/VBoxContainer" unique_id=382309758]
+layout_mode = 2
+text = "Level 1"
+horizontal_alignment = 1
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="LabelDescription" type="Label" parent="MarginContainer/VBoxContainer" unique_id=2042300367]
+layout_mode = 2
+text = "Indigenous tribes live and trade along the Davao Gulf."
+horizontal_alignment = 1
+autowrap_mode = 2
+visible_characters = 0
+visible_ratio = 0.0

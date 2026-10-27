@@ -1,60 +1,147 @@
 [gd_scene format=3 uid="uid://dc4ixh41h7bqa"]
 
-[ext_resource type="Script" uid="uid://guqmm3ucr1gu" path="res://scenes/main_menu/quit_button.gd" id="1_0ebjn"]
-[ext_resource type="Script" uid="uid://bs4ybhtetk1ou" path="res://scenes/main_menu/play_button.gd" id="1_ob46e"]
-[ext_resource type="Script" uid="uid://dj0w4uirvw77" path="res://scripts/ui/menu_root.gd" id="1_uqeha"]
-[ext_resource type="PackedScene" uid="uid://21n45t63lkxk" path="res://scenes/main_menu/level_select_screen.tscn" id="4_uqeha"]
+[ext_resource type="Script" uid="uid://bq2lirdiuuh5j" path="res://scenes/main_menu/h_box_levels.gd" id="1_5seab"]
+[ext_resource type="Texture2D" uid="uid://b6x12gykfwfkp" path="res://assets/gfx/sprites/stage2_spanish_expedition_640x360.png" id="3_lqpn7"]
+[ext_resource type="Texture2D" uid="uid://fp4ql0mobqko" path="res://assets/gfx/sprites/stage3_plantation_era_640x360.png" id="4_qel0l"]
+[ext_resource type="Texture2D" uid="uid://cldapm5pdoma4" path="res://assets/gfx/sprites/stage4_wwii_liberation_640x360.png" id="5_rrgl4"]
+[ext_resource type="PackedScene" uid="uid://iss850swxtfi" path="res://scenes/main_menu/level_selector_2/level_selector_2.tscn" id="5_thkx5"]
+[ext_resource type="Texture2D" uid="uid://d1bmdge48h4an" path="res://assets/gfx/sprites/stage5_changing_davao_640x360.png" id="6_dn3lk"]
+[ext_resource type="Texture2D" uid="uid://b1nmjslcuhnt4" path="res://assets/gfx/sprites/non_pixel_art/radial_gradient_squared.png" id="8_4xg86"]
+[ext_resource type="Script" uid="uid://ba5jgcvg4wrra" path="res://scenes/main_menu/start_button.gd" id="8_thkx5"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_5seab"]
 
 [node name="MainMenu" type="CanvasLayer" unique_id=1131694955]
 
-[node name="Background" type="ColorRect" parent="." unique_id=56413536]
+[node name="HBoxLevels" type="HBoxContainer" parent="." unique_id=512232289]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.34509805, 1, 0.47843137, 1)
+theme_override_constants/separation = 0
+script = ExtResource("1_5seab")
+metadata/level_selector_button_group = SubResource("ButtonGroup_5seab")
 
-[node name="Screens" type="Control" parent="." unique_id=1578765163 node_paths=PackedStringArray("default_screen")]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("1_uqeha")
-default_screen = NodePath("MainScreen")
-
-[node name="MainScreen" type="CenterContainer" parent="Screens" unique_id=647566090]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Screens/MainScreen" unique_id=1769006526]
+[node name="LevelSelector1" parent="HBoxLevels" unique_id=335874537 instance=ExtResource("5_thkx5")]
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
-theme_override_constants/separation = 20
+button_pressed = true
+button_group = SubResource("ButtonGroup_5seab")
 
-[node name="TitleLabel" type="Label" parent="Screens/MainScreen/VBoxContainer" unique_id=1978455914]
+[node name="TextureRect" parent="HBoxLevels/LevelSelector1" index="0" unique_id=300375067]
+modulate = Color(1, 1, 1, 1)
+
+[node name="LabelTitle" parent="HBoxLevels/LevelSelector1/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(335874537, 562619567) index="0" unique_id=382309758]
+visible_characters = -1
+visible_ratio = 1.0
+
+[node name="LabelDescription" parent="HBoxLevels/LevelSelector1/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(335874537, 562619567) index="1" unique_id=2042300367]
+visible_characters = -1
+visible_ratio = 1.0
+
+[node name="LevelSelector2" parent="HBoxLevels" unique_id=41922822 instance=ExtResource("5_thkx5")]
 layout_mode = 2
+button_group = SubResource("ButtonGroup_5seab")
+level = 1
+
+[node name="TextureRect" parent="HBoxLevels/LevelSelector2" index="0" unique_id=300375067]
+texture = ExtResource("3_lqpn7")
+
+[node name="LabelTitle" parent="HBoxLevels/LevelSelector2/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(41922822, 562619567) index="0" unique_id=382309758]
+text = "Level 2"
+
+[node name="LabelDescription" parent="HBoxLevels/LevelSelector2/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(41922822, 562619567) index="1" unique_id=2042300367]
+text = "Spanish colonizers arrive and take control of the region."
+
+[node name="LevelSelector3" parent="HBoxLevels" unique_id=1059322201 instance=ExtResource("5_thkx5")]
+layout_mode = 2
+button_group = SubResource("ButtonGroup_5seab")
+level = 2
+
+[node name="TextureRect" parent="HBoxLevels/LevelSelector3" index="0" unique_id=300375067]
+texture = ExtResource("4_qel0l")
+
+[node name="LabelTitle" parent="HBoxLevels/LevelSelector3/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1059322201, 562619567) index="0" unique_id=382309758]
+text = "Level 3"
+
+[node name="LabelDescription" parent="HBoxLevels/LevelSelector3/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1059322201, 562619567) index="1" unique_id=2042300367]
+text = "Japanese settlers arrive and Davao City is established."
+
+[node name="LevelSelector4" parent="HBoxLevels" unique_id=1670467590 instance=ExtResource("5_thkx5")]
+layout_mode = 2
+button_group = SubResource("ButtonGroup_5seab")
+level = 3
+
+[node name="TextureRect" parent="HBoxLevels/LevelSelector4" index="0" unique_id=300375067]
+texture = ExtResource("5_rrgl4")
+
+[node name="LabelTitle" parent="HBoxLevels/LevelSelector4/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1670467590, 562619567) index="0" unique_id=382309758]
+text = "Level 4"
+
+[node name="LabelDescription" parent="HBoxLevels/LevelSelector4/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1670467590, 562619567) index="1" unique_id=2042300367]
+text = "Davao during the war years."
+
+[node name="LevelSelector5" parent="HBoxLevels" unique_id=370637051 instance=ExtResource("5_thkx5")]
+layout_mode = 2
+button_group = SubResource("ButtonGroup_5seab")
+level = 4
+
+[node name="TextureRect" parent="HBoxLevels/LevelSelector5" index="0" unique_id=300375067]
+texture = ExtResource("6_dn3lk")
+
+[node name="LabelTitle" parent="HBoxLevels/LevelSelector5/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(370637051, 562619567) index="0" unique_id=382309758]
+text = "Level 5"
+
+[node name="LabelDescription" parent="HBoxLevels/LevelSelector5/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(370637051, 562619567) index="1" unique_id=2042300367]
+text = "Modern Davao, the city we know now."
+
+[node name="TitleLabel" type="Label" parent="." unique_id=1978455914]
+offset_left = 140.0
+offset_top = 31.0
+offset_right = 500.0
+offset_bottom = 90.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.6627451)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 6
 theme_override_font_sizes/font_size = 48
 text = "DAVAO FIGHTERS"
 horizontal_alignment = 1
 
-[node name="PlayButton" type="Button" parent="Screens/MainScreen/VBoxContainer" unique_id=1679030564]
-custom_minimum_size = Vector2(250, 50)
-layout_mode = 2
-text = "Play"
-script = ExtResource("1_ob46e")
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1833474356]
+modulate = Color(0, 0, 0, 1)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -256.0
+offset_top = -247.0
+offset_right = 256.0
+offset_bottom = 265.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+texture = ExtResource("8_4xg86")
 
-[node name="QuitButton" type="Button" parent="Screens/MainScreen/VBoxContainer" unique_id=1574423961]
-custom_minimum_size = Vector2(250, 50)
-layout_mode = 2
-text = "Quit Game"
-script = ExtResource("1_0ebjn")
+[node name="StartButton" type="Button" parent="." unique_id=1423332690 node_paths=PackedStringArray("level_selector_sample")]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -38.0
+offset_top = -55.0
+offset_right = 38.0
+offset_bottom = -27.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Start"
+script = ExtResource("8_thkx5")
+level_selector_sample = NodePath("../HBoxLevels/LevelSelector1")
 
-[node name="LevelSelectScreen" parent="Screens" unique_id=459523495 instance=ExtResource("4_uqeha")]
-visible = false
-layout_mode = 1
+[editable path="HBoxLevels/LevelSelector1"]
+[editable path="HBoxLevels/LevelSelector2"]
+[editable path="HBoxLevels/LevelSelector3"]
+[editable path="HBoxLevels/LevelSelector4"]
+[editable path="HBoxLevels/LevelSelector5"]
