@@ -1,18 +1,9 @@
 [gd_scene format=3 uid="uid://bkfvqff5n5dgv"]
 
-<<<<<<< HEAD:src/scripts/enemy/Cacao_Enemy.tscn
-[ext_resource type="Script" uid="uid://c78wudv7aw47b" path="res://scripts/enemy/Enemy_Script.gd" id="1_gd5hh"]
-[ext_resource type="PackedScene" uid="uid://dwiill2noqt84" path="res://scripts/hurtbox/hurtbox.tscn" id="1_px0sb"]
-[ext_resource type="Texture2D" uid="uid://ciaxb2mesyvra" path="res://assets/gfx/sprites/test_square.png" id="2_drsj5"]
-[ext_resource type="Script" uid="uid://dkwinabt4kwnl" path="res://scripts/enemy/Components/AttackComponents/rotten_Cacao.gd" id="4_o2k1m"]
-[ext_resource type="Script" uid="uid://cp4m1jdy0wpdw" path="res://scripts/enemy/Components/MovementComponents/Idle.gd" id="5_o2k1m"]
-=======
 [ext_resource type="Script" uid="uid://bu2ib87bigt48" path="res://scripts/enemy/Enemy_Entity.gd" id="1_kdwud"]
 [ext_resource type="PackedScene" uid="uid://dwiill2noqt84" path="res://scripts/hurtbox/hurtbox.tscn" id="2_lvaw8"]
 [ext_resource type="Texture2D" uid="uid://ciaxb2mesyvra" path="res://assets/sprites/test_square.png" id="3_haebi"]
 [ext_resource type="Script" uid="uid://bp6e1cqjlm0xe" path="res://scripts/enemy/Behaviors/Colonizer_behavior.gd" id="4_kdwud"]
->>>>>>> origin/enemy_refactor:src/scripts/enemy/Scenes/American_Colonizer.tscn
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
 size = Vector2(32, 32)
 
