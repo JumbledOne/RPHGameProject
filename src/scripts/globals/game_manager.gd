@@ -9,6 +9,25 @@ var player: PlayerEntity:
 signal player_set
 
 # # # # # # # # # # # #
+# Game Flow
+const LEVELS: Array[PackedScene] = [
+	preload("res://scenes/levels/level_1.tscn"),
+	preload("res://scenes/levels/level_2.tscn"),
+	preload("res://scenes/levels/level_3.tscn"),
+	preload("res://scenes/levels/level_4.tscn"),
+	preload("res://scenes/levels/level_5.tscn"),
+]
+signal game_started
+signal game_ended
+var current_level: int = 0 # Used in GameScene to load the scene
+func start_game(level: int):
+	game_started.emit()
+	current_level = level
+	
+func end_game():
+	game_ended.emit()
+
+# # # # # # # # # # # #
 # Collectibles
 signal collectibles_changed(collected: int, total: int)
 var collected := 0
@@ -31,11 +50,14 @@ func is_buff_active() -> bool:
 
 func get_attack_speed() -> float:
 	return BUFF_ATTACK_SPEED if is_buff_active() else 1.0
+	
 func register_collectible() -> void:
 	total += 1
 	collectibles_changed.emit(collected, total)
+	
 func collectibles_summary() -> String:
 	return "%d/%d collected!" % [collected, total]
+	
 func collect() -> void:
 	collected += 1
 	activate_attack_buff()

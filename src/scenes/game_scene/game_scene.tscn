@@ -4,10 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://50amvlb5jy4j" path="res://assets/sprites/stage1_ancient_trading_gulf_640x360.png" id="2_201br"]
 [ext_resource type="Script" uid="uid://d22cgg754fheg" path="res://scripts/player/player_camera/player_camera.gd" id="2_ducuf"]
 [ext_resource type="PackedScene" uid="uid://dqfx6qteghxjv" path="res://scripts/player/player_spawner/player_spawner.tscn" id="3_j8flk"]
-[ext_resource type="PackedScene" uid="uid://vmsxvdlgsokl" path="res://scenes/game_scene/game_ui.tscn" id="7_201br"]
-[ext_resource type="PackedScene" uid="uid://bmnx81gdn0jd6" path="res://scenes/game_scene/durian.tscn" id="7_j6s53"]
-[ext_resource type="PackedScene" uid="uid://b7cwtkfr5atuj" path="res://scenes/game_scene/collectible.tscn" id="7_wmtvo"]
-[ext_resource type="PackedScene" uid="uid://b2t6itv4f21fr" path="res://scenes/game_scene/honey_jar.tscn" id="9_j6s53"]
+[ext_resource type="PackedScene" uid="uid://vmsxvdlgsokl" path="res://scenes/game_ui/game_ui.tscn" id="7_201br"]
+[ext_resource type="PackedScene" uid="uid://bmnx81gdn0jd6" path="res://scenes/items/durian.tscn" id="7_j6s53"]
+[ext_resource type="PackedScene" uid="uid://b7cwtkfr5atuj" path="res://scenes/items/collectible.tscn" id="7_wmtvo"]
+[ext_resource type="PackedScene" uid="uid://b2t6itv4f21fr" path="res://scenes/items/honey_jar.tscn" id="9_j6s53"]
 
 [sub_resource type="GDScript" id="GDScript_8p81m"]
 resource_name = "level_script"
