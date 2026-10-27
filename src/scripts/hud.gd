@@ -28,7 +28,7 @@ func _update_hearts(value: int) -> void:
 		c.queue_free()
 	for i in value:
 		if heart_texture:
-			var h := TextureRect.new()
+			var h: TextureRect = TextureRect.new()
 			h.mouse_filter = Control.MOUSE_FILTER_IGNORE
 			h.texture = heart_texture
 			h.custom_minimum_size = Vector2(32, 32)
@@ -36,7 +36,7 @@ func _update_hearts(value: int) -> void:
 			h.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 			%HeartsBox.add_child(h)
 		else:
-			var r := ColorRect.new()
+			var r: ColorRect = ColorRect.new()
 			r.mouse_filter = Control.MOUSE_FILTER_IGNORE
 			r.color = Color.RED
 			r.custom_minimum_size = Vector2(28, 28)
@@ -54,13 +54,13 @@ func show_timeline_title() -> void:
 	var title: Label = %TimelineTitle
 	title.text = "%s - %s" % [info["date"], info["title"]]
 	await get_tree().process_frame  # let the label compute its size
-	var screen_h := get_viewport().get_visible_rect().size.y
+	var screen_h: float = get_viewport().get_visible_rect().size.y
 	title.pivot_offset = title.size / 2
 	title.scale = Vector2(1.6, 1.6)
 	title.position.y = screen_h / 2.0 - title.size.y / 2.0
 	title.modulate.a = 0.0
 
-	var t := create_tween()
+	var t: Tween = create_tween()
 	t.tween_property(title, "modulate:a", 1.0, 0.5)      # fade in
 	t.tween_interval(3.0)                                 # stay for 3 seconds
 	t.tween_property(title, "scale", Vector2(0.8, 0.8), 0.6)   # then shrink...

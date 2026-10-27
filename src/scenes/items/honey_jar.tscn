@@ -6,17 +6,17 @@
 resource_name = "_honeyjar"
 script/source = "extends Area2D
 
-@export var tile_size := 16            # match your TileSet tile size
-@export var field_tiles := 5           # field is 5 tiles wide
-@export var slow_factor := 0.5         # enemies move at 50% speed
-@export var field_duration := 0.0      # seconds, 0 = stays forever
-@export var trigger_on_touch := true
-@export var trigger_on_hitbox := true
+@export var tile_size: int = 16            # match your TileSet tile size
+@export var field_tiles: int = 5           # field is 5 tiles wide
+@export var slow_factor: float = 0.5         # enemies move at 50% speed
+@export var field_duration: float = 0.0      # seconds, 0 = stays forever
+@export var trigger_on_touch: bool = true
+@export var trigger_on_hitbox: bool = true
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var slow_field: Area2D = $SlowField
 
-var activated := false
+var activated: bool = false
 
 func _ready() -> void:
 	# Hold on frame 1 until triggered
@@ -25,7 +25,7 @@ func _ready() -> void:
 	sprite.frame = 0
 
 	# Size the field in code: a circle 5 tiles across
-	var shape := CircleShape2D.new()
+	var shape: CircleShape2D = CircleShape2D.new()
 	shape.radius = field_tiles * tile_size / 2.0
 	$SlowField/CollisionShape2D.shape = shape
 	slow_field.monitoring = false

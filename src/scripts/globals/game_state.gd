@@ -7,13 +7,13 @@ signal powerup_changed(powerup_name, duration)
 signal player_died
 signal level_won
 
-const MAX_HEARTS := 3
+const MAX_HEARTS: int = 3
 
-var selected_level := 1
-var selected_tribe := "urban"
-var hearts := MAX_HEARTS
-var cacao := 0
-var score := 0
+var selected_level: int = 1
+var selected_tribe: String = "urban"
+var hearts: int = MAX_HEARTS
+var cacao: int = 0
+var score: int = 0
 
 # # # # # # # # # # # #
 # Might remove the health functions since these these don't do anything?

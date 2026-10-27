@@ -13,10 +13,10 @@ script/source = "extends Label
 
 func _ready() -> void:
 	GameManager.collectibles_changed.connect(_update)
-	_update(GameManager.collected, GameManager.total)
+	_update()
 
-func _update(collected: int, total: int) -> void:
-	text = str(collected)
+func _update() -> void:
+	text = str(GameManager.collected)
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2n7ho"]

@@ -37,10 +37,11 @@ var current_level: int = 0 # Used in GameScene to load the scene
 func start_game(level: int):
 	level_left_boundary = -INF
 	level_right_boundary = INF
+	_reset_level_stats() # Reset before game_started signal since that creates the scene
 	game_started.emit()
 	current_level = level
 	InterfaceManager.open_ui("GameUi")
-	_reset_level_stats()
+	
 	#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
 func end_game():
@@ -60,27 +61,29 @@ var level_right_boundary: float
 
 # # # # # # # # # # # #
 # Level stats
+var collected: int = 0
+var total_collectibles: int = 0
+var score: int = 0
+
+const SCORE_PER_COLLECTIBLE: int = 100
+const STAR_STEP: int = 5
+const MAX_STARS: int = 3
+
 signal collectibles_changed(collected: int, total: int)
 signal score_changed(score: int)
-var collected := 0
-var total := 0
-var score := 0
 
-const SCORE_PER_COLLECTIBLE := 100
-const STAR_STEP := 5
-const MAX_STARS := 3
-
+# Nothing calls this?
 func register_collectible() -> void:
-	total += 1
-	collectibles_changed.emit(collected, total)
+	total_collectibles += 1
+	collectibles_changed.emit(collected, total_collectibles)
 	
 func collectibles_summary() -> String:
-	return "%d/%d collected!" % [collected, total]
+	return "%d/%d collected!" % [collected, total_collectibles]
 	
 func collect() -> void:
 	collected += 1
 	activate_attack_buff()
-	collectibles_changed.emit(collected, total)
+	collectibles_changed.emit(collected, total_collectibles)
 	add_score(SCORE_PER_COLLECTIBLE)
 
 func add_score(amount: int) -> void:
@@ -92,22 +95,23 @@ func get_stars() -> int:
 
 func _reset_level_stats():
 	collected = 0
-	total = 0
+	total_collectibles = 0
 	score = 0
 	buff_end_msec = 0
-	collectibles_changed.emit(collected, total)
+	collectibles_changed.emit(collected, total_collectibles)
 	score_changed.emit(score)
 
 # # # # # # # # # # # #
 # Attack buff
-const base_attack_duration := 0.75
-const attackspeedpercollectible := 0.65
-const maxattackspeed := 2
-const BASE_ATTACK_DURATION := 0.75
-const BUFF_DURATION := 3.0
-const BUFF_ATTACK_SPEED := 1.5   # 1.5x speed while active
+# Maybe remove these and make it a StatusEffect node under player?
+const base_attack_duration: float = 0.75
+const attackspeedpercollectible: float = 0.65
+const maxattackspeed: int = 2
+const BASE_ATTACK_DURATION: float = 0.75
+const BUFF_DURATION: float = 3.0
+const BUFF_ATTACK_SPEED: float = 1.5   # 1.5x speed while active
 
-var buff_end_msec := 0
+var buff_end_msec: int = 0
 
 func activate_attack_buff() -> void:
 	buff_end_msec = Time.get_ticks_msec() + int(BUFF_DURATION * 1000)

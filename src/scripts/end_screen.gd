@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-var is_victory := false
+var is_victory: bool = false
 
 func _ready() -> void:
 	get_tree().paused = true

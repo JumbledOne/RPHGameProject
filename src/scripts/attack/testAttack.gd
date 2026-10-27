@@ -16,7 +16,7 @@ func do(doer: Node2D) -> void:
 	doer.add_child(hitbox)
 	
 	# duration, shortened by the attack speed buff
-	var duration := GameManager.base_attack_duration / GameManager.get_attack_speed()
+	var duration: float = GameManager.base_attack_duration / GameManager.get_attack_speed()
 	print("collected: ", GameManager.collected, " speed: ", GameManager.get_attack_speed(), " duration: ", duration)
 	await doer.get_tree().create_timer(duration).timeout
 	

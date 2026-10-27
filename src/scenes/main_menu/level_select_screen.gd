@@ -1,6 +1,6 @@
 extends Control
 
-const TRIBES := {
+const TRIBES: Dictionary = {
 	"urban": "Urban Person",
 	"ata": "Ata of Paquibato",
 	"bagobo": "Bagobo Tagabawa",
@@ -51,9 +51,9 @@ func _ready() -> void:
 		%LevelsBox.add_child(btn)
 
 	# Tribe buttons
-	var tribe_group := ButtonGroup.new()
+	var tribe_group: ButtonGroup = ButtonGroup.new()
 	for key in TRIBES.keys():
-		var btn := Button.new()
+		var btn: Button = Button.new()
 		btn.text = TRIBES[key]
 		btn.toggle_mode = true
 		btn.button_group = tribe_group
