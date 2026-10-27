@@ -1,23 +1,15 @@
 [gd_scene format=3 uid="uid://dc4ixh41h7bqa"]
 
 [ext_resource type="Script" uid="uid://bq2lirdiuuh5j" path="res://scenes/main_menu/h_box_levels.gd" id="1_5seab"]
-[ext_resource type="Texture2D" uid="uid://50amvlb5jy4j" path="res://assets/gfx/sprites/stage1_ancient_trading_gulf_640x360.png" id="2_x2yjq"]
 [ext_resource type="Texture2D" uid="uid://b6x12gykfwfkp" path="res://assets/gfx/sprites/stage2_spanish_expedition_640x360.png" id="3_lqpn7"]
 [ext_resource type="Texture2D" uid="uid://fp4ql0mobqko" path="res://assets/gfx/sprites/stage3_plantation_era_640x360.png" id="4_qel0l"]
 [ext_resource type="Texture2D" uid="uid://cldapm5pdoma4" path="res://assets/gfx/sprites/stage4_wwii_liberation_640x360.png" id="5_rrgl4"]
 [ext_resource type="PackedScene" uid="uid://iss850swxtfi" path="res://scenes/main_menu/level_selector_2/level_selector_2.tscn" id="5_thkx5"]
 [ext_resource type="Texture2D" uid="uid://d1bmdge48h4an" path="res://assets/gfx/sprites/stage5_changing_davao_640x360.png" id="6_dn3lk"]
 [ext_resource type="Texture2D" uid="uid://b1nmjslcuhnt4" path="res://assets/gfx/sprites/non_pixel_art/radial_gradient_squared.png" id="8_4xg86"]
+[ext_resource type="Script" uid="uid://ba5jgcvg4wrra" path="res://scenes/main_menu/start_button.gd" id="8_thkx5"]
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_4ujhu"]
-
-[sub_resource type="ButtonGroup" id="ButtonGroup_vnpsp"]
-
-[sub_resource type="ButtonGroup" id="ButtonGroup_a1gy5"]
-
-[sub_resource type="ButtonGroup" id="ButtonGroup_bq5lc"]
-
-[sub_resource type="ButtonGroup" id="ButtonGroup_xac7c"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_5seab"]
 
 [node name="MainMenu" type="CanvasLayer" unique_id=1131694955]
 
@@ -29,107 +21,80 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 0
 script = ExtResource("1_5seab")
+metadata/level_selector_button_group = SubResource("ButtonGroup_5seab")
 
 [node name="LevelSelector1" parent="HBoxLevels" unique_id=335874537 instance=ExtResource("5_thkx5")]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
-toggle_mode = true
 button_pressed = true
-button_group = SubResource("ButtonGroup_4ujhu")
+button_group = SubResource("ButtonGroup_5seab")
 
 [node name="TextureRect" parent="HBoxLevels/LevelSelector1" index="0" unique_id=300375067]
 modulate = Color(1, 1, 1, 1)
-texture = ExtResource("2_x2yjq")
 
 [node name="LabelTitle" parent="HBoxLevels/LevelSelector1/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(335874537, 562619567) index="0" unique_id=382309758]
-text = "Pre-Colonial Davao"
+visible_characters = -1
+visible_ratio = 1.0
 
 [node name="LabelDescription" parent="HBoxLevels/LevelSelector1/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(335874537, 562619567) index="1" unique_id=2042300367]
-text = "Indigenous tribes live and trade along the Davao Gulf."
+visible_characters = -1
+visible_ratio = 1.0
 
 [node name="LevelSelector2" parent="HBoxLevels" unique_id=41922822 instance=ExtResource("5_thkx5")]
 layout_mode = 2
-toggle_mode = true
-button_group = SubResource("ButtonGroup_vnpsp")
+button_group = SubResource("ButtonGroup_5seab")
 level = 1
 
 [node name="TextureRect" parent="HBoxLevels/LevelSelector2" index="0" unique_id=300375067]
-process_mode = 4
-modulate = Color(0.482, 0.482, 0.482, 1)
 texture = ExtResource("3_lqpn7")
 
 [node name="LabelTitle" parent="HBoxLevels/LevelSelector2/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(41922822, 562619567) index="0" unique_id=382309758]
-text = "Spaniards Conquered Davao"
-visible_characters = 0
-visible_ratio = 0.0
+text = "Level 2"
 
 [node name="LabelDescription" parent="HBoxLevels/LevelSelector2/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(41922822, 562619567) index="1" unique_id=2042300367]
 text = "Spanish colonizers arrive and take control of the region."
-visible_characters = 0
-visible_ratio = 0.0
 
 [node name="LevelSelector3" parent="HBoxLevels" unique_id=1059322201 instance=ExtResource("5_thkx5")]
 layout_mode = 2
-toggle_mode = true
-button_group = SubResource("ButtonGroup_a1gy5")
+button_group = SubResource("ButtonGroup_5seab")
 level = 2
 
 [node name="TextureRect" parent="HBoxLevels/LevelSelector3" index="0" unique_id=300375067]
-process_mode = 4
-modulate = Color(0.482, 0.482, 0.482, 1)
 texture = ExtResource("4_qel0l")
 
 [node name="LabelTitle" parent="HBoxLevels/LevelSelector3/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1059322201, 562619567) index="0" unique_id=382309758]
-text = "Arrival of the Japanese"
-visible_characters = 0
-visible_ratio = 0.0
+text = "Level 3"
 
 [node name="LabelDescription" parent="HBoxLevels/LevelSelector3/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1059322201, 562619567) index="1" unique_id=2042300367]
 text = "Japanese settlers arrive and Davao City is established."
-visible_characters = 0
-visible_ratio = 0.0
 
 [node name="LevelSelector4" parent="HBoxLevels" unique_id=1670467590 instance=ExtResource("5_thkx5")]
 layout_mode = 2
-toggle_mode = true
-button_group = SubResource("ButtonGroup_bq5lc")
+button_group = SubResource("ButtonGroup_5seab")
 level = 3
 
 [node name="TextureRect" parent="HBoxLevels/LevelSelector4" index="0" unique_id=300375067]
-process_mode = 4
-modulate = Color(0.482, 0.482, 0.482, 1)
 texture = ExtResource("5_rrgl4")
 
 [node name="LabelTitle" parent="HBoxLevels/LevelSelector4/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1670467590, 562619567) index="0" unique_id=382309758]
-text = "World War II"
-visible_characters = 0
-visible_ratio = 0.0
+text = "Level 4"
 
 [node name="LabelDescription" parent="HBoxLevels/LevelSelector4/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1670467590, 562619567) index="1" unique_id=2042300367]
 text = "Davao during the war years."
-visible_characters = 0
-visible_ratio = 0.0
 
 [node name="LevelSelector5" parent="HBoxLevels" unique_id=370637051 instance=ExtResource("5_thkx5")]
 layout_mode = 2
-toggle_mode = true
-button_group = SubResource("ButtonGroup_xac7c")
+button_group = SubResource("ButtonGroup_5seab")
 level = 4
 
 [node name="TextureRect" parent="HBoxLevels/LevelSelector5" index="0" unique_id=300375067]
-process_mode = 4
-modulate = Color(0.482, 0.482, 0.482, 1)
 texture = ExtResource("6_dn3lk")
 
 [node name="LabelTitle" parent="HBoxLevels/LevelSelector5/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(370637051, 562619567) index="0" unique_id=382309758]
-text = "Davao Today"
-visible_characters = 0
-visible_ratio = 0.0
+text = "Level 5"
 
 [node name="LabelDescription" parent="HBoxLevels/LevelSelector5/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(370637051, 562619567) index="1" unique_id=2042300367]
 text = "Modern Davao, the city we know now."
-visible_characters = 0
-visible_ratio = 0.0
 
 [node name="TitleLabel" type="Label" parent="." unique_id=1978455914]
 offset_left = 140.0
@@ -158,6 +123,22 @@ grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 2
 texture = ExtResource("8_4xg86")
+
+[node name="StartButton" type="Button" parent="." unique_id=1423332690 node_paths=PackedStringArray("level_selector_sample")]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -38.0
+offset_top = -55.0
+offset_right = 38.0
+offset_bottom = -27.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Start"
+script = ExtResource("8_thkx5")
+level_selector_sample = NodePath("../HBoxLevels/LevelSelector1")
 
 [editable path="HBoxLevels/LevelSelector1"]
 [editable path="HBoxLevels/LevelSelector2"]

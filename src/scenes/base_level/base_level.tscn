@@ -53,7 +53,6 @@ sources/0 = SubResource("TileSetScenesCollectionSource_a8gkr")
 script = ExtResource("11_base")
 
 [node name="Background" parent="." unique_id=1712092851 instance=ExtResource("1_k2up0")]
-scroll_offset = Vector2(-9, 112)
 
 [node name="BackgroundEffects" type="Parallax2D" parent="." unique_id=1973781473]
 z_index = -5
@@ -87,6 +86,7 @@ material = SubResource("ShaderMaterial_2n7ho")
 script = ExtResource("9_dojjm")
 
 [node name="PlayerCamera" type="Camera2D" parent="." unique_id=1770321113]
+position = Vector2(288, -148)
 script = ExtResource("3_jlp5g")
 metadata/_custom_type_script = "uid://d22cgg754fheg"
 

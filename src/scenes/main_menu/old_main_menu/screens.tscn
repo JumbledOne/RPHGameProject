@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://cigd1otdu5ruc"]
 
 [ext_resource type="Script" uid="uid://dj0w4uirvw77" path="res://scripts/ui/menu_root.gd" id="1_658tu"]
-[ext_resource type="Script" uid="uid://bs4ybhtetk1ou" path="res://scenes/main_menu/play_button.gd" id="2_r8ni0"]
-[ext_resource type="Script" uid="uid://guqmm3ucr1gu" path="res://scenes/main_menu/quit_button.gd" id="3_0r3xq"]
+[ext_resource type="Script" uid="uid://bs4ybhtetk1ou" path="res://scenes/main_menu/old_main_menu/play_button.gd" id="2_r8ni0"]
+[ext_resource type="Script" uid="uid://guqmm3ucr1gu" path="res://scenes/main_menu/old_main_menu/quit_button.gd" id="3_0r3xq"]
 
 [node name="Screens" type="Control" unique_id=136333902 node_paths=PackedStringArray("default_screen")]
 visible = false
