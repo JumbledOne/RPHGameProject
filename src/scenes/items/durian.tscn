@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bmnx81gdn0jd6"]
 
-[ext_resource type="Texture2D" uid="uid://npjp80de523v" path="res://assets/sprites/durian.png" id="1_3x82t"]
+[ext_resource type="Texture2D" uid="uid://npjp80de523v" path="res://assets/gfx/sprites/durian.png" id="1_3x82t"]
 
 [sub_resource type="GDScript" id="GDScript_2kmxq"]
 resource_name = "_durian"

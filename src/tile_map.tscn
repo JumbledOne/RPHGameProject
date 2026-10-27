@@ -1,8 +1,8 @@
 [gd_scene format=4 uid="uid://cj6wexpj1v2dx"]
 
 [ext_resource type="PackedScene" uid="uid://bilcp5l0jhoy6" path="res://scripts/enemy/Evil_Durian.tscn" id="1_2cfip"]
-[ext_resource type="Texture2D" uid="uid://50amvlb5jy4j" path="res://assets/sprites/stage1_ancient_trading_gulf_640x360.png" id="1_7yhko"]
-[ext_resource type="Texture2D" uid="uid://bmra7b1uo5a0g" path="res://assets/sprites/tilemap-updated.png" id="2_1n30v"]
+[ext_resource type="Texture2D" uid="uid://50amvlb5jy4j" path="res://assets/gfx/sprites/stage1_ancient_trading_gulf_640x360.png" id="1_7yhko"]
+[ext_resource type="Texture2D" uid="uid://bmra7b1uo5a0g" path="res://assets/gfx/sprites/tilemap-updated.png" id="2_1n30v"]
 [ext_resource type="PackedScene" uid="uid://dqfx6qteghxjv" path="res://scripts/player/player_spawner/player_spawner.tscn" id="4_c81vo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7yhko"]

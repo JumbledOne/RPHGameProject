@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://clvr5icyyjm0y"]
 
-[ext_resource type="Shader" uid="uid://wetwovcohodc" path="res://scripts/water/water.gdshader" id="1_mvu7e"]
+[ext_resource type="Shader" uid="uid://wetwovcohodc" path="res://assets/gfx/shader/water.gdshader" id="1_mvu7e"]
 
 [sub_resource type="Gradient" id="Gradient_mvu7e"]
 interpolation_mode = 1

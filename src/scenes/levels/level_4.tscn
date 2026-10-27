@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://btvjt735iig8k"]
 
-[ext_resource type="Texture2D" uid="uid://cldapm5pdoma4" path="res://assets/sprites/stage4_wwii_liberation_640x360.png" id="1_lp2yj"]
-[ext_resource type="Texture2D" uid="uid://bmra7b1uo5a0g" path="res://assets/sprites/tilemap-updated.png" id="2_e1ya0"]
+[ext_resource type="Texture2D" uid="uid://cldapm5pdoma4" path="res://assets/gfx/sprites/stage4_wwii_liberation_640x360.png" id="1_lp2yj"]
+[ext_resource type="Texture2D" uid="uid://bmra7b1uo5a0g" path="res://assets/gfx/sprites/tilemap-updated.png" id="2_e1ya0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qcu6h"]
 texture = ExtResource("2_e1ya0")

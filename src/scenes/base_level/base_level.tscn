@@ -1,20 +1,39 @@
 [gd_scene format=3 uid="uid://d3sq81x0hgxf0"]
 
 [ext_resource type="PackedScene" uid="uid://73qqhe04mof4" path="res://scripts/background/background.tscn" id="1_k2up0"]
-[ext_resource type="TileSet" uid="uid://dl2yu8rgguk6u" path="res://assets/gfx_resources/level_tile_set.tres" id="2_8eac3"]
+[ext_resource type="TileSet" uid="uid://dl2yu8rgguk6u" path="res://assets/gfx/gfx_resources/level_tile_set.tres" id="2_8eac3"]
 [ext_resource type="PackedScene" uid="uid://dqfx6qteghxjv" path="res://scripts/player/player_spawner/player_spawner.tscn" id="2_jlp5g"]
+[ext_resource type="Script" uid="uid://dojk1mgjtb6su" path="res://scenes/base_level/level_tilemap.gd" id="3_0wob2"]
 [ext_resource type="Script" uid="uid://d22cgg754fheg" path="res://scripts/player/player_camera/player_camera.gd" id="3_jlp5g"]
+[ext_resource type="PackedScene" uid="uid://b7cwtkfr5atuj" path="res://scenes/items/collectible.tscn" id="5_5yg0m"]
+[ext_resource type="PackedScene" uid="uid://bmnx81gdn0jd6" path="res://scenes/items/durian.tscn" id="6_jnmbr"]
+[ext_resource type="PackedScene" uid="uid://b2t6itv4f21fr" path="res://scenes/items/honey_jar.tscn" id="7_dojjm"]
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_a8gkr"]
+scenes/1/scene = ExtResource("5_5yg0m")
+scenes/2/scene = ExtResource("6_jnmbr")
+scenes/3/scene = ExtResource("7_dojjm")
+
+[sub_resource type="TileSet" id="TileSet_2n7ho"]
+tile_size = Vector2i(32, 32)
+sources/0 = SubResource("TileSetScenesCollectionSource_a8gkr")
 
 [node name="BaseLevel" type="Node2D" unique_id=154879563]
 
 [node name="Background" parent="." unique_id=1712092851 instance=ExtResource("1_k2up0")]
-scroll_offset = Vector2(0, 98)
+scroll_offset = Vector2(-9, 112)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1571259154]
 tile_set = ExtResource("2_8eac3")
+script = ExtResource("3_0wob2")
 
-[node name="PlayerSpawner" parent="." unique_id=512273958 instance=ExtResource("2_jlp5g")]
+[node name="LevelObjects" type="Node2D" parent="." unique_id=949556748]
+
+[node name="PlayerSpawner" parent="LevelObjects" unique_id=512273958 instance=ExtResource("2_jlp5g")]
 position = Vector2(16, -16)
+
+[node name="Items" type="TileMapLayer" parent="LevelObjects" unique_id=933369512]
+tile_set = SubResource("TileSet_2n7ho")
 
 [node name="PlayerCamera" type="Camera2D" parent="." unique_id=1770321113]
 script = ExtResource("3_jlp5g")

@@ -1,8 +1,8 @@
 [gd_scene format=4 uid="uid://ikmhfiq4q14g"]
 
 [ext_resource type="PackedScene" uid="uid://73qqhe04mof4" path="res://scripts/background/background.tscn" id="1_0qepi"]
-[ext_resource type="Texture2D" uid="uid://fp4ql0mobqko" path="res://assets/sprites/stage3_plantation_era_640x360.png" id="1_16pka"]
-[ext_resource type="Texture2D" uid="uid://bmra7b1uo5a0g" path="res://assets/sprites/tilemap-updated.png" id="2_j8bo8"]
+[ext_resource type="Texture2D" uid="uid://fp4ql0mobqko" path="res://assets/gfx/sprites/stage3_plantation_era_640x360.png" id="1_16pka"]
+[ext_resource type="Texture2D" uid="uid://bmra7b1uo5a0g" path="res://assets/gfx/sprites/tilemap-updated.png" id="2_j8bo8"]
 [ext_resource type="Script" uid="uid://d22cgg754fheg" path="res://scripts/player/player_camera/player_camera.gd" id="5_fmg3e"]
 [ext_resource type="PackedScene" uid="uid://dqfx6qteghxjv" path="res://scripts/player/player_spawner/player_spawner.tscn" id="5_ftfob"]
 

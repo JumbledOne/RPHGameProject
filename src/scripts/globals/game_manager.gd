@@ -13,7 +13,7 @@ signal player_set
 # # # # # # # # # # # #
 # Game Flow
 const LEVELS: Array[PackedScene] = [
-	preload("res://scenes/levels/level_1.tscn"),
+	preload("res://scenes/levels/level_1_b.tscn"),
 	preload("res://scenes/levels/level_2.tscn"),
 	preload("res://scenes/levels/level_3.tscn"),
 	preload("res://scenes/levels/level_4.tscn"),

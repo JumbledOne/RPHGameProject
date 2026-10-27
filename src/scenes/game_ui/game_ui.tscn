@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://vmsxvdlgsokl"]
 
-[ext_resource type="Script" uid="uid://3ukgfbqx1e0m" path="res://scenes/game_ui/game_ui.gd" id="1_1i64n"]
 [ext_resource type="Script" uid="uid://cymngya1w6kr6" path="res://scenes/game_ui/test_damage_button.gd" id="1_6mwjj"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_3y7pu"]
@@ -21,7 +20,6 @@ func _update(collected: int, total: int) -> void:
 "
 
 [node name="GameUi" type="CanvasLayer" unique_id=271816190]
-script = ExtResource("1_1i64n")
 
 [node name="ResultTable" type="Label" parent="." unique_id=1308814256]
 visible = false

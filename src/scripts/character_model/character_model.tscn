@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dctwav0o0dy8r"]
 
 [ext_resource type="Script" uid="uid://byanhy0cletsr" path="res://scripts/character_model/character_model.gd" id="1_xjoyo"]
-[ext_resource type="Texture2D" uid="uid://c2o654lacevqd" path="res://assets/gfx_resources/atlas_textures/friar_spanish_enemy.tres" id="2_pah7v"]
+[ext_resource type="Texture2D" uid="uid://c2o654lacevqd" path="res://assets/gfx/gfx_resources/atlas_textures/friar_spanish_enemy.tres" id="2_pah7v"]
 
 [sub_resource type="Animation" id="Animation_txvn2"]
 length = 0.001

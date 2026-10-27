@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b2t6itv4f21fr"]
 
-[ext_resource type="Texture2D" uid="uid://cef21ngce2plk" path="res://assets/sprites/honey -sheet.png" id="1_w8bo0"]
+[ext_resource type="Texture2D" uid="uid://cef21ngce2plk" path="res://assets/gfx/sprites/honey -sheet.png" id="1_w8bo0"]
 
 [sub_resource type="GDScript" id="GDScript_ykn7a"]
 resource_name = "_honeyjar"

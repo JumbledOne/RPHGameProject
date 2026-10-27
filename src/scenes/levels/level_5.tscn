@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b4a8nbow6qpbo"]
 
-[ext_resource type="Texture2D" uid="uid://d1bmdge48h4an" path="res://assets/sprites/stage5_changing_davao_640x360.png" id="1_4wg22"]
-[ext_resource type="Texture2D" uid="uid://bmra7b1uo5a0g" path="res://assets/sprites/tilemap-updated.png" id="2_t4tfv"]
+[ext_resource type="Texture2D" uid="uid://d1bmdge48h4an" path="res://assets/gfx/sprites/stage5_changing_davao_640x360.png" id="1_4wg22"]
+[ext_resource type="Texture2D" uid="uid://bmra7b1uo5a0g" path="res://assets/gfx/sprites/tilemap-updated.png" id="2_t4tfv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bf6rn"]
 texture = ExtResource("2_t4tfv")

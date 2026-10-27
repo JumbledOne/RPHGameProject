@@ -1,0 +1,6 @@
+[gd_resource type="AtlasTexture" format=3 uid="uid://4chhm6ilad6r"]
+
+[ext_resource type="Texture2D" uid="uid://cwwfbfudm4ku7" path="res://assets/gfx/sprites/character_spritesheets/American_Colonizer_Sprite.png" id="1_60ybq"]
+
+[resource]
+atlas = ExtResource("1_60ybq")

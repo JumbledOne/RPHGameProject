@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bilcp5l0jhoy6" path="res://scripts/enemy/Evil_Durian.tscn" id="2_5jnu0"]
 [ext_resource type="PackedScene" uid="uid://73qqhe04mof4" path="res://scripts/background/background.tscn" id="2_sk5k4"]
 [ext_resource type="PackedScene" uid="uid://dqfx6qteghxjv" path="res://scripts/player/player_spawner/player_spawner.tscn" id="3_oh33q"]
-[ext_resource type="Texture2D" uid="uid://bmra7b1uo5a0g" path="res://assets/sprites/tilemap-updated.png" id="4_af25d"]
+[ext_resource type="Texture2D" uid="uid://bmra7b1uo5a0g" path="res://assets/gfx/sprites/tilemap-updated.png" id="4_af25d"]
 [ext_resource type="Script" uid="uid://d22cgg754fheg" path="res://scripts/player/player_camera/player_camera.gd" id="5_5jnu0"]
 [ext_resource type="Script" uid="uid://dojk1mgjtb6su" path="res://scenes/base_level/level_tilemap.gd" id="5_sk5k4"]
 
@@ -1301,9 +1301,8 @@ tile_map_data = PackedByteArray("AACP////AAACAAgAAACP/wAAAAACAAkAAACP/wEAAAACAAo
 tile_set = SubResource("TileSet_57qmd")
 script = ExtResource("5_sk5k4")
 
-[node name="PlayerCamera" type="Camera2D" parent="." unique_id=606047368 node_paths=PackedStringArray("level_tilemap")]
+[node name="PlayerCamera" type="Camera2D" parent="." unique_id=606047368]
 script = ExtResource("5_5jnu0")
-level_tilemap = NodePath("../Obstacles nd shi")
 metadata/_custom_type_script = "uid://d22cgg754fheg"
 
 [node name="Node2D" type="Node2D" parent="." unique_id=784797988]
