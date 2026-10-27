@@ -1,0 +1,34 @@
+{
+	"levels" : [
+	  {
+		"date": "1700s",
+		"title": "Pre-Colonial Davao",
+		"desc": "Indigenous tribes live and trade along the Davao Gulf.",
+		"texture": "res://assets/gfx/sprites/stage1_ancient_trading_gulf_640x360.png"
+	  },
+	  {
+		"date": "1800s",
+		"title": "Spaniards Conquered Davao",
+		"desc": "Spanish colonizers arrive and take control of the region.",
+		"texture": "res://assets/gfx/sprites/stage2_spanish_expedition_640x360.png"
+	  },
+	  {
+		"date": "1900s",
+		"title": "Arrival of the Japanese",
+		"desc": "Japanese settlers arrive and Davao City is established.",
+		"texture": "res://assets/gfx/sprites/stage3_plantation_era_640x360.png"
+	  },
+	  {
+		"date": "1940s",
+		"title": "World War II",
+		"desc": "Davao during the war years.",
+		"texture": "res://assets/gfx/sprites/stage4_wwii_liberation_640x360.png"
+	  },
+	  {
+		"date": "Today",
+		"title": "Davao Today",
+		"desc": "Modern Davao, the city we know now.",
+		"texture": "res://assets/gfx/sprites/stage5_changing_davao_640x360.png"
+	  }
+	]
+}
