@@ -4,12 +4,15 @@
 [ext_resource type="TileSet" uid="uid://dl2yu8rgguk6u" path="res://assets/gfx/gfx_resources/level_tile_set.tres" id="2_8eac3"]
 [ext_resource type="Script" uid="uid://dojk1mgjtb6su" path="res://scenes/base_level/level_tilemap.gd" id="3_0wob2"]
 [ext_resource type="Script" uid="uid://d22cgg754fheg" path="res://scripts/player/player_camera/player_camera.gd" id="3_jlp5g"]
-[ext_resource type="PackedScene" uid="uid://b7cwtkfr5atuj" path="res://scenes/items/collectible.tscn" id="5_5yg0m"]
+[ext_resource type="PackedScene" uid="uid://b7cwtkfr5atuj" path="res://scripts/collectible/collectible.tscn" id="5_5yg0m"]
 [ext_resource type="PackedScene" uid="uid://bmnx81gdn0jd6" path="res://scenes/items/durian.tscn" id="6_jnmbr"]
 [ext_resource type="PackedScene" uid="uid://b2t6itv4f21fr" path="res://scenes/items/honey_jar.tscn" id="7_dojjm"]
 [ext_resource type="Shader" uid="uid://b1n6pjakatxik" path="res://assets/gfx/shader/pixelate.gdshader" id="8_jnmbr"]
 [ext_resource type="Script" uid="uid://c0lwl17fypqvn" path="res://scenes/base_level/effects_layer.gd" id="9_dojjm"]
 [ext_resource type="PackedScene" uid="uid://dyqbnaxeopk17" path="res://scripts/player/player.tscn" id="10_dojjm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2n7ho"]
+shader = ExtResource("8_jnmbr")
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_a8gkr"]
 scenes/1/scene = ExtResource("5_5yg0m")
@@ -20,13 +23,15 @@ scenes/3/scene = ExtResource("7_dojjm")
 tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetScenesCollectionSource_a8gkr")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_2n7ho"]
-shader = ExtResource("8_jnmbr")
-
 [node name="BaseLevel" type="Node2D" unique_id=154879563]
 
 [node name="Background" parent="." unique_id=1712092851 instance=ExtResource("1_k2up0")]
 scroll_offset = Vector2(-9, 112)
+
+[node name="BackgroundObjects" type="CanvasGroup" parent="." unique_id=1416348041]
+z_index = -5
+material = SubResource("ShaderMaterial_2n7ho")
+script = ExtResource("9_dojjm")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1571259154]
 tile_set = ExtResource("2_8eac3")

@@ -1,23 +1,12 @@
 [gd_scene format=3 uid="uid://vmsxvdlgsokl"]
 
 [ext_resource type="Texture2D" uid="uid://cxmhprpifp5t1" path="res://assets/gfx/sprites/cacao beans-sheet-sheet.png" id="1_sq0em"]
+[ext_resource type="Script" path="res://scenes/game_ui/collectible_tracker.gd" id="2_tracker"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_3y7pu"]
 font_size = 28
 outline_size = 12
 outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="GDScript" id="GDScript_3y7pu"]
-resource_name = "_tracker"
-script/source = "extends Label
-
-func _ready() -> void:
-	GameManager.collectibles_changed.connect(_update)
-	_update()
-
-func _update() -> void:
-	text = str(GameManager.collected)
-"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2n7ho"]
 atlas = ExtResource("1_sq0em")
@@ -66,9 +55,9 @@ alignment = 1
 
 [node name="CollectableTracker" type="Label" parent="CollectibleStats" unique_id=781726504]
 layout_mode = 2
-text = "0"
+text = "0 / 0"
 label_settings = SubResource("LabelSettings_3y7pu")
-script = SubResource("GDScript_3y7pu")
+script = ExtResource("2_tracker")
 
 [node name="TextureRect" type="TextureRect" parent="CollectibleStats" unique_id=1912993614]
 custom_minimum_size = Vector2(64, 64)

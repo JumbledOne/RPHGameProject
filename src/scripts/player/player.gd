@@ -6,9 +6,12 @@ extends PlatformerEntity
 
 # Action vars
 var player_action: BasePlayerAction
+
+@onready var model: Node2D = $PlayerModel
 			
 func _ready() -> void:
 	super()
+	model.set_texture(GameManager.player_class.get_sprite_sheet())
 	GameManager.player = self
 
 func _physics_process(delta: float) -> void:

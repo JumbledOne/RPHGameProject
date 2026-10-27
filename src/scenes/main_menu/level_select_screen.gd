@@ -57,8 +57,8 @@ func _ready() -> void:
 		btn.text = TRIBES[key]
 		btn.toggle_mode = true
 		btn.button_group = tribe_group
-		btn.button_pressed = (key == GameState.selected_tribe)
-		btn.pressed.connect(func(): GameState.selected_tribe = key)
+		btn.button_pressed = is_instance_of(GameManager.player_class, _tribe_to_class(key).get_script())
+		btn.pressed.connect(func(): GameManager.player_class = _tribe_to_class(key))
 		%TribeBox.add_child(btn)
 
 	%StartButton.pressed.connect(func(): GameState.start_level(GameState.selected_level))
@@ -70,3 +70,12 @@ func _on_start_button_pressed() -> void:
 	var button: Button = level_group.get_pressed_button()
 	if button:
 		InterfaceManager.do_on_transition(GameManager.start_game.bind(button.level))
+
+func _tribe_to_class(tribe: String) -> PlayerClass:
+	match tribe:
+		"ata":
+			return AtaCharacter.new()
+		"bagobo":
+			return BagoboCharacter.new()
+		_:
+			return UrbanCharacter.new()

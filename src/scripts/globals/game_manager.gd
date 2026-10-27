@@ -4,6 +4,7 @@ const SCREEN_SIZE: Vector2 = Vector2(640, 360)
 
 # # # # # # # # # # # #
 # Player data
+var player_class: PlayerClass = UrbanCharacter.new()
 var player: PlayerEntity:
 	set(v):
 		if player and v:
