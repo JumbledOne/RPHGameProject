@@ -17,9 +17,9 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-GameManager="*uid://dhv28531hs6b6"
-GameState="*uid://cvgxy8yhb6tb5"
-InterfaceManager="*uid://chjdoi1i0vdyg"
+GameManager="*res://scripts/globals/game_manager.gd"
+GameState="*res://scripts/globals/game_state.gd"
+InterfaceManager="*res://scripts/globals/interface_manager.gd"
 
 [display]
 
@@ -43,6 +43,10 @@ folder_colors={
 [global_group]
 
 player=""
+
+[gui]
+
+theme/custom="uid://ivp3r78ksoan"
 
 [input]
 
@@ -95,4 +99,8 @@ rendering_device/driver.windows="d3d12"
 screen_resolution={
 "type": "vec2",
 "value": Vector2(640, 360)
+}
+time_step={
+"type": "float",
+"value": 8.0
 }

@@ -2,8 +2,11 @@
 
 [ext_resource type="PackedScene" uid="uid://73qqhe04mof4" path="res://scripts/background/background.tscn" id="1_k2up0"]
 [ext_resource type="TileSet" uid="uid://dl2yu8rgguk6u" path="res://assets/gfx/gfx_resources/level_tile_set.tres" id="2_8eac3"]
+[ext_resource type="Shader" uid="uid://bc6dw1naoawdh" path="res://assets/gfx/shader/pixelate_outlined.gdshader" id="3_0rn38"]
 [ext_resource type="Script" uid="uid://dojk1mgjtb6su" path="res://scenes/base_level/level_tilemap.gd" id="3_0wob2"]
 [ext_resource type="Script" uid="uid://d22cgg754fheg" path="res://scripts/player/player_camera/player_camera.gd" id="3_jlp5g"]
+[ext_resource type="Shader" uid="uid://5c2bd1kjmaah" path="res://assets/gfx/shader/fog.gdshader" id="4_8tryd"]
+[ext_resource type="Texture2D" uid="uid://beug7sft8lvt1" path="res://assets/gfx/gfx_resources/universal_noise.tres" id="5_0rn38"]
 [ext_resource type="PackedScene" uid="uid://b7cwtkfr5atuj" path="res://scripts/collectible/collectible.tscn" id="5_5yg0m"]
 [ext_resource type="PackedScene" uid="uid://bmnx81gdn0jd6" path="res://scenes/items/durian.tscn" id="6_jnmbr"]
 [ext_resource type="PackedScene" uid="uid://b2t6itv4f21fr" path="res://scenes/items/honey_jar.tscn" id="7_dojjm"]
@@ -13,6 +16,28 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2n7ho"]
 shader = ExtResource("8_jnmbr")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dojjm"]
+shader = ExtResource("3_0rn38")
+shader_parameter/outline_color = Color(0.0322113, 0.14771053, 0.2423644, 1)
+shader_parameter/outline_size = 1.0
+
+[sub_resource type="Gradient" id="Gradient_6nho2"]
+offsets = PackedFloat32Array(0.2238806, 1)
+colors = PackedColorArray(0.64, 0.826, 1, 0, 0.64359725, 0.8270235, 1, 0.8039216)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_xexid"]
+gradient = SubResource("Gradient_6nho2")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c2ddb"]
+shader = ExtResource("4_8tryd")
+shader_parameter/noise_tex = ExtResource("5_0rn38")
+shader_parameter/noise_scale = 2048.0
+shader_parameter/noise_movement = Vector2(-0.01, -0.01)
+shader_parameter/noise_movement_2 = Vector2(-0.07, -0.01)
+shader_parameter/max_height = -256.0
+shader_parameter/color_step = 16.0
+shader_parameter/color_ramp = SubResource("GradientTexture1D_xexid")
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_a8gkr"]
 scenes/1/scene = ExtResource("5_5yg0m")
@@ -28,10 +53,22 @@ sources/0 = SubResource("TileSetScenesCollectionSource_a8gkr")
 [node name="Background" parent="." unique_id=1712092851 instance=ExtResource("1_k2up0")]
 scroll_offset = Vector2(-9, 112)
 
-[node name="BackgroundObjects" type="CanvasGroup" parent="." unique_id=1416348041]
+[node name="BackgroundEffects" type="Node2D" parent="." unique_id=1431024560]
 z_index = -5
 material = SubResource("ShaderMaterial_2n7ho")
+
+[node name="BackgroundObjects" type="CanvasGroup" parent="BackgroundEffects" unique_id=976009228]
+oversampling_with_scale = 1
+z_index = -5
+material = SubResource("ShaderMaterial_dojjm")
 script = ExtResource("9_dojjm")
+
+[node name="Fog" type="ColorRect" parent="BackgroundEffects" unique_id=322353296]
+material = SubResource("ShaderMaterial_c2ddb")
+offset_left = -96.0
+offset_top = -784.0
+offset_right = 2880.0
+offset_bottom = 96.0
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1571259154]
 tile_set = ExtResource("2_8eac3")

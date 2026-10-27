@@ -15,11 +15,16 @@ void vertex() {
 }
 
 void fragment() {
+	// Keep the shader's world-space lookup aligned to whole pixels. The varying
+	// is interpolated across the ColorRect, so snapping in the vertex function
+	// alone is not enough.
+	vec2 pixel_world_position = floor(world_position);
+
 	// Height gradient
 	vec4 col = vec4(1.0);
-	col.r = smoothstep(-16.0 + WATER_HEIGHT, 64.0 + WATER_HEIGHT, world_position.y);
+	col.r = smoothstep(-16.0 + WATER_HEIGHT, 64.0 + WATER_HEIGHT, pixel_world_position.y);
 	// Noise
-	vec3 noise_uv = vec3(world_position / noise_scale, 0.0);
+	vec3 noise_uv = vec3(pixel_world_position / noise_scale, 0.0);
 	noise_uv += noise_movement * TIME;
 	vec4 noise_col = texture(noise_tex, noise_uv);
 	// Color Ramp
