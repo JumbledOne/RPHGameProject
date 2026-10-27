@@ -3,18 +3,13 @@
 [ext_resource type="Script" uid="uid://guqmm3ucr1gu" path="res://scenes/main_menu/quit_button.gd" id="1_0ebjn"]
 [ext_resource type="Script" uid="uid://bs4ybhtetk1ou" path="res://scenes/main_menu/play_button.gd" id="1_ob46e"]
 [ext_resource type="Script" uid="uid://dj0w4uirvw77" path="res://scripts/ui/menu_root.gd" id="1_uqeha"]
+[ext_resource type="Script" uid="uid://b0t6nel065ca2" path="res://scenes/main_menu/main_menu.gd" id="1_wem23"]
 [ext_resource type="PackedScene" uid="uid://21n45t63lkxk" path="res://scenes/main_menu/level_select_screen.tscn" id="4_uqeha"]
 
-[node name="MainMenu" type="Control" unique_id=545312804]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="MainMenu" type="CanvasLayer" unique_id=1131694955]
+script = ExtResource("1_wem23")
 
 [node name="Background" type="ColorRect" parent="." unique_id=56413536]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -23,7 +18,7 @@ grow_vertical = 2
 color = Color(0.34509805, 1, 0.47843137, 1)
 
 [node name="Screens" type="Control" parent="." unique_id=1578765163 node_paths=PackedStringArray("default_screen")]
-layout_mode = 1
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

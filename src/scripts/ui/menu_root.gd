@@ -11,8 +11,8 @@ func _ready() -> void:
 	_check_show_default()
 		
 func _on_child_visibility_changed(child : Control):
-	# Activate only if something was hidden
-	# So as to check if no screen is visible and thus display the default screen
+	if displaying_screens:
+		return
 	if child.visible:
 		display_screen(child)
 	else: 

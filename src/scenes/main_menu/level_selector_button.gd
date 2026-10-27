@@ -3,7 +3,7 @@ extends Button
 var _level: int = -1
 
 func _pressed() -> void:
-	pass
+	GameManager.start_game(_level)
 
 func _ready() -> void:
 	toggle_mode = true
