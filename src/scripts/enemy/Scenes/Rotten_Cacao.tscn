@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://s5b3uyrttyhd"]
+
+[ext_resource type="Script" uid="uid://bu2ib87bigt48" path="res://scripts/enemy/Enemy_Entity.gd" id="1_7iipi"]
+[ext_resource type="PackedScene" uid="uid://dwiill2noqt84" path="res://scripts/hurtbox/hurtbox.tscn" id="2_qpnys"]
+[ext_resource type="Texture2D" uid="uid://bm477ytfbeld8" path="res://assets/sprites/cacaorotten.png" id="3_7iipi"]
+[ext_resource type="Script" uid="uid://lgg28g75726t" path="res://scripts/enemy/Behaviors/rottenCacao_behavior.gd" id="4_7iipi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
+size = Vector2(32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qpnys"]
+atlas = ExtResource("3_7iipi")
+region = Rect2(64, 128, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bk851"]
+atlas = ExtResource("3_7iipi")
+region = Rect2(32, 128, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2mc4v"]
+atlas = ExtResource("3_7iipi")
+region = Rect2(0, 128, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7iipi"]
+atlas = ExtResource("3_7iipi")
+region = Rect2(64, 128, 32, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6c637"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qpnys")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bk851")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2mc4v")
+}],
+"loop": 1,
+"name": &"Left_attack",
+"speed": 4.0
+}, {
+"frames": [],
+"loop": 1,
+"name": &"Right_attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7iipi")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="RottenCacao" type="CharacterBody2D" unique_id=565006692]
+script = ExtResource("1_7iipi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=136484504]
+shape = SubResource("RectangleShape2D_g4v7s")
+
+[node name="hurtbox" parent="CollisionShape2D" unique_id=1789929793 node_paths=PackedStringArray("owner_node") instance=ExtResource("2_qpnys")]
+owner_node = NodePath("../..")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=342796054]
+position = Vector2(0, -16)
+sprite_frames = SubResource("SpriteFrames_6c637")
+
+[node name="BehaviorManager" type="Node2D" parent="." unique_id=1897034658]
+script = ExtResource("4_7iipi")
+
+[node name="MovementComponent" type="Node2D" parent="BehaviorManager" unique_id=1858462073]
+
+[node name="AttackComponent" type="Node2D" parent="BehaviorManager" unique_id=1463857466]

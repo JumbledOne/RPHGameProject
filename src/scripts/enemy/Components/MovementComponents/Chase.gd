@@ -1,4 +1,4 @@
-class_name EvilDurianMovementComponent
+class_name ChaseMovementComponent
 extends Component
 
 var player_pos_when_jumping: Array = []
@@ -11,12 +11,13 @@ func _ready() -> void:
 
 func _on_player_jumped():
 	player_pos_when_jumping.append(GameManager.player.position)
-	#print("appended player jump pos")
 
 func tick(enemy: Enemy_Entity, delta: float) -> void:
-	if not GameManager.player:
+	
+	if not GameManager or not GameManager.player:
 		return
-	if not is_connected_to_player:
+	
+	if not is_connected_to_player and GameManager.player:
 		if GameManager.player.has_signal("jumped"):
 			GameManager.player.jumped.connect(_on_player_jumped)
 			is_connected_to_player = true

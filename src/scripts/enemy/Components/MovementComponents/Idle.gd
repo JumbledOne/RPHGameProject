@@ -6,3 +6,8 @@ func tick(enemy: Enemy_Entity, delta: float):
 		enemy.velocity.y += 980.0 * delta
 	else:
 		enemy.velocity.y = 0.0
+	
+	if enemy.global_position.x < GameManager.player.global_position.x:
+		flip_sprite.emit(true)
+	else:
+		flip_sprite.emit(false)
