@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://dc4ixh41h7bqa"]
 
-[ext_resource type="Script" uid="uid://lgs3su3ww6w5" path="res://scripts/main_menu.gd" id="1_sl1te"]
+[ext_resource type="Script" uid="uid://guqmm3ucr1gu" path="res://scenes/main_menu/quit_button.gd" id="1_0ebjn"]
+[ext_resource type="Script" uid="uid://bs4ybhtetk1ou" path="res://scenes/main_menu/play_button.gd" id="1_ob46e"]
+[ext_resource type="Script" uid="uid://dj0w4uirvw77" path="res://scripts/ui/menu_root.gd" id="1_uqeha"]
+[ext_resource type="PackedScene" uid="uid://21n45t63lkxk" path="res://scenes/main_menu/level_select_screen.tscn" id="4_uqeha"]
 
 [node name="MainMenu" type="Control" unique_id=545312804]
 layout_mode = 3
@@ -9,7 +12,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_sl1te")
 
 [node name="Background" type="ColorRect" parent="." unique_id=56413536]
 layout_mode = 1
@@ -20,36 +22,45 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.34509805, 1, 0.47843137, 1)
 
-[node name="CenterContainer" type="CenterContainer" parent="." unique_id=647566090]
+[node name="Screens" type="Control" parent="." unique_id=1578765163 node_paths=PackedStringArray("default_screen")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 2.0
-offset_top = 3.0
-offset_right = 2.0
-offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uqeha")
+default_screen = NodePath("MainScreen")
+
+[node name="MainScreen" type="CenterContainer" parent="Screens" unique_id=647566090]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=1769006526]
+[node name="VBoxContainer" type="VBoxContainer" parent="Screens/MainScreen" unique_id=1769006526]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="TitleLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=1978455914]
+[node name="TitleLabel" type="Label" parent="Screens/MainScreen/VBoxContainer" unique_id=1978455914]
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "DAVAO FIGHTERS"
 horizontal_alignment = 1
 
-[node name="PlayButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1679030564]
-unique_name_in_owner = true
+[node name="PlayButton" type="Button" parent="Screens/MainScreen/VBoxContainer" unique_id=1679030564]
 custom_minimum_size = Vector2(250, 50)
 layout_mode = 2
 text = "Play"
+script = ExtResource("1_ob46e")
 
-[node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1574423961]
-unique_name_in_owner = true
+[node name="QuitButton" type="Button" parent="Screens/MainScreen/VBoxContainer" unique_id=1574423961]
 custom_minimum_size = Vector2(250, 50)
 layout_mode = 2
 text = "Quit Game"
+script = ExtResource("1_0ebjn")
+
+[node name="LevelSelectScreen" parent="Screens" unique_id=459523495 instance=ExtResource("4_uqeha")]
+layout_mode = 1

@@ -26,6 +26,14 @@ func start_game(level: int):
 	
 func end_game():
 	game_ended.emit()
+	
+func get_level_scene() -> PackedScene:
+	if current_level >= 0 and current_level < get_level_count():
+		return LEVELS[current_level]
+	return
+	
+func get_level_count() -> int:
+	return len(LEVELS)
 
 # # # # # # # # # # # #
 # Collectibles

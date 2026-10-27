@@ -6,7 +6,7 @@ func _ready() -> void:
 	
 func _on_game_started():
 	_clear_children()
-	var scene: PackedScene = GameManager.LEVELS[GameManager.current_level]
+	var scene: PackedScene = GameManager.get_level_scene()
 	add_child(scene.instantiate())
 	
 func _on_game_ended():

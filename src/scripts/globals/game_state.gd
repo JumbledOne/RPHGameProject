@@ -15,40 +15,6 @@ var hearts := MAX_HEARTS
 var cacao := 0
 var score := 0
 
-# Dates/descriptions are PLACEHOLDERS mf. Replace with the other guys' researched text.
-const LEVELS := {
-	1:  {
-			"date": "1700s", 
-			"title": "Pre-Colonial Davao",
-			"desc": "Indigenous tribes live and trade along the Davao Gulf.",
-			"scene": "res://scenes/levels/level_1.tscn"
-		},
-	2:  {
-			"date": "1800s", 
-			"title": "Spaniards Conquered Davao",
-			"desc": "Spanish colonizers arrive and take control of the region.",
-			"scene": "res://scenes/levels/level_2.tscn"
-		},
-	3:  {
-			"date": "1900s", 
-			"title": "Arrival of the Japanese",
-			"desc": "Japanese settlers arrive and Davao City is established.",
-			"scene": "res://scenes/levels/level_3.tscn"
-		},
-	4:  {
-			"date": "1940s", 
-			"title": "World War II",
-			"desc": "Davao during the war years.",
-			"scene": "res://scenes/levels/level_4.tscn"
-		},
-	5:  {
-			"date": "Today", 
-			"title": "Davao Today",
-			"desc": "Modern Davao, the city we know now.",
-			"scene": "res://scenes/levels/level_5.tscn"
-		},
-}
-
 # # # # # # # # # # # #
 # Might remove the health functions since these these don't do anything?
 # In fact they shouldn't do anything you should call the player directly through GameManager
@@ -91,7 +57,7 @@ func start_level(level: int) -> void:
 	selected_level = level
 	reset_run()
 	get_tree().paused = false
-	get_tree().change_scene_to_file(LEVELS[level]["scene"])
+	#get_tree().change_scene_to_file(LEVELS[level]["scene"])
 
 func restart_level() -> void:
 	start_level(selected_level)

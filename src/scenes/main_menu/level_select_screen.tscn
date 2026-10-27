@@ -1,15 +1,15 @@
 [gd_scene format=3 uid="uid://21n45t63lkxk"]
 
-[ext_resource type="Script" uid="uid://djvmjdqc3pu0q" path="res://scripts/level_select.gd" id="1_x15a5"]
+[ext_resource type="Script" uid="uid://djvmjdqc3pu0q" path="res://scenes/main_menu/level_select_screen.gd" id="1_a8khg"]
 
-[node name="LevelSelect" type="Control" unique_id=459523495]
+[node name="LevelSelectScreen" type="Control" unique_id=459523495]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_x15a5")
+script = ExtResource("1_a8khg")
 
 [node name="Background" type="ColorRect" parent="." unique_id=784490840]
 layout_mode = 0
@@ -62,13 +62,13 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 100)
 custom_maximum_size = Vector2(500, -1)
 layout_mode = 2
+alignment = 1
 
-[node name="TribeBox2" type="HBoxContainer" parent="CenterContainer/VBoxContainer" unique_id=1302669130]
+[node name="Spacer" type="Control" parent="CenterContainer/VBoxContainer" unique_id=606652042]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 100)
 custom_maximum_size = Vector2(500, -1)
 layout_mode = 2
-alignment = 1
 
 [node name="StartButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1542841732]
 unique_name_in_owner = true
