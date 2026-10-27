@@ -1,6 +1,5 @@
 extends Node
-
-# Mostly a signal bus for now
+# Can be called by GameManager but not the other way around
 
 # UI switching
 signal ui_requested(node_name: String)

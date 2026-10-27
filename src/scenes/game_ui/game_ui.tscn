@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://vmsxvdlgsokl"]
 
-[ext_resource type="Script" uid="uid://cymngya1w6kr6" path="res://scenes/game_ui/test_damage_button.gd" id="1_6mwjj"]
+[ext_resource type="Texture2D" uid="uid://cxmhprpifp5t1" path="res://assets/gfx/sprites/cacao beans-sheet-sheet.png" id="1_sq0em"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_3y7pu"]
 font_size = 28
@@ -16,8 +16,12 @@ func _ready() -> void:
 	_update(GameManager.collected, GameManager.total)
 
 func _update(collected: int, total: int) -> void:
-	text = \"%d/%d collected\" % [collected, total]
+	text = str(collected)
 "
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2n7ho"]
+atlas = ExtResource("1_sq0em")
+region = Rect2(64, 0, 32, 32)
 
 [node name="GameUi" type="CanvasLayer" unique_id=271816190]
 
@@ -49,25 +53,24 @@ text = "Game over!"
 label_settings = SubResource("LabelSettings_3y7pu")
 horizontal_alignment = 1
 
-[node name="CollectableTracker" type="Label" parent="." unique_id=781726504]
-offset_left = 17.0
-offset_top = 109.0
-offset_right = 210.0
-offset_bottom = 155.0
-text = "0/0 collected"
+[node name="CollectibleStats" type="HBoxContainer" parent="." unique_id=1710094713]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -101.0
+offset_top = 24.0
+offset_right = 101.0
+offset_bottom = 88.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="CollectableTracker" type="Label" parent="CollectibleStats" unique_id=781726504]
+layout_mode = 2
+text = "0"
 label_settings = SubResource("LabelSettings_3y7pu")
 script = SubResource("GDScript_3y7pu")
 
-[node name="Button" type="Button" parent="." unique_id=1443929147]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -4.0
-offset_top = -8.0
-offset_right = 4.0
-grow_horizontal = 2
-grow_vertical = 0
-text = "Test damage"
-script = ExtResource("1_6mwjj")
+[node name="TextureRect" type="TextureRect" parent="CollectibleStats" unique_id=1912993614]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = SubResource("AtlasTexture_2n7ho")

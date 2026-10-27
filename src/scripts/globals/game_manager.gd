@@ -6,9 +6,21 @@ const SCREEN_SIZE: Vector2 = Vector2(640, 360)
 # Player data
 var player: PlayerEntity:
 	set(v):
+		if player and v:
+			push_error("Attempt to link player when one already exists")
+			return
+		# Unlink Previous
+		if player:
+			player.died.disconnect(_on_player_died)
 		player = v
+		# Link new
+		if player:
+			player.died.connect(_on_player_died)
 		player_set.emit()
 signal player_set
+
+func _on_player_died():
+	InterfaceManager.do_on_transition(start_game.bind(current_level))
 
 # # # # # # # # # # # #
 # Game Flow
@@ -28,9 +40,12 @@ func start_game(level: int):
 	game_started.emit()
 	current_level = level
 	InterfaceManager.open_ui("GameUi")
+	_reset_level_stats()
+	#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
 func end_game():
 	game_ended.emit()
+	#Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	
 func get_level_scene() -> PackedScene:
 	if current_level >= 0 and current_level < get_level_count():
@@ -44,7 +59,7 @@ var level_left_boundary: float
 var level_right_boundary: float
 
 # # # # # # # # # # # #
-# Collectibles
+# Level stats
 signal collectibles_changed(collected: int, total: int)
 var collected := 0
 var total := 0
@@ -84,3 +99,6 @@ func reset_collectibles() -> void:
 	total = 0
 	buff_end_msec = 0
 	collectibles_changed.emit(collected, total)
+	
+func _reset_level_stats():
+	pass

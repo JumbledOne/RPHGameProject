@@ -13,5 +13,8 @@ func _on_game_ended():
 	_clear_children()
 	
 func _clear_children():
+	# The old player is only queued for deletion, so drop the reference now or
+	# the new level's PlayerSpawner thinks a player already exists.
+	GameManager.player = null
 	for e in get_children():
 		e.queue_free()

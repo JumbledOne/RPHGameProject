@@ -6,6 +6,8 @@ uniform vec3 noise_movement;
 
 uniform sampler2D color_ramp;
 
+const float WATER_HEIGHT = -32.0;
+
 varying vec2 world_position;
 void vertex() {
 	world_position = (MODEL_MATRIX * vec4(VERTEX, 0.0, 1.0)).xy;
@@ -15,7 +17,7 @@ void vertex() {
 void fragment() {
 	// Height gradient
 	vec4 col = vec4(1.0);
-	col.r = smoothstep(-16.0, 64.0, world_position.y);
+	col.r = smoothstep(-16.0 + WATER_HEIGHT, 64.0 + WATER_HEIGHT, world_position.y);
 	// Noise
 	vec3 noise_uv = vec3(world_position / noise_scale, 0.0);
 	noise_uv += noise_movement * TIME;

@@ -14,6 +14,7 @@ sprint_time_to_full_speed = 0.5
 gravity = 1960.0
 
 [node name="PlayerModel" parent="." unique_id=566320765 instance=ExtResource("2_so2s4")]
+z_index = -1
 
 [node name="PlayerController" type="Node" parent="." unique_id=1864081540]
 script = ExtResource("3_kai5h")
