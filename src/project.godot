@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 GameManager="*uid://dhv28531hs6b6"
 GameState="*uid://cvgxy8yhb6tb5"
+InterfaceManager="*uid://chjdoi1i0vdyg"
 
 [display]
 
@@ -87,6 +88,7 @@ attack={
 
 textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
+2d/snap/snap_2d_transforms_to_pixel=true
 
 [shader_globals]
 

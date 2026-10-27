@@ -23,6 +23,7 @@ var current_level: int = 0 # Used in GameScene to load the scene
 func start_game(level: int):
 	game_started.emit()
 	current_level = level
+	InterfaceManager.open_ui("GameUi")
 	
 func end_game():
 	game_ended.emit()

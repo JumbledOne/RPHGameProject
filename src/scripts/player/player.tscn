@@ -7,10 +7,10 @@
 
 [node name="Player" type="CharacterBody2D" unique_id=1043310607 groups=["player"]]
 script = ExtResource("1_kai5h")
-walk_speed = 200.0
+walk_speed = 250.0
 walk_time_to_full_speed = 0.2
-sprint_speed = 300.0
-sprint_time_to_full_speed = 0.2
+sprint_speed = 350.0
+sprint_time_to_full_speed = 0.5
 gravity = 1960.0
 
 [node name="PlayerModel" parent="." unique_id=566320765 instance=ExtResource("2_so2s4")]

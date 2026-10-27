@@ -1,13 +1,10 @@
 extends Button
 
-var _level: int = -1
-
-func _pressed() -> void:
-	GameManager.start_game(_level)
+var level: int = -1
 
 func _ready() -> void:
 	toggle_mode = true
 
-func set_level_data(level: int, info_dict: Dictionary):
-	_level = level
+func set_level_data(new_level: int, info_dict: Dictionary):
+	level = new_level
 	text = "Level %d - %s" % [level + 1, info_dict["title"]]

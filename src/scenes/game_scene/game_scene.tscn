@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://bl40gfmg0jtsb"]
 
 [ext_resource type="Script" uid="uid://b6yomuu35xj6x" path="res://scenes/game_scene/level_root.gd" id="1_72663"]
+[ext_resource type="Script" uid="uid://bdm5gu26x8dlj" path="res://scenes/game_scene/ui_root.gd" id="2_j8flk"]
+[ext_resource type="PackedScene" uid="uid://dc4ixh41h7bqa" path="res://scenes/main_menu/main_menu.tscn" id="3_ducuf"]
 [ext_resource type="Shader" uid="uid://bvsuisyqqqs1f" path="res://scenes/game_scene/screen_transition.gdshader" id="3_o81xq"]
 [ext_resource type="Script" uid="uid://bweoaxmwj1yvj" path="res://scenes/game_scene/scene_transition.gd" id="4_xb203"]
 [ext_resource type="PackedScene" uid="uid://vmsxvdlgsokl" path="res://scenes/game_ui/game_ui.tscn" id="7_201br"]
@@ -28,7 +30,7 @@ func _input(event: InputEvent) -> void:
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_72663"]
 shader = ExtResource("3_o81xq")
-shader_parameter/cutoff = 1.0
+shader_parameter/cutoff = 1.5
 
 [node name="GameScene" type="Node2D" unique_id=211181931]
 script = SubResource("GDScript_8p81m")
@@ -36,7 +38,15 @@ script = SubResource("GDScript_8p81m")
 [node name="LevelRoot" type="Node2D" parent="." unique_id=1226850649]
 script = ExtResource("1_72663")
 
-[node name="GameUi" parent="." unique_id=271816190 instance=ExtResource("7_201br")]
+[node name="UIRoot" type="Node" parent="." unique_id=2128017030]
+script = ExtResource("2_j8flk")
+
+[node name="GameUi" parent="UIRoot" unique_id=271816190 instance=ExtResource("7_201br")]
+visible = false
+script = null
+
+[node name="MainMenu" parent="UIRoot" unique_id=1131694955 instance=ExtResource("3_ducuf")]
+script = null
 
 [node name="ScreenEffects" type="CanvasLayer" parent="." unique_id=162086101]
 

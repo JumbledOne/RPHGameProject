@@ -35,10 +35,12 @@ const LEVEL_INFO: Array[Dictionary] = [
 	},
 ]
 
+var level_group: ButtonGroup
+
 func _ready() -> void:
 	# Level buttons
 	var level_button: PackedScene = load("uid://duh7we0h3louf")
-	var level_group := ButtonGroup.new()
+	level_group = ButtonGroup.new()
 	for i in GameManager.get_level_count():
 		var info_dict: Dictionary = LEVEL_INFO[i]
 		var btn: Button = level_button.instantiate()
@@ -64,3 +66,7 @@ func _ready() -> void:
 		get_tree().change_scene_to_file("res://scenes/ui/main_menu.tscn"))
 		
 		
+func _on_start_button_pressed() -> void:
+	var button: Button = level_group.get_pressed_button()
+	if button:
+		InterfaceManager.do_on_transition(GameManager.start_game.bind(button.level))
