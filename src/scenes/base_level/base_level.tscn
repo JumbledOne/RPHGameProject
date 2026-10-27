@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bmnx81gdn0jd6" path="res://scenes/items/durian.tscn" id="6_jnmbr"]
 [ext_resource type="PackedScene" uid="uid://b2t6itv4f21fr" path="res://scenes/items/honey_jar.tscn" id="7_dojjm"]
 [ext_resource type="Shader" uid="uid://b1n6pjakatxik" path="res://assets/gfx/shader/pixelate.gdshader" id="8_jnmbr"]
-[ext_resource type="Script" uid="uid://c0lwl17fypqvn" path="res://scenes/base_level/effects_layer.gd" id="9_dojjm"]
+[ext_resource type="Script" uid="uid://c0lwl17fypqvn" path="res://scenes/base_level/back_pixel_layer.gd" id="9_dojjm"]
 [ext_resource type="PackedScene" uid="uid://dyqbnaxeopk17" path="res://scripts/player/player.tscn" id="10_dojjm"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2n7ho"]
@@ -53,15 +53,15 @@ sources/0 = SubResource("TileSetScenesCollectionSource_a8gkr")
 [node name="Background" parent="." unique_id=1712092851 instance=ExtResource("1_k2up0")]
 scroll_offset = Vector2(-9, 112)
 
-[node name="BackgroundEffects" type="Node2D" parent="." unique_id=1431024560]
+[node name="BackgroundEffects" type="Parallax2D" parent="." unique_id=1973781473]
 z_index = -5
 material = SubResource("ShaderMaterial_2n7ho")
+scroll_scale = Vector2(0.7, 1)
 
-[node name="BackgroundObjects" type="CanvasGroup" parent="BackgroundEffects" unique_id=976009228]
+[node name="BackPixelLayer" type="CanvasGroup" parent="BackgroundEffects" unique_id=976009228]
 oversampling_with_scale = 1
 z_index = -5
 material = SubResource("ShaderMaterial_dojjm")
-script = ExtResource("9_dojjm")
 
 [node name="Fog" type="ColorRect" parent="BackgroundEffects" unique_id=322353296]
 material = SubResource("ShaderMaterial_c2ddb")
@@ -79,7 +79,7 @@ script = ExtResource("3_0wob2")
 [node name="Items" type="TileMapLayer" parent="LevelObjects" unique_id=933369512]
 tile_set = SubResource("TileSet_2n7ho")
 
-[node name="EffectsLayer" type="CanvasGroup" parent="." unique_id=524200565]
+[node name="FrontPixelLayer" type="CanvasGroup" parent="." unique_id=524200565]
 material = SubResource("ShaderMaterial_2n7ho")
 script = ExtResource("9_dojjm")
 
