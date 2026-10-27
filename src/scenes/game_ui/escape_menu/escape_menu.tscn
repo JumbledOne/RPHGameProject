@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://b52c6k04jon4f" path="res://scenes/game_ui/escape_menu/escape_menu.gd" id="1_ajja6"]
 [ext_resource type="Script" uid="uid://dj0w4uirvw77" path="res://scripts/ui/menu_root.gd" id="2_gh56q"]
 [ext_resource type="PackedScene" uid="uid://d3bfiabn6g2ob" path="res://scenes/game_ui/settings_screen/settings_screen.tscn" id="3_tod6s"]
-[ext_resource type="Script" uid="uid://bfi1pmucsq02k" path="res://scripts/ui/panel_back_button.gd" id="3_w6hms"]
 [ext_resource type="Script" uid="uid://riuvvs6uimip" path="res://scripts/ui/visibility_toggler.gd" id="4_xadi4"]
 
 [node name="EscapeMenu" type="Control" unique_id=948223570]
@@ -40,11 +39,9 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="Resume" type="Button" parent="Screens/MainButtons" unique_id=414344517 node_paths=PackedStringArray("target")]
+[node name="Resume" type="Button" parent="Screens/MainButtons" unique_id=414344517]
 layout_mode = 2
 text = "Resume"
-script = ExtResource("3_w6hms")
-target = NodePath("../../..")
 
 [node name="Settings" type="Button" parent="Screens/MainButtons" unique_id=1915470629 node_paths=PackedStringArray("target")]
 layout_mode = 2
@@ -67,3 +64,5 @@ offset_right = 0.0
 offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[connection signal="pressed" from="Screens/MainButtons/MainMenu" to="." method="_on_main_menu_pressed"]

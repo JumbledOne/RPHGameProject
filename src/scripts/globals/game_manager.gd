@@ -3,7 +3,7 @@ extends Node
 const SCREEN_SIZE: Vector2 = Vector2(640, 360)
 
 var is_paused: bool = false # We use this to ensure that the rest of the game still runs and only the game is actually paused
-signal pause_toggled()
+signal pause_toggled
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("cancel"):
@@ -11,6 +11,10 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func toggle_pause() -> void:
 	is_paused = !is_paused
+	pause_toggled.emit()
+
+func set_pause(v: bool):
+	is_paused = v
 	pause_toggled.emit()
 
 # # # # # # # # # # # #
@@ -53,6 +57,7 @@ func start_game(level: int):
 	game_started.emit()
 	current_level = level
 	InterfaceManager.open_ui("GameUi")
+	set_pause(false)
 	
 	#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
@@ -67,6 +72,10 @@ func get_level_scene() -> PackedScene:
 	
 func get_level_count() -> int:
 	return len(LEVELS)
+
+func return_to_main_menu():
+	end_game()
+	InterfaceManager.open_ui("MainMenu")
 
 var level_left_boundary: float
 var level_right_boundary: float
