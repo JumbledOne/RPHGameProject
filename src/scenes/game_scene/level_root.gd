@@ -1,7 +1,7 @@
 extends Node2D
 
 func _ready() -> void:
-	GameManager.game_started.connect(_on_game_started)
+	GameManager.game_started_event.connect(_on_game_started)
 	GameManager.game_ended.connect(_on_game_ended)
 	GameManager.pause_toggled.connect(_on_pause_toggled)
 
@@ -13,7 +13,9 @@ func _on_game_started():
 	var scene: PackedScene = GameManager.get_level_scene()
 	add_child(scene.instantiate())
 	
-func _on_game_ended():
+func _on_game_ended(result: int):
+	if result == GameManager.GameEnd.WON:
+		return
 	_clear_children()
 	
 func _clear_children():

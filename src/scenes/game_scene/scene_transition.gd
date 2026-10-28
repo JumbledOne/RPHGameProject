@@ -6,6 +6,7 @@ var tween: Tween
 const MAX_CUTOFF: float = 2.0
 
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	InterfaceManager.transition_started.connect(_on_transition_started)
 	
 func _on_transition_started(transition_length: float):

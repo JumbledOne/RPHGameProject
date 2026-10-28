@@ -1,0 +1,31 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://dwgfy1uc1toxq"]
+
+[ext_resource type="Shader" uid="uid://wetwovcohodc" path="res://assets/gfx/shader/water.gdshader" id="1_siro7"]
+
+[sub_resource type="Gradient" id="Gradient_mvu7e"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.11111111, 0.12790698, 0.2, 0.2074074, 0.6296296, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0.26979998, 0.59261334, 0.71, 1, 0.156, 0.3683334, 0.52, 1, 0.110199995, 0.21508336, 0.29, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_jvkqr"]
+gradient = SubResource("Gradient_mvu7e")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_vg6w8"]
+noise_type = 2
+frequency = 0.1075
+fractal_octaves = 2
+
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_mvu7e"]
+width = 128
+height = 128
+depth = 128
+noise = SubResource("FastNoiseLite_vg6w8")
+seamless = true
+seamless_blend_skirt = 1.0
+
+[resource]
+shader = ExtResource("1_siro7")
+shader_parameter/noise_tex = SubResource("NoiseTexture3D_mvu7e")
+shader_parameter/noise_scale = 128.0
+shader_parameter/noise_movement = Vector3(0.2, 0, 0.2)
+shader_parameter/color_ramp = SubResource("GradientTexture1D_jvkqr")

@@ -16,7 +16,8 @@ func finish_level() -> void:
 	$GameUi/ResultTable.text = GameManager.collectibles_summary()
 	$GameUi/Gameoverlabel.show()
 	$GameUi/ResultTable.show()
-	$GameUi/CollectableTracker.hide()
+	$GameUi/CollectibleStats.hide()
+	GameManager.game_end(GameManager.GameEnd.WON)
 	
 func _input(event: InputEvent) -> void:
 	if not OS.is_debug_build():

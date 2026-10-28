@@ -17,6 +17,8 @@ func do_on_transition(callable: Callable, transition_length: float = 2):
 		return
 	doing_transition = true
 	call_on_transition = callable
+	get_tree().paused = true
+	get_viewport().gui_disable_input = true
 	transition_started.emit(transition_length)
 	
 func transition_midpoint():
@@ -24,3 +26,5 @@ func transition_midpoint():
 	
 func end_transition():
 	doing_transition = false
+	get_tree().paused = false
+	get_viewport().gui_disable_input = false

@@ -2,13 +2,17 @@ class_name StoryLabel
 extends Label
 
 const ANIM_TIME: float = 2.0
+const NOTIFIER_MARGIN: float = 32.0
 
 var _visible_on_screen_notifier: VisibleOnScreenNotifier2D
 var _tween: Tween
 
 func _ready() -> void:
 	_visible_on_screen_notifier = VisibleOnScreenNotifier2D.new()
-	_visible_on_screen_notifier.rect = Rect2(Vector2.ZERO, size)
+	_visible_on_screen_notifier.rect = Rect2(
+		Vector2(NOTIFIER_MARGIN, 0.0),
+		Vector2(maxf(size.x - NOTIFIER_MARGIN * 2.0, 0.0), size.y)
+	)
 	add_child(_visible_on_screen_notifier)
 	_visible_on_screen_notifier.screen_entered.connect(_on_screen_entered)
 
