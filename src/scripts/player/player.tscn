@@ -4,8 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dctwav0o0dy8r" path="res://scripts/character_model/character_model.tscn" id="2_so2s4"]
 [ext_resource type="Script" uid="uid://bgjaig2puxra0" path="res://scripts/player/player_controller.gd" id="3_kai5h"]
 [ext_resource type="PackedScene" uid="uid://dwiill2noqt84" path="res://scripts/hurtbox/hurtbox.tscn" id="4_kai5h"]
-
-[ext_resource type="Script" path="res://scripts/water/classes/submersible.gd" id="5_subm"]
+[ext_resource type="Script" path="res://scripts/water/classes/platformer_submersible.gd" id="5_subm"]
 
 [node name="Player" type="CharacterBody2D" unique_id=1043310607 groups=["player"]]
 script = ExtResource("1_kai5h")
@@ -25,10 +24,10 @@ script = ExtResource("3_kai5h")
 position = Vector2(0, 3)
 polygon = PackedVector2Array(0, -27, 8, -19, 8, 29, -8, 29, -8, -19)
 
-[node name="hurtbox" parent="." unique_id=1789929793 node_paths=PackedStringArray("owner_node") instance=ExtResource("4_kai5h")]
+[node name="Hurtbox" parent="." unique_id=1789929793 node_paths=PackedStringArray("owner_node") instance=ExtResource("4_kai5h")]
 visibility_layer = 2
 collision_layer = 2
 owner_node = NodePath("..")
 
-[node name="Submersible" type="Node" parent="."]
+[node name="Submersible" type="Node" parent="." unique_id=162498102]
 script = ExtResource("5_subm")

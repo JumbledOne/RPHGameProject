@@ -1,6 +1,7 @@
+@abstract
 class_name Submersible
 extends Node
-# Add as a child of anything that can be submerged
+# Add a subclass as a child of anything that can be submerged
 # Water finds this node by its name and calls enter_water and exit_water
 # Listen to the signals to react to water
 

@@ -15,7 +15,7 @@ extends Entity
 @export var max_jump_time: float = 1 # In seconds
 @export var jump_buffer: float = 0.1 # In seconds
 @export var coyote_time: float = 0.1 # In seconds
-@export var max_fall_speed: float = 980
+@export var terminal_velocity: float = 980
 
 @export_category("Physics")
 @export var gravity: float = 980
@@ -29,12 +29,14 @@ var _has_jumped: bool = false
 var _walk_acceleration: float
 var _sprint_acceleration: float
 
-# Factors for status effects and other effects such as water
-# These are multipliers, 1 is unchanged
+# External factors for use in status effects
 var gravity_factor: float = 1
 var speed_factor: float = 1
 var acceleration_factor: float = 1
 var jump_factor: float = 1
+var terminal_velocity_factor: float = 1
+# Lets the entity jump while airborne, such as when swimming
+var allow_midair_jump: bool = false
 
 # Internal vars
 # Gravity factor changed by the controller, such as holding jump
@@ -79,7 +81,7 @@ func _physics_process(delta: float) -> void:
 	velocity.x = move_toward(velocity.x, target_vel_x, acceleration * delta)
 	
 	# Gravity
-	velocity.y = min(velocity.y + gravity * delta * gravity_factor * controller_gravity_factor, max_fall_speed)
+	velocity.y = min(velocity.y + gravity * delta * gravity_factor * controller_gravity_factor, terminal_velocity * terminal_velocity_factor)
 	
 	# Final stuff
 	move_and_slide()
@@ -92,7 +94,7 @@ func begin_jump():
 	var _can_coyote_time: bool = false
 	if not _has_jumped:
 		_can_coyote_time = _last_on_floor < coyote_time
-	if is_on_floor() or _can_coyote_time:
+	if is_on_floor() or _can_coyote_time or allow_midair_jump:
 		_has_jumped = true
 		velocity.y = min(velocity.y, -jump_velocity * jump_factor)
 		controller_gravity_factor = jump_gravity_factor
