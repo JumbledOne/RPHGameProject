@@ -11,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://bmnx81gdn0jd6" path="res://scenes/items/durian.tscn" id="6_jnmbr"]
 [ext_resource type="PackedScene" uid="uid://b2t6itv4f21fr" path="res://scenes/items/honey_jar.tscn" id="7_dojjm"]
 [ext_resource type="Shader" uid="uid://b1n6pjakatxik" path="res://assets/gfx/shader/pixelate.gdshader" id="8_jnmbr"]
-[ext_resource type="Script" uid="uid://c0lwl17fypqvn" path="res://scenes/base_level/back_pixel_layer.gd" id="9_dojjm"]
 [ext_resource type="PackedScene" uid="uid://dyqbnaxeopk17" path="res://scripts/player/player.tscn" id="10_dojjm"]
 [ext_resource type="Script" uid="uid://c8oauhrkmfmdo" path="res://scenes/base_level/base_level.gd" id="11_base"]
 
@@ -80,10 +79,6 @@ script = ExtResource("3_0wob2")
 
 [node name="Items" type="TileMapLayer" parent="LevelObjects" unique_id=933369512]
 tile_set = SubResource("TileSet_2n7ho")
-
-[node name="FrontPixelLayer" type="CanvasGroup" parent="." unique_id=524200565]
-material = SubResource("ShaderMaterial_2n7ho")
-script = ExtResource("9_dojjm")
 
 [node name="PlayerCamera" type="Camera2D" parent="." unique_id=1770321113]
 position = Vector2(288, -148)
