@@ -24,7 +24,10 @@ func set_pause(v: bool):
 	pause_toggled.emit()
 
 func _update_cursor_state() -> void:
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED if game_started and not is_paused else Input.MOUSE_MODE_VISIBLE
+	if game_started and not is_paused:
+		Input.mouse_mode = Input.MOUSE_MODE_HIDDEN  
+	else: 
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 # # # # # # # # # # # #
 # Player data

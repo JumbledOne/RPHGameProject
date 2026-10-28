@@ -1,0 +1,3 @@
+class_name BaseMovingPlatform
+extends StaticBody2D
+
