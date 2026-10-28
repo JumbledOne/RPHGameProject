@@ -27,6 +27,7 @@ fill_from = Vector2(1, 1)
 [node name="Level1" unique_id=154879563 instance=ExtResource("1_xf5vy")]
 
 [node name="Water" parent="." index="1" unique_id=662158307 instance=ExtResource("2_4vgtt")]
+visible = false
 offset_left = 487.0
 offset_top = -48.0
 offset_right = 2112.0
@@ -82,10 +83,10 @@ texture = SubResource("GradientTexture2D_bi47q")
 material = ExtResource("6_g3fjj")
 
 [node name="Panel" type="Panel" parent="BackgroundEffects/WaterLayer" index="0" unique_id=916190352]
-offset_left = 725.0
-offset_top = -136.0
-offset_right = 954.0
-offset_bottom = -46.0
+offset_left = 461.0
+offset_top = -44.0
+offset_right = 690.0
+offset_bottom = 46.0
 theme_override_styles/panel = ExtResource("6_bi47q")
 
 [node name="TileMapLayer" parent="." index="3" unique_id=1571259154]

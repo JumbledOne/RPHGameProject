@@ -10,7 +10,7 @@ const DEFAULT_NOTIFIER_RECT := Rect2(-64.0, -16.0, 128.0, 32.0)
 @export var speed: float = 100.0
 @export var notifier_rect: Rect2 = DEFAULT_NOTIFIER_RECT
 
-var _enabled: bool = false
+var enabled: bool = false
 var _visible_on_screen_notifier: VisibleOnScreenNotifier2D
 
 func _ready() -> void:
@@ -23,14 +23,14 @@ func _ready() -> void:
 		enable_movement()
 
 func _physics_process(delta: float) -> void:
-	if _enabled:
+	if enabled:
 		position += direction * speed * delta
 
 func enable_movement() -> void:
-	if _enabled:
+	if enabled:
 		return
 
-	_enabled = true
+	enabled = true
 	if is_instance_valid(_visible_on_screen_notifier):
 		_visible_on_screen_notifier.queue_free()
 		_visible_on_screen_notifier = null
