@@ -81,10 +81,11 @@ libraries/ = SubResource("AnimationLibrary_u74lb")
 autoplay = &"bar_movement"
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1157986495]
-position = Vector2(88, 0)
+position = Vector2(40, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=114461361]
 position = Vector2(0, -139)
 shape = SubResource("RectangleShape2D_5v7xg")
 
 [connection signal="body_entered" from="Bar/Area2D" to="Bar" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

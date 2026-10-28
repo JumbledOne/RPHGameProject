@@ -62,7 +62,9 @@ const LEVELS: Array[PackedScene] = [
 signal game_started_event
 enum GameEnd { LOST, WON, OTHER }
 signal game_ended(result: GameEnd)
+
 var current_level: int = 0 # Used in GameScene to load the scene
+
 const STARTING_LIVES: int = 3
 var lives_left: int = STARTING_LIVES
 signal lives_changed(lives: int)

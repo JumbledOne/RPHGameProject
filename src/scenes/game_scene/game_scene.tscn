@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b6yomuu35xj6x" path="res://scenes/game_scene/level_root.gd" id="1_72663"]
 [ext_resource type="Script" uid="uid://bdm5gu26x8dlj" path="res://scenes/game_scene/ui_root.gd" id="2_j8flk"]
-[ext_resource type="PackedScene" uid="uid://dc4ixh41h7bqa" path="res://scenes/main_menu/main_menu.tscn" id="3_ducuf"]
+[ext_resource type="PackedScene" uid="uid://t63j4xq61iil" path="res://scenes/main_menu/main_menu.tscn" id="3_ducuf"]
 [ext_resource type="Shader" uid="uid://bvsuisyqqqs1f" path="res://assets/gfx/shader/screen_transition.gdshader" id="3_o81xq"]
 [ext_resource type="Script" uid="uid://bweoaxmwj1yvj" path="res://scenes/game_scene/scene_transition.gd" id="4_xb203"]
 [ext_resource type="PackedScene" uid="uid://vmsxvdlgsokl" path="res://scenes/game_ui/game_ui.tscn" id="7_201br"]
@@ -45,7 +45,6 @@ script = ExtResource("2_j8flk")
 
 [node name="GameUi" parent="UIRoot" unique_id=271816190 instance=ExtResource("7_201br")]
 visible = false
-script = null
 
 [node name="MainMenu" parent="UIRoot" unique_id=1131694955 instance=ExtResource("3_ducuf")]
 
