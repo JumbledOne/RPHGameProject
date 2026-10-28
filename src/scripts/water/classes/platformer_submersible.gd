@@ -35,3 +35,4 @@ func _on_p_entity_exited() -> void:
 	_platformer.jump_factor = 1.0
 	_platformer.terminal_velocity_factor = 1.0
 	_platformer.allow_midair_jump = false
+	_platformer.velocity.y -= _platformer.jump_velocity

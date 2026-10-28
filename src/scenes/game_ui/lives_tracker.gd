@@ -7,4 +7,4 @@ func _ready() -> void:
 	_update(game_manager.lives_left)
 
 func _update(lives: int) -> void:
-	text = "Lives: %d" % lives
+	text = "x%d" % lives

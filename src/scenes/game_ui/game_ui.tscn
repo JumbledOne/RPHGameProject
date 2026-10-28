@@ -2,8 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://cxmhprpifp5t1" path="res://assets/gfx/sprites/cacao beans-sheet-sheet.png" id="1_sq0em"]
 [ext_resource type="Script" uid="uid://23k3f2pqs75i" path="res://scenes/game_ui/collectible_tracker.gd" id="2_tracker"]
-[ext_resource type="Script" uid="uid://c775cjq8gm03g" path="res://scenes/game_ui/lives_tracker.gd" id="4_lives"]
 [ext_resource type="PackedScene" uid="uid://c0egfji2ftdn3" path="res://scenes/game_ui/escape_menu/escape_menu.tscn" id="3_najyh"]
+[ext_resource type="Script" uid="uid://c775cjq8gm03g" path="res://scenes/game_ui/lives_tracker.gd" id="4_lives"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_3y7pu"]
 font_size = 28
@@ -44,33 +44,37 @@ text = "Game over!"
 label_settings = SubResource("LabelSettings_3y7pu")
 horizontal_alignment = 1
 
-[node name="CollectibleStats" type="HBoxContainer" parent="." unique_id=1710094713]
+[node name="StatsBar" type="HBoxContainer" parent="." unique_id=428706939]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -101.0
-offset_top = 24.0
-offset_right = 101.0
-offset_bottom = 58.0
+offset_left = -35.0
+offset_right = 35.0
+offset_bottom = 40.0
 grow_horizontal = 2
+theme_override_constants/separation = 42
+
+[node name="CollectibleStats" type="HBoxContainer" parent="StatsBar" unique_id=1710094713]
+layout_mode = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="CollectibleStats" unique_id=500031588]
+[node name="Label" type="Label" parent="StatsBar/CollectibleStats" unique_id=500031588]
 layout_mode = 2
 text = "0 / 0"
 script = ExtResource("2_tracker")
 
-[node name="TextureRect" type="TextureRect" parent="CollectibleStats" unique_id=1912993614]
+[node name="TextureRect" type="TextureRect" parent="StatsBar/CollectibleStats" unique_id=1912993614]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 texture = SubResource("AtlasTexture_2n7ho")
 
-[node name="LivesLabel" type="Label" parent="." unique_id=2075290011]
-offset_left = 16.0
-offset_top = 24.0
-offset_right = 110.0
-offset_bottom = 52.0
-text = "Lives: 3"
+[node name="LivesLabel" type="Label" parent="StatsBar" unique_id=2075290011]
+layout_mode = 2
+text = "x3"
 script = ExtResource("4_lives")
+
+[node name="ScoreLabel" type="Label" parent="StatsBar" unique_id=25418387]
+layout_mode = 2
+text = "000 000"
 
 [node name="EscapeMenu" parent="." unique_id=948223570 instance=ExtResource("3_najyh")]

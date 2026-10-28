@@ -1,0 +1,90 @@
+[gd_scene format=3 uid="uid://dbnw6oy0ghfh2"]
+
+[ext_resource type="Script" uid="uid://q1q4vjw6mxov" path="res://scripts/level_end/bar.gd" id="1_ls4vl"]
+[ext_resource type="Script" uid="uid://brvs8cak0hmng" path="res://scripts/level_end/level_end.gd" id="1_mguau"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2n7ho"]
+size = Vector2(34, 20)
+
+[sub_resource type="Animation" id="Animation_mguau"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(16, -40)]
+}
+
+[sub_resource type="Animation" id="Animation_ie233"]
+resource_name = "bar_movement"
+length = 2.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(16, -40), Vector2(16, -256), Vector2(16, -40)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u74lb"]
+_data = {
+&"RESET": SubResource("Animation_mguau"),
+&"bar_movement": SubResource("Animation_ie233")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5v7xg"]
+size = Vector2(20, 298)
+
+[node name="LevelEnd" type="Node2D" unique_id=566619678]
+script = ExtResource("1_mguau")
+
+[node name="Pole" type="ColorRect" parent="." unique_id=1908255109]
+offset_left = 48.0
+offset_top = -256.0
+offset_right = 64.0
+color = Color(0.6125778, 0.61257786, 0.6125778, 1)
+
+[node name="Pole2" type="ColorRect" parent="." unique_id=480120570]
+offset_top = -256.0
+offset_right = 16.0
+color = Color(0.6125778, 0.61257786, 0.6125778, 1)
+
+[node name="Bar" type="Node2D" parent="." unique_id=76137986]
+position = Vector2(16, -40)
+script = ExtResource("1_ls4vl")
+
+[node name="ColorRect" type="ColorRect" parent="Bar" unique_id=214612012]
+offset_right = 32.0
+offset_bottom = 16.0
+
+[node name="Area2D" type="Area2D" parent="Bar" unique_id=1549556420]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bar/Area2D" unique_id=308223775]
+position = Vector2(15, 8)
+shape = SubResource("RectangleShape2D_2n7ho")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Bar" unique_id=1164718829]
+libraries/ = SubResource("AnimationLibrary_u74lb")
+autoplay = &"bar_movement"
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1157986495]
+position = Vector2(88, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=114461361]
+position = Vector2(0, -139)
+shape = SubResource("RectangleShape2D_5v7xg")
+
+[connection signal="body_entered" from="Bar/Area2D" to="Bar" method="_on_area_2d_body_entered"]

@@ -89,6 +89,18 @@ func _on_toggled(is_active: bool) -> void:
 	else:
 		_set_untoggled_visual()
 
+func _gui_input(event: InputEvent) -> void:
+	var mouse_event: InputEventMouseButton = event as InputEventMouseButton
+	if mouse_event == null or mouse_event.button_index != MOUSE_BUTTON_LEFT:
+		return
+	if not button_pressed:
+		return
+	# Already selected: swallow the click so it can never deselect.
+	accept_event()
+	if mouse_event.double_click and mouse_event.pressed:
+		start_level()
+
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("accept") and button_pressed:
 		start_level()
