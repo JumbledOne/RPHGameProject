@@ -26,6 +26,13 @@ var _reached_peak: bool = false
 func _ready() -> void:
 	entity.damaged.connect(_on_damaged)
 	entity.died.connect(_on_died)
+	# Submersible renames itself when ready, so wait for the entity
+	if not entity.is_node_ready():
+		await entity.ready
+	var submersible: Submersible = entity.get_node_or_null("Submersible")
+	if submersible:
+		submersible.water_entered.connect(_on_water_entered)
+		submersible.water_exited.connect(_on_water_exited)
 	
 func _process(_delta: float) -> void:
 	# Movement Animations
@@ -58,6 +65,12 @@ func _on_damaged():
 	_play_animation("hit_left", "hit_right", DAMAGE_ANIM_SCALE, true, true)
 
 func _on_died():
+	pass
+
+func _on_water_entered():
+	pass
+
+func _on_water_exited():
 	pass
 	
 func set_texture(atlas_tex: AtlasTexture):

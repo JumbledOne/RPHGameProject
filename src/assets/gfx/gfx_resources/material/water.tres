@@ -4,7 +4,7 @@
 
 [sub_resource type="Gradient" id="Gradient_mvu7e"]
 interpolation_mode = 2
-offsets = PackedFloat32Array(0.24609375, 0.26953125, 0.45703125, 1)
+offsets = PackedFloat32Array(0.24609375, 0.26171875, 0.41015625, 0.94140625)
 colors = PackedColorArray(1, 1, 1, 0, 0.55063444, 0.7908414, 0.8763799, 0.8192886, 0.26979998, 0.59261334, 0.71, 1, 0.10377755, 0.26782674, 0.3845883, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_jvkqr"]
@@ -28,4 +28,7 @@ shader = ExtResource("1_siro7")
 shader_parameter/noise_tex = SubResource("NoiseTexture3D_mvu7e")
 shader_parameter/noise_scale = 128.0
 shader_parameter/noise_movement = Vector3(0.2, 0, 0.2)
+shader_parameter/noise_influence = 0.15
 shader_parameter/color_ramp = SubResource("GradientTexture1D_jvkqr")
+shader_parameter/outline_color = Vector4(0, 0, 0, 1)
+shader_parameter/outline_size = 1.0

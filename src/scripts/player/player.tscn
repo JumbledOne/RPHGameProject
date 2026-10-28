@@ -5,6 +5,8 @@
 [ext_resource type="Script" uid="uid://bgjaig2puxra0" path="res://scripts/player/player_controller.gd" id="3_kai5h"]
 [ext_resource type="PackedScene" uid="uid://dwiill2noqt84" path="res://scripts/hurtbox/hurtbox.tscn" id="4_kai5h"]
 
+[ext_resource type="Script" path="res://scripts/water/classes/submersible.gd" id="5_subm"]
+
 [node name="Player" type="CharacterBody2D" unique_id=1043310607 groups=["player"]]
 script = ExtResource("1_kai5h")
 walk_speed = 250.0
@@ -27,3 +29,6 @@ polygon = PackedVector2Array(0, -27, 8, -19, 8, 29, -8, 29, -8, -19)
 visibility_layer = 2
 collision_layer = 2
 owner_node = NodePath("..")
+
+[node name="Submersible" type="Node" parent="."]
+script = ExtResource("5_subm")

@@ -29,8 +29,16 @@ var _has_jumped: bool = false
 var _walk_acceleration: float
 var _sprint_acceleration: float
 
+# Factors for status effects and other effects such as water
+# These are multipliers, 1 is unchanged
+var gravity_factor: float = 1
+var speed_factor: float = 1
+var acceleration_factor: float = 1
+var jump_factor: float = 1
+
 # Internal vars
-var _gravity_factor: float = 1
+# Gravity factor changed by the controller, such as holding jump
+var controller_gravity_factor: float = 1
 var _last_jump_time: float = INF # In seconds
 var _last_on_floor: float = INF # In seconds
 var _was_on_floor: bool = false:
@@ -65,13 +73,13 @@ func _physics_process(delta: float) -> void:
 			release_jump()
 			
 	# Movement
-	var speed: float = sprint_speed if _is_sprinting else walk_speed
+	var speed: float = (sprint_speed if _is_sprinting else walk_speed) * speed_factor
 	var target_vel_x: float = horizontal_movement * speed
-	var acceleration: float =  _sprint_acceleration if _is_sprinting else _walk_acceleration
+	var acceleration: float = (_sprint_acceleration if _is_sprinting else _walk_acceleration) * acceleration_factor
 	velocity.x = move_toward(velocity.x, target_vel_x, acceleration * delta)
 	
 	# Gravity
-	velocity.y = min(velocity.y + gravity * delta * _gravity_factor, max_fall_speed)
+	velocity.y = min(velocity.y + gravity * delta * gravity_factor * controller_gravity_factor, max_fall_speed)
 	
 	# Final stuff
 	move_and_slide()
@@ -86,15 +94,15 @@ func begin_jump():
 		_can_coyote_time = _last_on_floor < coyote_time
 	if is_on_floor() or _can_coyote_time:
 		_has_jumped = true
-		velocity.y = min(velocity.y, -jump_velocity)
-		_gravity_factor = jump_gravity_factor
+		velocity.y = min(velocity.y, -jump_velocity * jump_factor)
+		controller_gravity_factor = jump_gravity_factor
 		jumped.emit()
 	# For jump buffering and for checking how long you've jumped
 	_last_jump_time = 0
 
 func release_jump():
-	_gravity_factor = 1
-	
+	controller_gravity_factor = 1
+
 # # # # # # # # # # # #
 func begin_sprint():
 	_is_sprinting = true

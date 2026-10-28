@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://cqd2y2fili831"]
+
+[ext_resource type="Texture2D" uid="uid://b1nmjslcuhnt4" path="res://assets/gfx/sprites/non_pixel_art/radial_gradient_squared.png" id="1_hi3x1"]
+
+[sub_resource type="Animation" id="Animation_ebyr0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.37109375, 0.37109375)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_kafku"]
+resource_name = "splash"
+length = 2.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.37109375, 0.37109375), Vector2(2, 0.371)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:self_modulate")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(1, 1, 1, 1), Color(0.26147652, 0.26147655, 0.26147652, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2xnes"]
+_data = {
+&"RESET": SubResource("Animation_ebyr0"),
+&"splash": SubResource("Animation_kafku")
+}
+
+[node name="WaterSplash" type="Node2D" unique_id=705024208]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=793161518]
+position = Vector2(0, 55)
+scale = Vector2(0.37109375, 0.37109375)
+texture = ExtResource("1_hi3x1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1189902065]
+libraries/ = SubResource("AnimationLibrary_2xnes")
+autoplay = &"splash"

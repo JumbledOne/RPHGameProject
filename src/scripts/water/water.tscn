@@ -1,10 +1,23 @@
 [gd_scene format=3 uid="uid://clvr5icyyjm0y"]
 
-[ext_resource type="Material" uid="uid://dwgfy1uc1toxq" path="res://assets/gfx/gfx_resources/material/water.tres" id="1_mvu7e"]
+[ext_resource type="Script" uid="uid://dfi6al5cdldhe" path="res://scripts/water/water.gd" id="1_script"]
+[ext_resource type="StyleBox" uid="uid://ct0u6jbkjy77u" path="res://assets/gfx/gfx_resources/stylebox/water_gradient.tres" id="1_vg6w8"]
 
-[node name="Water" type="ColorRect" unique_id=662158307]
-material = ExtResource("1_mvu7e")
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_water"]
+size = Vector2(500, 200)
+
+[node name="Water" type="Panel" unique_id=662158307]
 offset_left = 2.0
 offset_top = -66.0
 offset_right = 502.0
 offset_bottom = 134.0
+theme_override_styles/panel = ExtResource("1_vg6w8")
+script = ExtResource("1_script")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1061777024]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=509449454]
+shape = SubResource("RectangleShape2D_water")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]

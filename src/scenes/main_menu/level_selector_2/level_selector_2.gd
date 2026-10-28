@@ -8,7 +8,6 @@ const INACTIVE_MODULATE: Color = Color(0.0, 0.0, 0.0, 1.0)
 const ACTIVATE_WIDTH: float = 256
 const DEFAULT_WIDTH: float = 0
 const ANIM_TIME: float = 0.3
-const DOUBLE_CLICK_INTERVAL: float = 0.3
 const LEVEL_INFO_PATH: String = "res://assets/data/level_info.json"
 
 @onready var texture_rect: TextureRect = $TextureRect
@@ -17,7 +16,6 @@ const LEVEL_INFO_PATH: String = "res://assets/data/level_info.json"
 
 var _hover_tween: Tween
 var _toggle_tween: Tween
-var _last_click_time: float = -INF
 
 func _ready() -> void:
 	toggle_mode = true
@@ -39,7 +37,6 @@ func _ready() -> void:
 	mouse_entered.connect(_on_mouse_entered)
 	mouse_exited.connect(_on_mouse_exited)
 	toggled.connect(_on_toggled)
-	pressed.connect(_on_pressed)
 
 
 func _ensure_button_group() -> void:
@@ -92,28 +89,16 @@ func _on_toggled(is_active: bool) -> void:
 	else:
 		_set_untoggled_visual()
 
-func _on_pressed() -> void:
-	var current_time: float = Time.get_ticks_msec() / 1000.0
-	var is_active: bool = button_group != null and button_group.get_pressed_button() == self
-	if is_active and current_time - _last_click_time <= DOUBLE_CLICK_INTERVAL:
-		InterfaceManager.do_on_transition(GameManager.start_game.bind(level))
-		_last_click_time = -INF
-	else:
-		_last_click_time = current_time
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("accept") and button_pressed:
+		start_level()
+		get_viewport().set_input_as_handled()
 
-	_reset_other_selector_clicks()
 
-func _reset_other_selector_clicks() -> void:
-	var parent: Node = get_parent()
-	if parent == null:
+func start_level() -> void:
+	if not button_pressed:
 		return
-
-	for child: Node in parent.get_children():
-		if child != self and child is TextureButton and child.get_script() == get_script():
-			child.call("_reset_double_click")
-
-func _reset_double_click() -> void:
-	_last_click_time = -INF
+	InterfaceManager.do_on_transition(GameManager.start_game.bind(level))
 
 func _on_mouse_entered() -> void:
 	if button_pressed:
