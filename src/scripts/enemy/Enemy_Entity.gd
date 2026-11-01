@@ -4,6 +4,8 @@ extends Entity
 enum AnimState { IDLE, WALK, ATTACK, HURT, JUMP, DEATH }
 
 const LOCOMOTION_STATES := [AnimState.IDLE, AnimState.WALK]
+const ENEMY_FLASH_SHADER: Shader = preload("res://scripts/effects/enemy_flash/enemy_flash.gdshader")
+const ENEMY_DEATH_EFFECT: PackedScene = preload("res://scripts/effects/enemy_death/enemy_death_effect.tscn")
 
 @onready var behaviorManager: Enemy_Behavior = $BehaviorManager
 @onready var animatedSprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -27,9 +29,15 @@ var jump_timer: float = 0.0
 @export var jump_fall_frame: int = -1
 @export var walk_epsilon: float = 1.0
 
+@export_category("Damage feedback")
+@export var hit_flash_duration: float = 0.1
+@export var death_effect_scene: PackedScene = ENEMY_DEATH_EFFECT
+
 var _anim_state: AnimState = AnimState.IDLE
 var _anim_locked: bool = false
 var _warned_clips: Dictionary = {}
+var _flash_material: ShaderMaterial
+var _flash_tween: Tween
 
 func start_jump() -> void:
 	if not is_jumping:
@@ -41,7 +49,10 @@ func _ready() -> void:
 	behaviorManager.movement_Component.flip_sprite.connect(_flip_sprite)
 
 	animatedSprite.animation_finished.connect(_on_animation_finished)
+	_setup_flash_material()
 	damaged.connect(play_hurt)
+	damaged.connect(_on_damaged)
+	died.connect(_on_died)
 
 	# Action clips must be non-looping, otherwise animation_finished never fires.
 	_force_non_looping(_get_animation_name(AnimState.ATTACK))
@@ -225,6 +236,50 @@ func _warn_missing_clip(clip: StringName) -> void:
 		return
 	_warned_clips[clip] = true
 	push_warning("%s: missing animation '%s'" % [name, clip])
+
+# # # # # # # # # # # #
+# Damage feedback
+
+func _setup_flash_material() -> void:
+	_flash_material = ShaderMaterial.new()
+	_flash_material.shader = ENEMY_FLASH_SHADER
+	animatedSprite.material = _flash_material
+
+func _on_damaged() -> void:
+	# Entity emits damaged on the killing blow too; death handles that case.
+	if health <= 0:
+		return
+	_play_hit_flash()
+
+func _play_hit_flash() -> void:
+	if _flash_material == null:
+		return
+	if _flash_tween != null and _flash_tween.is_valid():
+		_flash_tween.kill()
+	_flash_material.set_shader_parameter("flash_amount", 1.0)
+	_flash_tween = create_tween()
+	_flash_tween.tween_method(_set_flash_amount, 1.0, 0.0, hit_flash_duration)
+
+func _set_flash_amount(value: float) -> void:
+	if _flash_material != null:
+		_flash_material.set_shader_parameter("flash_amount", value)
+
+func _on_died() -> void:
+	_spawn_death_effect()
+
+func _spawn_death_effect() -> void:
+	if death_effect_scene == null:
+		return
+	var effect := death_effect_scene.instantiate() as Node2D
+	if effect == null:
+		return
+	var parent: Node = get_tree().current_scene
+	if parent == null or parent == self:
+		parent = get_parent()
+	if parent == null:
+		parent = get_tree().root
+	parent.add_child(effect)
+	effect.global_position = global_position
 
 # # # # # # # # # # # #
 # Signals

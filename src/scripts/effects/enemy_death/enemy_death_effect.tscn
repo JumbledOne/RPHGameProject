@@ -1,0 +1,29 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" uid="uid://b1nmjslcuhnt4" path="res://assets/gfx/sprites/non_pixel_art/radial_gradient_squared.png" id="1_tex"]
+[ext_resource type="Script" path="res://scripts/effects/enemy_death/enemy_death_effect.gd" id="2_script"]
+
+[node name="EnemyDeathEffect" type="Node2D"]
+z_index = 10
+script = ExtResource("2_script")
+
+[node name="Flash" type="Sprite2D" parent="."]
+position = Vector2(0, -16)
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("1_tex")
+
+[node name="Particles" type="CPUParticles2D" parent="."]
+position = Vector2(0, -16)
+emitting = false
+amount = 20
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+direction = Vector2(0, -1)
+spread = 180.0
+gravity = Vector2(0, 400)
+initial_velocity_min = 100.0
+initial_velocity_max = 220.0
+scale_amount_min = 0.02
+scale_amount_max = 0.05
+texture = ExtResource("1_tex")
