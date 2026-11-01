@@ -34,4 +34,4 @@ func _on_pause_toggled() -> void:
 
 func _update_label() -> void:
 	var seconds: int = ceili(time_left)
-	text = "%02d:%02d" % [seconds / 60, seconds % 60]
+	text = str(seconds)

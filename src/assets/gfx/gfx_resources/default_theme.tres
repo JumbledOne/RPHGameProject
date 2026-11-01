@@ -1,8 +1,19 @@
 [gd_resource type="Theme" format=3 uid="uid://ivp3r78ksoan"]
 
+[ext_resource type="StyleBox" uid="uid://bqkjasx8wk6mt" path="res://assets/gfx/gfx_resources/stylebox/button_focus.tres" id="1_mkd0d"]
 [ext_resource type="FontFile" uid="uid://devytrnifqjur" path="res://assets/gfx/font/Jersey25-Regular.ttf" id="1_xcw55"]
+[ext_resource type="StyleBox" uid="uid://ejlwk0o25rgy" path="res://assets/gfx/gfx_resources/stylebox/button_hover.tres" id="2_j57eh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ppyis"]
 
 [resource]
 default_font = ExtResource("1_xcw55")
 default_font_size = 16
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/constants/outline_size = 8
+Button/styles/focus = ExtResource("1_mkd0d")
+Button/styles/hover = ExtResource("2_j57eh")
+Button/styles/hover_pressed = ExtResource("2_j57eh")
+Button/styles/normal = SubResource("StyleBoxEmpty_ppyis")
+Button/styles/pressed = ExtResource("2_j57eh")
 Label/constants/outline_size = 8

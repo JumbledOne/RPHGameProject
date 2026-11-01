@@ -1,6 +1,7 @@
-# CombinedAudio markers use M:SS:mmm, such as "0:02:180" for 2.18 seconds.
-# An un-ranged marker ends at the next marker ("0:02:180", "0:04:150").
-# An explicit marker like "0:02:180 -> 0:02:700" skips next-marker matching.
+# CombinedAudio markers use seconds:centiseconds or minutes:seconds:centiseconds.
+# A three-digit field reads its first two digits; fields longer than three error.
+# For example, "2:180" is 2.18 seconds and "0:2:18" is also 2.18 seconds.
+# An explicit marker like "0:2:18 -> 0:2:70" skips next-marker matching.
 class_name CombinedAudio
 extends Resource
 
@@ -97,14 +98,29 @@ func _get_clips() -> Array[Vector2]:
 
 
 func _parse_time(value: String, index: int) -> float:
-	var parts := value.split(":", false, 2)
-	if parts.size() != 3 or not parts[0].is_valid_int() or not parts[1].is_valid_int() or not parts[2].is_valid_int():
-		push_error("CombinedAudio clip_times[%d] has invalid time '%s'. Use M:SS:mmm, such as 0:02:180." % [index, value])
+	var parsed := parse_time(value)
+	if parsed < 0.0:
+		push_error("CombinedAudio clip_times[%d] has invalid time '%s'. Use seconds:centiseconds or minutes:seconds:centiseconds, with seconds 00-59 and centiseconds 00-99." % [index, value])
+	return parsed
+
+
+static func parse_time(value: String) -> float:
+	var parts := value.split(":", true)
+	if parts.size() != 2 and parts.size() != 3:
 		return -1.0
-	var minutes := int(parts[0])
-	var seconds := int(parts[1])
-	var milliseconds := int(parts[2])
-	if minutes < 0 or seconds < 0 or seconds >= 60 or milliseconds < 0 or milliseconds >= 1000:
-		push_error("CombinedAudio clip_times[%d] has invalid time '%s'. Seconds must be 00-59 and milliseconds 000-999." % [index, value])
+	for part in parts:
+		if part.length() > 3 or not part.is_valid_int():
+			return -1.0
+
+	var minutes := 0
+	var seconds_text := parts[0]
+	var centiseconds_text := parts[1]
+	if parts.size() == 3:
+		minutes = int(parts[0].substr(0, 2))
+		seconds_text = parts[1]
+		centiseconds_text = parts[2]
+	var seconds := int(seconds_text.substr(0, 2))
+	var centiseconds := int(centiseconds_text.substr(0, 2))
+	if minutes < 0 or seconds < 0 or seconds >= 60 or centiseconds < 0 or centiseconds >= 100:
 		return -1.0
-	return float(minutes * 60 + seconds) + float(milliseconds) / 1000.0
+	return float(minutes * 60 + seconds) + float(centiseconds) / 100.0

@@ -92,6 +92,8 @@ func restart_level() -> void:
 
 func return_to_main_menu() -> void:
 	game_end()
+	Audio.reset_music()
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	InterfaceManager.open_ui("MainMenu")
 
 func register_collectible() -> void:

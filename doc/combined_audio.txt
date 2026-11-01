@@ -2,9 +2,11 @@ CombinedAudio
 =============
 
 Create a CombinedAudio resource and assign its combined audio file to
-audio_stream. Add clip markers to clip_times. Markers use M:SS:mmm, where mmm
-is milliseconds. For example, "0:02:180" means 2.18 seconds. Seconds must be
-between 00 and 59 and milliseconds between 000 and 999.
+audio_stream. Add clip markers to clip_times. Markers can use
+seconds:centiseconds or minutes:seconds:centiseconds. For example, "2:18" and
+"00:02:18" both mean 2.18 seconds. Fields can have one or two digits; a
+three-digit field uses its first two digits, and fields longer than three digits
+are invalid. Seconds must resolve to 00-59 and centiseconds to 00-99.
 
 An un-ranged marker uses the closest later start marker as its end. For example,
 these entries make a clip from 1.00 to 2.00 seconds:
@@ -23,10 +25,14 @@ and play one of its valid clips. The player stops at the clip's end time.
 CombinedAudioPlayer2D
 --------------------
 
-Use a CombinedAudioPlayer2D node for positional sound. Assign a CombinedAudio
+Use a CombinedAudioPlayer2D node from scripts/audio/combined_audio for positional sound. Assign a CombinedAudio
 resource to its combined_audio property and call play_audio() to choose a random
 clip. If combined_audio is unset, play_audio() uses the node's regular stream.
 If neither is set, it does nothing.
+
+Use an AudioClipPlayer2D node from the same folder when a specific clip should
+play. Assign its stream and call play_clip(start_time, end_time) with time strings
+in the same format. It stops at end_time.
 
 A final un-ranged marker is treated as a boundary only. Use an explicit range
 for a final playable clip, or provide a final timestamp as that clip's end.

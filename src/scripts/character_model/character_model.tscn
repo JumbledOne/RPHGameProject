@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://byanhy0cletsr" path="res://scripts/character_model/character_model.gd" id="1_xjoyo"]
 [ext_resource type="Texture2D" uid="uid://c2o654lacevqd" path="res://assets/gfx/gfx_resources/atlas_textures/friar_spanish_enemy.tres" id="2_pah7v"]
-[ext_resource type="Script" uid="uid://cwyfyio0617oh" path="res://scripts/combined_audio/combined_audio_player_2d.gd" id="3_audio_player"]
+[ext_resource type="Script" uid="uid://cwyfyio0617oh" path="res://scripts/audio/combined_audio/combined_audio_player_2d.gd" id="3_audio_player"]
 [ext_resource type="Script" uid="uid://dnpune7gjjdsr" path="res://scripts/character_model/character_audio.gd" id="4_character_audio"]
 [ext_resource type="Resource" uid="uid://dft2b7dndp00p" path="res://assets/audio/audio_resources/jump_effects.tres" id="5_jump_audio"]
 [ext_resource type="Resource" uid="uid://c2kagj2p131f" path="res://assets/audio/audio_resources/retro_effects.tres" id="6_damage_audio"]

@@ -50,38 +50,49 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -116.0
-offset_top = 24.0
+offset_top = 25.0
 offset_right = 116.0
-offset_bottom = 64.0
+offset_bottom = 63.0
 grow_horizontal = 2
 theme_override_constants/separation = 42
 
 [node name="CollectibleStats" type="HBoxContainer" parent="StatsBar" unique_id=1710094713]
 layout_mode = 2
+size_flags_vertical = 4
 alignment = 1
-
-[node name="Label" type="Label" parent="StatsBar/CollectibleStats" unique_id=500031588]
-layout_mode = 2
-text = "0 / 0"
-script = ExtResource("2_tracker")
 
 [node name="TextureRect" type="TextureRect" parent="StatsBar/CollectibleStats" unique_id=1912993614]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 texture = SubResource("AtlasTexture_2n7ho")
 
-[node name="LivesLabel" type="Label" parent="StatsBar" unique_id=2075290011]
+[node name="Label" type="Label" parent="StatsBar/CollectibleStats" unique_id=500031588]
+layout_mode = 2
+text = "0"
+script = ExtResource("2_tracker")
+
+[node name="VBoxTime" type="VBoxContainer" parent="StatsBar" unique_id=1678035198]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="StatsBar/VBoxTime" unique_id=1312539131]
+layout_mode = 2
+text = "Time"
+
+[node name="TimeLimitLabel" type="Label" parent="StatsBar/VBoxTime" unique_id=1732944343]
+layout_mode = 2
+text = "101"
+script = ExtResource("4_hk0ve")
+
+[node name="VBoxLives" type="VBoxContainer" parent="StatsBar" unique_id=1520702081]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="StatsBar/VBoxLives" unique_id=1229779649]
+layout_mode = 2
+text = "Lives"
+
+[node name="LivesLabel" type="Label" parent="StatsBar/VBoxLives" unique_id=2075290011]
 layout_mode = 2
 text = "x3"
 script = ExtResource("4_lives")
-
-[node name="TimeLimitLabel" type="Label" parent="StatsBar" unique_id=1732944343]
-layout_mode = 2
-text = "x3"
-script = ExtResource("4_hk0ve")
-
-[node name="ScoreLabel" type="Label" parent="StatsBar" unique_id=25418387]
-layout_mode = 2
-text = "000 000"
 
 [node name="EscapeMenu" parent="." unique_id=948223570 instance=ExtResource("3_najyh")]

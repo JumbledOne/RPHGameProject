@@ -7,3 +7,7 @@ func _ready() -> void:
 
 func _on_game_started() -> void:
 	music.play()
+
+func reset_music() -> void:
+	music.stop()
+	music.play()

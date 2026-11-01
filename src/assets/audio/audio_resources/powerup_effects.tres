@@ -1,9 +1,8 @@
-[gd_resource type="Resource" script_class="CombinedAudio" load_steps=3 format=3]
+[gd_resource type="Resource" script_class="CombinedAudio" format=3 uid="uid://b8jva0u28bepy"]
 
-[ext_resource type="Script" path="res://scripts/combined_audio/combined_audio.gd" id="1_script"]
-[ext_resource type="AudioStream" path="res://assets/audio/sfx/8-Bit Powerup Sound Effects (Copyright Free).mp3" id="2_stream"]
+[ext_resource type="Script" uid="uid://c20nabn3ty5u0" path="res://scripts/audio/combined_audio/combined_audio.gd" id="1_script"]
+[ext_resource type="AudioStream" uid="uid://c5qq6um1pftp7" path="res://assets/audio/sfx/8-Bit Powerup Sound Effects (Copyright Free).mp3" id="2_stream"]
 
 [resource]
 script = ExtResource("1_script")
 audio_stream = ExtResource("2_stream")
-clip_times = Array[String]([])

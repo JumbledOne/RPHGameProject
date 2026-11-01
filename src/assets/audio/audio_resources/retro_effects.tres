@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="CombinedAudio" format=3 uid="uid://c2kagj2p131f"]
 
-[ext_resource type="Script" uid="uid://c20nabn3ty5u0" path="res://scripts/combined_audio/combined_audio.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://c20nabn3ty5u0" path="res://scripts/audio/combined_audio/combined_audio.gd" id="1_script"]
 [ext_resource type="AudioStream" uid="uid://pmkmdd63loof" path="res://assets/audio/sfx/8-Bit Retro Video Game Sound Effects.mp3" id="2_stream"]
 
 [resource]

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b2t6itv4f21fr"]
 
 [ext_resource type="Texture2D" uid="uid://cef21ngce2plk" path="res://assets/gfx/sprites/honey -sheet.png" id="1_w8bo0"]
-[ext_resource type="Script" path="res://scripts/combined_audio/combined_audio_player_2d.gd" id="2_audio_player"]
+[ext_resource type="Script" uid="uid://cwyfyio0617oh" path="res://scripts/audio/combined_audio/combined_audio_player_2d.gd" id="2_audio_player"]
 [ext_resource type="Resource" path="res://assets/audio/audio_resources/powerup_effects.tres" id="3_powerup_audio"]
 
 [sub_resource type="GDScript" id="GDScript_ykn7a"]
