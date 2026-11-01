@@ -2,6 +2,8 @@ extends Node
 
 const SCREEN_SIZE: Vector2 = Vector2(640, 360)
 
+const DEBUG_MODE: bool = true # Debug mode
+
 var is_paused: bool = false # We use this to ensure that the rest of the game still runs and only the game is actually paused
 signal pause_toggled
 var game_started: bool = false
@@ -58,6 +60,7 @@ const LEVELS: Array[PackedScene] = [
 	preload("res://scenes/levels/level_3.tscn"),
 	preload("res://scenes/levels/level_4.tscn"),
 	preload("res://scenes/levels/level_5.tscn"),
+	preload("res://scenes/levels/test_level.tscn") # Debug level
 ]
 signal game_started_event
 enum GameEnd { LOST, WON, OTHER }
@@ -100,6 +103,9 @@ func end_game(result: GameEnd = GameEnd.OTHER) -> void:
 	game_end(result)
 	
 func get_level_scene() -> PackedScene:
+	if DEBUG_MODE == true:
+		return LEVELS[LEVELS.size() - 1]
+	
 	if current_level >= 0 and current_level < get_level_count():
 		return LEVELS[current_level]
 	return

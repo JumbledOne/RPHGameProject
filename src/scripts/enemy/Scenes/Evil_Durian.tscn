@@ -2,25 +2,71 @@
 
 [ext_resource type="PackedScene" uid="uid://dwiill2noqt84" path="res://scripts/hurtbox/hurtbox.tscn" id="1_60bss"]
 [ext_resource type="Script" uid="uid://bu2ib87bigt48" path="res://scripts/enemy/Enemy_Entity.gd" id="1_d3qgh"]
-[ext_resource type="Texture2D" uid="uid://ciaxb2mesyvra" path="res://assets/sprites/test_square.png" id="2_i46wp"]
+[ext_resource type="Texture2D" uid="uid://dynjip66eejym" path="res://assets/gfx/sprites/durianevil.png" id="3_6tyej"]
 [ext_resource type="Script" uid="uid://nyai6lfgjd0" path="res://scripts/enemy/Behaviors/evilDurian_behavior.gd" id="4_6c637"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
 size = Vector2(32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_lim22"]
+atlas = ExtResource("3_6tyej")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0augx"]
+atlas = ExtResource("3_6tyej")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4tian"]
+atlas = ExtResource("3_6tyej")
+region = Rect2(32, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5tm5x"]
+atlas = ExtResource("3_6tyej")
+region = Rect2(64, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xh6t8"]
+atlas = ExtResource("3_6tyej")
+region = Rect2(0, 64, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0fgf3"]
+atlas = ExtResource("3_6tyej")
+region = Rect2(32, 64, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ju1mh"]
+atlas = ExtResource("3_6tyej")
+region = Rect2(64, 64, 32, 64)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_drsj5"]
 animations = [{
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lim22")
+}],
 "loop": 1,
-"name": &"default",
+"name": &"idle",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_i46wp")
+"texture": SubResource("AtlasTexture_0augx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4tian")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5tm5x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xh6t8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0fgf3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ju1mh")
 }],
 "loop": 1,
-"name": &"new_animation",
+"name": &"walk",
 "speed": 5.0
 }]
 
@@ -34,9 +80,9 @@ shape = SubResource("RectangleShape2D_g4v7s")
 owner_node = NodePath("../..")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=342796054]
-modulate = Color(0.73333335, 0, 0, 1)
+position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_drsj5")
-animation = &"new_animation"
+animation = &"idle"
 
 [node name="BehaviorManager" type="Node2D" parent="." unique_id=1897034658]
 script = ExtResource("4_6c637")

@@ -49,6 +49,8 @@ func tick(enemy: Enemy_Entity, delta: float) -> void:
 	var direction = enemy.position.direction_to(target_pos).x
 	enemy.velocity.x = direction * enemy.speed
 	
+	faceTargetPos(enemy, target_pos.x)
+	
 	if enemy.is_jumping:
 		enemy.jump_timer -= delta
 		enemy.velocity.y = enemy.jump_speed
