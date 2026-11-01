@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bu2ib87bigt48" path="res://scripts/enemy/Enemy_Entity.gd" id="1_7iipi"]
 [ext_resource type="PackedScene" uid="uid://dwiill2noqt84" path="res://scripts/hurtbox/hurtbox.tscn" id="2_qpnys"]
-[ext_resource type="Texture2D" uid="uid://bm477ytfbeld8" path="res://assets/sprites/cacaorotten.png" id="3_7iipi"]
+[ext_resource type="Texture2D" uid="uid://bm477ytfbeld8" path="res://assets/gfx/sprites/cacaorotten.png" id="3_7iipi"]
 [ext_resource type="Script" uid="uid://lgg28g75726t" path="res://scripts/enemy/Behaviors/rottenCacao_behavior.gd" id="4_7iipi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
@@ -20,9 +20,13 @@ region = Rect2(32, 128, 32, 64)
 atlas = ExtResource("3_7iipi")
 region = Rect2(0, 128, 32, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7iipi"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_twn4o"]
 atlas = ExtResource("3_7iipi")
-region = Rect2(64, 128, 32, 64)
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hftht"]
+atlas = ExtResource("3_7iipi")
+region = Rect2(32, 0, 32, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6c637"]
 animations = [{
@@ -37,20 +41,18 @@ animations = [{
 "texture": SubResource("AtlasTexture_2mc4v")
 }],
 "loop": 1,
-"name": &"Left_attack",
+"name": &"attack",
 "speed": 4.0
-}, {
-"frames": [],
-"loop": 1,
-"name": &"Right_attack",
-"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_7iipi")
+"texture": SubResource("AtlasTexture_twn4o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hftht")
 }],
 "loop": 1,
-"name": &"default",
+"name": &"idle",
 "speed": 5.0
 }]
 
@@ -66,6 +68,7 @@ owner_node = NodePath("../..")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=342796054]
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_6c637")
+animation = &"attack"
 
 [node name="BehaviorManager" type="Node2D" parent="." unique_id=1897034658]
 script = ExtResource("4_7iipi")

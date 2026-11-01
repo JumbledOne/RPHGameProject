@@ -1,7 +1,7 @@
 class_name Enemy_Entity
 extends Entity
 
-enum AnimState { IDLE, WALK, ATTACK, HURT, DEATH }
+enum AnimState { IDLE, WALK, ATTACK, HURT, JUMP, DEATH }
 
 const LOCOMOTION_STATES := [AnimState.IDLE, AnimState.WALK]
 
@@ -22,6 +22,9 @@ var jump_timer: float = 0.0
 @export var walk_animation: StringName = &"walk"
 @export var attack_animation: StringName = &"attack"
 @export var hurt_animation: StringName = &"hurt"
+@export var jump_animation: StringName = &"jump"
+## Frame held while falling. -1 uses the last frame of the jump clip.
+@export var jump_fall_frame: int = -1
 @export var walk_epsilon: float = 1.0
 
 var _anim_state: AnimState = AnimState.IDLE
@@ -43,6 +46,7 @@ func _ready() -> void:
 	# Action clips must be non-looping, otherwise animation_finished never fires.
 	_force_non_looping(_get_animation_name(AnimState.ATTACK))
 	_force_non_looping(_get_animation_name(AnimState.HURT))
+	_force_non_looping(_get_animation_name(AnimState.JUMP))
 
 	_change_state(AnimState.IDLE, true)
 
@@ -93,6 +97,8 @@ func _get_animation_name(state: AnimState) -> StringName:
 			return attack_animation
 		AnimState.HURT:
 			return hurt_animation
+		AnimState.JUMP:
+			return jump_animation
 	return &""
 
 # # # # # # # # # # # #
@@ -124,6 +130,8 @@ func _can_enter(next: AnimState) -> bool:
 			return true
 		AnimState.HURT:
 			return true # Hurt interrupts anything, including attack.
+		AnimState.JUMP:
+			return not _anim_locked
 		AnimState.ATTACK:
 			return _anim_state in LOCOMOTION_STATES
 		AnimState.IDLE, AnimState.WALK:
@@ -134,8 +142,40 @@ func _update_locomotion_animation() -> void:
 	if _anim_locked or _anim_state == AnimState.DEATH:
 		return
 
+	# Only airborne enemies with a jump clip use the jump/fall animation.
+	if not is_on_floor() and _has_clip(jump_animation):
+		_update_jump_animation()
+		return
+
 	var moving := velocity.length() > walk_epsilon
 	_change_state(AnimState.WALK if moving else AnimState.IDLE)
+
+func _update_jump_animation() -> void:
+	if _anim_state != AnimState.JUMP:
+		_change_state(AnimState.JUMP, true)
+		return
+
+	# Hold a single airborne frame while falling, until the enemy lands.
+	if velocity.y >= 0.0:
+		_hold_jump_frame()
+
+func _hold_jump_frame() -> void:
+	var frame := _get_jump_fall_frame()
+	if not animatedSprite.is_playing() and animatedSprite.frame == frame:
+		return
+	animatedSprite.stop()
+	animatedSprite.set_frame_and_progress(frame, 0.0)
+
+func _get_jump_fall_frame() -> int:
+	var frames := animatedSprite.sprite_frames
+	if frames == null or not frames.has_animation(jump_animation):
+		return 0
+	var frame_count := frames.get_frame_count(jump_animation)
+	if frame_count <= 0:
+		return 0
+	if jump_fall_frame < 0:
+		return frame_count - 1
+	return mini(jump_fall_frame, frame_count - 1)
 
 func _apply_animation(state: AnimState, clip_override: StringName, force: bool) -> bool:
 	var clip: StringName = clip_override

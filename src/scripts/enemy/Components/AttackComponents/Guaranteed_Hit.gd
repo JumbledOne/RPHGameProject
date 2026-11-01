@@ -6,7 +6,7 @@ var timer: float = set_timer
 var is_timer_active: bool = true
 var is_attacking: bool = false
 
-func tick(_enemy: Enemy_Entity, delta: float) -> void:
+func tick(enemy: Enemy_Entity, delta: float) -> void:
 	
 	if not is_timer_active:
 		return
@@ -22,4 +22,4 @@ func tick(_enemy: Enemy_Entity, delta: float) -> void:
 		GameManager.player.hurt()
 		timer = 0.6 # 5fps in 3 frames
 		is_attacking = true
-		animation_request.emit("Left_attack")
+		enemy.play_attack("attack")
