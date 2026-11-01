@@ -80,6 +80,11 @@ script = ExtResource("3_0wob2")
 [node name="Items" type="TileMapLayer" parent="LevelObjects" unique_id=933369512]
 tile_set = SubResource("TileSet_2n7ho")
 
+[node name="FrontPixelLayer" type="CanvasGroup" parent="." unique_id=921904768]
+oversampling_with_scale = 1
+z_index = -5
+material = SubResource("ShaderMaterial_dojjm")
+
 [node name="PlayerCamera" type="Camera2D" parent="." unique_id=1770321113]
 position = Vector2(288, -148)
 script = ExtResource("3_jlp5g")
