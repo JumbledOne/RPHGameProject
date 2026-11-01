@@ -13,11 +13,11 @@ resource_name = "level_script"
 script/source = "extends Node2D
 
 func finish_level() -> void:
-	$GameUi/ResultTable.text = GameManager.collectibles_summary()
+	$GameUi/ResultTable.text = LevelManager.collectibles_summary()
 	$GameUi/Gameoverlabel.show()
 	$GameUi/ResultTable.show()
 	$GameUi/CollectibleStats.hide()
-	GameManager.game_end(GameManager.GameEnd.WON)
+	LevelManager.game_end(LevelManager.GameEnd.WON)
 	
 func _input(event: InputEvent) -> void:
 	if not OS.is_debug_build():

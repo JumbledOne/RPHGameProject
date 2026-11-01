@@ -6,7 +6,7 @@ extends Area2D
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 func _ready() -> void:
-	GameManager.register_collectible()
+	LevelManager.register_collectible()
 	sprite.play("idle")
 	body_entered.connect(_on_body_entered)
 
@@ -15,7 +15,7 @@ func _on_body_entered(body: Node2D) -> void:
 		return
 	$CoinAudio.play_audio()
 	$CoinAudio.reparent(get_tree().current_scene, true)
-	GameManager.collect()
+	LevelManager.collect()
 	if collect_effect:
 		var effect := collect_effect.instantiate()
 		ScenePlacer.level_add_child(effect)

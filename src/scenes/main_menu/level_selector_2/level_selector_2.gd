@@ -112,7 +112,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func start_level() -> void:
 	if not button_pressed:
 		return
-	InterfaceManager.do_on_transition(GameManager.start_game.bind(level))
+	InterfaceManager.do_on_transition(LevelManager.start_game.bind(level))
 
 func _on_mouse_entered() -> void:
 	if button_pressed:

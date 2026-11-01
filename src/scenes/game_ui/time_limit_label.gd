@@ -1,11 +1,11 @@
 extends Label
 
-var time_left: float = GameManager.MAX_LEVEL_TIME
+var time_left: float = LevelManager.MAX_LEVEL_TIME
 var level_active: bool = false
 
 func _ready() -> void:
-	GameManager.game_started_event.connect(_on_game_started)
-	GameManager.game_ended.connect(_on_game_ended)
+	LevelManager.game_started_event.connect(_on_game_started)
+	LevelManager.game_ended.connect(_on_game_ended)
 	GameManager.pause_toggled.connect(_on_pause_toggled)
 	_on_game_started()
 	_update_label()
@@ -22,7 +22,7 @@ func _process(delta: float) -> void:
 			GameManager.player.hurt(GameManager.player.health)
 
 func _on_game_started() -> void:
-	time_left = GameManager.MAX_LEVEL_TIME
+	time_left = LevelManager.MAX_LEVEL_TIME
 	level_active = true
 	_update_label()
 

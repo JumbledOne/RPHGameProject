@@ -9,7 +9,7 @@ func _ready() -> void:
 	add_child(hud)
 	hud.show_timeline_title()
 	GameManager.player_died.connect(_on_died, CONNECT_ONE_SHOT)
-	GameManager.level_won.connect(_on_won, CONNECT_ONE_SHOT)
+	LevelManager.level_won.connect(_on_won, CONNECT_ONE_SHOT)
 
 func _on_died() -> void:
 	_show_end(false)

@@ -23,7 +23,7 @@ func _physics_process(delta: float) -> void:
 	super(delta)
 	if position.y >= death_altitude:
 		die()
-	position.x = clamp(position.x, GameManager.level_left_boundary + 16, GameManager.level_right_boundary - 16)
+	position.x = clamp(position.x, LevelManager.level_left_boundary + 16, LevelManager.level_right_boundary - 16)
 	
 # # # # # # # # # # # #
 # Actions

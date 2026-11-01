@@ -16,7 +16,7 @@ func _ready() -> void:
 	# Level buttons
 	var level_button: PackedScene = load("uid://duh7we0h3louf")
 	level_group = ButtonGroup.new()
-	for i in GameManager.get_level_count():
+	for i in LevelManager.get_level_count():
 		var info_dict: Dictionary = level_info["levels"][i]
 		var btn: Button = level_button.instantiate()
 		btn.set_level_data(i, info_dict)
@@ -35,11 +35,10 @@ func _ready() -> void:
 		btn.button_pressed = is_instance_of(GameManager.player_class, _tribe_to_class(key).get_script())
 		btn.pressed.connect(func():
 			GameManager.player_class = _tribe_to_class(key)
-			GameManager.selected_tribe = key
 		)
 		%TribeBox.add_child(btn)
 
-	%StartButton.pressed.connect(func(): GameManager.start_level(GameManager.selected_level))
+	%StartButton.pressed.connect(func(): LevelManager.start_level(LevelManager.selected_level))
 	%BackButton.pressed.connect(func():
 		get_tree().change_scene_to_file("res://scenes/ui/main_menu.tscn"))
 
@@ -61,7 +60,7 @@ func _load_level_info() -> Array:
 func _on_start_button_pressed() -> void:
 	var button: Button = level_group.get_pressed_button()
 	if button:
-		InterfaceManager.do_on_transition(GameManager.start_game.bind(button.level))
+		InterfaceManager.do_on_transition(LevelManager.start_game.bind(button.level))
 
 func _tribe_to_class(tribe: String) -> PlayerClass:
 	match tribe:

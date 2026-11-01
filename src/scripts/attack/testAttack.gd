@@ -16,8 +16,8 @@ func do(doer: PlayerEntity) -> void:
 	doer.add_child(hitbox)
 	
 	# duration, shortened by the attack speed buff
-	var duration: float = GameManager.base_attack_duration / GameManager.get_attack_speed()
-	print("collected: ", GameManager.collected, " speed: ", GameManager.get_attack_speed(), " duration: ", duration)
+	var duration: float = LevelManager.BASE_ATTACK_DURATION / LevelManager.get_attack_speed()
+	print("collected: ", LevelManager.collected, " speed: ", LevelManager.get_attack_speed(), " duration: ", duration)
 	await doer.get_tree().create_timer(duration).timeout
 	
 	if is_instance_valid(hitbox):

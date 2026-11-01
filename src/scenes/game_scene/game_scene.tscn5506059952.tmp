@@ -14,11 +14,8 @@
 resource_name = "level_script"
 script/source = "extends Node2D
 
-func _enter_tree() -> void:
-	GameManager.reset_collectibles()
-
 func finish_level() -> void:
-	$GameUi/ResultTable.text = GameManager.collectibles_summary()
+	$GameUi/ResultTable.text = LevelManager.collectibles_summary()
 	$GameUi/Gameoverlabel.show()
 	$GameUi/ResultTable.show()
 	$GameUi/CollectableTracker.hide()

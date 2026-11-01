@@ -17,4 +17,4 @@ func _on_resume_pressed():
 
 func _on_main_menu_pressed() -> void:
 	$MenuSelectAudio.play()
-	InterfaceManager.do_on_transition(GameManager.return_to_main_menu)
+	InterfaceManager.do_on_transition(LevelManager.return_to_main_menu)

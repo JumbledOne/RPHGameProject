@@ -22,8 +22,8 @@ const CAMERA_ZOOM: float = 1.0
 func _ready() -> void:
 	# Define level bounds
 	var half_screen_width: float = GameManager.SCREEN_SIZE.x / 2
-	left_boundary = GameManager.level_left_boundary + half_screen_width 
-	right_boundary = GameManager.level_right_boundary - half_screen_width
+	left_boundary = LevelManager.level_left_boundary + half_screen_width 
+	right_boundary = LevelManager.level_right_boundary - half_screen_width
 	# Connect to player
 	GameManager.player_set.connect(_on_player_set)
 	# Set initial values
