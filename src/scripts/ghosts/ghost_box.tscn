@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://bi64ypvxstqp7"]
+
+[ext_resource type="Script" uid="uid://b8q4kqut4xebc" path="res://scripts/ghosts/ghost_box.gd" id="1_nn2gg"]
+
+[node name="GhostBox" type="Control" unique_id=277277652]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -296.0
+offset_bottom = -182.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nn2gg")

@@ -70,7 +70,7 @@ func _on_died():
 func _on_water_entered():
 	pass
 
-func _on_water_exited():
+func _on_water_exited(_from_top: bool):
 	pass
 	
 func set_texture(atlas_tex: AtlasTexture):

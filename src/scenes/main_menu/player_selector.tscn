@@ -1,0 +1,92 @@
+[gd_scene format=3 uid="uid://cbpe82rvsp4mg"]
+
+[ext_resource type="Texture2D" uid="uid://d27i36itsj76k" path="res://assets/gfx/sprites/character_spritesheets/BAGOBO_Sprite.png" id="1_d3cbs"]
+[ext_resource type="Script" uid="uid://buq56rrpisrad" path="res://scenes/main_menu/player_displays.gd" id="1_j7eer"]
+[ext_resource type="Shader" uid="uid://qsmwkyh82gik" path="res://scenes/main_menu/player_preview_mask.gdshader" id="2_mask"]
+
+[sub_resource type="Gradient" id="Gradient_j7eer"]
+offsets = PackedFloat32Array(0, 0.2, 0.8, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2n7ho"]
+gradient = SubResource("Gradient_j7eer")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mask"]
+shader = ExtResource("2_mask")
+shader_parameter/gradient_mask = SubResource("GradientTexture2D_2n7ho")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2n7ho"]
+atlas = ExtResource("1_d3cbs")
+region = Rect2(32, 192, 32, 64)
+
+[node name="PlayerSelector" type="VBoxContainer" unique_id=641941718]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -197.0
+offset_top = -173.0
+offset_right = 197.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="PlayerDisplays" type="TextureRect" parent="." unique_id=1169110710]
+clip_children = 1
+layout_mode = 2
+size_flags_vertical = 3
+texture = SubResource("GradientTexture2D_2n7ho")
+script = ExtResource("1_j7eer")
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerDisplays" unique_id=335305599]
+material = SubResource("ShaderMaterial_mask")
+texture = SubResource("AtlasTexture_2n7ho")
+region_enabled = true
+region_rect = Rect2(0, 192, 32, 64)
+
+[node name="Button" type="Button" parent="PlayerDisplays" unique_id=1922438419]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -71.0
+offset_top = -110.0
+offset_right = 71.0
+grow_horizontal = 2
+grow_vertical = 0
+flat = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=666548265]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 0
+
+[node name="ButtonLeft" type="Button" parent="HBoxContainer" unique_id=1028850641]
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+text = "<"
+
+[node name="PlayerClassTitleLabel" type="Label" parent="HBoxContainer" unique_id=2082129308]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 0
+text = "Urban"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="ButtonRight" type="Button" parent="HBoxContainer" unique_id=303318698]
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+text = ">"
+
+[node name="DescriptionLabel" type="Label" parent="." unique_id=1362943976]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 0

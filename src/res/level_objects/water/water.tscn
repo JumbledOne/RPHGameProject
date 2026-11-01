@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://clvr5icyyjm0y"]
 
-[ext_resource type="Script" uid="uid://dfi6al5cdldhe" path="res://scripts/water/water.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://dfi6al5cdldhe" path="res://res/level_objects/water/water.gd" id="1_script"]
 [ext_resource type="StyleBox" uid="uid://ct0u6jbkjy77u" path="res://assets/gfx/gfx_resources/stylebox/water_gradient.tres" id="1_vg6w8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_water"]

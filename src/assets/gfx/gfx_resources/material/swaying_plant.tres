@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://boplvpi6xqu2q"]
+
+[ext_resource type="Shader" uid="uid://by3alivs68j3g" path="res://assets/gfx/shader/swaying_plant.gdshader" id="1_kradu"]
+[ext_resource type="Texture2D" uid="uid://beug7sft8lvt1" path="res://assets/gfx/gfx_resources/universal_noise.tres" id="2_uwcwo"]
+
+[resource]
+shader = ExtResource("1_kradu")
+shader_parameter/noise_tex = ExtResource("2_uwcwo")
+shader_parameter/noise_scale = 1024.0
+shader_parameter/noise_movement = Vector2(-0.2, -0.01)
+shader_parameter/sway_strength = 16.0

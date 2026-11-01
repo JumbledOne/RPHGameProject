@@ -3,6 +3,12 @@ extends PlayerClass
 
 const SPRITE_SHEET: AtlasTexture = preload("res://assets/gfx/gfx_resources/atlas_textures/ata.tres")
 
+func get_title() -> String:
+	return "Ata"
+
+func get_description() -> String:
+	return "An Ata of Paquibato, carrying the strength of their homeland."
+
 func get_sprite_sheet() -> AtlasTexture:
 	return SPRITE_SHEET
 

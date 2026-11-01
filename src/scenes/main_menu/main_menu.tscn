@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://b1nmjslcuhnt4" path="res://assets/gfx/sprites/non_pixel_art/radial_gradient_squared.png" id="8_4xg86"]
 [ext_resource type="Script" uid="uid://ba5jgcvg4wrra" path="res://scenes/main_menu/start_button.gd" id="8_thkx5"]
 [ext_resource type="AudioStream" uid="uid://creluierbxthg" path="res://assets/audio/sfx/Sounds of button selection in the game menu (sound effect).mp3" id="9_menu_select"]
+[ext_resource type="PackedScene" uid="uid://cbpe82rvsp4mg" path="res://scenes/main_menu/player_selector.tscn" id="10_player_selector"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_5seab"]
 
@@ -109,7 +110,7 @@ theme_override_font_sizes/font_size = 48
 text = "DAVAO DASH"
 horizontal_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=1833474356]
+[node name="BottomGradient" type="TextureRect" parent="." unique_id=1833474356]
 modulate = Color(0, 0, 0, 1)
 anchors_preset = 7
 anchor_left = 0.5
@@ -125,6 +126,12 @@ grow_vertical = 0
 mouse_filter = 2
 texture = ExtResource("8_4xg86")
 
+[node name="PlayerSelector" parent="." unique_id=1435914731 instance=ExtResource("10_player_selector")]
+offset_left = -71.0
+offset_top = -215.0
+offset_right = 71.0
+offset_bottom = -42.0
+
 [node name="StartButton" type="Button" parent="." unique_id=1423332690 node_paths=PackedStringArray("level_selector_sample")]
 anchors_preset = 7
 anchor_left = 0.5
@@ -132,9 +139,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -38.0
-offset_top = -55.0
+offset_top = -34.0
 offset_right = 38.0
-offset_bottom = -27.0
+offset_bottom = -6.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "Start"

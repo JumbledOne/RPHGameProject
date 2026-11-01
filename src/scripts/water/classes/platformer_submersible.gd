@@ -28,11 +28,12 @@ func _on_p_entity_entered() -> void:
 	_platformer.terminal_velocity_factor = TERMINAL_VELOCITY_FACTOR
 	_platformer.allow_midair_jump = ALLOW_MIDAIR_JUMP
 
-func _on_p_entity_exited() -> void:
+func _on_p_entity_exited(from_top: bool) -> void:
 	_platformer.gravity_factor = 1.0
 	_platformer.speed_factor = 1.0
 	_platformer.acceleration_factor = 1.0
 	_platformer.jump_factor = 1.0
 	_platformer.terminal_velocity_factor = 1.0
 	_platformer.allow_midair_jump = false
-	_platformer.velocity.y -= _platformer.jump_velocity
+	if from_top:
+		_platformer.velocity.y -= _platformer.jump_velocity

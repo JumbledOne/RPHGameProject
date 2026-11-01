@@ -6,7 +6,7 @@ extends Node
 # Listen to the signals to react to water
 
 signal water_entered
-signal water_exited
+signal water_exited(from_top: bool)
 
 # Number of water bodies currently overlapping
 # So that leaving one body of water while in another doesn't count as exiting
@@ -20,12 +20,12 @@ func enter_water() -> void:
 	if _water_count == 1:
 		water_entered.emit()
 
-func exit_water() -> void:
+func exit_water(from_top: bool = false) -> void:
 	if _water_count == 0:
 		return
 	_water_count -= 1
 	if _water_count == 0:
-		water_exited.emit()
+		water_exited.emit(from_top)
 
 func is_in_water() -> bool:
 	return _water_count > 0

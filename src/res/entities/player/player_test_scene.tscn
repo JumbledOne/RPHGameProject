@@ -1,8 +1,8 @@
 [gd_scene format=4 uid="uid://q7hjespk1erp"]
 
 [ext_resource type="Texture2D" uid="uid://ciaxb2mesyvra" path="res://assets/gfx/sprites/test_square.png" id="1_oftt6"]
-[ext_resource type="Script" uid="uid://d22cgg754fheg" path="res://scripts/player/player_camera/player_camera.gd" id="3_7b570"]
-[ext_resource type="PackedScene" uid="uid://dqfx6qteghxjv" path="res://scripts/player/player_spawner/player_spawner.tscn" id="4_ot6uy"]
+[ext_resource type="Script" uid="uid://d22cgg754fheg" path="res://res/entities/player/player_camera/player_camera.gd" id="3_7b570"]
+[ext_resource type="PackedScene" uid="uid://dqfx6qteghxjv" path="res://res/entities/player/player_spawner/player_spawner.tscn" id="4_ot6uy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_63nit"]
 texture = ExtResource("1_oftt6")

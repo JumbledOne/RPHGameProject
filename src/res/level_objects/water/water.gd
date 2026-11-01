@@ -31,7 +31,8 @@ func _on_body_entered(body: Node2D) -> void:
 func _on_body_exited(body: Node2D) -> void:
 	var submersible: Submersible = body.get_node_or_null("Submersible")
 	if submersible:
-		submersible.exit_water()
+		var water_top: float = global_position.y + TOP_MARGIN
+		submersible.exit_water(body.global_position.y < water_top)
 
 func _entered_water(pos: Vector2, velocity: Vector2) -> void:
 	var splash: Node2D = WATER_SPLASH.instantiate()
