@@ -44,7 +44,6 @@ script = ExtResource("1_72663")
 script = ExtResource("2_j8flk")
 
 [node name="GameUi" parent="UIRoot" unique_id=271816190 instance=ExtResource("7_201br")]
-visible = false
 
 [node name="MainMenu" parent="UIRoot" unique_id=1131694955 instance=ExtResource("3_ducuf")]
 

@@ -2,7 +2,7 @@ extends Node
 
 const SCREEN_SIZE: Vector2 = Vector2(640, 360)
 
-const DEBUG_MODE: bool = true # Debug mode
+const DEBUG_MODE: bool = false # Debug mode
 
 var is_paused: bool = false # We use this to ensure that the rest of the game still runs and only the game is actually paused
 signal pause_toggled
