@@ -33,10 +33,13 @@ func _ready() -> void:
 		btn.toggle_mode = true
 		btn.button_group = tribe_group
 		btn.button_pressed = is_instance_of(GameManager.player_class, _tribe_to_class(key).get_script())
-		btn.pressed.connect(func(): GameManager.player_class = _tribe_to_class(key))
+		btn.pressed.connect(func():
+			GameManager.player_class = _tribe_to_class(key)
+			GameManager.selected_tribe = key
+		)
 		%TribeBox.add_child(btn)
 
-	%StartButton.pressed.connect(func(): GameState.start_level(GameState.selected_level))
+	%StartButton.pressed.connect(func(): GameManager.start_level(GameManager.selected_level))
 	%BackButton.pressed.connect(func():
 		get_tree().change_scene_to_file("res://scenes/ui/main_menu.tscn"))
 

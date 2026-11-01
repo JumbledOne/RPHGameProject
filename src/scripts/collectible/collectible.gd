@@ -13,6 +13,8 @@ func _ready() -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body != GameManager.player:
 		return
+	$CoinAudio.play_audio()
+	$CoinAudio.reparent(get_tree().current_scene, true)
 	GameManager.collect()
 	if collect_effect:
 		var effect := collect_effect.instantiate()

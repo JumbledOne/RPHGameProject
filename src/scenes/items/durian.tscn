@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://bmnx81gdn0jd6"]
 
 [ext_resource type="Texture2D" uid="uid://npjp80de523v" path="res://assets/gfx/sprites/durian.png" id="1_3x82t"]
+[ext_resource type="Script" path="res://scripts/combined_audio/combined_audio_player_2d.gd" id="2_audio_player"]
+[ext_resource type="Resource" path="res://assets/audio/audio_resources/powerup_effects.tres" id="3_powerup_audio"]
 
 [sub_resource type="GDScript" id="GDScript_2kmxq"]
 resource_name = "_durian"
@@ -13,6 +15,8 @@ func _physics_process(_delta: float) -> void:
 	if player.health >= player.max_health:
 		return
 	player.heal(1)
+	$PowerupAudio.play_audio()
+	$PowerupAudio.reparent(get_tree().current_scene, true)
 	print(\"healed player, player health: \", player.health)
 	queue_free()
 "
@@ -31,3 +35,8 @@ texture = ExtResource("1_3x82t")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1980010910]
 position = Vector2(1, 1)
 shape = SubResource("CapsuleShape2D_uepl2")
+
+[node name="PowerupAudio" type="AudioStreamPlayer2D" parent="." unique_id=1980010911]
+script = ExtResource("2_audio_player")
+volume_db = -6.0
+combined_audio = ExtResource("3_powerup_audio")

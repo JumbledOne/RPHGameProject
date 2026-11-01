@@ -1,6 +1,6 @@
 [gd_resource type="Theme" format=3 uid="uid://ivp3r78ksoan"]
 
-[ext_resource type="FontFile" uid="uid://cadpsaxpj21rd" path="res://assets/gfx/font/PixelifySans-VariableFont_wght.ttf" id="1_xcw55"]
+[ext_resource type="FontFile" uid="uid://devytrnifqjur" path="res://assets/gfx/font/Jersey25-Regular.ttf" id="1_xcw55"]
 
 [resource]
 default_font = ExtResource("1_xcw55")

@@ -11,8 +11,10 @@ func _on_pause_toggled() -> void:
 	visible = GameManager.is_paused
 
 func _on_resume_pressed():
+	$MenuSelectAudio.play()
 	hide()
 	GameManager.set_pause.bind(false)
 
 func _on_main_menu_pressed() -> void:
+	$MenuSelectAudio.play()
 	InterfaceManager.do_on_transition(GameManager.return_to_main_menu)

@@ -1,4 +1,4 @@
 @abstract
-class_name BasePlayerAction
+class_name PlayerAbility
 
 @abstract func do(doer: PlayerEntity)

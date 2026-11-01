@@ -1,0 +1,32 @@
+CombinedAudio
+=============
+
+Create a CombinedAudio resource and assign its combined audio file to
+audio_stream. Add clip markers to clip_times. Markers use M:SS:mmm, where mmm
+is milliseconds. For example, "0:02:180" means 2.18 seconds. Seconds must be
+between 00 and 59 and milliseconds between 000 and 999.
+
+An un-ranged marker uses the closest later start marker as its end. For example,
+these entries make a clip from 1.00 to 2.00 seconds:
+
+    ["0:01:000", "0:02:000"]
+
+An explicit range uses the supplied end and skips next-marker matching for that
+entry. For example, this entry is a clip from 1.00 to 1.50 seconds even if another
+marker appears between those times:
+
+    ["0:01:000 -> 0:01:500", "0:01:250"]
+
+Call play_random_at(audio_stream_player) on the CombinedAudio resource to choose
+and play one of its valid clips. The player stops at the clip's end time.
+
+CombinedAudioPlayer2D
+--------------------
+
+Use a CombinedAudioPlayer2D node for positional sound. Assign a CombinedAudio
+resource to its combined_audio property and call play_audio() to choose a random
+clip. If combined_audio is unset, play_audio() uses the node's regular stream.
+If neither is set, it does nothing.
+
+A final un-ranged marker is treated as a boundary only. Use an explicit range
+for a final playable clip, or provide a final timestamp as that clip's end.

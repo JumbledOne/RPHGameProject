@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="CombinedAudio" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/combined_audio/combined_audio.gd" id="1_script"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/8-Bit Coin Sound Effect (Copyright Free).mp3" id="2_stream"]
+
+[resource]
+script = ExtResource("1_script")
+audio_stream = ExtResource("2_stream")
+clip_times = Array[String]([])

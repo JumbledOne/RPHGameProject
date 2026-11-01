@@ -1,11 +1,11 @@
 class_name PlayerAttack
-extends BasePlayerAction
+extends PlayerAbility
 
 const HitboxScene = preload("res://scripts/hitbox/hitbox.tscn")
 
 var is_currently_attacking: bool = false
 
-func do(doer: Node2D) -> void:
+func do(doer: PlayerEntity) -> void:
 	if is_currently_attacking:
 		return
 	
@@ -22,8 +22,5 @@ func do(doer: Node2D) -> void:
 	
 	if is_instance_valid(hitbox):
 		hitbox.queue_free()
-		
-	if "player_action" in doer and doer.player_action == self:
-		doer.player_action = null
 		
 	is_currently_attacking = false

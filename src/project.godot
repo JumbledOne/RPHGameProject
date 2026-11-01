@@ -18,7 +18,6 @@ config/icon="res://icon.svg"
 [autoload]
 
 GameManager="*res://scripts/globals/game_manager.gd"
-GameState="*res://scripts/globals/game_state.gd"
 InterfaceManager="*res://scripts/globals/interface_manager.gd"
 ScenePlacer="*res://scripts/globals/scene_placer.gd"
 Audio="*uid://cvoikx3tcb8gl"

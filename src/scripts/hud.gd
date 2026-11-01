@@ -5,14 +5,14 @@ extends CanvasLayer
 
 func _ready() -> void:
 	_ignore_mouse(self)
-	GameState.hearts_changed.connect(_update_hearts)
-	GameState.cacao_changed.connect(func(v): %CacaoLabel.text = "Cacao: %d" % v)
-	GameState.score_changed.connect(func(v): %ScoreLabel.text = "Score: %d" % v)
-	GameState.powerup_changed.connect(_show_powerup)
+	GameManager.hearts_changed.connect(_update_hearts)
+	GameManager.cacao_changed.connect(func(v): %CacaoLabel.text = "Cacao: %d" % v)
+	GameManager.score_changed.connect(func(v): %ScoreLabel.text = "Score: %d" % v)
+	GameManager.powerup_changed.connect(_show_powerup)
 
-	_update_hearts(GameState.hearts)
-	%CacaoLabel.text = "Cacao: %d" % GameState.cacao
-	%ScoreLabel.text = "Score: %d" % GameState.score
+	_update_hearts(GameManager.hearts)
+	%CacaoLabel.text = "Cacao: %d" % GameManager.cacao
+	%ScoreLabel.text = "Score: %d" % GameManager.score
 	%PowerupLabel.text = ""
 	%TimelineTitle.modulate.a = 0.0
 
@@ -50,7 +50,7 @@ func _show_powerup(powerup_name: String, duration: float) -> void:
 
 # Big title in the middle for 3s, then shrinks and moves to the top middle.
 func show_timeline_title() -> void:
-	var info = GameState.LEVELS[GameState.selected_level]
+	var info: Dictionary = GameManager.get_level_info(GameManager.selected_level)
 	var title: Label = %TimelineTitle
 	title.text = "%s - %s" % [info["date"], info["title"]]
 	await get_tree().process_frame  # let the label compute its size

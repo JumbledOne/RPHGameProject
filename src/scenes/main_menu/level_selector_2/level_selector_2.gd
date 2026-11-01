@@ -75,6 +75,8 @@ func _load_level_info() -> void:
 		texture_rect.texture = loaded_texture
 
 func _on_toggled(is_active: bool) -> void:
+	if is_active:
+		$MenuSelectAudio.play()
 	if _toggle_tween:
 		_toggle_tween.kill()
 	var target_width: float = ACTIVATE_WIDTH if is_active else DEFAULT_WIDTH

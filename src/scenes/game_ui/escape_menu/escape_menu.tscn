@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://dj0w4uirvw77" path="res://scripts/ui/menu_root.gd" id="2_gh56q"]
 [ext_resource type="PackedScene" uid="uid://d3bfiabn6g2ob" path="res://scenes/game_ui/settings_screen/settings_screen.tscn" id="3_tod6s"]
 [ext_resource type="Script" uid="uid://riuvvs6uimip" path="res://scripts/ui/visibility_toggler.gd" id="4_xadi4"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/Sounds of button selection in the game menu (sound effect).mp3" id="5_menu_select"]
 
 [node name="EscapeMenu" type="Control" unique_id=948223570]
 layout_mode = 3
@@ -19,6 +20,10 @@ offset_bottom = 63.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ajja6")
+
+[node name="MenuSelectAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_menu_select")
+volume_db = -8.0
 
 [node name="Screens" type="Control" parent="." unique_id=180376937 node_paths=PackedStringArray("default_screen")]
 layout_mode = 1
