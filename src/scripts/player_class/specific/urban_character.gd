@@ -7,7 +7,7 @@ func get_title() -> String:
 	return "Urban"
 
 func get_description() -> String:
-	return "A city-born survivor, ready to run through Davao's changing history."
+	return "Standard urban character: balanced movement with no special buff."
 
 func get_sprite_sheet() -> AtlasTexture:
 	return SPRITE_SHEET

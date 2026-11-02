@@ -9,7 +9,7 @@ func get_title() -> String:
 	return "Ata"
 
 func get_description() -> String:
-	return "An Ata of Paquibato, carrying the strength of their homeland."
+	return "Ata of Paquibato: higher jumps with a shorter float."
 
 func get_sprite_sheet() -> AtlasTexture:
 	return SPRITE_SHEET

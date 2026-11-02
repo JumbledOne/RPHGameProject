@@ -3,6 +3,10 @@ extends Node
 @onready var player: PlayerEntity = $".."
 
 func _input(event: InputEvent) -> void:
+	if GameManager.is_paused or not LevelManager.game_started or player.is_queued_for_deletion():
+		return
+	if event is InputEventKey and event.pressed and not event.echo and event.physical_keycode == KEY_Q:
+		player.eat_durian()
 	# Movement
 	if event.is_action_pressed("jump"):
 		player.begin_jump()
@@ -19,4 +23,4 @@ func _input(event: InputEvent) -> void:
 		player.do_attack()
 
 func _physics_process(_delta: float) -> void:
-	player.horizontal_movement = Input.get_axis("left", "right")
+	player.horizontal_movement = 0.0 if GameManager.is_paused else Input.get_axis("left", "right")

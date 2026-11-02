@@ -6,3 +6,4 @@
 [resource]
 script = ExtResource("1_script")
 audio_stream = ExtResource("2_stream")
+clip_times = Array[String](["0:00 -> 0:35"])

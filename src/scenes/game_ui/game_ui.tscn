@@ -7,6 +7,8 @@
 [ext_resource type="Script" uid="uid://c775cjq8gm03g" path="res://scenes/game_ui/lives_tracker.gd" id="4_lives"]
 [ext_resource type="Script" path="res://scenes/game_ui/ui_health_display.gd" id="5_health"]
 
+[ext_resource type="Script" path="res://scripts/campaign/campaign_ui.gd" id="6_results"]
+
 [sub_resource type="LabelSettings" id="LabelSettings_3y7pu"]
 font_size = 28
 outline_size = 12
@@ -17,6 +19,7 @@ atlas = ExtResource("1_sq0em")
 region = Rect2(64, 0, 32, 32)
 
 [node name="GameUi" type="CanvasLayer" unique_id=271816190]
+script = ExtResource("6_results")
 
 [node name="ResultTable" type="Label" parent="." unique_id=1308814256]
 visible = false

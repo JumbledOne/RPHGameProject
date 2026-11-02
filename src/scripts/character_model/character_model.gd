@@ -7,6 +7,7 @@ extends Node2D
 
 @onready var entity: Entity = $".."
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var character_sprite: Sprite2D = $CharacterSprite
 
 const DAMAGE_ANIM_SCALE: float = 2.0
 const LANDING_ANIM_SCALE: float = 4.0
@@ -22,6 +23,7 @@ var last_facing_right: bool = true
 # We don't use the jumped signal so any entity can use them
 var _jumped: bool = false
 var _reached_peak: bool = false
+var _damage_tween: Tween
 
 func _ready() -> void:
 	entity.damaged.connect(_on_damaged)
@@ -63,6 +65,13 @@ func _process(_delta: float) -> void:
 
 func _on_damaged():
 	_play_animation("hit_left", "hit_right", DAMAGE_ANIM_SCALE, true, true)
+	if entity is PlayerEntity:
+		if _damage_tween and _damage_tween.is_running():
+			_damage_tween.kill()
+		character_sprite.modulate = Color.WHITE
+		_damage_tween = create_tween()
+		_damage_tween.tween_property(character_sprite, "modulate", Color.RED, 0.08)
+		_damage_tween.tween_property(character_sprite, "modulate", Color.WHITE, 0.2)
 
 func _on_died():
 	pass

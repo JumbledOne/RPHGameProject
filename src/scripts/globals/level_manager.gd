@@ -1,9 +1,9 @@
 extends Node
 
-const MAX_LEVEL_TIME: float = 120.0
+const MAX_LEVEL_TIME: float = 180.0
 const LEVEL_INFO_PATH: String = "res://assets/data/level_info.json"
 const LEVELS: Array[PackedScene] = [
-	preload("res://scenes/levels/level_1_b.tscn"),
+	preload("res://scenes/levels/level_1.tscn"),
 	preload("res://scenes/levels/level_2.tscn"),
 	preload("res://scenes/levels/level_3.tscn"),
 	preload("res://scenes/levels/level_4.tscn"),
@@ -41,7 +41,10 @@ var collected: int = 0
 var cacao: int = 0
 var total_collectibles: int = 0
 var score: int = 0
+var score_multiplier: int = 1
 var buff_end_msec: int = 0
+var boss_defeated := false
+var preview_scene_path: String = ""
 
 func start_game(level: int, preserve_lives: bool = false) -> void:
 	current_level = clampi(level, 0, get_level_count() - 1)
@@ -58,6 +61,9 @@ func start_game(level: int, preserve_lives: bool = false) -> void:
 	GameManager.set_pause(false)
 
 func lose_life() -> void:
+	if not game_started:
+		return
+	game_started = false
 	lives_left -= 1
 	lives_changed.emit(lives_left)
 	if lives_left > 0:
@@ -67,12 +73,15 @@ func lose_life() -> void:
 
 func game_end(result: GameEnd = GameEnd.OTHER) -> void:
 	game_started = false
+	GameManager.set_pause(false)
 	game_ended.emit(result)
 	if result == GameEnd.WON:
 		last_level_won = current_level
 		level_won.emit()
 
 func get_level_scene() -> PackedScene:
+	if not preview_scene_path.is_empty():
+		return load(preview_scene_path)
 	if current_level >= 0 and current_level < get_level_count():
 		return LEVELS[current_level]
 	return null
@@ -93,6 +102,8 @@ func restart_level() -> void:
 	start_game(current_level)
 
 func return_to_main_menu() -> void:
+	preview_scene_path = ""
+	get_tree().paused = false
 	game_end()
 	Audio.reset_music()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
@@ -108,30 +119,35 @@ func collectibles_summary() -> String:
 func collect() -> void:
 	collected += 1
 	cacao = collected
+	score_multiplier = 1 + collected / STAR_STEP
 	if collected % NEW_LIFE_THRESHOLD == 0:
 		lives_left += 1
 		lives_changed.emit(lives_left)
-	activate_attack_buff()
 	collectibles_changed.emit(collected, total_collectibles)
 	cacao_changed.emit(cacao)
 	add_score(SCORE_PER_COLLECTIBLE)
 
 func add_score(amount: int) -> void:
-	score += amount
+	score += amount * score_multiplier
 	score_changed.emit(score)
 
 func get_stars() -> int:
-	return mini(collected / STAR_STEP, MAX_STARS)
+	var stars: int = mini(collected / STAR_STEP, 2)
+	if collected == total_collectibles and total_collectibles >= 15 and boss_defeated:
+		stars = 3
+	return stars
 
 func add_cacao(amount: int = 1) -> void:
 	for _i in range(maxi(amount, 0)):
 		collect()
 
 func _reset_level_stats() -> void:
+	boss_defeated = false
 	collected = 0
 	cacao = 0
 	total_collectibles = 0
 	score = 0
+	score_multiplier = 1
 	buff_end_msec = 0
 	collectibles_changed.emit(collected, total_collectibles)
 	cacao_changed.emit(cacao)

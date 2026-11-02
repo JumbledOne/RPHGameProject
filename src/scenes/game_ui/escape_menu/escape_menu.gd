@@ -13,7 +13,7 @@ func _on_pause_toggled() -> void:
 func _on_resume_pressed():
 	$MenuSelectAudio.play()
 	hide()
-	GameManager.set_pause.bind(false)
+	GameManager.set_pause(false)
 
 func _on_main_menu_pressed() -> void:
 	$MenuSelectAudio.play()

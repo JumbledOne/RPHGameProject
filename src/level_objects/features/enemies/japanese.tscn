@@ -1,0 +1,16 @@
+[gd_scene format=3]
+[ext_resource type="Script" path="res://scripts/campaign/campaign_enemy.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/gfx/sprites/character_spritesheets/Japanese_Colonizer_Sprite.png" id="2"]
+[sub_resource type="RectangleShape2D" id="Shape"]
+size = Vector2(24, 48)
+[node name="JapaneseEnemy" type="CharacterBody2D"]
+script = ExtResource("1")
+kind = "japanese"
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -8)
+texture = ExtResource("2")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("Shape")

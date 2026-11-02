@@ -1,42 +1,5 @@
 [gd_scene format=3 uid="uid://bmnx81gdn0jd6"]
 
-[ext_resource type="Texture2D" uid="uid://npjp80de523v" path="res://assets/gfx/sprites/durian.png" id="1_3x82t"]
-[ext_resource type="Script" uid="uid://cwyfyio0617oh" path="res://scripts/audio/combined_audio/combined_audio_player_2d.gd" id="2_audio_player"]
-[ext_resource type="Resource" path="res://assets/audio/audio_resources/powerup_effects.tres" id="3_powerup_audio"]
+[ext_resource type="PackedScene" path="res://level_objects/features/pickups/durian.tscn" id="1"]
 
-[sub_resource type="GDScript" id="GDScript_2kmxq"]
-resource_name = "_durian"
-script/source = "extends Area2D
-
-func _physics_process(_delta: float) -> void:
-	var player = GameManager.player
-	if player == null or not overlaps_body(player):
-		return
-	if player.health >= player.max_health:
-		return
-	player.heal(1)
-	$PowerupAudio.play_audio()
-	$PowerupAudio.reparent(get_tree().current_scene, true)
-	print(\"healed player, player health: \", player.health)
-	queue_free()
-"
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uepl2"]
-radius = 11.0
-height = 34.0
-
-[node name="durian" type="Area2D" unique_id=1013063599]
-position = Vector2(-1, -10)
-script = SubResource("GDScript_2kmxq")
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=24946663]
-texture = ExtResource("1_3x82t")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1980010910]
-position = Vector2(1, 1)
-shape = SubResource("CapsuleShape2D_uepl2")
-
-[node name="PowerupAudio" type="AudioStreamPlayer2D" parent="." unique_id=1980010911]
-script = ExtResource("2_audio_player")
-volume_db = -6.0
-combined_audio = ExtResource("3_powerup_audio")
+[node name="Durian" instance=ExtResource("1")]

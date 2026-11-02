@@ -27,7 +27,7 @@ func _ready() -> void:
 	_update_cursor_state()
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("cancel"):
+	if event.is_action_pressed("cancel") and LevelManager.game_started and not InterfaceManager.doing_transition:
 		toggle_pause()
 
 func toggle_pause() -> void:

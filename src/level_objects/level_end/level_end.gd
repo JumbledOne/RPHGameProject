@@ -37,7 +37,4 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	begin_end_level_sequence(false)
 
 func _go_next_level():
-	# Go to main menu for now
-	InterfaceManager.do_on_transition(
-			InterfaceManager.open_ui.bind("MainMenu")
-	)
+	LevelManager.game_end(LevelManager.GameEnd.WON)

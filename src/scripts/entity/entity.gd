@@ -19,6 +19,7 @@ extends CharacterBody2D
 signal died
 signal damaged
 signal healed
+signal status_effect_added(status_effect: StatusEffect)
 
 # # # # # # # # # # # #
 # Health
@@ -30,5 +31,10 @@ func hurt(amount: int = 1):
 	#print("player HP:" , health)
 	
 func die():
+	if is_queued_for_deletion():
+		return
 	died.emit()
 	queue_free()
+
+# # # # # # # # # # # #
+# Status Effect

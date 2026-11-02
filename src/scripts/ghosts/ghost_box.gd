@@ -1,4 +1,6 @@
 extends Control
+# Fake characters appear on th e bottom
+# Mostly used to show stories
 
 const MOVE_CHANCE: float = 0.3
 

@@ -1,6 +1,6 @@
 # Level objects
 
-The five reusable base scripts live in `scripts/level_objects/`. Each concrete implementation has its own folder and scene in `level_objects/`. Generic demonstration scenes have been removed. Concrete scenes use native pixel sizes from the existing sprite atlas and bamboo texture, with no sprite or instance scaling. Driftwood uses atlas tile (1, 11), beside the water textures, and the same 32 by 8 collision strip as that tile. Only concrete final-plan instances are grouped under `LevelObjects/FeatureShowcase` in `scenes/levels/level_1_b.tscn`; run that scene with F6.
+The five reusable base scripts live in `scripts/level_objects/`. Each concrete implementation has its own folder and scene in `level_objects/`. Generic demonstration scenes have been removed. Concrete scenes use native pixel sizes from the existing sprite atlas and bamboo texture, with no sprite or instance scaling. Driftwood uses atlas tile (1, 11), beside the water textures, and the same 32 by 8 collision strip as that tile. Only concrete final-plan instances are grouped under `LevelObjects/FeatureShowcase` in `scenes/levels/level_1.tscn`; run that scene with F6.
 
 | Class | Behavior | Final-plan implementations |
 | --- | --- | --- |

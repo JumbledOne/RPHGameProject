@@ -1,11 +1,7 @@
 [gd_scene load_steps=5 format=3]
 
 [ext_resource type="Script" path="res://scripts/level_objects/hazard_platform.gd" id="1"]
-[ext_resource type="Texture2D" path="res://assets/gfx/sprites/tilemap-updated.png" id="2"]
-
-[sub_resource type="AtlasTexture" id="Texture"]
-atlas = ExtResource("2")
-region = Rect2(448, 272, 96, 48)
+[ext_resource type="Texture2D" path="res://assets/gfx/campaign/plantation_cart.svg" id="2"]
 
 [sub_resource type="RectangleShape2D" id="Shape"]
 size = Vector2(96, 48)
@@ -18,7 +14,7 @@ travel_offset = Vector2(-128, 0)
 travel_time = 2.5
 start_on_screen = true
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("Texture")
+texture = ExtResource("2")
 flip_v = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

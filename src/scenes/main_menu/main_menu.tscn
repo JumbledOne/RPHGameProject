@@ -34,7 +34,7 @@ layout_mode = 2
 button_group = SubResource("ButtonGroup_5seab")
 level = 1
 
-[node name="TextureRect" parent="HBoxLevels/LevelSelector2" index="1" unique_id=300375067]
+[node name="TextureRect" parent="HBoxLevels/LevelSelector2" index="2" unique_id=300375067]
 texture = ExtResource("3_lqpn7")
 
 [node name="LabelTitle" parent="HBoxLevels/LevelSelector2/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(41922822, 562619567) index="0" unique_id=382309758]
@@ -48,7 +48,7 @@ layout_mode = 2
 button_group = SubResource("ButtonGroup_5seab")
 level = 2
 
-[node name="TextureRect" parent="HBoxLevels/LevelSelector3" index="1" unique_id=300375067]
+[node name="TextureRect" parent="HBoxLevels/LevelSelector3" index="2" unique_id=300375067]
 texture = ExtResource("4_qel0l")
 
 [node name="LabelTitle" parent="HBoxLevels/LevelSelector3/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1059322201, 562619567) index="0" unique_id=382309758]
@@ -62,7 +62,7 @@ layout_mode = 2
 button_group = SubResource("ButtonGroup_5seab")
 level = 3
 
-[node name="TextureRect" parent="HBoxLevels/LevelSelector4" index="1" unique_id=300375067]
+[node name="TextureRect" parent="HBoxLevels/LevelSelector4" index="2" unique_id=300375067]
 texture = ExtResource("5_rrgl4")
 
 [node name="LabelTitle" parent="HBoxLevels/LevelSelector4/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1670467590, 562619567) index="0" unique_id=382309758]
@@ -76,7 +76,7 @@ layout_mode = 2
 button_group = SubResource("ButtonGroup_5seab")
 level = 4
 
-[node name="TextureRect" parent="HBoxLevels/LevelSelector5" index="1" unique_id=300375067]
+[node name="TextureRect" parent="HBoxLevels/LevelSelector5" index="2" unique_id=300375067]
 texture = ExtResource("6_dn3lk")
 
 [node name="LabelTitle" parent="HBoxLevels/LevelSelector5/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(370637051, 562619567) index="0" unique_id=382309758]

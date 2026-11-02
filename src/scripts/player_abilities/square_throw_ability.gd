@@ -13,7 +13,7 @@ func do(doer: PlayerEntity) -> void:
 
 	var square := Node2D.new()
 	square.name = "AbilitySquare"
-	square.set_script(preload("res://entities/player/player_abilities/ability_square_visual.gd"))
+	square.set_script(preload("res://scripts/player_abilities/ability_square_visual.gd"))
 	scene_root.add_child(square)
 	square.global_position = doer.global_position + Vector2(0.0, -8.0)
 	var direction: float = signf(doer.horizontal_movement)

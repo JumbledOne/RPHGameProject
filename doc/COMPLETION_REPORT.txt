@@ -1,0 +1,109 @@
+DAVAO DASH - REUSABLE LEVEL FEATURES
+Updated 2 November 2026
+
+Scope: reusable gameplay features and graphics only. Level layout, terrain,
+obstacle placement, encounter placement, pacing and balancing are left to you.
+The temporary generated courses, their screenshots and traversal tests were
+removed. The current level_1 is the former level_1_b; the previous level_1 is level_1_old.
+Levels 2-5 are clean BaseLevel-inherited authoring templates, with era backgrounds
+and a level-end object under LevelObjects. Their old drafts, including broken tile
+references, are preserved under doc/level_drafts. Terrain is left for your design.
+
+GETTING STARTED
+Use the existing base_level.tscn as your level foundation. Its root now inherits
+LevelFeatures, providing projectile spawning, timer, blindness state and finish
+services. Levels 2-5 inherit that foundation directly.
+For a new independent Node2D level, attach scripts/campaign/campaign_level.gd.
+Place your Player or PlayerSpawner and camera yourself. F6 starts an authored
+level directly with the shared HUD. Set Player Death Altitude to suit your level's
+vertical coordinates. Optional custom bounds and a configurable time limit are
+available on the root. A zero time limit disables the countdown.
+
+PLACEABLE SCENES (paths relative to src/)
+level_objects/features/enemies/cacao.tscn
+level_objects/features/enemies/durian.tscn
+level_objects/features/enemies/spanish.tscn
+level_objects/features/enemies/japanese.tscn
+level_objects/features/enemies/american.tscn
+level_objects/features/pickups/cacao.tscn
+level_objects/features/pickups/durian.tscn
+level_objects/features/pickups/eagle.tscn
+level_objects/features/cannon.tscn
+level_objects/features/level_exit.tscn
+
+Existing obstacle scenes remain in their individual level_objects/ folders:
+floating_driftwood, river_boat, rolling_cannonball, spike_barricade,
+rolling_cart, falling_crate, barbed_wire, falling_debris, moving_car,
+road_barrier, water, market_crate. Added rolling_fruit_cart has distinct fruit art.
+Water can form visible flooded sections or canals. Build trenches and drainage
+gaps with your terrain; there is no automatic terrain generation.
+
+CONFIGURATION
+Select an enemy and enable Boss on whichever enemy should gate the exit.
+The exit's Requires Boss checkbox defaults on. Disable it for a simple exit.
+The root also exposes Require Boss To Finish for calls to finish_level().
+The existing finish-bar scene now sends the normal victory event.
+Enemy activation range, movement speed/radius, poison interval, burst length,
+rest interval and shot interval are adjustable in the Inspector.
+Cannons expose fire interval, activation range and direction.
+Moving/falling/static obstacles retain their existing motion, warning, damage
+and knockback settings. Set a moving car's Side Damage to 3 for lethal side
+collisions; its top remains a rideable platform. Cannonballs default to zero
+contact damage with knockback. Place ammunition according to your encounters;
+there are no automatic ammunition drops or hidden spawn/layout rules.
+
+IMPLEMENTED FEATURES
+Urban: normal movement. Ata: higher jump, shorter float. Bagobo: lower jump
+plus double jump. Three starting hearts with brief damage invulnerability.
+Durians stack at full health, throw for one enemy heart with a pixel impact
+burst, or heal one heart when eaten. Eagle pickup is consumed for a five-second
+jump boost and displays an animated eagle during the effect.
+Cacao awards score, raises the multiplier every five collected, and grants an
+extra life every ten. Star tiers are five/ten cacao; all cacao (at least fifteen)
+plus the boss earns three stars. HUD totals follow the actual placed cacao count.
+Rotten cacao deals one poison heart per ten seconds while nearby. Evil durian
+contact damages and knocks back. Friars obscure vision for three seconds then
+disappear/clear for one second. Japanese/American enemies fire sushi/books in
+three-second bursts with two-second rests. All enemy defaults are three hearts.
+Pickups bob, eagle sprites flap, enemy poses cycle, falling objects shake before
+dropping/resetting, and platforms/vehicles move using the existing physics scripts.
+The original gameplay HUD and pause/settings UI are restored. The new win/loss
+end screen is retained, including retry and menu flow. The timer reads the shared
+level clock without running a second independent countdown. Removed the duplicate transition controller
+on the vignette; repaired moved ability references and repeated death emission.
+Controls: A/D move, Space or J jump, Shift run, E throw, Q heal, R eagle, Esc pause.
+
+GRAPHICS
+Existing character, enemy, background, terrain, vehicle and pickup graphics are
+used. Added code-native pixel vector graphics provide sushi, cannons, plantation
+carts, fruit carts, boats and rubble. Legacy enemy scene paths now resolve to the
+completed enemy scenes so existing references use the new behavior and artwork.
+
+ANIMATION LIMITS
+No bespoke character throwing, eating or death sprite sequences were available.
+Throwing uses a moving/rotating durian and animated pixel burst; eating updates
+health; defeated enemies disappear. Enemy animation cycles existing poses rather
+than new dedicated attack/death sheets. Vehicle wheels have no separate spin frames.
+
+CHECKS
+Run tests/features_test.tscn for focused physics checks of all three characters,
+five enemy types, pickups, durian impact/healing, poison, knockback, friar timing,
+shooter burst/rest timing, cannon firing, boss/star gating and the exit.
+Run tests/level_objects_test.gd headlessly for the existing obstacle regressions.
+Both suites passed. The active inherited level templates remain loadable. Level/UI setup checks also
+cover all five levels, restored HUD/pause, level-end events, retry and menu cleanup.
+These are feature checks; authored levels have not been redesigned or balanced.
+The restricted test environment emits certificate/cache access messages, unrelated
+to gameplay logic. No standalone export is included.
+
+ARCHITECTURE ISSUES FOR A LATER PASS
+- Global managers still share mutable player/run/scene references. This couples
+  lifecycle changes and makes isolated testing harder.
+- Legacy HUD/end-screen and enemy-component prototypes remain in the repository;
+  active scenes use the shared feature implementations. Decide later whether to
+  retire those prototypes or migrate useful pieces into the active code.
+- Several old scenes depend on fixed child names, and camera/death coordinates
+  use world-space assumptions. The death-altitude/bounds controls let you configure
+  these while authoring, but a dedicated level configuration resource would help.
+- ScenePlacer holds mutable references to the current level's effect containers.
+  Multiple simultaneous levels would require per-level ownership instead.

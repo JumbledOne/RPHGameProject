@@ -8,7 +8,7 @@ func get_title() -> String:
 	return "Bagobo Tagabawa"
 
 func get_description() -> String:
-	return "A Bagobo Tagabawa hero with deep roots in the Davao region."
+	return "Bagobo-Tagabawa of Binugao: lower jumps, plus a second jump in midair."
 
 func get_sprite_sheet() -> AtlasTexture:
 	return SPRITE_SHEET
