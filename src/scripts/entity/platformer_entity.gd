@@ -116,6 +116,8 @@ func force_jump() -> void:
 	velocity.y = -jump_velocity * jump_factor
 	controller_gravity_factor = jump_gravity_factor
 	jumped.emit()
+	if not Input.is_action_pressed("jump"):
+		release_jump()
 
 func release_jump():
 	controller_gravity_factor = 1

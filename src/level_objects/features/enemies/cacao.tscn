@@ -2,12 +2,14 @@
 [ext_resource type="Script" path="res://level_objects/features/enemies/cacao_enemy.gd" id="1"]
 [ext_resource type="Texture2D" path="res://assets/gfx/sprites/cacaorotten.png" id="2"]
 [ext_resource type="PackedScene" path="res://scripts/health_display/health_display.tscn" id="health_display"]
+[ext_resource type="Script" path="res://scripts/entity/entity_sprite.gd" id="entity_sprite"]
 
 [sub_resource type="RectangleShape2D" id="Shape"]
 size = Vector2(24, 48)
 [node name="CacaoEnemy" type="CharacterBody2D"]
 script = ExtResource("1")
 [node name="Sprite2D" type="Sprite2D" parent="."]
+script = ExtResource("entity_sprite")
 position = Vector2(0, -8)
 texture = ExtResource("2")
 region_enabled = true

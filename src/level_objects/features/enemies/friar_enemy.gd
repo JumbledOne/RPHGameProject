@@ -1,4 +1,4 @@
-extends CampaignEnemy
+extends Enemy_Entity
 
 @export var projectile_scene: PackedScene
 @export var activation_windup: float = 0.9

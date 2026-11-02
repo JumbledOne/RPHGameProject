@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" path="res://assets/gfx/sprites/character_spritesheets/American_Colonizer_Sprite.png" id="2"]
 [ext_resource type="PackedScene" path="res://scripts/health_display/health_display.tscn" id="health_display"]
 [ext_resource type="PackedScene" path="res://level_objects/features/projectiles/american.tscn" id="projectile"]
+[ext_resource type="Script" path="res://scripts/entity/entity_sprite.gd" id="entity_sprite"]
 
 [sub_resource type="RectangleShape2D" id="Shape"]
 size = Vector2(24, 48)
@@ -11,6 +12,7 @@ script = ExtResource("1")
 projectile_scene = ExtResource("projectile")
 animation_row = 1
 [node name="Sprite2D" type="Sprite2D" parent="."]
+script = ExtResource("entity_sprite")
 position = Vector2(0, -8)
 texture = ExtResource("2")
 region_enabled = true

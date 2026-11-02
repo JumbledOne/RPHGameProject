@@ -1,4 +1,4 @@
-extends CampaignEnemy
+extends Enemy_Entity
 
 @export var projectile_scene: PackedScene
 @export var burst_duration: float = 3.0

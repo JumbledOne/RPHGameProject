@@ -83,7 +83,7 @@ func _run() -> void:
 	cannonball.queue_free()
 	player.position = Vector2(1000, 1000)
 	var floating := object_at("floating_driftwood/floating_driftwood", Vector2(0, 100))
-	floating.travel_offset = Vector2.ZERO
+	floating.speed = 0.0
 	await frames(20)
 	check(absf(floating.position.y - 100.0) > 0.1, "Floating platform must bob vertically")
 	player.position = floating.position + Vector2(0, -24)

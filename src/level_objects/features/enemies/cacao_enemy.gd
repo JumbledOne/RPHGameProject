@@ -1,4 +1,4 @@
-extends CampaignEnemy
+extends Enemy_Entity
 
 @export var poison_interval: float = 10.0
 

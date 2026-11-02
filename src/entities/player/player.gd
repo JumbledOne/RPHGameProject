@@ -28,16 +28,17 @@ func _physics_process(delta: float) -> void:
 		for i in get_slide_collision_count():
 			var collision := get_slide_collision(i)
 			var collider := collision.get_collider()
-			if collision.get_normal().y < -0.5 and collider is CampaignEnemy and not collider.is_queued_for_deletion():
+			if collision.get_normal().y < -0.5 and collider is Enemy_Entity and not collider.is_queued_for_deletion():
 				force_jump()
-				collider.hurt()
+				collider.hurt(1, Entity.DAMAGE_TYPES.STOMPED)
 				break
 	if position.y >= death_altitude:
 		die()
 	position.x = clamp(position.x, LevelManager.level_left_boundary + 16, LevelManager.level_right_boundary - 16)
 	
-func hurt(amount: int = 1):
-	super(amount)
+
+func hurt(amount: int = 1, damage_type: DAMAGE_TYPES = DAMAGE_TYPES.GENERIC):
+	super(amount, damage_type)
 	InterfaceManager.camera_shake_requested.emit(1)
 	
 # # # # # # # # # # # #

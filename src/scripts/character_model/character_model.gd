@@ -1,11 +1,10 @@
-extends Node2D
+extends EntitySprite
 # NOTE
 # This uses an AnimationPlayer and AtlasTexture. It intentionally doesn't use an AnimatedSprite2D
 # This is because you can't easily change the base textures when using SpriteFrames
 # So we manually animate the atlas texture using an animation player since all 
 # sprite sheets are consistent anyway
 
-@onready var entity: Entity = $".."
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var character_sprite: Sprite2D = $CharacterSprite
 
@@ -23,11 +22,9 @@ var last_facing_right: bool = true
 # We don't use the jumped signal so any entity can use them
 var _jumped: bool = false
 var _reached_peak: bool = false
-var _damage_tween: Tween
-
 func _ready() -> void:
+	super._ready()
 	entity.damaged.connect(_on_damaged)
-	entity.died.connect(_on_died)
 	# Submersible renames itself when ready, so wait for the entity
 	if not entity.is_node_ready():
 		await entity.ready
@@ -65,16 +62,6 @@ func _process(_delta: float) -> void:
 
 func _on_damaged():
 	_play_animation("hit_left", "hit_right", DAMAGE_ANIM_SCALE, true, true)
-	if entity is PlayerEntity:
-		if _damage_tween and _damage_tween.is_running():
-			_damage_tween.kill()
-		character_sprite.modulate = Color.WHITE
-		_damage_tween = create_tween()
-		_damage_tween.tween_property(character_sprite, "modulate", Color.RED, 0.08)
-		_damage_tween.tween_property(character_sprite, "modulate", Color.WHITE, 0.2)
-
-func _on_died():
-	pass
 
 func _on_water_entered():
 	pass

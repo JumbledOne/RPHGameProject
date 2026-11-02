@@ -6,11 +6,11 @@ The five reusable base scripts live in `scripts/level_objects/`. Each concrete i
 | --- | --- | --- |
 | StaticHazard | Player-only contact damage with a per-player cooldown | Spike barricade, barbed wire, road barrier |
 | FallingHazard | Horizontal player proximity below the object triggers a shake warning, gravity drop, ground landing, then reset | Falling wooden crate, building/construction debris |
-| MovingPlatform | Solid platform carries passengers between its placed origin and a relative destination | River-crossing boat (bamboo raft art), market crate (movement disabled) |
+| MovingPlatform | Solid platform moves horizontally in one direction and carries passengers | River-crossing boat (bamboo raft art), market crate (movement disabled) |
 | HazardPlatform | Solid top and underside; only inset side strips deal damage and knockback | Moving car (jeepney art), rolling cart, rolling cannonball (knockback only) |
-| FloatingPlatform | HazardPlatform motion plus sine-wave vertical bobbing | Floating driftwood (water-side atlas tile) |
+| FloatingPlatform | Safe moving-platform motion plus sine-wave vertical bobbing | Floating driftwood (water-side atlas tile) |
 
-Movement uses physics-synchronized AnimatableBody2D nodes. `travel_offset` is relative to the placed position; `travel_time` is the duration of each one-way trip. Movement reverses at the destination. `start_on_screen` delays a moving object's first trip until visible. Set `travel_offset` to zero for vertical bobbing in place. Set `moving` to false for stationary solid objects.
+Movement uses the shared `ConstantMovingPlatform` implementation in `scripts/moving_platforms/`. Set `direction` horizontally and choose `speed` in pixels per second. Platforms continue in that direction without reversing. `start_on_screen` delays movement until visible. Set `speed` to zero for vertical bobbing in place. Set `moving` to false for stationary solid objects.
 
 Damage calls the existing player `hurt(amount)` API. Zero damage still allows knockback for the less punishing rolling cannonball described in the plan. HazardPlatform scenes require a rectangular CollisionShape2D; side sensors derive from that rectangle at runtime and leave the top edge safe.
 

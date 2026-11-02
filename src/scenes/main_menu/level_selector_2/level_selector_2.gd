@@ -113,7 +113,9 @@ func start_level() -> void:
 	if not button_pressed:
 		return
 	$LevelStartAudio.play()
-	await $LevelStartAudio.finished
+	var other_selectors := get_tree().get_first_node_in_group("other_selectors")
+	if other_selectors:
+		other_selectors.call("fade_out")
 	InterfaceManager.do_on_transition(LevelManager.start_game.bind(level))
 
 func _on_mouse_entered() -> void:

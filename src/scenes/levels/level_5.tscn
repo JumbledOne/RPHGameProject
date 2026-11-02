@@ -49,7 +49,8 @@ position = Vector2(576, -16)
 [node name="MovingCar" parent="LevelObjects" instance=ExtResource("element_6")]
 position = Vector2(1792, -40)
 side_damage = 3
-travel_offset = Vector2(-192, 0)
+direction = Vector2(-1, 0)
+speed = 64.0
 
 [node name="FruitCart" parent="LevelObjects" instance=ExtResource("element_7")]
 position = Vector2(832, -24)

@@ -111,6 +111,9 @@ func return_to_main_menu() -> void:
 	Audio.reset_music()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	InterfaceManager.open_ui("MainMenu")
+	var other_selectors := get_tree().get_first_node_in_group("other_selectors")
+	if other_selectors:
+		other_selectors.call("show_immediately")
 
 func register_collectible() -> void:
 	total_collectibles += 1

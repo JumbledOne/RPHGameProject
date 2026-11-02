@@ -16,6 +16,12 @@ extends CharacterBody2D
 		if health <= 0:
 			die()
 
+enum DAMAGE_TYPES {
+	GENERIC,
+	STOMPED
+}
+var last_damage_type: DAMAGE_TYPES
+
 @export var damage_cooldown: float = 1.0
 var can_damage: bool = true
 var _damage_cooldown_remaining: float = 0.0
@@ -33,9 +39,10 @@ var _status_effects: Array[StatusEffect] = []
 func heal(amount: int = 1):
 	health += amount
 
-func hurt(amount: int = 1):
+func hurt(amount: int = 1, damage_type: DAMAGE_TYPES = DAMAGE_TYPES.GENERIC):
 	if not can_damage:
 		return
+	last_damage_type = damage_type
 	can_damage = false
 	_damage_cooldown_remaining = damage_cooldown
 	health -= amount

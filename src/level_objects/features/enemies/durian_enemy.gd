@@ -1,4 +1,4 @@
-extends CampaignEnemy
+extends Enemy_Entity
 
 @export var move_speed: float = 65.0
 
