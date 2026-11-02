@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://dmyy0rin8gq7p"]
 
 [ext_resource type="Script" uid="uid://dpoxlhhn5owuo" path="res://scripts/end_screen.gd" id="1_4ttpn"]
-[ext_resource type="AudioStream" path="res://assets/audio/sfx/Sounds of button selection in the game menu (sound effect).mp3" id="2_menu_select"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/button_click.wav" id="2_button_click"]
 
 [node name="EndScreen" type="CanvasLayer" unique_id=1791486502]
 process_mode = 3
 script = ExtResource("1_4ttpn")
 
 [node name="MenuSelectAudio" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_menu_select")
+stream = ExtResource("2_button_click")
 volume_db = -8.0
 
 [node name="Dim" type="ColorRect" parent="." unique_id=209251150]

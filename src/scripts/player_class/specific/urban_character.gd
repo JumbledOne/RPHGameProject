@@ -12,5 +12,8 @@ func get_description() -> String:
 func get_sprite_sheet() -> AtlasTexture:
 	return SPRITE_SHEET
 
+func apply_to_player(_entity: PlayerEntity) -> void:
+	pass
+
 func get_ability() -> PlayerAbility:
-	return SquareThrowAbility.new()
+	return null

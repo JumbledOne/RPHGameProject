@@ -2,6 +2,10 @@
 
 [ext_resource type="Script" uid="uid://dunkc21kutynn" path="res://scripts/ghosts/ghost.gd" id="1_j4k5d"]
 [ext_resource type="Texture2D" uid="uid://c2o654lacevqd" path="res://assets/gfx/gfx_resources/atlas_textures/friar_spanish_enemy.tres" id="2_tmygb"]
+[ext_resource type="Shader" path="res://scripts/ghosts/ghost.gdshader" id="3_ghost_shader"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ghost"]
+shader = ExtResource("3_ghost_shader")
 
 [sub_resource type="Animation" id="Animation_txvn2"]
 length = 0.001
@@ -211,6 +215,7 @@ metadata/_custom_type_script = "uid://dunkc21kutynn"
 [node name="CharacterSprite" type="Sprite2D" parent="." unique_id=677532726]
 position = Vector2(0, -31)
 texture = ExtResource("2_tmygb")
+material = SubResource("ShaderMaterial_ghost")
 region_enabled = true
 region_rect = Rect2(0, 0, 32, 64)
 region_filter_clip_enabled = true

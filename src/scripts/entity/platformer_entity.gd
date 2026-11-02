@@ -15,6 +15,7 @@ extends Entity
 @export var max_jump_time: float = 1 # In seconds
 @export var jump_buffer: float = 0.1 # In seconds
 @export var coyote_time: float = 0.1 # In seconds
+@export var max_midair_jumps: int = 0
 @export var terminal_velocity: float = 980
 
 @export_category("Physics")
@@ -26,6 +27,7 @@ extends Entity
 var horizontal_movement: float
 var _is_sprinting: bool = false
 var _has_jumped: bool = false
+var _midair_jumps_used: int = 0
 var _walk_acceleration: float
 var _sprint_acceleration: float
 
@@ -94,7 +96,10 @@ func begin_jump():
 	var _can_coyote_time: bool = false
 	if not _has_jumped:
 		_can_coyote_time = _last_on_floor < coyote_time
-	if is_on_floor() or _can_coyote_time or allow_midair_jump:
+	var can_midair_jump: bool = allow_midair_jump or _midair_jumps_used < max_midair_jumps
+	if is_on_floor() or _can_coyote_time or can_midair_jump:
+		if not is_on_floor() and not _can_coyote_time and not allow_midair_jump:
+			_midair_jumps_used += 1
 		_has_jumped = true
 		velocity.y = min(velocity.y, -jump_velocity * jump_factor)
 		controller_gravity_factor = jump_gravity_factor
@@ -116,6 +121,7 @@ func release_sprint():
 	
 # # # # # # # # # # # #
 func _landed_on_floor():
+	_midair_jumps_used = 0
 	# Jump buffering
 	if _last_jump_time < jump_buffer:
 		begin_jump()

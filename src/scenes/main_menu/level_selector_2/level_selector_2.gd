@@ -112,6 +112,8 @@ func _unhandled_input(event: InputEvent) -> void:
 func start_level() -> void:
 	if not button_pressed:
 		return
+	$LevelStartAudio.play()
+	await $LevelStartAudio.finished
 	InterfaceManager.do_on_transition(LevelManager.start_game.bind(level))
 
 func _on_mouse_entered() -> void:

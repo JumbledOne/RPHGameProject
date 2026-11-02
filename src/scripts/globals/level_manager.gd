@@ -31,6 +31,7 @@ const BUFF_ATTACK_SPEED: float = 1.5
 
 var selected_level: int = 0
 var current_level: int = 0
+var last_level_won: int = -1
 var game_started: bool = false
 var lives_left: int = STARTING_LIVES
 var level_left_boundary: float = -INF
@@ -68,6 +69,7 @@ func game_end(result: GameEnd = GameEnd.OTHER) -> void:
 	game_started = false
 	game_ended.emit(result)
 	if result == GameEnd.WON:
+		last_level_won = current_level
 		level_won.emit()
 
 func get_level_scene() -> PackedScene:

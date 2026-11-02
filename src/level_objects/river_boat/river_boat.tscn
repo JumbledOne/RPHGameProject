@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/level_objects/moving_platform.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/gfx/sprites/horizontal_bamboo.png" id="2"]
+
+[sub_resource type="AtlasTexture" id="Texture"]
+atlas = ExtResource("2")
+region = Rect2(0, 8, 32, 16)
+
+[sub_resource type="RectangleShape2D" id="Shape"]
+size = Vector2(32, 16)
+
+[node name="RiverBoat" type="AnimatableBody2D"]
+collision_layer = 1
+collision_mask = 0
+script = ExtResource("1")
+travel_offset = Vector2(-192, 0)
+travel_time = 5.0
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("Texture")
+flip_v = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("Shape")

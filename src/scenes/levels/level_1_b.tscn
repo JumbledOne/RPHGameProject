@@ -1,16 +1,27 @@
 [gd_scene format=4 uid="uid://cfgq02n1os438"]
 
 [ext_resource type="PackedScene" uid="uid://d3sq81x0hgxf0" path="res://scenes/base_level/base_level.tscn" id="1_xf5vy"]
-[ext_resource type="PackedScene" uid="uid://clvr5icyyjm0y" path="res://res/level_objects/water/water.tscn" id="2_4vgtt"]
+[ext_resource type="PackedScene" uid="uid://clvr5icyyjm0y" path="res://level_objects/water/water.tscn" id="2_4vgtt"]
 [ext_resource type="Material" uid="uid://boplvpi6xqu2q" path="res://assets/gfx/gfx_resources/material/swaying_plant.tres" id="2_u2ucc"]
 [ext_resource type="Texture2D" uid="uid://bfkkotyt8lldh" path="res://assets/gfx/sprites/non_pixel_art/tree_leaves.png" id="3_58uhv"]
-[ext_resource type="PackedScene" uid="uid://dbnw6oy0ghfh2" path="res://res/level_objects/level_end/level_end.tscn" id="5_ccldl"]
+[ext_resource type="PackedScene" uid="uid://dbnw6oy0ghfh2" path="res://level_objects/level_end/level_end.tscn" id="5_ccldl"]
 [ext_resource type="Material" uid="uid://dwgfy1uc1toxq" path="res://assets/gfx/gfx_resources/material/water.tres" id="6_g3fjj"]
 [ext_resource type="Script" uid="uid://ce384k60pbf58" path="res://scripts/story_label/story_label.gd" id="6_jhyoq"]
 [ext_resource type="Shader" uid="uid://8gx4orjm1s2c" path="res://assets/gfx/shader/tile_map_detail.gdshader" id="7_detail"]
 [ext_resource type="PackedScene" uid="uid://cqd2y2fili831" path="res://scripts/effects/water_splash/water_splash.tscn" id="10_4sn5h"]
 [ext_resource type="TileSet" uid="uid://cma1ae81b4xy4" path="res://assets/gfx/gfx_resources/grass.tres" id="11_jd8pu"]
 [ext_resource type="PackedScene" uid="uid://bi64ypvxstqp7" path="res://scripts/ghosts/ghost_box.tscn" id="11_u2ucc"]
+[ext_resource type="PackedScene" path="res://level_objects/spike_barricade/spike_barricade.tscn" id="test_0"]
+[ext_resource type="PackedScene" path="res://level_objects/barbed_wire/barbed_wire.tscn" id="test_1"]
+[ext_resource type="PackedScene" path="res://level_objects/road_barrier/road_barrier.tscn" id="test_2"]
+[ext_resource type="PackedScene" path="res://level_objects/falling_crate/falling_crate.tscn" id="test_3"]
+[ext_resource type="PackedScene" path="res://level_objects/falling_debris/falling_debris.tscn" id="test_4"]
+[ext_resource type="PackedScene" path="res://level_objects/river_boat/river_boat.tscn" id="test_6"]
+[ext_resource type="PackedScene" path="res://level_objects/market_crate/market_crate.tscn" id="test_8"]
+[ext_resource type="PackedScene" path="res://level_objects/moving_car/moving_car.tscn" id="test_9"]
+[ext_resource type="PackedScene" path="res://level_objects/rolling_cart/rolling_cart.tscn" id="test_10"]
+[ext_resource type="PackedScene" path="res://level_objects/floating_driftwood/floating_driftwood.tscn" id="test_11"]
+[ext_resource type="PackedScene" path="res://level_objects/rolling_cannonball/rolling_cannonball.tscn" id="test_cannonball"]
 
 [sub_resource type="Gradient" id="Gradient_jhyoq"]
 offsets = PackedFloat32Array(0.011976063, 1)
@@ -134,6 +145,56 @@ text = "Lorem ipsum dolor sit amet."
 autowrap_mode = 2
 script = ExtResource("6_jhyoq")
 metadata/_custom_type_script = "uid://ce384k60pbf58"
+
+[node name="FeatureShowcase" type="Node2D" parent="LevelObjects" parent_id_path=PackedInt32Array(949556748) index="2" unique_id=1136010645]
+
+[node name="Spikes" parent="LevelObjects/FeatureShowcase" index="0" unique_id=919337248 instance=ExtResource("test_0")]
+position = Vector2(240, -16)
+
+[node name="Wire" parent="LevelObjects/FeatureShowcase" index="1" unique_id=1044456194 instance=ExtResource("test_1")]
+position = Vector2(2140, -92)
+
+[node name="RoadBarrier" parent="LevelObjects/FeatureShowcase" index="2" unique_id=1652528031 instance=ExtResource("test_2")]
+position = Vector2(2320, -80)
+
+[node name="FallingCrate" parent="LevelObjects/FeatureShowcase" index="3" unique_id=80695714 instance=ExtResource("test_3")]
+position = Vector2(1220, -180)
+
+[node name="FallingDebris" parent="LevelObjects/FeatureShowcase" index="4" unique_id=210047748 instance=ExtResource("test_4")]
+position = Vector2(1700, -180)
+
+[node name="RiverBoat" parent="LevelObjects/FeatureShowcase" index="5" unique_id=2038679358 instance=ExtResource("test_6")]
+position = Vector2(2016, -72)
+travel_offset = Vector2(-160, 0)
+
+[node name="MarketCrate" parent="LevelObjects/FeatureShowcase" index="6" unique_id=1190404546 instance=ExtResource("test_8")]
+position = Vector2(2460, -16)
+
+[node name="MarketCrateTop" parent="LevelObjects/FeatureShowcase" index="7" unique_id=715375929 instance=ExtResource("test_8")]
+position = Vector2(2460, -48)
+
+[node name="MovingCar" parent="LevelObjects/FeatureShowcase" index="8" unique_id=148390526 instance=ExtResource("test_9")]
+position = Vector2(1696, -104)
+travel_offset = Vector2(-16, 0)
+
+[node name="RollingCart" parent="LevelObjects/FeatureShowcase" index="9" unique_id=1620663355 instance=ExtResource("test_10")]
+position = Vector2(2300, -88)
+
+[node name="Driftwood" parent="LevelObjects/FeatureShowcase" index="10" unique_id=326638341 instance=ExtResource("test_11")]
+position = Vector2(864, -8)
+travel_offset = Vector2(-64, 0)
+
+[node name="TestInstructions" type="Label" parent="LevelObjects/FeatureShowcase" index="11" unique_id=1233524931]
+offset_left = 96.0
+offset_top = -112.0
+offset_right = 440.0
+offset_bottom = -72.0
+theme_override_font_sizes/font_size = 14
+text = "Final-plan features: driftwood, boats, spikes.
+Crates shake before falling. Vehicle sides hurt."
+
+[node name="RollingCannonball" parent="LevelObjects/FeatureShowcase" index="12" unique_id=1364315020 instance=ExtResource("test_cannonball")]
+position = Vector2(400, -8)
 
 [node name="WaterLayer" type="CanvasGroup" parent="." index="4" unique_id=994649338]
 material = ExtResource("6_g3fjj")

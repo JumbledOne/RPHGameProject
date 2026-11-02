@@ -39,6 +39,8 @@ project/assembly_name="RPHGame"
 
 folder_colors={
 "res://assets/": "yellow",
+"res://entities/": "green",
+"res://level_objects/": "green",
 "res://scenes/": "teal"
 }
 

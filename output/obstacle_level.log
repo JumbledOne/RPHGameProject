@@ -1,0 +1,22 @@
+Godot Engine v4.7.stable.official.5b4e0cb0f - https://godotengine.org
+
+SCRIPT ERROR: Parse Error: Class "UrbanCharacter" must implement "PlayerClass.apply_to_player()" and other inherited abstract methods or be marked as "@abstract".
+   at: GDScript::reload (res://scripts/player_class/specific/urban_character.gd:1)
+SCRIPT ERROR: Compile Error: Failed to compile depended scripts.
+   at: GDScript::reload (res://scripts/globals/game_manager.gd:0)
+ERROR: Failed to load script "res://scripts/globals/game_manager.gd" with error "Compilation failed".
+   at: load (modules/gdscript/gdscript_resource_format.cpp:46)
+SCRIPT ERROR: Invalid call. Nonexistent function 'new' in base 'GDScript'.
+   at: @implicit_new (res://scripts/globals/game_manager.gd:9)
+   GDScript backtrace (most recent call first):
+       [0] @implicit_new (res://scripts/globals/game_manager.gd:9)
+ERROR: Failed to read the root certificate store.
+   at: get_system_ca_certificates (platform/windows/os_windows.cpp:2582)
+SCRIPT ERROR: Invalid call. Nonexistent function 'get_sprite_sheet' in base 'Nil'.
+   at: PlayerEntity._ready (res://entities/player/player.gd:15)
+   GDScript backtrace (most recent call first):
+       [0] _ready (res://entities/player/player.gd:15)
+WARNING: 2 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2535)
+ERROR: 1 resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:822)

@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://dyqbnaxeopk17"]
+
+[ext_resource type="Script" uid="uid://cbenqamentt44" path="res://entities/player/player.gd" id="1_kai5h"]
+[ext_resource type="PackedScene" uid="uid://dctwav0o0dy8r" path="res://scripts/character_model/character_model.tscn" id="2_so2s4"]
+[ext_resource type="Script" uid="uid://bgjaig2puxra0" path="res://entities/player/player_controller.gd" id="3_kai5h"]
+[ext_resource type="PackedScene" uid="uid://dwiill2noqt84" path="res://scripts/hurtbox/hurtbox.tscn" id="4_kai5h"]
+[ext_resource type="Script" uid="uid://coxtd6qm70b5g" path="res://scripts/water/classes/platformer_submersible.gd" id="5_subm"]
+
+[node name="Player" type="CharacterBody2D" unique_id=1043310607 groups=["player"]]
+script = ExtResource("1_kai5h")
+walk_speed = 250.0
+walk_time_to_full_speed = 0.2
+sprint_speed = 350.0
+sprint_time_to_full_speed = 0.5
+gravity = 1960.0
+
+[node name="PlayerModel" parent="." unique_id=566320765 instance=ExtResource("2_so2s4")]
+z_index = -1
+
+[node name="PlayerController" type="Node" parent="." unique_id=1864081540]
+script = ExtResource("3_kai5h")
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="." unique_id=42853671]
+position = Vector2(0, 3)
+polygon = PackedVector2Array(0, -27, 8, -19, 8, 29, -8, 29, -8, -19)
+
+[node name="Hurtbox" parent="." unique_id=1789929793 node_paths=PackedStringArray("owner_node") instance=ExtResource("4_kai5h")]
+visibility_layer = 2
+collision_layer = 2
+owner_node = NodePath("..")
+
+[node name="Submersible" type="Node" parent="." unique_id=162498102]
+script = ExtResource("5_subm")
