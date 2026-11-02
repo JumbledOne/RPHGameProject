@@ -6,8 +6,6 @@ extends Node2D
 @export var use_custom_bounds: bool = false
 @export var level_bounds := Vector2(0, 2560)
 @export var player_death_altitude: float = 128.0
-const PROJECTILE = preload("res://scripts/campaign/campaign_projectile.gd")
-const ATLAS = preload("res://assets/gfx/sprites/tilemap-updated.png")
 var objects: Node2D
 var elapsed := 0.0
 
@@ -46,27 +44,14 @@ func finish_level() -> bool:
 		LevelManager.game_end.call_deferred(LevelManager.GameEnd.WON)
 	return true
 
-func fire_projectile(at: Vector2, direction: float, kind: String, friendly: bool = false) -> Area2D:
-	var projectile := Area2D.new()
-	projectile.set_script(PROJECTILE)
-	projectile.friendly = friendly
-	projectile.projectile_kind = kind
-	projectile.velocity = Vector2(direction * (430 if friendly else 240), 0)
-	var sprite := Sprite2D.new()
-	if kind == "durian":
-		sprite.texture = preload("res://assets/gfx/sprites/durian.png")
-	elif kind == "american":
-		sprite.texture = preload("res://assets/gfx/sprites/books2.png")
-	elif kind == "japanese":
-		sprite.texture = preload("res://assets/gfx/campaign/sushi.svg")
-	else:
-		sprite.texture = ATLAS
-		sprite.region_enabled = true
-		sprite.region_rect = Rect2(104, 304, 16, 16)
-		if kind == "spanish":
-			sprite.modulate = Color(0.8, 0.35, 1.0)
-	projectile.sprite = sprite
-	projectile.add_child(sprite)
+func fire_projectile(projectile_scene: PackedScene, at: Vector2, direction: float, friendly: bool = false) -> CampaignProjectile:
+	if projectile_scene == null:
+		return null
+	var projectile := projectile_scene.instantiate() as CampaignProjectile
+	if projectile == null:
+		push_error("Projectile scene root must use CampaignProjectile or one of its subclasses.")
+		return null
+	projectile.setup(direction, friendly)
 	objects.add_child(projectile)
 	projectile.global_position = at
 	return projectile

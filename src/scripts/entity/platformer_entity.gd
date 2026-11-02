@@ -57,6 +57,7 @@ const MAX_TRACKED_TIME: float = 100
 
 signal jumped
 signal sprint_changed
+signal landed
 
 func _ready() -> void:
 	_walk_acceleration = walk_speed / walk_time_to_full_speed
@@ -108,6 +109,14 @@ func begin_jump():
 	# For jump buffering and for checking how long you've jumped
 	_last_jump_time = 0
 
+func force_jump() -> void:
+	_has_jumped = true
+	_midair_jumps_used = 0
+	_last_jump_time = 0.0
+	velocity.y = -jump_velocity * jump_factor
+	controller_gravity_factor = jump_gravity_factor
+	jumped.emit()
+
 func release_jump():
 	controller_gravity_factor = 1
 
@@ -122,6 +131,7 @@ func release_sprint():
 	
 # # # # # # # # # # # #
 func _landed_on_floor():
+	landed.emit()
 	_midair_jumps_used = 0
 	# Jump buffering
 	if _last_jump_time < jump_buffer:

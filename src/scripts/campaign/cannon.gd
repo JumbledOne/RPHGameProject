@@ -1,4 +1,5 @@
 extends Node2D
+@export var projectile_scene: PackedScene
 @export var fire_interval: float = 2.8
 @export var activation_range: float = 600.0
 @export_enum("Left:-1", "Right:1") var direction: int = -1
@@ -13,4 +14,4 @@ func _physics_process(delta: float) -> void:
 		clock = 0
 		var features := get_tree().get_first_node_in_group("level_features")
 		if features:
-			features.fire_projectile(global_position + Vector2(direction * 36, -10), direction, "cannon")
+			features.fire_projectile(projectile_scene, global_position + Vector2(direction * 36, -10), direction)

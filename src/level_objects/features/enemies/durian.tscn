@@ -1,5 +1,5 @@
 [gd_scene format=3]
-[ext_resource type="Script" path="res://scripts/campaign/campaign_enemy.gd" id="1"]
+[ext_resource type="Script" path="res://level_objects/features/enemies/durian_enemy.gd" id="1"]
 [ext_resource type="Texture2D" path="res://assets/gfx/sprites/durianevil.png" id="2"]
 [ext_resource type="PackedScene" path="res://scripts/health_display/health_display.tscn" id="health_display"]
 
@@ -7,7 +7,6 @@
 size = Vector2(24, 48)
 [node name="DurianEnemy" type="CharacterBody2D"]
 script = ExtResource("1")
-kind = "durian"
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -8)
 texture = ExtResource("2")

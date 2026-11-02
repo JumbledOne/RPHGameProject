@@ -10,6 +10,9 @@ var linked_entity: Entity
 func link_entity(entity: Entity):
 	if not entity:
 		return
+	if entity.max_health == 1:
+		queue_free()
+		return
 	if linked_entity:
 		linked_entity.healed.disconnect(_update_health_display)
 		linked_entity.damaged.disconnect(_update_health_display)

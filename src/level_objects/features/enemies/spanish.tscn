@@ -1,13 +1,15 @@
 [gd_scene format=3]
-[ext_resource type="Script" path="res://scripts/campaign/campaign_enemy.gd" id="1"]
+[ext_resource type="Script" path="res://level_objects/features/enemies/friar_enemy.gd" id="1"]
 [ext_resource type="Texture2D" path="res://assets/gfx/sprites/character_spritesheets/friarspanishenemy.png" id="2"]
 [ext_resource type="PackedScene" path="res://scripts/health_display/health_display.tscn" id="health_display"]
+[ext_resource type="PackedScene" path="res://level_objects/features/projectiles/blindness.tscn" id="projectile"]
 
 [sub_resource type="RectangleShape2D" id="Shape"]
 size = Vector2(24, 48)
 [node name="SpanishEnemy" type="CharacterBody2D"]
 script = ExtResource("1")
-kind = "spanish"
+projectile_scene = ExtResource("projectile")
+animation_row = 1
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -8)
 texture = ExtResource("2")

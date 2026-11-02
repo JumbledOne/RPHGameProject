@@ -1,11 +1,10 @@
 [gd_scene format=3]
-[ext_resource type="Script" path="res://scripts/campaign/campaign_pickup.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/campaign/durian_pickup.gd" id="1"]
 [ext_resource type="Texture2D" path="res://assets/gfx/sprites/durian.png" id="2"]
 [sub_resource type="CircleShape2D" id="Shape"]
 radius = 19.0
 [node name="DurianPickup" type="Area2D"]
 script = ExtResource("1")
-kind = "durian"
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2")
 
