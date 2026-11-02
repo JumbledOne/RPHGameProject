@@ -10,7 +10,6 @@ const PROJECTILE = preload("res://scripts/campaign/campaign_projectile.gd")
 const ATLAS = preload("res://assets/gfx/sprites/tilemap-updated.png")
 var objects: Node2D
 var elapsed := 0.0
-var blind_requested := false
 
 func _ready() -> void:
 	add_to_group("level_features")
@@ -37,7 +36,6 @@ func _prepare_playtest() -> void:
 func _physics_process(delta: float) -> void:
 	if LevelManager.game_started and not GameManager.is_paused:
 		elapsed += delta
-		blind_requested = false
 		if time_limit > 0 and elapsed >= time_limit and is_instance_valid(GameManager.player):
 			GameManager.player.die()
 
@@ -52,6 +50,7 @@ func fire_projectile(at: Vector2, direction: float, kind: String, friendly: bool
 	var projectile := Area2D.new()
 	projectile.set_script(PROJECTILE)
 	projectile.friendly = friendly
+	projectile.projectile_kind = kind
 	projectile.velocity = Vector2(direction * (430 if friendly else 240), 0)
 	var sprite := Sprite2D.new()
 	if kind == "durian":
@@ -64,6 +63,8 @@ func fire_projectile(at: Vector2, direction: float, kind: String, friendly: bool
 		sprite.texture = ATLAS
 		sprite.region_enabled = true
 		sprite.region_rect = Rect2(104, 304, 16, 16)
+		if kind == "spanish":
+			sprite.modulate = Color(0.8, 0.35, 1.0)
 	projectile.sprite = sprite
 	projectile.add_child(sprite)
 	objects.add_child(projectile)

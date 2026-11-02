@@ -1,5 +1,6 @@
 extends Area2D
 @export_enum("cacao", "durian", "eagle") var kind := "cacao"
+const EAGLE_EFFECT = preload("res://status_effects/eagle.gd")
 var taken := false
 var age := 0.0
 var sprite: Sprite2D
@@ -33,7 +34,7 @@ func _collect(body: Node2D) -> void:
 	match kind:
 		"cacao": LevelManager.collect()
 		"durian": body.durians += 1
-		"eagle": body.eagle_charges += 1
+		"eagle": body.add_status_effect(EAGLE_EFFECT.new())
 	var sound := AudioStreamPlayer.new()
 	sound.volume_db = -12
 	get_parent().add_child(sound)

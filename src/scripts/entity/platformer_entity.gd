@@ -65,6 +65,7 @@ func _ready() -> void:
 # # # # # # # # # # # #
 # Movement
 func _physics_process(delta: float) -> void:
+	super._physics_process(delta)
 	# Track time
 	if _last_jump_time < MAX_TRACKED_TIME:
 		_last_jump_time += delta

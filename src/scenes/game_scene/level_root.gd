@@ -1,6 +1,7 @@
 extends Node2D
 
 func _ready() -> void:
+	add_to_group("level_root")
 	LevelManager.game_started_event.connect(_on_game_started)
 	LevelManager.game_ended.connect(_on_game_ended)
 	GameManager.pause_toggled.connect(_on_pause_toggled)
@@ -29,3 +30,6 @@ func _clear_children():
 	for e in get_children():
 		remove_child(e)
 		e.queue_free()
+
+func clear_level() -> void:
+	_clear_children()

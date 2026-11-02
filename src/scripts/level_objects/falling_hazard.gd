@@ -38,6 +38,7 @@ func _physics_process(delta: float) -> void:
 					_ground_cast.add_exception(player)
 					state = State.WARNING
 					_timer = warning_time
+					InterfaceManager.camera_shake_requested.emit(0.5)
 					triggered.emit()
 					break
 		State.WARNING:

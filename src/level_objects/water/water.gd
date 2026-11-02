@@ -1,13 +1,15 @@
-extends Panel
+@tool
+extends "res://scripts/misc/level_extender.gd"
 
 const WATER_STYLE: StyleBox = preload("res://assets/gfx/gfx_resources/stylebox/water_gradient.tres")
-const WATER_SPLASH: PackedScene = preload("res://scripts/effects/water_splash/water_splash.tscn")
+const WATER_SPLASH: PackedScene = preload("res://effects/water_splash/water_splash.tscn")
 const TOP_MARGIN: float = 16.0
 
 @onready var water_area: Area2D = $Area2D
 @onready var collision_shape: CollisionShape2D = $Area2D/CollisionShape2D
 
 func _ready() -> void:
+	super()
 	add_theme_stylebox_override("panel", WATER_STYLE)
 	collision_shape.shape = collision_shape.shape.duplicate()
 	_update_collision_shape()

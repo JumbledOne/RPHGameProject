@@ -1,13 +1,61 @@
-[gd_scene format=4 uid="uid://bxpn666gd3hm3"]
+[gd_scene format=3 uid="uid://bxpn666gd3hm3"]
 
-[ext_resource type="PackedScene" path="res://scenes/base_level/base_level.tscn" id="base_level"]
-[ext_resource type="Texture2D" path="res://assets/gfx/sprites/stage2_spanish_expedition_640x360.png" id="background"]
-[ext_resource type="PackedScene" path="res://level_objects/level_end/level_end.tscn" id="level_end"]
+[ext_resource type="PackedScene" uid="uid://d3sq81x0hgxf0" path="res://scenes/base_level/base_level.tscn" id="base_level"]
+[ext_resource type="PackedScene" uid="uid://dbnw6oy0ghfh2" path="res://level_objects/level_end/level_end.tscn" id="level_end"]
+[ext_resource type="Texture2D" path="res://assets/gfx/sprites/stage2_spanish_expedition_640x360.png" id="era_texture"]
 
-[node name="Level2" instance=ExtResource("base_level")]
+
+
+[ext_resource type="PackedScene" path="res://level_objects/features/pickups/cacao.tscn" id="element_0"]
+[ext_resource type="PackedScene" path="res://level_objects/features/pickups/durian.tscn" id="element_1"]
+[ext_resource type="PackedScene" path="res://level_objects/features/pickups/eagle.tscn" id="element_2"]
+[ext_resource type="PackedScene" path="res://level_objects/features/enemies/cacao.tscn" id="element_3"]
+[ext_resource type="PackedScene" path="res://level_objects/features/enemies/durian.tscn" id="element_4"]
+[ext_resource type="PackedScene" path="res://level_objects/spike_barricade/spike_barricade.tscn" id="element_5"]
+[ext_resource type="PackedScene" path="res://level_objects/rolling_cannonball/rolling_cannonball.tscn" id="element_6"]
+[ext_resource type="PackedScene" path="res://level_objects/features/cannon.tscn" id="element_7"]
+[ext_resource type="PackedScene" path="res://level_objects/river_boat/river_boat.tscn" id="element_8"]
+[ext_resource type="PackedScene" path="res://level_objects/features/enemies/spanish.tscn" id="element_9"]
+
+[node name="Level2" unique_id=1102004995 instance=ExtResource("base_level")]
 
 [node name="Sprite2D" parent="Background" index="0"]
-texture = ExtResource("background")
+texture = ExtResource("era_texture")
 
-[node name="LevelEnd" parent="LevelObjects" index="1" instance=ExtResource("level_end")]
+[node name="Fog" parent="BackgroundEffects" parent_id_path=PackedInt32Array(1973781473) index="1" unique_id=322353296]
+visible = true
+
+[node name="LevelEnd" parent="LevelObjects" parent_id_path=PackedInt32Array(949556748) index="1" unique_id=1887794136 instance=ExtResource("level_end")]
 position = Vector2(2496, 0)
+
+[node name="Cacao" parent="LevelObjects" instance=ExtResource("element_0")]
+position = Vector2(240, -64)
+
+[node name="DurianPickup" parent="LevelObjects" instance=ExtResource("element_1")]
+position = Vector2(352, -36)
+
+[node name="EaglePickup" parent="LevelObjects" instance=ExtResource("element_2")]
+position = Vector2(448, -96)
+
+[node name="RottenCacao" parent="LevelObjects" instance=ExtResource("element_3")]
+position = Vector2(1088, -24)
+
+[node name="EvilDurian" parent="LevelObjects" instance=ExtResource("element_4")]
+position = Vector2(1376, -24)
+
+[node name="SpikeBarricade" parent="LevelObjects" instance=ExtResource("element_5")]
+position = Vector2(576, -16)
+
+[node name="RollingCannonball" parent="LevelObjects" instance=ExtResource("element_6")]
+position = Vector2(736, -8)
+
+[node name="Cannon" parent="LevelObjects" instance=ExtResource("element_7")]
+position = Vector2(896, -20)
+
+[node name="RiverBoat" parent="LevelObjects" instance=ExtResource("element_8")]
+position = Vector2(1728, -8)
+travel_offset = Vector2(128, 0)
+
+[node name="SpanishColonizer" parent="LevelObjects" instance=ExtResource("element_9")]
+position = Vector2(2112, -24)
+boss = true

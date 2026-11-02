@@ -12,14 +12,21 @@ extends Camera2D
 var left_boundary: float = -INF
 var right_boundary: float = INF
 
+# Target and movement
 var target: Node2D
 var desired_pos: Vector2
+
+# Shake
+var shake: float = 0
+const SHAKE_DECAY: float = 1
+const MAX_SHAKE: float = 1
 
 # These variables are constants so that it is consistent for any level
 const CAMERA_Y: float = -148.0 # Tuned such that you can see exactly one tile below the x-axis
 const CAMERA_ZOOM: float = 1.0
 
 func _ready() -> void:
+	InterfaceManager.camera_shake_requested.connect(_on_camera_shake_requested)
 	# Define level bounds
 	var half_screen_width: float = GameManager.SCREEN_SIZE.x / 2
 	left_boundary = LevelManager.level_left_boundary + half_screen_width 
@@ -34,13 +41,23 @@ func _ready() -> void:
 	if GameManager.player:
 		_on_player_set()
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if not target:
 		return
 	_update_desired_position()
 	# Move toward the desired position.
 	position.x = floor(lerp(position.x, desired_pos.x, lerp_amount))
+	# Shake
+	if shake > 0.1:
+		var shake_offset: Vector2 = Vector2(randf_range(-shake, shake), randf_range(-shake, shake))
+		offset = lerp(offset, shake_offset, 0.1)
+		shake = move_toward(shake, 0.0, SHAKE_DECAY * delta)
+	else:
+		shake = 0.0
+		offset = Vector2.ZERO
 
+func _on_camera_shake_requested(amount: float) -> void:
+	shake = clampf(maxf(shake, amount), 0.0, MAX_SHAKE)
 
 func _update_desired_position() -> void:
 	var x_diff: float = target.global_position.x - global_position.x

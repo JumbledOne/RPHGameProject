@@ -30,6 +30,7 @@ func _process(delta: float) -> void:
 	behaviorManager.attack_Component.tick(self, delta)
 
 func _physics_process(delta: float) -> void:
+	super._physics_process(delta)
 	
 	if !behaviorManager.movement_Component:
 		return

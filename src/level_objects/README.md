@@ -1,6 +1,6 @@
 # Level objects
 
-The five reusable base scripts live in `scripts/level_objects/`. Each concrete implementation has its own folder and scene in `level_objects/`. Generic demonstration scenes have been removed. Concrete scenes use native pixel sizes from the existing sprite atlas and bamboo texture, with no sprite or instance scaling. Driftwood uses atlas tile (1, 11), beside the water textures, and the same 32 by 8 collision strip as that tile. Only concrete final-plan instances are grouped under `LevelObjects/FeatureShowcase` in `scenes/levels/level_1.tscn`; run that scene with F6.
+The five reusable base scripts live in `scripts/level_objects/`. Each concrete implementation has its own folder and scene in `level_objects/`. Generic demonstration scenes have been removed. Concrete scenes use native pixel sizes from the existing sprite atlas and bamboo texture, with no sprite or instance scaling. Driftwood uses atlas tile (1, 11), beside the water textures, and the same 32 by 8 collision strip as that tile. Copyable final-plan instances are placed directly under `LevelObjects` in each matching era scene (`scenes/levels/level_1.tscn` through `level_5.tscn`). There is no mixed feature showcase. Common pickups and cacao/durian enemies are present in all five levels.
 
 | Class | Behavior | Final-plan implementations |
 | --- | --- | --- |
@@ -23,3 +23,5 @@ Physics regression checks:
 ```text
 godot --headless --path src --script res://tests/level_objects_test.gd
 ```
+
+Fog and level-wide water use `scripts/misc/level_extender.gd`, which fits a Control to the used horizontal bounds of the level TileMapLayer while preserving its vertical position and height. It updates in the editor and at runtime. Water inherits the extender and keeps its existing swim/splash logic; set `extend_to_tilemap` off for a local pool.

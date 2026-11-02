@@ -5,9 +5,11 @@ Scope: reusable gameplay features and graphics only. Level layout, terrain,
 obstacle placement, encounter placement, pacing and balancing are left to you.
 The temporary generated courses, their screenshots and traversal tests were
 removed. The current level_1 is the former level_1_b; the previous level_1 is level_1_old.
-Levels 2-5 are clean BaseLevel-inherited authoring templates, with era backgrounds
-and a level-end object under LevelObjects. Their old drafts, including broken tile
-references, are preserved under doc/level_drafts. Terrain is left for your design.
+All five active levels inherit a floor from BaseLevel (level one also retains its
+existing terrain). Era backgrounds are restored. Relevant copyable obstacle, enemy
+and pickup instances sit directly under LevelObjects in each matching era. The
+mixed FeatureShowcase is removed. Level-end objects are retained. Their old drafts, including broken tile
+references, are preserved under doc/level_drafts. Terrain refinement and duplication/placement of further instances are left to you.
 
 GETTING STARTED
 Use the existing base_level.tscn as your level foundation. Its root now inherits
@@ -67,8 +69,8 @@ disappear/clear for one second. Japanese/American enemies fire sushi/books in
 three-second bursts with two-second rests. All enemy defaults are three hearts.
 Pickups bob, eagle sprites flap, enemy poses cycle, falling objects shake before
 dropping/resetting, and platforms/vehicles move using the existing physics scripts.
-The original gameplay HUD and pause/settings UI are restored. The new win/loss
-end screen is retained, including retry and menu flow. The timer reads the shared
+The original gameplay HUD and pause/settings UI are restored. The win/loss screen is stored directly inside GameUi and uses the default project
+theme, including its labels, buttons and panel. Retry and menu flow are retained. The timer reads the shared
 level clock without running a second independent countdown. Removed the duplicate transition controller
 on the vignette; repaired moved ability references and repeated death emission.
 Controls: A/D move, Space or J jump, Shift run, E throw, Q heal, R eagle, Esc pause.
@@ -107,3 +109,18 @@ ARCHITECTURE ISSUES FOR A LATER PASS
   these while authoring, but a dedicated level configuration resource would help.
 - ScenePlacer holds mutable references to the current level's effect containers.
   Multiple simultaneous levels would require per-level ownership instead.
+
+LEVEL WIDTH HELPER
+scripts/misc/level_extender.gd extends a Control to the full used width of its
+target TileMapLayer, updating in the editor and at runtime. It preserves height
+and vertical position, supports margins and handles negative/translated cells.
+Fog uses it directly; water inherits it and resizes its swimming collision area.
+Disable Extend To Tilemap for a local water pool. The focused extender checks,
+level/UI integration checks, feature checks and obstacle regression suite pass.
+
+WATER AND HEALTH DISPLAY UPDATE
+Level 1 retains its original pre-floor tilemap. BaseLevel owns WaterLayer, a
+CanvasGroup using assets/gfx/gfx_resources/material/water.tres, and the width-fitted
+Water beneath it. All levels inherit this same water setup. Fog uses level_extender;
+SimpleFog has no extender. Enemy scenes use the shared scripts/health_display
+heart display, with no numeric health, name, boss or poison-countdown labels.

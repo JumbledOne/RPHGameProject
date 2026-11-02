@@ -1,27 +1,18 @@
-[gd_scene format=4 uid="uid://cfgq02n1os438"]
+[gd_scene format=4 uid="uid://n6i744nn7cru"]
 
 [ext_resource type="PackedScene" uid="uid://d3sq81x0hgxf0" path="res://scenes/base_level/base_level.tscn" id="1_xf5vy"]
-[ext_resource type="PackedScene" uid="uid://clvr5icyyjm0y" path="res://level_objects/water/water.tscn" id="2_4vgtt"]
 [ext_resource type="Material" uid="uid://boplvpi6xqu2q" path="res://assets/gfx/gfx_resources/material/swaying_plant.tres" id="2_u2ucc"]
 [ext_resource type="Texture2D" uid="uid://bfkkotyt8lldh" path="res://assets/gfx/sprites/non_pixel_art/tree_leaves.png" id="3_58uhv"]
 [ext_resource type="PackedScene" uid="uid://dbnw6oy0ghfh2" path="res://level_objects/level_end/level_end.tscn" id="5_ccldl"]
-[ext_resource type="Material" uid="uid://dwgfy1uc1toxq" path="res://assets/gfx/gfx_resources/material/water.tres" id="6_g3fjj"]
-[ext_resource type="Script" uid="uid://ce384k60pbf58" path="res://scripts/story_label/story_label.gd" id="6_jhyoq"]
 [ext_resource type="Shader" uid="uid://8gx4orjm1s2c" path="res://assets/gfx/shader/tile_map_detail.gdshader" id="7_detail"]
-[ext_resource type="PackedScene" uid="uid://cqd2y2fili831" path="res://scripts/effects/water_splash/water_splash.tscn" id="10_4sn5h"]
 [ext_resource type="TileSet" uid="uid://cma1ae81b4xy4" path="res://assets/gfx/gfx_resources/grass.tres" id="11_jd8pu"]
 [ext_resource type="PackedScene" uid="uid://bi64ypvxstqp7" path="res://scripts/ghosts/ghost_box.tscn" id="11_u2ucc"]
-[ext_resource type="PackedScene" path="res://level_objects/spike_barricade/spike_barricade.tscn" id="test_0"]
-[ext_resource type="PackedScene" path="res://level_objects/barbed_wire/barbed_wire.tscn" id="test_1"]
-[ext_resource type="PackedScene" path="res://level_objects/road_barrier/road_barrier.tscn" id="test_2"]
-[ext_resource type="PackedScene" path="res://level_objects/falling_crate/falling_crate.tscn" id="test_3"]
-[ext_resource type="PackedScene" path="res://level_objects/falling_debris/falling_debris.tscn" id="test_4"]
-[ext_resource type="PackedScene" path="res://level_objects/river_boat/river_boat.tscn" id="test_6"]
-[ext_resource type="PackedScene" path="res://level_objects/market_crate/market_crate.tscn" id="test_8"]
-[ext_resource type="PackedScene" path="res://level_objects/moving_car/moving_car.tscn" id="test_9"]
-[ext_resource type="PackedScene" path="res://level_objects/rolling_cart/rolling_cart.tscn" id="test_10"]
-[ext_resource type="PackedScene" path="res://level_objects/floating_driftwood/floating_driftwood.tscn" id="test_11"]
-[ext_resource type="PackedScene" path="res://level_objects/rolling_cannonball/rolling_cannonball.tscn" id="test_cannonball"]
+[ext_resource type="PackedScene" path="res://level_objects/features/pickups/cacao.tscn" id="element_0"]
+[ext_resource type="PackedScene" path="res://level_objects/features/pickups/durian.tscn" id="element_1"]
+[ext_resource type="PackedScene" path="res://level_objects/features/pickups/eagle.tscn" id="element_2"]
+[ext_resource type="PackedScene" path="res://level_objects/features/enemies/cacao.tscn" id="element_3"]
+[ext_resource type="PackedScene" path="res://level_objects/features/enemies/durian.tscn" id="element_4"]
+[ext_resource type="PackedScene" path="res://level_objects/floating_driftwood/floating_driftwood.tscn" id="element_5"]
 
 [sub_resource type="Gradient" id="Gradient_jhyoq"]
 offsets = PackedFloat32Array(0.011976063, 1)
@@ -54,9 +45,6 @@ shader_parameter/max_height = -24.0
 shader_parameter/darken_strength = 0.5
 
 [node name="Level1" unique_id=154879563 instance=ExtResource("1_xf5vy")]
-
-[node name="Background" parent="." index="0" unique_id=1712092851]
-scroll_offset = Vector2(0, 16)
 
 [node name="BackgroundEffects" parent="." index="1" unique_id=1973781473]
 scroll_scale = Vector2(0.9, 1)
@@ -119,11 +107,15 @@ scale = Vector2(1.0612602, 1.0612603)
 texture = ExtResource("3_58uhv")
 
 [node name="SimpleFog" type="TextureRect" parent="BackgroundEffects" index="1" unique_id=1569075844]
+visible = false
 offset_left = -253.0
 offset_top = -610.0
 offset_right = 5446.0
 offset_bottom = 95.0
 texture = SubResource("GradientTexture2D_bi47q")
+
+[node name="Fog" parent="BackgroundEffects" index="2" unique_id=322353296]
+visible = true
 
 [node name="LevelEnd" parent="BackgroundEffects" index="3" unique_id=566619678 instance=ExtResource("5_ccldl")]
 position = Vector2(2496, 0)
@@ -135,81 +127,27 @@ tile_map_data = PackedByteArray("AAACAAIAAAABAAYAAAACAAEAAAABAAUAAAACAAAAAAABAAQ
 [node name="Items" parent="LevelObjects" parent_id_path=PackedInt32Array(949556748) index="0" unique_id=933369512]
 tile_map_data = PackedByteArray("AAA5APv/AAAAAAAAAQA6APr/AAAAAAAAAQA7APr/AAAAAAAAAQA9APn/AAAAAAAAAQA8APn/AAAAAAAAAQA+APr/AAAAAAAAAQA/APr/AAAAAAAAAQBAAPv/AAAAAAAAAQAkAPn/AAAAAAAAAQAnAPn/AAAAAAAAAQApAPn/AAAAAAAAAQAsAPn/AAAAAAAAAQAlAPj/AAAAAAAAAQAmAPj/AAAAAAAAAQArAPj/AAAAAAAAAQAqAPj/AAAAAAAAAQA=")
 
-[node name="StoryLabel" type="Label" parent="LevelObjects" parent_id_path=PackedInt32Array(949556748) index="1" unique_id=1127940979]
-offset_left = 193.0
-offset_top = -257.0
-offset_right = 617.0
-offset_bottom = -218.0
-theme_override_font_sizes/font_size = 24
-text = "Lorem ipsum dolor sit amet."
-autowrap_mode = 2
-script = ExtResource("6_jhyoq")
-metadata/_custom_type_script = "uid://ce384k60pbf58"
+[node name="Cacao" parent="LevelObjects" parent_id_path=PackedInt32Array(949556748) index="1" unique_id=1938525765 instance=ExtResource("element_0")]
+position = Vector2(240, -64)
 
-[node name="FeatureShowcase" type="Node2D" parent="LevelObjects" parent_id_path=PackedInt32Array(949556748) index="2" unique_id=1136010645]
+[node name="DurianPickup" parent="LevelObjects" parent_id_path=PackedInt32Array(949556748) index="2" unique_id=394892603 instance=ExtResource("element_1")]
+position = Vector2(352, -36)
 
-[node name="Spikes" parent="LevelObjects/FeatureShowcase" index="0" unique_id=919337248 instance=ExtResource("test_0")]
-position = Vector2(240, -16)
+[node name="EaglePickup" parent="LevelObjects" parent_id_path=PackedInt32Array(949556748) index="3" unique_id=377879152 instance=ExtResource("element_2")]
+position = Vector2(448, -96)
 
-[node name="Wire" parent="LevelObjects/FeatureShowcase" index="1" unique_id=1044456194 instance=ExtResource("test_1")]
-position = Vector2(2140, -92)
+[node name="RottenCacao" parent="LevelObjects" parent_id_path=PackedInt32Array(949556748) index="4" unique_id=571918348 instance=ExtResource("element_3")]
+position = Vector2(1200, -24)
 
-[node name="RoadBarrier" parent="LevelObjects/FeatureShowcase" index="2" unique_id=1652528031 instance=ExtResource("test_2")]
-position = Vector2(2320, -80)
+[node name="EvilDurian" parent="LevelObjects" parent_id_path=PackedInt32Array(949556748) index="5" unique_id=732284067 instance=ExtResource("element_4")]
+position = Vector2(1376, -24)
+boss = true
 
-[node name="FallingCrate" parent="LevelObjects/FeatureShowcase" index="3" unique_id=80695714 instance=ExtResource("test_3")]
-position = Vector2(1220, -180)
+[node name="FloatingDriftwood" parent="LevelObjects" parent_id_path=PackedInt32Array(949556748) index="6" unique_id=1402510665 instance=ExtResource("element_5")]
+position = Vector2(704, -16)
+travel_offset = Vector2(-96, 0)
 
-[node name="FallingDebris" parent="LevelObjects/FeatureShowcase" index="4" unique_id=210047748 instance=ExtResource("test_4")]
-position = Vector2(1700, -180)
-
-[node name="RiverBoat" parent="LevelObjects/FeatureShowcase" index="5" unique_id=2038679358 instance=ExtResource("test_6")]
-position = Vector2(2016, -72)
-travel_offset = Vector2(-160, 0)
-
-[node name="MarketCrate" parent="LevelObjects/FeatureShowcase" index="6" unique_id=1190404546 instance=ExtResource("test_8")]
-position = Vector2(2460, -16)
-
-[node name="MarketCrateTop" parent="LevelObjects/FeatureShowcase" index="7" unique_id=715375929 instance=ExtResource("test_8")]
-position = Vector2(2460, -48)
-
-[node name="MovingCar" parent="LevelObjects/FeatureShowcase" index="8" unique_id=148390526 instance=ExtResource("test_9")]
-position = Vector2(1696, -104)
-travel_offset = Vector2(-16, 0)
-
-[node name="RollingCart" parent="LevelObjects/FeatureShowcase" index="9" unique_id=1620663355 instance=ExtResource("test_10")]
-position = Vector2(2300, -88)
-
-[node name="Driftwood" parent="LevelObjects/FeatureShowcase" index="10" unique_id=326638341 instance=ExtResource("test_11")]
-position = Vector2(864, -8)
-travel_offset = Vector2(-64, 0)
-
-[node name="TestInstructions" type="Label" parent="LevelObjects/FeatureShowcase" index="11" unique_id=1233524931]
-offset_left = 96.0
-offset_top = -112.0
-offset_right = 440.0
-offset_bottom = -72.0
-theme_override_font_sizes/font_size = 14
-text = "Final-plan features: driftwood, boats, spikes.
-Crates shake before falling. Vehicle sides hurt."
-
-[node name="RollingCannonball" parent="LevelObjects/FeatureShowcase" index="12" unique_id=1364315020 instance=ExtResource("test_cannonball")]
-position = Vector2(400, -8)
-
-[node name="WaterLayer" type="CanvasGroup" parent="." index="4" unique_id=994649338]
-material = ExtResource("6_g3fjj")
-position = Vector2(0, -16)
-
-[node name="Water" parent="WaterLayer" index="0" unique_id=662158307 instance=ExtResource("2_4vgtt")]
-offset_left = -96.0
-offset_top = 24.0
-offset_right = 3960.0
-offset_bottom = 116.0
-
-[node name="WaterSplash" parent="WaterLayer" index="1" unique_id=705024208 instance=ExtResource("10_4sn5h")]
-position = Vector2(1463, 40)
-
-[node name="FrontPixelLayer" parent="." index="5" unique_id=921904768]
+[node name="FrontPixelLayer" parent="." index="4" unique_id=921904768]
 z_index = 0
 
 [node name="Grass" type="TileMapLayer" parent="FrontPixelLayer" index="0" unique_id=1619933475]
@@ -218,7 +156,7 @@ material = ExtResource("2_u2ucc")
 tile_map_data = PackedByteArray("AAD/////AAAAAAAAAAAAAP//AAAAAAAAAAABAP//AAACAAAAAAACAP//AAADAAAAAAACAAAAAAAAAAAAAAADAP//AAADAAAAAAD+////AAAAAAAAAAD9////AAAAAAAAAAAEAP//AAADAAAAAAAFAP//AAABAAAAAAAGAP//AAABAAAAAAAHAP//AAACAAAAAAAJAP//AAADAAAAAAAIAP//AAAAAAAAAAAKAP//AAAAAAAAAAALAP//AAADAAAAAAAMAP//AAADAAAAAAANAP//AAACAAAAAAAQAP//AAABAAAAAAARAP//AAABAAAAAAASAP//AAACAAAAAAATAP//AAABAAAAAAAPAP3/AAADAAAAAAAOAP3/AAAAAAAAAAAUAP3/AAACAAAAAAAVAP3/AAACAAAAAAAWAP3/AAAAAAAAAAAXAP3/AAAAAAAAAAA=")
 tile_set = ExtResource("11_jd8pu")
 
-[node name="GhostBox" parent="." index="8" unique_id=277277652 instance=ExtResource("11_u2ucc")]
+[node name="GhostBox" parent="." index="7" unique_id=277277652 instance=ExtResource("11_u2ucc")]
 offset_left = 221.0
 offset_top = -244.0
 offset_right = 432.0

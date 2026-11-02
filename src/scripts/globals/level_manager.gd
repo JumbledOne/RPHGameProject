@@ -105,6 +105,9 @@ func return_to_main_menu() -> void:
 	preview_scene_path = ""
 	get_tree().paused = false
 	game_end()
+	var level_root := get_tree().get_first_node_in_group("level_root")
+	if is_instance_valid(level_root):
+		level_root.clear_level()
 	Audio.reset_music()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	InterfaceManager.open_ui("MainMenu")

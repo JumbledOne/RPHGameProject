@@ -3,11 +3,62 @@
 [ext_resource type="PackedScene" path="res://scenes/base_level/base_level.tscn" id="base_level"]
 [ext_resource type="Texture2D" path="res://assets/gfx/sprites/stage5_changing_davao_640x360.png" id="background"]
 [ext_resource type="PackedScene" path="res://level_objects/level_end/level_end.tscn" id="level_end"]
+[ext_resource type="Texture2D" path="res://assets/gfx/sprites/stage5_changing_davao_640x360.png" id="era_texture"]
+
+
+
+[ext_resource type="PackedScene" path="res://level_objects/features/pickups/cacao.tscn" id="element_0"]
+[ext_resource type="PackedScene" path="res://level_objects/features/pickups/durian.tscn" id="element_1"]
+[ext_resource type="PackedScene" path="res://level_objects/features/pickups/eagle.tscn" id="element_2"]
+[ext_resource type="PackedScene" path="res://level_objects/features/enemies/cacao.tscn" id="element_3"]
+[ext_resource type="PackedScene" path="res://level_objects/features/enemies/durian.tscn" id="element_4"]
+[ext_resource type="PackedScene" path="res://level_objects/road_barrier/road_barrier.tscn" id="element_5"]
+[ext_resource type="PackedScene" path="res://level_objects/moving_car/moving_car.tscn" id="element_6"]
+[ext_resource type="PackedScene" path="res://level_objects/rolling_fruit_cart/rolling_fruit_cart.tscn" id="element_7"]
+[ext_resource type="PackedScene" path="res://level_objects/falling_debris/falling_debris.tscn" id="element_8"]
+[ext_resource type="PackedScene" path="res://level_objects/market_crate/market_crate.tscn" id="element_9"]
+[ext_resource type="PackedScene" path="res://level_objects/market_crate/market_crate.tscn" id="element_10"]
 
 [node name="Level5" instance=ExtResource("base_level")]
 
 [node name="Sprite2D" parent="Background" index="0"]
-texture = ExtResource("background")
+texture = ExtResource("era_texture")
 
 [node name="LevelEnd" parent="LevelObjects" index="1" instance=ExtResource("level_end")]
 position = Vector2(2496, 0)
+
+[node name="Cacao" parent="LevelObjects" instance=ExtResource("element_0")]
+position = Vector2(240, -64)
+
+[node name="DurianPickup" parent="LevelObjects" instance=ExtResource("element_1")]
+position = Vector2(352, -36)
+
+[node name="EaglePickup" parent="LevelObjects" instance=ExtResource("element_2")]
+position = Vector2(448, -96)
+
+[node name="RottenCacao" parent="LevelObjects" instance=ExtResource("element_3")]
+position = Vector2(1088, -24)
+
+[node name="EvilDurian" parent="LevelObjects" instance=ExtResource("element_4")]
+position = Vector2(1376, -24)
+boss = true
+
+[node name="RoadBarrier" parent="LevelObjects" instance=ExtResource("element_5")]
+position = Vector2(576, -16)
+
+[node name="MovingCar" parent="LevelObjects" instance=ExtResource("element_6")]
+position = Vector2(1792, -40)
+side_damage = 3
+travel_offset = Vector2(-192, 0)
+
+[node name="FruitCart" parent="LevelObjects" instance=ExtResource("element_7")]
+position = Vector2(832, -24)
+
+[node name="ConstructionDebris" parent="LevelObjects" instance=ExtResource("element_8")]
+position = Vector2(960, -192)
+
+[node name="MarketCrate" parent="LevelObjects" instance=ExtResource("element_9")]
+position = Vector2(2016, -16)
+
+[node name="MarketCrateTop" parent="LevelObjects" instance=ExtResource("element_10")]
+position = Vector2(2016, -48)

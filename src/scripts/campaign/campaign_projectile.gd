@@ -2,6 +2,7 @@ extends Area2D
 ## Short-lived projectiles belong to the level so retries remove them atomically.
 var velocity := Vector2.ZERO
 var friendly := false
+var projectile_kind := ""
 var lifetime := 3.0
 var age := 0.0
 var spent := false
@@ -52,6 +53,8 @@ func _hit(body: Node2D) -> void:
 	else:
 		if body.is_in_group("player"):
 			body.hurt(1)
+			if projectile_kind == "spanish":
+				body.add_status_effect(BlindnessEffect.new())
 	velocity = Vector2.ZERO
 	if sprite:
 		var tween := create_tween()

@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cxmhprpifp5t1" path="res://assets/gfx/sprites/cacao beans-sheet-sheet.png" id="1_8p81m"]
 [ext_resource type="Script" uid="uid://1pk11kteianf" path="res://level_objects/collectible/collectible.gd" id="2_collectible"]
-[ext_resource type="PackedScene" uid="uid://csdfcmufmt5lc" path="res://scripts/effects/eat/eat.tscn" id="3_eat"]
+[ext_resource type="PackedScene" uid="uid://csdfcmufmt5lc" path="res://effects/eat/eat.tscn" id="3_eat"]
 [ext_resource type="Script" uid="uid://cwyfyio0617oh" path="res://scripts/audio/combined_audio/combined_audio_player_2d.gd" id="4_audio_player"]
 [ext_resource type="Resource" uid="uid://cgwv6so1j8dtn" path="res://assets/audio/audio_resources/coin_effects.tres" id="5_coin_audio"]
 

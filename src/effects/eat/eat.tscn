@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://csdfcmufmt5lc"]
 
 [ext_resource type="Texture2D" uid="uid://cxmhprpifp5t1" path="res://assets/gfx/sprites/cacao beans-sheet-sheet.png" id="1_gt5qq"]
-[ext_resource type="Script" uid="uid://cx58ypx01kl3m" path="res://scripts/effects/eat/particle_play_once.gd" id="1_particle"]
+[ext_resource type="Script" uid="uid://cx58ypx01kl3m" path="res://effects/eat/particle_play_once.gd" id="1_particle"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jhyoq"]
 atlas = ExtResource("1_gt5qq")

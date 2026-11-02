@@ -1,13 +1,24 @@
 [gd_scene format=3 uid="uid://vmsxvdlgsokl"]
 
 [ext_resource type="Texture2D" uid="uid://cxmhprpifp5t1" path="res://assets/gfx/sprites/cacao beans-sheet-sheet.png" id="1_sq0em"]
+[ext_resource type="Script" uid="uid://bitjg173yov6h" path="res://scenes/game_ui/status_effect_displays.gd" id="2_e13be"]
 [ext_resource type="Script" uid="uid://23k3f2pqs75i" path="res://scenes/game_ui/collectible_tracker.gd" id="2_tracker"]
 [ext_resource type="PackedScene" uid="uid://c0egfji2ftdn3" path="res://scenes/game_ui/escape_menu/escape_menu.tscn" id="3_najyh"]
+[ext_resource type="Shader" uid="uid://d3uwdljrhj737" path="res://scripts/Shaders/blind_shader.gdshader" id="4_d1cf8"]
 [ext_resource type="Script" uid="uid://csejyfhx1agur" path="res://scenes/game_ui/time_limit_label.gd" id="4_hk0ve"]
 [ext_resource type="Script" uid="uid://c775cjq8gm03g" path="res://scenes/game_ui/lives_tracker.gd" id="4_lives"]
-[ext_resource type="Script" path="res://scenes/game_ui/ui_health_display.gd" id="5_health"]
+[ext_resource type="Script" uid="uid://tevhhdkniwy6" path="res://scenes/game_ui/ui_health_display.gd" id="5_health"]
+[ext_resource type="Script" uid="uid://cophwkptxqm66" path="res://scripts/campaign/campaign_ui.gd" id="6_results"]
+[ext_resource type="PackedScene" uid="uid://xstkh3pxo8h4" path="res://scenes/game_ui/end_screen/end_screen.tscn" id="11_26vp0"]
+[ext_resource type="PackedScene" uid="uid://cctkd37r6nwkq" path="res://scenes/game_scene/Blind_Overlay.tscn" id="blind_overlay"]
 
-[ext_resource type="Script" path="res://scripts/campaign/campaign_ui.gd" id="6_results"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8dbna"]
+resource_local_to_scene = true
+shader = ExtResource("4_d1cf8")
+shader_parameter/player_screen_position = Vector2(0.5, 0.5)
+shader_parameter/radius = 0.15
+shader_parameter/feather = 0.05
+shader_parameter/screen_aspect = 1.7778
 
 [sub_resource type="LabelSettings" id="LabelSettings_3y7pu"]
 font_size = 28
@@ -20,6 +31,25 @@ region = Rect2(64, 0, 32, 32)
 
 [node name="GameUi" type="CanvasLayer" unique_id=271816190]
 script = ExtResource("6_results")
+
+[node name="StatusEffectDisplays" type="Control" parent="." unique_id=479186178]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("2_e13be")
+
+[node name="BlindOverlay" parent="StatusEffectDisplays" unique_id=1073593664 instance=ExtResource("blind_overlay")]
+material = SubResource("ShaderMaterial_8dbna")
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="ResultTable" type="Label" parent="." unique_id=1308814256]
 visible = false
@@ -60,14 +90,15 @@ offset_bottom = 63.0
 grow_horizontal = 2
 theme_override_constants/separation = 42
 
-[node name="VBoxHealth" type="VBoxContainer" parent="StatsBar"]
+[node name="VBoxHealth" type="VBoxContainer" parent="StatsBar" unique_id=480313858]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="StatsBar/VBoxHealth"]
+[node name="Label" type="Label" parent="StatsBar/VBoxHealth" unique_id=1067979972]
 layout_mode = 2
 text = "Health"
 
-[node name="Hearts" type="HBoxContainer" parent="StatsBar/VBoxHealth"]
+[node name="Hearts" type="HBoxContainer" parent="StatsBar/VBoxHealth" unique_id=1695336091]
+custom_minimum_size = Vector2(0, 19)
 layout_mode = 2
 script = ExtResource("5_health")
 
@@ -111,3 +142,5 @@ text = "x3"
 script = ExtResource("4_lives")
 
 [node name="EscapeMenu" parent="." unique_id=948223570 instance=ExtResource("3_najyh")]
+
+[node name="EndScreen" parent="." unique_id=328340805 instance=ExtResource("11_26vp0")]

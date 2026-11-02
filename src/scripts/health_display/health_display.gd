@@ -1,11 +1,9 @@
 extends HBoxContainer
 
-var linked_entity: Entity
+const FILLED_HEART: Texture2D = preload("res://assets/gfx/sprites/hearts1.png")
+const EMPTY_HEART: Texture2D = preload("res://assets/gfx/sprites/hearts3.png")
 
-# Health textures
-# TODO Refactor to actually use these values
-@export var filled_heart: Texture2D
-@export var empty_heart: Texture2D
+var linked_entity: Entity
 
 # # # # # # # ## # # #
 # Entity linking
@@ -41,13 +39,16 @@ func _update_health_display():
 		i += 1
 	
 func _create_health_unit():
-	var c_rect: ColorRect = ColorRect.new()
-	c_rect.custom_minimum_size = Vector2.ONE * 8
-	size.y = 8
-	add_child(c_rect)
+	var heart: TextureRect = TextureRect.new()
+	heart.texture = EMPTY_HEART
+	heart.custom_minimum_size = Vector2.ONE * 16
+	heart.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	heart.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	heart.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	add_child(heart)
 	
 func _set_filled(unit: Control):
-	unit.color = Color.RED
+	(unit as TextureRect).texture = FILLED_HEART
 	
 func _set_empty(unit: Control):
-	unit.color = Color.BLACK
+	(unit as TextureRect).texture = EMPTY_HEART

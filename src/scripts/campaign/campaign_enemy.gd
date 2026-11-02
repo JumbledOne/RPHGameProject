@@ -14,7 +14,7 @@ var shot_clock := 0.0
 var active := false
 var origin := Vector2.ZERO
 var sprite: Sprite2D
-var health_label: Label
+var health_display: HBoxContainer
 var level: Node2D
 var flash := 0.0
 
@@ -37,15 +37,11 @@ func _ready() -> void:
 	sprite.region_enabled = true
 	sprite.region_rect = Rect2(0, 0, 32, 64)
 	sprite.position.y = -8
-	health_label = Label.new()
-	health_label.position = Vector2(-60, -63)
-	health_label.size.x = 120
-	health_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	health_label.add_theme_font_size_override("font_size", 12)
-	health_label.add_theme_color_override("font_outline_color", Color.BLACK)
-	health_label.add_theme_constant_override("outline_size", 4)
-	add_child(health_label)
-	_update_health()
+	health_display = get_node_or_null("HealthDisplay")
+	if health_display == null:
+		health_display = preload("res://scripts/health_display/health_display.tscn").instantiate()
+		add_child(health_display)
+	health_display.link_entity(self)
 
 func _texture_path() -> String:
 	var base := "res://assets/gfx/sprites/"
@@ -57,6 +53,7 @@ func _texture_path() -> String:
 	return base + "character_spritesheets/American_Colonizer_Sprite.png"
 
 func _physics_process(delta: float) -> void:
+	super._physics_process(delta)
 	var player := GameManager.player
 	if not is_instance_valid(player) or not LevelManager.game_started:
 		return
@@ -64,10 +61,13 @@ func _physics_process(delta: float) -> void:
 		level = get_tree().get_first_node_in_group("level_features")
 	if not is_instance_valid(level):
 		return
+	var was_active := active
 	active = absf(player.global_position.x - global_position.x) < activation_range
 	if not active:
 		attack_clock = 0
 		return
+	if kind == "spanish" and not was_active:
+		shot_clock = 0.9
 	age += delta
 	attack_clock += delta
 	flash = maxf(flash - delta, 0)
@@ -87,11 +87,12 @@ func _physics_process(delta: float) -> void:
 		if attack_clock >= poison_interval:
 			player.hurt(1)
 			attack_clock = 0
-		health_label.text = "%s  %d/3  • poison %ds" % ["BOSS" if boss else "Cacao", health, ceili(poison_interval - attack_clock)]
 	elif kind == "spanish":
-		# Three seconds obscured followed by one second of clear vision.
-		level.blind_requested = fmod(attack_clock, 4.0) < 3.0
-		sprite.visible = fmod(attack_clock, 4.0) < 3.0
+		# The friar remains visible while its slow projectile gives the player time to react.
+		shot_clock -= delta
+		if shot_clock <= 0:
+			level.fire_projectile(global_position + Vector2(direction * 24, -8), direction, kind)
+			shot_clock = 2.0
 	else:
 		# A three-second burst, then two seconds of recovery.
 		shot_clock -= delta
@@ -106,11 +107,6 @@ func hurt(amount: int = 1) -> void:
 		return
 	flash = 0.16
 	super(amount)
-	_update_health()
-
-func _update_health() -> void:
-	if health_label:
-		health_label.text = "%s %d/3" % ["BOSS" if boss else kind.capitalize(), health]
 
 func die() -> void:
 	if is_queued_for_deletion():

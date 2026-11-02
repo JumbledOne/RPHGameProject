@@ -13,6 +13,7 @@ offset_right = 502.0
 offset_bottom = 134.0
 theme_override_styles/panel = ExtResource("1_vg6w8")
 script = ExtResource("1_script")
+extend_to_tilemap = false
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1061777024]
 collision_layer = 0

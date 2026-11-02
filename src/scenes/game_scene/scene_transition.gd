@@ -9,8 +9,8 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	InterfaceManager.transition_started.connect(_on_transition_started)
 	
-func _on_transition_started(transition_length: float):
-	anim_time = transition_length / 2
+func _on_transition_started():
+	anim_time = InterfaceManager.TRANSITION_TIME / 2
 	if tween:
 		tween.kill()
 	tween = create_tween()

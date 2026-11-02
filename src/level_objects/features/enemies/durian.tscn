@@ -1,6 +1,8 @@
 [gd_scene format=3]
 [ext_resource type="Script" path="res://scripts/campaign/campaign_enemy.gd" id="1"]
 [ext_resource type="Texture2D" path="res://assets/gfx/sprites/durianevil.png" id="2"]
+[ext_resource type="PackedScene" path="res://scripts/health_display/health_display.tscn" id="health_display"]
+
 [sub_resource type="RectangleShape2D" id="Shape"]
 size = Vector2(24, 48)
 [node name="DurianEnemy" type="CharacterBody2D"]
@@ -14,3 +16,5 @@ region_rect = Rect2(0, 0, 32, 64)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("Shape")
+
+[node name="HealthDisplay" parent="." instance=ExtResource("health_display")]

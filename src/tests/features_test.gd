@@ -21,6 +21,9 @@ func spawn(path: String, at: Vector2) -> Node2D:
 	var node = load(path).instantiate()
 	node.position = at
 	features.objects.add_child(node)
+	if node is Entity:
+		check(node.get_node("HealthDisplay").linked_entity == node, "Enemy uses shared heart display")
+		check(node.find_children("*", "Label", true, false).is_empty(), "Enemy has no numeric health labels")
 	return node
 
 func make_fixture(character: PlayerClass) -> void:
@@ -62,13 +65,15 @@ func _run() -> void:
 		check(player.durians == 1, "Durian stacks at full health")
 		player.hurt(1)
 		player.hurt(1)
-		check(player.health == 2, "Repeated contacts respect invulnerability")
+		check(player.health == 2 and not player.can_damage, "Entity damage cooldown blocks repeated contacts")
 		player.eat_durian()
 		check(player.health == 3 and player.durians == 0, "Eating consumes one fruit and heals one heart")
 		spawn("res://level_objects/features/pickups/eagle.tscn", player.position)
 		await frames(4)
-		player.do_ability()
-		check(player.eagle_charges == 0 and player.jump_factor > 1 and player.velocity.y < 0, "Eagle jump boost")
+		var eagle_effect := player.get_status_effect(EagleEffect)
+		player.velocity.y = -player.jump_velocity
+		player.jumped.emit()
+		check(eagle_effect != null and player.velocity.y < -player.jump_velocity and not player.has_status_effect(EagleEffect), "Eagle effect boosts one jump and consumes itself")
 		player.position = Vector2(200, -32)
 		player.velocity = Vector2.ZERO
 		var cacao = spawn("res://level_objects/features/enemies/cacao.tscn", Vector2(360, -24))
@@ -76,27 +81,30 @@ func _run() -> void:
 		player.do_attack()
 		await frames(30)
 		check(player.durians == 0 and cacao.health == 2, "Thrown durian removes exactly one enemy heart")
-		player.invulnerability = 0
+		var hearts = cacao.get_node("HealthDisplay").get_children()
+		check(hearts.size() == 3 and hearts[0].texture == preload("res://assets/gfx/sprites/hearts1.png") and hearts[2].texture == preload("res://assets/gfx/sprites/hearts3.png"), "Enemy damage updates filled and empty hearts")
+		player.can_damage = true
 		cacao.attack_clock = 9.99
 		cacao._physics_process(0.02)
 		check(player.health == 2, "Cacao poison ticks after ten seconds")
 		player.heal(1)
 		cacao.queue_free()
 		var spikes = spawn("res://level_objects/features/enemies/durian.tscn", player.position + Vector2(30, 0))
-		player.invulnerability = 0
+		player.can_damage = true
 		spikes._physics_process(0.02)
 		check(player.health == 2 and player.velocity.x < 0, "Evil durian damage and knockback")
 		player.heal(1)
 		spikes.queue_free()
 		var friar = spawn("res://level_objects/features/enemies/spanish.tscn", Vector2(400, -24))
 		friar._physics_process(0.01)
-		check(features.blind_requested, "Friar obscures vision")
-		friar.attack_clock = 2.99
-		friar._physics_process(0.02)
-		check(not features.blind_requested and not friar.sprite.visible, "Friar clears after three seconds")
-		friar.attack_clock = 3.99
-		friar._physics_process(0.02)
-		check(features.blind_requested and friar.sprite.visible, "Friar returns after one second")
+		check(friar.sprite.visible and friar.health_display.visible and not player.has_status_effect(BlindnessEffect), "Friar stays visible before its attack lands")
+		friar.shot_clock = 0
+		var friar_projectile_count: int = features.objects.get_child_count()
+		friar._physics_process(0.01)
+		check(features.objects.get_child_count() == friar_projectile_count + 1, "Friar telegraphs blindness with a projectile")
+		var friar_projectile = features.objects.get_child(features.objects.get_child_count() - 1)
+		friar_projectile._hit(player)
+		check(player.has_status_effect(BlindnessEffect), "Friar projectile applies blindness on impact")
 		friar.queue_free()
 		for kind in ["japanese", "american"]:
 			var shooter = spawn("res://level_objects/features/enemies/%s.tscn" % kind, Vector2(420, -24))
