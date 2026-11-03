@@ -5,6 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://bfjlvu7bxooyh" path="res://assets/gfx/sprites/bamboo.png" id="2_4de4y"]
 [ext_resource type="Texture2D" uid="uid://cws0ae66a6fy0" path="res://assets/gfx/sprites/horizontal_bamboo.png" id="4_g46vl"]
 [ext_resource type="Script" uid="uid://bu643ko7k5df2" path="res://level_objects/level_end/bar_sprite.gd" id="5_barsprite"]
+[ext_resource type="Script" path="res://scripts/audio/combined_audio/combined_audio_player_2d.gd" id="6_audio_player"]
+[ext_resource type="Resource" path="res://assets/audio/audio_resources/coin_effects.tres" id="7_coin_audio"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ixq87"]
 size = Vector2(42, 13)
@@ -53,6 +55,11 @@ size = Vector2(20, 298)
 
 [node name="LevelEnd" type="Node2D" unique_id=566619678]
 script = ExtResource("1_mguau")
+
+[node name="CoinAudio" type="AudioStreamPlayer2D" parent="."]
+volume_db = -8.0
+script = ExtResource("6_audio_player")
+combined_audio = ExtResource("7_coin_audio")
 
 [node name="PoleLeft" type="TextureRect" parent="." unique_id=1176600942]
 offset_left = -8.0

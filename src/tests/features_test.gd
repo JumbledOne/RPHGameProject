@@ -142,11 +142,11 @@ func _run() -> void:
 		for i in range(15):
 			LevelManager.register_collectible()
 		LevelManager.add_cacao(15)
-		check(LevelManager.get_stars() == 2, "Three stars require boss defeat")
+		check(LevelManager.get_stars() == 3, "All cacao earns three stars without a boss")
 		var boss = spawn("res://level_objects/features/enemies/durian.tscn", Vector2(800, -24))
 		boss.boss = true
 		boss.hurt(3)
-		check(LevelManager.boss_defeated and LevelManager.get_stars() == 3, "Boss plus all cacao earns three stars")
+		check(LevelManager.boss_defeated and LevelManager.get_stars() == 3, "Boss defeat preserves the full cacao rating")
 		var exit = spawn("res://level_objects/features/level_exit.tscn", Vector2(1050, -48))
 		exit._enter(player)
 		await frames(3)

@@ -173,12 +173,15 @@ func collectibles_summary() -> String:
 
 func collect() -> void:
 	collected += 1
-	cacao = collected
-	score_multiplier = 1 + collected / STAR_STEP
-	if GameManager.LIVES_ENABLED and collected % NEW_LIFE_THRESHOLD == 0:
+	collectibles_changed.emit(collected, total_collectibles)
+	_award_cacao()
+
+func _award_cacao() -> void:
+	cacao += 1
+	score_multiplier = 1 + cacao / STAR_STEP
+	if GameManager.LIVES_ENABLED and cacao % NEW_LIFE_THRESHOLD == 0:
 		lives_left += 1
 		lives_changed.emit(lives_left)
-	collectibles_changed.emit(collected, total_collectibles)
 	cacao_changed.emit(cacao)
 	add_score(SCORE_PER_COLLECTIBLE)
 
@@ -188,9 +191,14 @@ func add_score(amount: int) -> void:
 
 func get_stars() -> int:
 	var stars: int = mini(collected / STAR_STEP, 2)
-	if collected == total_collectibles and total_collectibles >= 15 and boss_defeated:
-		stars = 3
+	if total_collectibles > 0 and collected >= total_collectibles:
+		stars = MAX_STARS
 	return stars
+
+func add_bonus_cacao(amount: int) -> void:
+	# Goal rewards count as currency, not pickups collected from the level.
+	for _i in range(maxi(amount, 0)):
+		_award_cacao()
 
 func add_cacao(amount: int = 1) -> void:
 	for _i in range(maxi(amount, 0)):
