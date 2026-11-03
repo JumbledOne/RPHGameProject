@@ -41,6 +41,29 @@ func _run() -> void:
 	shape.shape = rectangle
 	player.add_child(shape)
 	root.add_child(player)
+	var cannon := object_at("features/cannon", Vector2(0, 100))
+	player.position = Vector2(0, 30)
+	player.simulate = true
+	await frames(30)
+	check(player.is_on_floor(), "Player must land on the cannon")
+	player.velocity.x = 30.0
+	await frames(20)
+	check(player.is_on_floor() and player.position.x > 5.0, "Player must walk across the cannon top")
+	player.simulate = false
+	player.position = Vector2(-80, 100)
+	var side_hit := player.move_and_collide(Vector2(80, 0))
+	check(side_hit != null and side_hit.get_normal().x < -0.5, "Cannon side must block the player")
+	var scene_placer := root.get_node("ScenePlacer")
+	scene_placer.level_objects = root
+	var shot: Projectile = cannon.get_node("Weapon").fire(-1.0)
+	await frames(5)
+	check(is_instance_valid(shot) and not shot.spent and shot.global_position.x < -48.0, "Cannonball must clear the solid cannon")
+	if is_instance_valid(shot):
+		shot.queue_free()
+	scene_placer.level_objects = null
+	cannon.queue_free()
+	player.velocity = Vector2.ZERO
+	await frames(2)
 	player.position = Vector2(0, 0)
 	var spikes := object_at("spike_barricade/spike_barricade", Vector2.ZERO)
 	await frames(5)
@@ -110,7 +133,7 @@ func _run() -> void:
 	root.add_child(ground)
 	var has_landed := [false]
 	falling.landed.connect(func(): has_landed[0] = true)
-	player.position = Vector2(0, 0)
+	player.position = Vector2(72, 0)
 	await frames(3)
 	check(falling.state == FallingHazard.State.WARNING, "Nearby player must trigger warning")
 	player.position = Vector2(1000, 1000)

@@ -6,10 +6,10 @@ signal triggered
 signal landed
 
 @export_range(16.0, 512.0) var trigger_distance: float = 96.0
+@export_range(0.0, 512.0) var immediate_fall_distance: float = 48.0
 @export_range(0.0, 3.0) var warning_time: float = 0.5
 @export var fall_gravity: float = 980.0
 @export var terminal_speed: float = 600.0
-@export var max_fall_distance: float = 640.0
 
 enum State { WAITING, WARNING, FALLING, LANDED }
 var state: State = State.WAITING
@@ -23,9 +23,15 @@ var _visible_on_screen_notifier: VisibleOnScreenNotifier2D
 func _ready() -> void:
 	super()
 	_origin = position
+	var collision_shape := $CollisionShape2D as CollisionShape2D
+	var rectangle := collision_shape.shape as RectangleShape2D
 	_ground_cast = ShapeCast2D.new()
-	_ground_cast.shape = $CollisionShape2D.shape
-	_ground_cast.position = $CollisionShape2D.position
+	# Sweep only the bottom edge: walls and overhead tiles must not pin the crate.
+	var feet := RectangleShape2D.new()
+	feet.size = Vector2(rectangle.size.x - 0.2, 0.2)
+	_ground_cast.shape = feet
+	_ground_cast.position = collision_shape.position + Vector2(0, rectangle.size.y * 0.5 - 0.1)
+	_ground_cast.margin = 0.0
 	_ground_cast.collision_mask = 1
 	add_child(_ground_cast)
 	# A one-way solid top lets players land without blocking a falling hazard from below.
@@ -40,8 +46,6 @@ func _ready() -> void:
 	add_child(_safe_platform)
 	_ground_cast.add_exception(_safe_platform)
 	_visible_on_screen_notifier = VisibleOnScreenNotifier2D.new()
-	var collision_shape := $CollisionShape2D as CollisionShape2D
-	var rectangle := collision_shape.shape as RectangleShape2D
 	_visible_on_screen_notifier.rect = Rect2(collision_shape.position - rectangle.size * 0.5, rectangle.size)
 	add_child(_visible_on_screen_notifier)
 	_visible_on_screen_notifier.screen_exited.connect(_reset_if_offscreen)
@@ -67,24 +71,43 @@ func _physics_process(delta: float) -> void:
 					InterfaceManager.camera_shake_requested.emit(0.5)
 					triggered.emit()
 					break
+			if state == State.WARNING and _has_close_player():
+				_start_falling()
 		State.WARNING:
 			_timer -= delta
 			$Sprite2D.position.x = sin(_timer * 70.0) * 2.0
-			if _timer <= 0.0:
-				$Sprite2D.position.x = 0.0
-				state = State.FALLING
-				_update_safe_platform()
+			if _timer <= 0.0 or _has_close_player():
+				_start_falling()
 		State.FALLING:
 			_speed = minf(_speed + fall_gravity * delta, terminal_speed)
 			_ground_cast.target_position = Vector2(0, _speed * delta)
 			_ground_cast.force_shapecast_update()
-			position.y += _speed * delta * _ground_cast.get_closest_collision_safe_fraction()
-			if _ground_cast.is_colliding() or position.y - _origin.y >= max_fall_distance:
+			var supported := false
+			for index in _ground_cast.get_collision_count():
+				if _ground_cast.get_collision_normal(index).y < -0.5:
+					supported = true
+					break
+			var travel_fraction := _ground_cast.get_closest_collision_safe_fraction() if supported else 1.0
+			position.y += _speed * delta * travel_fraction
+			if supported:
 				state = State.LANDED
 				_update_safe_platform()
 				landed.emit()
 		State.LANDED:
 			_reset_if_offscreen()
+
+func _has_close_player() -> bool:
+	for player in get_tree().get_nodes_in_group("player"):
+		if player.global_position.y > global_position.y and absf(player.global_position.x - global_position.x) <= minf(immediate_fall_distance, trigger_distance):
+			_ground_cast.add_exception(player)
+			return true
+	return false
+
+func _start_falling() -> void:
+	_timer = 0.0
+	$Sprite2D.position.x = 0.0
+	state = State.FALLING
+	_update_safe_platform()
 
 func _reset_if_offscreen() -> void:
 	if state != State.LANDED or _visible_on_screen_notifier.is_on_screen():

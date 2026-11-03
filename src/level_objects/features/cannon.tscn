@@ -10,8 +10,19 @@
 atlas = ExtResource("2")
 region = Rect2(448, 272, 96, 48)
 
+[sub_resource type="RectangleShape2D" id="cannon_collision"]
+size = Vector2(80, 40)
+
 [node name="Cannon" type="Node2D" unique_id=1825560565]
 script = ExtResource("1")
+
+[node name="SolidBody" type="StaticBody2D" parent="."]
+collision_layer = 1
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SolidBody"]
+position = Vector2(4, 0)
+shape = SubResource("cannon_collision")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1551310546]
 position = Vector2(0, -4)

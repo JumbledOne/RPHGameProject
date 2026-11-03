@@ -9,9 +9,6 @@
 atlas = ExtResource("2")
 region = Rect2(208, 336, 224, 80)
 
-[sub_resource type="RectangleShape2D" id="Shape"]
-size = Vector2(224, 80)
-
 [node name="Jeepney" type="AnimatableBody2D" unique_id=1961898958]
 collision_mask = 0
 script = ExtResource("1")
@@ -22,8 +19,8 @@ start_on_screen = true
 texture = SubResource("Texture")
 flip_h = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2111967016]
-shape = SubResource("Shape")
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="." unique_id=1825952536]
+polygon = PackedVector2Array(-64, -40, 112, -40, 112, 32, -112, 32, -112, -8, -64, -8)
 
 [node name="AppearSound" type="AudioStreamPlayer2D" parent="." unique_id=21596130]
 stream = ExtResource("3_swpok")

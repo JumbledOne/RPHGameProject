@@ -53,7 +53,7 @@ var player_death_altitude := 128.0
 var _death_reset_id: int = 0
 
 func _physics_process(delta: float) -> void:
-	if game_started and not GameManager.is_paused:
+	if GameManager.GAME_TIMER_ENABLED and game_started and not GameManager.is_paused:
 		elapsed += delta
 		if time_limit > 0 and elapsed >= time_limit and is_instance_valid(GameManager.player):
 			GameManager.player.die()
@@ -106,14 +106,15 @@ func lose_life() -> void:
 		return
 	game_started = false
 	Audio.music.stop()
-	lives_left -= 1
-	lives_changed.emit(lives_left)
+	if GameManager.LIVES_ENABLED:
+		lives_left -= 1
+		lives_changed.emit(lives_left)
 	_death_reset_id += 1
 	var reset_id := _death_reset_id
 	await get_tree().create_timer(DEATH_RESET_DELAY).timeout
 	if reset_id != _death_reset_id:
 		return
-	if lives_left > 0:
+	if GameManager.LIVES_ENABLED and lives_left > 0:
 		InterfaceManager.do_on_transition(start_game.bind(current_level, true))
 	else:
 		game_end(GameEnd.LOST)
@@ -174,7 +175,7 @@ func collect() -> void:
 	collected += 1
 	cacao = collected
 	score_multiplier = 1 + collected / STAR_STEP
-	if collected % NEW_LIFE_THRESHOLD == 0:
+	if GameManager.LIVES_ENABLED and collected % NEW_LIFE_THRESHOLD == 0:
 		lives_left += 1
 		lives_changed.emit(lives_left)
 	collectibles_changed.emit(collected, total_collectibles)

@@ -1,5 +1,8 @@
 extends Node
 
+const GAME_TIMER_ENABLED: bool = true
+const LIVES_ENABLED: bool = true
+
 signal player_set
 signal player_died
 signal pause_toggled

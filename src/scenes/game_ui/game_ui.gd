@@ -9,6 +9,8 @@ extends CanvasLayer
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	$StatsBar/VBoxTime.visible = GameManager.GAME_TIMER_ENABLED
+	$StatsBar/VBoxLives.visible = GameManager.LIVES_ENABLED
 	next_level.pressed.connect(_next_level)
 	retry.pressed.connect(_restart)
 	menu.pressed.connect(_menu)
