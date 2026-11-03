@@ -1,6 +1,8 @@
 @tool
 extends Control
 
+const SWAYING_PLANT: ShaderMaterial = preload("res://assets/gfx/gfx_resources/material/swaying_plant.tres")
+
 @export var tree_tex: Texture2D:
 	set(value):
 		tree_tex = value
@@ -11,12 +13,12 @@ extends Control
 		_queue_generate()
 
 const SPACING: float = 64
-const RANDOMNESS_X: float = 32
-const RANDOMNESS_Y: float = 16
-const RANDOMNESS_ROT: float = 2
+const RANDOMNESS_X: float = 64
+const RANDOMNESS_Y: float = 64
+const RANDOMNESS_ROT: float = 0.1
 
-const MAX_TREE_WIDTH: float = 128 # Using the texture size in px
-const MIN_TREE_WIDTH: float = 80
+const MAX_TREE_WIDTH: float = 256 # Using the texture size in px
+const MIN_TREE_WIDTH: float = 128
 
 
 var multi_mesh: MultiMeshInstance2D
@@ -47,6 +49,7 @@ func _generate() -> void:
 		add_child(multi_mesh, false, Node.INTERNAL_MODE_BACK)
 
 	multi_mesh.texture = tree_tex
+	multi_mesh.material = SWAYING_PLANT
 	var mesh := MultiMesh.new()
 	mesh.transform_format = MultiMesh.TRANSFORM_2D
 	multi_mesh.multimesh = mesh
@@ -57,7 +60,8 @@ func _generate() -> void:
 		return
 
 	var quad := QuadMesh.new()
-	quad.size = Vector2(1.0, texture_size.y / texture_size.x)
+	# Keep mesh coordinates in pixels so the plant shader's sway stays proportional.
+	quad.size = texture_size
 	mesh.mesh = quad
 	var intervals := maxi(1, ceili(size.x / SPACING))
 	var trees_per_edge := intervals + 1
@@ -73,5 +77,7 @@ func _generate() -> void:
 			var y := float(edge) * size.y + rng.randf_range(-RANDOMNESS_Y, RANDOMNESS_Y)
 			var width := rng.randf_range(MIN_TREE_WIDTH, MAX_TREE_WIDTH)
 			var angle := rng.randf_range(-RANDOMNESS_ROT, RANDOMNESS_ROT)
-			var transform := Transform2D(angle, Vector2(width, width), 0.0, Vector2(x, y))
+			var tree_scale := width / texture_size.x
+			# QuadMesh UVs use Y-up; flip Y for upright textures on the 2D canvas.
+			var transform := Transform2D(angle, Vector2(tree_scale, -tree_scale), 0.0, Vector2(x, y))
 			mesh.set_instance_transform_2d(edge * trees_per_edge + index, transform)

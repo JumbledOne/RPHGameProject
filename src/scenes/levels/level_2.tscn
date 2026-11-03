@@ -1,7 +1,6 @@
 [gd_scene format=4 uid="uid://bxpn666gd3hm3"]
 
 [ext_resource type="Script" uid="uid://ce384k60pbf58" path="res://scripts/story_label/story_label.gd" id="2_8qukl"]
-[ext_resource type="PackedScene" uid="uid://dq7v2kxgwih0i" path="res://level_objects/floating_driftwood/floating_driftwood.tscn" id="5_ibugp"]
 [ext_resource type="PackedScene" uid="uid://d3sq81x0hgxf0" path="res://scenes/base_level/base_level.tscn" id="base_level"]
 [ext_resource type="PackedScene" uid="uid://b7l616nkdvw5h" path="res://level_objects/features/cannon.tscn" id="element_7"]
 [ext_resource type="PackedScene" path="res://level_objects/features/enemies/spanish.tscn" id="element_9"]
@@ -96,9 +95,6 @@ boss = true
 [node name="SpanishColonizer3" parent="LevelObjects" parent_id_path=PackedInt32Array(949556748) index="9" unique_id=898537120 instance=ExtResource("element_9")]
 position = Vector2(2704, -24)
 boss = true
-
-[node name="FloatingDriftwood" parent="LevelObjects" parent_id_path=PackedInt32Array(949556748) index="10" unique_id=502400292 instance=ExtResource("5_ibugp")]
-position = Vector2(1520, 8)
 
 [node name="WaterLayer" type="CanvasGroup" parent="." index="9" unique_id=994649338]
 material = ExtResource("water_material")

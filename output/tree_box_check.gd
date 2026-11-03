@@ -19,12 +19,14 @@ func run() -> void:
 	await process_frame
 	var mesh: MultiMesh = box.multi_mesh.multimesh
 	check(mesh.instance_count == 22, "Both edges must have trees across the full width")
+	check(box.multi_mesh.material == load("res://assets/gfx/gfx_resources/material/swaying_plant.tres"), "Trees must automatically use the sway material")
 	var original := mesh.get_instance_transform_2d(0)
 	for i in range(mesh.instance_count):
 		var t := mesh.get_instance_transform_2d(i)
+		check(t.y.y < 0.0, "Quad texture must be upright in canvas coordinates")
 		var edge_y := 0.0 if i < 11 else 360.0
-		check(absf(t.origin.y - edge_y) <= 16.0, "Trees must stay along the top or bottom edge")
-		check(t.x.length() >= 79.99 and t.x.length() <= 128.01, "Tree width must respect configured range")
+		check(absf(t.origin.y - edge_y) <= box.RANDOMNESS_Y, "Trees must stay along the top or bottom edge")
+		check(t.x.length() * mesh.mesh.size.x >= box.MIN_TREE_WIDTH - 0.01 and t.x.length() * mesh.mesh.size.x <= box.MAX_TREE_WIDTH + 0.01, "Tree width must respect configured range")
 	box.seed = 0
 	await process_frame
 	check(box.multi_mesh.multimesh.get_instance_transform_2d(0).is_equal_approx(original), "Same seed must reproduce the preview")
@@ -42,3 +44,4 @@ func run() -> void:
 	box.free()
 	print("Tree box checks: ", failures, " failures; editor=", Engine.is_editor_hint())
 	quit(failures)
+
