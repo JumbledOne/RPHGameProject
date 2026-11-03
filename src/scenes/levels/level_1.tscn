@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://d3sq81x0hgxf0" path="res://scenes/base_level/base_level.tscn" id="1_xf5vy"]
 [ext_resource type="Material" uid="uid://boplvpi6xqu2q" path="res://assets/gfx/gfx_resources/material/swaying_plant.tres" id="2_u2ucc"]
 [ext_resource type="PackedScene" uid="uid://dbnw6oy0ghfh2" path="res://level_objects/level_end/level_end.tscn" id="5_ccldl"]
+[ext_resource type="PackedScene" uid="uid://bi64ypvxstqp7" path="res://scripts/ghosts/ghost_box.tscn" id="5_dnkej"]
 [ext_resource type="Shader" uid="uid://8gx4orjm1s2c" path="res://assets/gfx/shader/tile_map_detail.gdshader" id="7_detail"]
 [ext_resource type="TileSet" uid="uid://cma1ae81b4xy4" path="res://assets/gfx/gfx_resources/grass.tres" id="11_jd8pu"]
 [ext_resource type="Script" uid="uid://ce384k60pbf58" path="res://scripts/story_label/story_label.gd" id="12_dnkej"]
@@ -130,6 +131,26 @@ text = "Then..."
 script = ExtResource("12_dnkej")
 metadata/_custom_type_script = "uid://ce384k60pbf58"
 
+[node name="GhostBox" parent="." index="7" unique_id=277277652 instance=ExtResource("5_dnkej")]
+offset_left = 608.0
+offset_top = -104.0
+offset_right = 768.0
+offset_bottom = -32.0
+entities = 3
+
+[node name="GhostBox2" parent="." index="8" unique_id=1487887005 instance=ExtResource("5_dnkej")]
+offset_left = 896.0
+offset_top = -168.0
+offset_right = 1024.0
+offset_bottom = -96.0
+entities = 3
+
+[node name="GhostBox3" parent="." index="9" unique_id=920353991 instance=ExtResource("5_dnkej")]
+offset_left = 4448.0
+offset_top = -72.0
+offset_right = 4800.0
+offset_bottom = 0.0
+
 [node name="Items" parent="LevelObjects" parent_id_path=PackedInt32Array(949556748) index="0" unique_id=933369512]
 tile_map_data = PackedByteArray("AABQAPj/AAAAAAAAAQBRAPj/AAAAAAAAAQBSAPj/AAAAAAAAAQBQAPf/AAAAAAAAAQBRAPf/AAAAAAAAAQBSAPf/AAAAAAAAAQBnAP7/AAAAAAAAAQBoAP7/AAAAAAAAAQBpAP7/AAAAAAAAAQBqAP7/AAAAAAAAAQBrAP7/AAAAAAAAAQBsAP7/AAAAAAAAAQBmAP7/AAAAAAAAAQAlAPz/AAAAAAAAAQAgAPr/AAAAAAAAAQAhAPn/AAAAAAAAAQAiAPn/AAAAAAAAAQAjAPn/AAAAAAAAAQAlAPv/AAAAAAAAAQAkAPr/AAAAAAAAAQBHAP3/AAAAAAAAAQBIAP3/AAAAAAAAAQBJAP3/AAAAAAAAAQBKAP3/AAAAAAAAAQBLAP3/AAAAAAAAAQBMAP3/AAAAAAAAAQBIAPr/AAAAAAAAAQBJAPr/AAAAAAAAAQBKAPr/AAAAAAAAAQBLAPr/AAAAAAAAAQBaAPb/AAAAAAAAAQBaAPf/AAAAAAAAAQBbAPb/AAAAAAAAAQBbAPf/AAAAAAAAAQBcAPb/AAAAAAAAAQBcAPf/AAAAAAAAAQBdAPb/AAAAAAAAAQBdAPf/AAAAAAAAAQBeAPb/AAAAAAAAAQBeAPf/AAAAAAAAAQA=")
 
@@ -194,7 +215,7 @@ position = Vector2(3971, 0)
 [node name="LevelEnd" parent="LevelObjects" parent_id_path=PackedInt32Array(949556748) index="16" unique_id=566619678 instance=ExtResource("5_ccldl")]
 position = Vector2(5904, 0)
 
-[node name="WaterLayer" type="CanvasGroup" parent="." index="8" unique_id=994649338]
+[node name="WaterLayer" type="CanvasGroup" parent="." index="11" unique_id=994649338]
 material = ExtResource("water_material")
 position = Vector2(0, -16)
 
@@ -206,7 +227,7 @@ offset_bottom = 116.0
 tilemap = NodePath("../../TileMapLayer")
 extend_to_tilemap = true
 
-[node name="FrontPixelLayer" parent="." index="9" unique_id=921904768]
+[node name="FrontPixelLayer" parent="." index="12" unique_id=921904768]
 visible = false
 z_index = 0
 
@@ -216,8 +237,8 @@ material = ExtResource("2_u2ucc")
 tile_map_data = PackedByteArray("AAD/////AAAAAAAAAAAAAP//AAAAAAAAAAABAP//AAACAAAAAAACAP//AAADAAAAAAACAAAAAAAAAAAAAAADAP//AAADAAAAAAD+////AAAAAAAAAAD9////AAAAAAAAAAAEAP//AAADAAAAAAAFAP//AAABAAAAAAAGAP//AAABAAAAAAAHAP//AAACAAAAAAAJAP//AAADAAAAAAAIAP//AAAAAAAAAAAKAP//AAAAAAAAAAALAP//AAADAAAAAAAMAP//AAADAAAAAAANAP//AAACAAAAAAAQAP//AAABAAAAAAARAP//AAABAAAAAAASAP//AAACAAAAAAATAP//AAABAAAAAAAPAP3/AAADAAAAAAAOAP3/AAAAAAAAAAAUAP3/AAACAAAAAAAVAP3/AAACAAAAAAAWAP3/AAAAAAAAAAAXAP3/AAAAAAAAAAA=")
 tile_set = ExtResource("11_jd8pu")
 
-[node name="Cannon" parent="." index="12" unique_id=1825560565 instance=ExtResource("13_mm8aj")]
+[node name="Cannon" parent="." index="15" unique_id=1825560565 instance=ExtResource("13_mm8aj")]
 position = Vector2(5521, -20)
 
-[node name="Cannon2" parent="." index="13" unique_id=287482348 instance=ExtResource("13_mm8aj")]
+[node name="Cannon2" parent="." index="16" unique_id=287482348 instance=ExtResource("13_mm8aj")]
 position = Vector2(5614, -84)

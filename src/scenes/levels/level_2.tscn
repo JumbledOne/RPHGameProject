@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://4chms6wnrglr" path="res://scripts/tree_box/tree_box.tscn" id="2_3p04p"]
 [ext_resource type="Script" uid="uid://ce384k60pbf58" path="res://scripts/story_label/story_label.gd" id="2_8qukl"]
+[ext_resource type="PackedScene" uid="uid://bi64ypvxstqp7" path="res://scripts/ghosts/ghost_box.tscn" id="4_3p04p"]
 [ext_resource type="PackedScene" uid="uid://d3sq81x0hgxf0" path="res://scenes/base_level/base_level.tscn" id="base_level"]
 [ext_resource type="PackedScene" uid="uid://b7l616nkdvw5h" path="res://level_objects/features/cannon.tscn" id="element_7"]
 [ext_resource type="PackedScene" path="res://level_objects/features/enemies/spanish.tscn" id="element_9"]
@@ -82,6 +83,12 @@ text = "Or Davao City as we know it now."
 script = ExtResource("2_8qukl")
 metadata/_custom_type_script = "uid://ce384k60pbf58"
 
+[node name="GhostBox" parent="." index="8" unique_id=277277652 instance=ExtResource("4_3p04p")]
+offset_left = 928.0
+offset_top = -80.0
+offset_right = 1216.0
+offset_bottom = 0.0
+
 [node name="Items" parent="LevelObjects" parent_id_path=PackedInt32Array(949556748) index="0" unique_id=933369512]
 tile_map_data = PackedByteArray("AABJAPz/AAAAAAAAAQBIAPz/AAAAAAAAAQBHAPz/AAAAAAAAAQBGAPz/AAAAAAAAAQBFAPz/AAAAAAAAAQBFAPv/AAAAAAAAAQBGAPv/AAAAAAAAAQBHAPv/AAAAAAAAAQBIAPv/AAAAAAAAAQBJAPv/AAAAAAAAAQA3AP3/AAAAAAAAAQA4AP3/AAAAAAAAAQA5AP3/AAAAAAAAAQA6AP3/AAAAAAAAAQAwAP3/AAAAAAAAAQAvAP3/AAAAAAAAAQAuAP3/AAAAAAAAAQAtAP3/AAAAAAAAAQAmAPz/AAAAAAAAAQAlAPz/AAAAAAAAAQAkAPz/AAAAAAAAAQAjAPz/AAAAAAAAAQAiAPz/AAAAAAAAAQAhAPz/AAAAAAAAAQAgAPz/AAAAAAAAAQAfAPz/AAAAAAAAAQAeAPz/AAAAAAAAAQAdAPz/AAAAAAAAAQAcAPz/AAAAAAAAAQAvAPv/AAAAAAAAAgAYAPz/AAAAAAAAAgBYAPz/AAAAAAAAAgARAP3/AAAAAAAAAQASAPz/AAAAAAAAAQATAPv/AAAAAAAAAQAUAPv/AAAAAAAAAQAsAPn/AAAAAAAAAQAtAPn/AAAAAAAAAQAuAPn/AAAAAAAAAQAvAPn/AAAAAAAAAQAwAPn/AAAAAAAAAQAxAPn/AAAAAAAAAQAVAPv/AAAAAAAAAQA=")
 
@@ -115,7 +122,7 @@ boss = true
 position = Vector2(2704, -24)
 boss = true
 
-[node name="WaterLayer" type="CanvasGroup" parent="." index="9" unique_id=994649338]
+[node name="WaterLayer" type="CanvasGroup" parent="." index="10" unique_id=994649338]
 material = ExtResource("water_material")
 position = Vector2(0, -16)
 
