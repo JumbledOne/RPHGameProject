@@ -67,7 +67,8 @@ func _run() -> void:
 		player.health = 1
 		spawn("res://level_objects/features/pickups/durian.tscn", player.position)
 		await frames(4)
-		check(player.health == 3 and player.durians == 0, "Durian pickup restores two health without adding inventory")
+		check(player.health == 2 and player.durians == 0, "Durian pickup restores one heart without adding inventory")
+		player.health = 3
 		player.hurt(1)
 		player.hurt(1)
 		check(player.health == 2 and not player.can_damage, "Entity damage cooldown blocks repeated contacts")

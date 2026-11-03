@@ -1,5 +1,6 @@
 [gd_scene format=4 uid="uid://bxpn666gd3hm3"]
 
+[ext_resource type="PackedScene" uid="uid://4chms6wnrglr" path="res://scripts/tree_box/tree_box.tscn" id="2_3p04p"]
 [ext_resource type="Script" uid="uid://ce384k60pbf58" path="res://scripts/story_label/story_label.gd" id="2_8qukl"]
 [ext_resource type="PackedScene" uid="uid://d3sq81x0hgxf0" path="res://scenes/base_level/base_level.tscn" id="base_level"]
 [ext_resource type="PackedScene" uid="uid://b7l616nkdvw5h" path="res://level_objects/features/cannon.tscn" id="element_7"]
@@ -9,6 +10,24 @@
 [ext_resource type="PackedScene" uid="uid://clvr5icyyjm0y" path="res://level_objects/water/water.tscn" id="water_scene"]
 
 [node name="Level2" unique_id=1102004995 instance=ExtResource("base_level")]
+
+[node name="TreeBox" parent="BackgroundEffects/BackPixelLayer" parent_id_path=PackedInt32Array(976009228) index="0" unique_id=13349022 instance=ExtResource("2_3p04p")]
+offset_left = 40.0
+offset_top = -80.0
+offset_right = 594.0
+offset_bottom = -33.0
+
+[node name="TreeBox2" parent="BackgroundEffects/BackPixelLayer" parent_id_path=PackedInt32Array(976009228) index="1" unique_id=866761836 instance=ExtResource("2_3p04p")]
+offset_left = 1152.0
+offset_top = -80.0
+offset_right = 1850.0
+offset_bottom = -33.0
+
+[node name="TreeBox3" parent="BackgroundEffects/BackPixelLayer" parent_id_path=PackedInt32Array(976009228) index="2" unique_id=1112867619 instance=ExtResource("2_3p04p")]
+offset_left = 2872.0
+offset_top = -80.0
+offset_right = 3918.0
+offset_bottom = -33.0
 
 [node name="Fog" parent="BackgroundEffects" parent_id_path=PackedInt32Array(1973781473) index="1" unique_id=322353296 node_paths=PackedStringArray("tilemap")]
 offset_right = 4480.0
@@ -64,7 +83,7 @@ script = ExtResource("2_8qukl")
 metadata/_custom_type_script = "uid://ce384k60pbf58"
 
 [node name="Items" parent="LevelObjects" parent_id_path=PackedInt32Array(949556748) index="0" unique_id=933369512]
-tile_map_data = PackedByteArray("AABJAPz/AAAAAAAAAQBIAPz/AAAAAAAAAQBHAPz/AAAAAAAAAQBGAPz/AAAAAAAAAQBFAPz/AAAAAAAAAQBFAPv/AAAAAAAAAQBGAPv/AAAAAAAAAQBHAPv/AAAAAAAAAQBIAPv/AAAAAAAAAQBJAPv/AAAAAAAAAQA3AP3/AAAAAAAAAQA4AP3/AAAAAAAAAQA5AP3/AAAAAAAAAQA6AP3/AAAAAAAAAQAwAP3/AAAAAAAAAQAvAP3/AAAAAAAAAQAuAP3/AAAAAAAAAQAtAP3/AAAAAAAAAQAmAPz/AAAAAAAAAQAlAPz/AAAAAAAAAQAkAPz/AAAAAAAAAQAjAPz/AAAAAAAAAQAiAPz/AAAAAAAAAQAhAPz/AAAAAAAAAQAgAPz/AAAAAAAAAQAfAPz/AAAAAAAAAQAeAPz/AAAAAAAAAQAdAPz/AAAAAAAAAQAcAPz/AAAAAAAAAQA=")
+tile_map_data = PackedByteArray("AABJAPz/AAAAAAAAAQBIAPz/AAAAAAAAAQBHAPz/AAAAAAAAAQBGAPz/AAAAAAAAAQBFAPz/AAAAAAAAAQBFAPv/AAAAAAAAAQBGAPv/AAAAAAAAAQBHAPv/AAAAAAAAAQBIAPv/AAAAAAAAAQBJAPv/AAAAAAAAAQA3AP3/AAAAAAAAAQA4AP3/AAAAAAAAAQA5AP3/AAAAAAAAAQA6AP3/AAAAAAAAAQAwAP3/AAAAAAAAAQAvAP3/AAAAAAAAAQAuAP3/AAAAAAAAAQAtAP3/AAAAAAAAAQAmAPz/AAAAAAAAAQAlAPz/AAAAAAAAAQAkAPz/AAAAAAAAAQAjAPz/AAAAAAAAAQAiAPz/AAAAAAAAAQAhAPz/AAAAAAAAAQAgAPz/AAAAAAAAAQAfAPz/AAAAAAAAAQAeAPz/AAAAAAAAAQAdAPz/AAAAAAAAAQAcAPz/AAAAAAAAAQAvAPv/AAAAAAAAAgAYAPz/AAAAAAAAAgBYAPz/AAAAAAAAAgARAP3/AAAAAAAAAQASAPz/AAAAAAAAAQATAPv/AAAAAAAAAQAUAPv/AAAAAAAAAQAsAPn/AAAAAAAAAQAtAPn/AAAAAAAAAQAuAPn/AAAAAAAAAQAvAPn/AAAAAAAAAQAwAPn/AAAAAAAAAQAxAPn/AAAAAAAAAQAVAPv/AAAAAAAAAQA=")
 
 [node name="LevelEnd" parent="LevelObjects" parent_id_path=PackedInt32Array(949556748) index="1" unique_id=1887794136 instance=ExtResource("level_end")]
 position = Vector2(3784, 0)

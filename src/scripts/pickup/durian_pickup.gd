@@ -1,4 +1,4 @@
 extends Pickup
 
 func _apply_effect(body: PlayerEntity) -> void:
-	body.heal(2)
+	body.heal(1)

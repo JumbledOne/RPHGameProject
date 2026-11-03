@@ -6,4 +6,4 @@ func _ready() -> void:
 	_update(LevelManager.collected, LevelManager.total_collectibles)
 
 func _update(collected: int, total: int) -> void:
-	text = "x%d" % [collected]
+	text = "%s / %s" % [collected, total]

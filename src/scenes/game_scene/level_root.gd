@@ -18,7 +18,7 @@ func _on_game_started():
 	add_child(scene.instantiate())
 	
 func _on_game_ended(result: int):
-	if result == LevelManager.GameEnd.WON:
+	if result == LevelManager.GameEnd.WON or result == LevelManager.GameEnd.LOST:
 		set_deferred("process_mode", Node.PROCESS_MODE_DISABLED)
 		return
 	_clear_children()
