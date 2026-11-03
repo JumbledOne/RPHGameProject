@@ -12,7 +12,7 @@ The five reusable base scripts live in `scripts/level_objects/`. Each concrete i
 
 Movement uses the shared `ConstantMovingPlatform` implementation in `scripts/moving_platforms/`. Set `direction` horizontally and choose `speed` in pixels per second. Platforms continue in that direction without reversing. `start_on_screen` delays movement until visible. Set `speed` to zero for vertical bobbing in place. Set `moving` to false for stationary solid objects.
 
-Damage calls the existing player `hurt(amount)` API. Zero damage still allows knockback for the less punishing rolling cannonball described in the plan. HazardPlatform scenes require a rectangular CollisionShape2D; side sensors derive from that rectangle at runtime and leave the top edge safe.
+Damage calls the existing player `hurt(amount)` API. Zero damage still allows knockback for the less punishing rolling cannonball described in the plan. HazardPlatform scenes support rectangular CollisionShape2D and CollisionPolygon2D colliders; side sensors derive from the collider bounds at runtime and leave the top edge safe.
 
 Falling hazards use `trigger_distance`, `warning_time`, `fall_gravity`, and `terminal_speed`. A shape cast stops the falling area at solid terrain while excluding the triggering player. Landed objects stay harmless until they leave the screen and reset; market crates are the separate solid, climbable variant.
 

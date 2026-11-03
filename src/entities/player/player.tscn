@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://coxtd6qm70b5g" path="res://scripts/water/classes/platformer_submersible.gd" id="5_subm"]
 
 [node name="Player" type="CharacterBody2D" unique_id=1043310607 groups=["player"]]
+collision_mask = 5
 script = ExtResource("1_kai5h")
 walk_speed = 250.0
 walk_time_to_full_speed = 0.2

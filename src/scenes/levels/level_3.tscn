@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://ikmhfiq4q14g"]
 
 [ext_resource type="Script" uid="uid://ce384k60pbf58" path="res://scripts/story_label/story_label.gd" id="3_ugcn1"]
+[ext_resource type="PackedScene" uid="uid://dhmyl5j41okky" path="res://level_objects/rolling_cart/rolling_cart.tscn" id="9_pimnq"]
 [ext_resource type="PackedScene" uid="uid://d3sq81x0hgxf0" path="res://scenes/base_level/base_level.tscn" id="base_level"]
 [ext_resource type="PackedScene" path="res://level_objects/falling_crate/falling_crate.tscn" id="element_6"]
 [ext_resource type="PackedScene" path="res://level_objects/features/enemies/japanese.tscn" id="element_7"]
@@ -72,5 +73,9 @@ offset_right = 4288.0
 offset_bottom = 116.0
 tilemap = NodePath("../../TileMapLayer")
 extend_to_tilemap = true
+
+[node name="RollingCart" parent="." index="11" unique_id=2085543297 instance=ExtResource("9_pimnq")]
+position = Vector2(1168, -16)
+speed = 80.0
 
 [editable path="Background"]

@@ -1,21 +1,21 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene format=3 uid="uid://dhmyl5j41okky"]
 
-[ext_resource type="Script" path="res://scripts/level_objects/hazard_platform.gd" id="1"]
-[ext_resource type="Texture2D" path="res://assets/gfx/campaign/plantation_cart.svg" id="2"]
+[ext_resource type="Script" uid="uid://b0u5qdowu0hv8" path="res://scripts/level_objects/hazard_platform.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://bjyr6tcxb6khi" path="res://assets/gfx/sprites/cart.png" id="2_ddycq"]
 
 [sub_resource type="RectangleShape2D" id="Shape"]
-size = Vector2(96, 48)
+size = Vector2(55.5, 29)
 
-[node name="RollingCart" type="AnimatableBody2D"]
-collision_layer = 1
+[node name="RollingCart" type="AnimatableBody2D" unique_id=2085543297]
 collision_mask = 0
 script = ExtResource("1")
 direction = Vector2(-1, 0)
 speed = 51.2
 start_on_screen = true
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2")
-flip_v = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1670986938]
+texture = ExtResource("2_ddycq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1220965079]
+position = Vector2(-0.75, 1.5)
 shape = SubResource("Shape")

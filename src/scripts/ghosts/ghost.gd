@@ -13,7 +13,8 @@ var _last_facing_right: bool = true
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
-func initialize(bounds: Rect2, start_position: Vector2) -> void:
+func initialize(bounds: Rect2, start_position: Vector2, spritesheet: Texture2D) -> void:
+	$CharacterSprite.texture = spritesheet
 	movement_bounds = bounds
 	position = start_position
 	destination = position

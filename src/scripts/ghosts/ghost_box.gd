@@ -6,6 +6,7 @@ const MOVE_CHANCE: float = 0.3
 
 @export var entities: int = 5
 @export var ghost_scene: PackedScene = preload("res://scripts/ghosts/ghost.tscn")
+@export var spritesheets: Array[Texture2D] = []
 @export_range(0.0, 0.5, 0.01) var floor_height_ratio: float = 0.3
 @export var horizontal_margin: float = 16.0
 
@@ -14,6 +15,10 @@ var _visible_on_screen_notifier: VisibleOnScreenNotifier2D
 var _time: float = 0.0
 
 func _ready() -> void:
+	if not _validate_spritesheets():
+		set_physics_process(false)
+		return
+
 	_visible_on_screen_notifier = VisibleOnScreenNotifier2D.new()
 	_visible_on_screen_notifier.rect = Rect2(Vector2.ZERO, size)
 	add_child(_visible_on_screen_notifier)
@@ -35,10 +40,30 @@ func _ready() -> void:
 			randf_range(floor_bounds.position.x, floor_bounds.end.x),
 			floor_bounds.end.y
 		)
-		ghost.initialize(floor_bounds, start)
+		ghost.initialize(floor_bounds, start, spritesheets.pick_random())
 		_ghosts.append(ghost)
 
 	_set_ghosts_active(_visible_on_screen_notifier.is_on_screen())
+
+func _validate_spritesheets() -> bool:
+	if spritesheets.is_empty():
+		push_error("GhostBox spritesheets must contain at least one character spritesheet.")
+		return false
+
+	var expected_size := Vector2.ZERO
+	var valid := true
+	for index in range(spritesheets.size()):
+		var sheet := spritesheets[index]
+		if sheet == null:
+			push_error("GhostBox spritesheets[%d] is empty. Assign a character spritesheet." % index)
+			valid = false
+			continue
+		if expected_size == Vector2.ZERO:
+			expected_size = sheet.get_size()
+		elif sheet.get_size() != expected_size:
+			push_error("GhostBox spritesheets[%d] (%s) has size %s; expected %s." % [index, sheet.resource_path, sheet.get_size(), expected_size])
+			valid = false
+	return valid
 
 func _physics_process(delta: float) -> void:
 	_time += delta

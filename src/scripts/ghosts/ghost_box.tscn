@@ -1,6 +1,14 @@
 [gd_scene format=3 uid="uid://bi64ypvxstqp7"]
 
 [ext_resource type="Script" uid="uid://b8q4kqut4xebc" path="res://scripts/ghosts/ghost_box.gd" id="1_nn2gg"]
+[ext_resource type="Texture2D" path="res://assets/gfx/sprites/character_spritesheets/Ada_Sprite.png" id="2_ada"]
+[ext_resource type="Texture2D" path="res://assets/gfx/sprites/character_spritesheets/American_Colonizer_Sprite.png" id="3_american"]
+[ext_resource type="Texture2D" path="res://assets/gfx/sprites/character_spritesheets/BAGOBO_Sprite.png" id="4_bagobo"]
+[ext_resource type="Texture2D" path="res://assets/gfx/sprites/character_spritesheets/friarspanishenemy.png" id="5_friar"]
+[ext_resource type="Texture2D" path="res://assets/gfx/sprites/character_spritesheets/Iranun_Sprite.png" id="6_iranun"]
+[ext_resource type="Texture2D" path="res://assets/gfx/sprites/character_spritesheets/Japanese_Colonizer_Sprite.png" id="7_japanese"]
+[ext_resource type="Texture2D" path="res://assets/gfx/sprites/character_spritesheets/KAGAN_Sprite.png" id="8_kagan"]
+[ext_resource type="Texture2D" path="res://assets/gfx/sprites/character_spritesheets/normalperson.png" id="9_urban"]
 
 [node name="GhostBox" type="Control" unique_id=277277652]
 layout_mode = 3
@@ -12,3 +20,4 @@ offset_bottom = -182.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_nn2gg")
+spritesheets = Array[Texture2D]([ExtResource("2_ada"), ExtResource("3_american"), ExtResource("4_bagobo"), ExtResource("5_friar"), ExtResource("6_iranun"), ExtResource("7_japanese"), ExtResource("8_kagan"), ExtResource("9_urban")])
