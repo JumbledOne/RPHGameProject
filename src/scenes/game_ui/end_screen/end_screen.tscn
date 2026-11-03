@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://xstkh3pxo8h4"]
 
-[ext_resource type="Script" path="res://scenes/game_ui/end_screen/end_screen.gd" id="1_end_screen"]
+[ext_resource type="Script" uid="uid://g5ybufpsk58j" path="res://scenes/game_ui/end_screen/end_screen.gd" id="1_end_screen"]
 [ext_resource type="Script" uid="uid://0prrrb1shwwv" path="res://scenes/game_ui/end_screen/star_container.gd" id="1_rgbql"]
 [ext_resource type="Texture2D" uid="uid://dmieydyu3823p" path="res://assets/gfx/sprites/stars-grass-stones.png" id="2_xguii"]
 [ext_resource type="Script" uid="uid://dvhcf6c1hisl8" path="res://scenes/game_ui/end_screen/star_tex.gd" id="3_obqgp"]
@@ -15,6 +15,8 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 228.0
+offset_right = -228.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_end_screen")
@@ -24,16 +26,23 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 213.0
-offset_right = -213.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=979141434]
-layout_mode = 0
-offset_right = 640.0
-offset_bottom = 360.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -52.0
+offset_top = -83.5
+offset_right = 52.0
+offset_bottom = 83.5
+grow_horizontal = 2
+grow_vertical = 2
 alignment = 1
 
 [node name="Title" type="Label" parent="VBoxContainer" unique_id=1846809703]
