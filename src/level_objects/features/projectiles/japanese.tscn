@@ -1,6 +1,6 @@
 [gd_scene format=3]
 
-[ext_resource type="Script" path="res://scripts/campaign/japanese_projectile.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/enemy/Projectile.gd" id="1"]
 [ext_resource type="Texture2D" path="res://assets/gfx/campaign/sushi.svg" id="2"]
 
 [node name="JapaneseProjectile" type="Area2D"]

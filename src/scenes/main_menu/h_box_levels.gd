@@ -13,7 +13,7 @@ func _select_next_level() -> void:
 	var button_group: ButtonGroup = get_meta("level_selector_button_group", null)
 	if button_group == null:
 		return
-	var buttons: Array[BaseButton] = button_group.get_buttons()
+	var buttons: Array[BaseButton] = _get_level_buttons(button_group)
 	if buttons.is_empty():
 		return
 	var target_level: int = clampi(LevelManager.last_level_won + 1, 0, buttons.size() - 1)
@@ -36,11 +36,22 @@ func _unhandled_input(event: InputEvent) -> void:
 	if button_group == null:
 		return
 
-	var buttons: Array[BaseButton] = button_group.get_buttons()
+	var buttons: Array[BaseButton] = _get_level_buttons(button_group)
 	if buttons.is_empty():
 		return
 
 	var selected_index: int = buttons.find(button_group.get_pressed_button())
-	var next_index: int = clampi(selected_index + direction, 0, buttons.size() - 1)
+	if selected_index == -1:
+		selected_index = -1 if direction > 0 else 0
+	var next_index: int = posmod(selected_index + direction, buttons.size())
 	buttons[next_index].button_pressed = true
 	get_viewport().set_input_as_handled()
+
+
+func _get_level_buttons(button_group: ButtonGroup) -> Array[BaseButton]:
+	var buttons: Array[BaseButton] = []
+	for child: Node in get_children():
+		var button: BaseButton = child as BaseButton
+		if button != null and button.button_group == button_group:
+			buttons.append(button)
+	return buttons

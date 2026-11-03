@@ -1,13 +1,12 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://c3gbwm82ligny"]
 
-[ext_resource type="Script" path="res://scripts/campaign/blindness_projectile.gd" id="1"]
-[ext_resource type="Texture2D" path="res://assets/gfx/sprites/tilemap-updated.png" id="2"]
+[ext_resource type="Script" uid="uid://dh54dqisb50q4" path="res://scripts/enemy/Projectile.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://da8uuy8dfb40o" path="res://assets/gfx/sprites/books1.png" id="2_h7lk2"]
 
-[node name="BlindnessProjectile" type="Area2D"]
+[node name="BlindnessProjectile" type="Area2D" unique_id=101679229]
 script = ExtResource("1")
+applies_blindness = true
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2")
-region_enabled = true
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=806872807]
+texture = ExtResource("2_h7lk2")
 region_rect = Rect2(104, 304, 16, 16)
-modulate = Color(0.8, 0.35, 1, 1)

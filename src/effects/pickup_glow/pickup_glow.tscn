@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://dcu7p68om2ec1"]
+
+[ext_resource type="Shader" uid="uid://vx4sscp4trcy" path="res://assets/gfx/shader/rotating_tex.gdshader" id="1_f2oth"]
+[ext_resource type="Texture2D" uid="uid://biwh88l5gaugk" path="res://assets/gfx/textures/item_highlight.png" id="2_y13li"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_83a3r"]
+shader = ExtResource("1_f2oth")
+shader_parameter/movement = -1.0
+
+[node name="PickupGlow" type="Sprite2D" unique_id=1594135894]
+z_index = -1
+material = SubResource("ShaderMaterial_83a3r")
+scale = Vector2(0.125, 0.125)
+texture = ExtResource("2_y13li")

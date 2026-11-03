@@ -18,6 +18,9 @@ func _run() -> void:
 	get_tree().current_scene = game
 	await frames(3)
 	check(ResourceLoader.exists("res://scenes/levels/level_1_old.tscn"), "Old level one is preserved")
+	var base_level = load("res://scenes/base_level/base_level.tscn").instantiate()
+	check(base_level.get_node_or_null("WaterLayer") == null, "Base level has no water")
+	base_level.free()
 	for stage in range(5):
 		LevelManager.start_game(stage)
 		await frames(3)
@@ -29,9 +32,14 @@ func _run() -> void:
 		check(level.get_node_or_null("LevelObjects/Items") != null, "Inherited item layer")
 		check(level.get_node_or_null("PlayerCamera") is Camera2D, "Inherited camera")
 		check(level.get_node_or_null("Player") == GameManager.player, "Single inherited player")
-		var water_layer = level.get_node("WaterLayer")
-		check(water_layer is CanvasGroup and water_layer.material == preload("res://assets/gfx/gfx_resources/material/water.tres"), "Inherited water CanvasGroup uses the required material")
-		check(water_layer.get_node("Water").extend_to_tilemap, "Shared water extends with the tilemap")
+		var water_layer = level.get_node_or_null("WaterLayer")
+		if stage < 3:
+			check(water_layer is CanvasGroup and water_layer.material == preload("res://assets/gfx/gfx_resources/material/water.tres"), "Level %d water CanvasGroup uses the required material" % (stage + 1))
+			if water_layer is CanvasGroup:
+				var water = water_layer.get_node_or_null("Water")
+				check(water != null and water.extend_to_tilemap, "Level %d water extends with the tilemap" % (stage + 1))
+		else:
+			check(water_layer == null, "Level %d has no water" % (stage + 1))
 		check(level.get_node_or_null("LevelObjects/Water") == null, "No water instance outside the CanvasGroup")
 		check(level.get_node("BackgroundEffects/Fog").get_script() == preload("res://scripts/misc/level_extender.gd"), "Fog uses the extender")
 		var simple_fog = level.get_node_or_null("BackgroundEffects/SimpleFog")

@@ -18,8 +18,8 @@ var desired_pos: Vector2
 
 # Shake
 var shake: float = 0
-const SHAKE_DECAY: float = 1
-const MAX_SHAKE: float = 1
+const SHAKE_DECAY: float = 60.0
+const MAX_SHAKE: float = 16.0
 
 # These variables are constants so that it is consistent for any level
 const CAMERA_Y: float = -148.0 # Tuned such that you can see exactly one tile below the x-axis
@@ -42,15 +42,14 @@ func _ready() -> void:
 		_on_player_set()
 
 func _physics_process(delta: float) -> void:
-	if not target:
-		return
-	_update_desired_position()
-	# Move toward the desired position.
-	position.x = floor(lerp(position.x, desired_pos.x, lerp_amount))
+	if is_instance_valid(target):
+		_update_desired_position()
+		# Move toward the desired position.
+		position.x = floor(lerp(position.x, desired_pos.x, lerp_amount))
 	# Shake
 	if shake > 0.1:
 		var shake_offset: Vector2 = Vector2(randf_range(-shake, shake), randf_range(-shake, shake))
-		offset = lerp(offset, shake_offset, 0.1)
+		offset = shake_offset
 		shake = move_toward(shake, 0.0, SHAKE_DECAY * delta)
 	else:
 		shake = 0.0

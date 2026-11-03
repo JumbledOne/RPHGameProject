@@ -1,0 +1,104 @@
+[gd_scene format=3 uid="uid://mmiyho642c8y"]
+
+[ext_resource type="Script" uid="uid://cx58ypx01kl3m" path="res://effects/eat/particle_play_once.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://b3mg0tvfjdduq" path="res://assets/gfx/textures/circle_16px.png" id="1_5amm1"]
+
+[sub_resource type="Curve" id="Curve_8tl0u"]
+_data = [Vector2(0, 0), 0.0, 0.8867365, 0, 0, Vector2(0.8148148, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.008000016), -11.664033, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Animation" id="Animation_esdwj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_iduai"]
+resource_name = "cannon_fire"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 0.8000001, 0, 1), Color(1, 0.5, 0, 1), Color(0, 0, 0, 1)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_648ip"]
+_data = {
+&"RESET": SubResource("Animation_esdwj"),
+&"cannon_fire": SubResource("Animation_iduai")
+}
+
+[node name="CannonFireEffect" type="CPUParticles2D" unique_id=1454006358]
+amount = 16
+texture = ExtResource("1_5amm1")
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 1.0
+direction = Vector2(-1, 0)
+spread = 20.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 32.0
+initial_velocity_max = 80.0
+damping_min = 49.112
+damping_max = 49.112
+scale_amount_min = 0.5
+scale_amount_curve = SubResource("Curve_8tl0u")
+script = ExtResource("1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=872480131]
+libraries/ = SubResource("AnimationLibrary_648ip")
+autoplay = &"cannon_fire"

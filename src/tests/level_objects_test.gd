@@ -98,7 +98,6 @@ func _run() -> void:
 	floating.queue_free()
 	var falling := object_at("falling_crate/falling_crate", Vector2(0, -100))
 	falling.warning_time = 0.1
-	falling.reset_delay = 0.1
 	await frames(5)
 	check(falling.state == FallingHazard.State.WAITING, "Distant player must not trigger falling hazard")
 	var ground := StaticBody2D.new()
@@ -117,9 +116,50 @@ func _run() -> void:
 	player.position = Vector2(1000, 1000)
 	await frames(80)
 	check(has_landed[0], "Falling hazard must land on ground")
-	check(falling.state == FallingHazard.State.WAITING and falling.position == Vector2(0, -100), "Falling hazard must reset to origin")
+	check(falling.state == FallingHazard.State.LANDED, "Visible falling hazard must stay landed")
+	falling.position = Vector2(10000, 10000)
+	await frames(5)
+	check(falling.state == FallingHazard.State.WAITING and falling.position == Vector2(0, -100), "Falling hazard must reset after leaving the screen")
 	falling.queue_free()
 	ground.queue_free()
+	for path in ["falling_crate/falling_crate", "falling_debris/falling_debris"]:
+		var safe_falling := object_at(path, Vector2(200, 100))
+		player.position = Vector2(200, 30)
+		player.velocity = Vector2.ZERO
+		player.simulate = true
+		previous_hits = player.hits
+		await frames(45)
+		check(player.is_on_floor(), path + " must support a player while waiting")
+		check(player.hits == previous_hits, path + " must be safe to stand on")
+		safe_falling.state = FallingHazard.State.LANDED
+		await frames(5)
+		check(player.is_on_floor() and player.hits == previous_hits, path + " must support a player after landing")
+		player.simulate = false
+		player.position = Vector2(1000, 1000)
+		safe_falling.queue_free()
+		await frames(2)
+	var damage_falling := object_at("falling_crate/falling_crate", Vector2(200, 100))
+	damage_falling.fall_gravity = 0.0
+	damage_falling.terminal_speed = 0.0
+	player.position = Vector2(200, 110)
+	previous_hits = player.hits
+	await frames(5)
+	check(player.hits == previous_hits, "Warning falling hazard must be harmless")
+	damage_falling.state = FallingHazard.State.FALLING
+	player.position = Vector2(200, 90)
+	await frames(5)
+	check(player.hits == previous_hits, "Falling hazard must be harmless above the object")
+	player.position = Vector2(218, 110)
+	await frames(5)
+	check(player.hits == previous_hits, "Side contact with a falling hazard must be harmless")
+	player.position = Vector2(200, 110)
+	await frames(5)
+	check(player.hits == previous_hits + 1, "Falling hazard must hurt a player underneath it")
+	damage_falling.state = FallingHazard.State.LANDED
+	damage_falling._cooldowns.clear()
+	await frames(5)
+	check(player.hits == previous_hits + 1, "Landed falling hazard must be harmless")
+	damage_falling.queue_free()
 	player.queue_free()
 	await frames(2)
 	print("Level object tests: ", "PASS" if failures == 0 else "FAIL", " (", failures, " failures)")

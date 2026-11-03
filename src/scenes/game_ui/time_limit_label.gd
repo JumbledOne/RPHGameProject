@@ -13,21 +13,11 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if not level_active or GameManager.is_paused:
 		return
-	var level := get_tree().get_first_node_in_group("level_features")
-	if is_instance_valid(level):
-		if level.time_limit <= 0:
-			text = "—"
-		else:
-			time_left = maxf(level.time_limit - level.elapsed, 0.0)
-			_update_label()
+	if LevelManager.time_limit <= 0:
+		text = "—"
 		return
-
-	time_left = maxf(time_left - delta, 0.0)
+	time_left = LevelManager.get_time_left()
 	_update_label()
-	if time_left <= 0.0:
-		level_active = false
-		if is_instance_valid(GameManager.player):
-			GameManager.player.hurt(GameManager.player.health)
 
 func _on_game_started() -> void:
 	time_left = LevelManager.MAX_LEVEL_TIME

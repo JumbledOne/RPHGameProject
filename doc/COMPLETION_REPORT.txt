@@ -12,10 +12,10 @@ mixed FeatureShowcase is removed. Level-end objects are retained. Their old draf
 references, are preserved under doc/level_drafts. Terrain refinement and duplication/placement of further instances are left to you.
 
 GETTING STARTED
-Use the existing base_level.tscn as your level foundation. Its root now inherits
-LevelFeatures, providing projectile spawning, timer, blindness state and finish
-services. Levels 2-5 inherit that foundation directly.
-For a new independent Node2D level, attach scripts/campaign/campaign_level.gd.
+Use the existing base_level.tscn as your level foundation. Its root registers scene layers and configures LevelManager. The manager owns the
+timer, bounds, death altitude, preview, and finish state. Levels 2-5 inherit
+that foundation directly. For a new independent Node2D level, call
+LevelManager.configure_level and register its layers with ScenePlacer.
 Place your Player or PlayerSpawner and camera yourself. F6 starts an authored
 level directly with the shared HUD. Set Player Death Altitude to suit your level's
 vertical coordinates. Optional custom bounds and a configurable time limit are
@@ -124,3 +124,11 @@ CanvasGroup using assets/gfx/gfx_resources/material/water.tres, and the width-fi
 Water beneath it. All levels inherit this same water setup. Fog uses level_extender;
 SimpleFog has no extender. Enemy scenes use the shared scripts/health_display
 heart display, with no numeric health, name, boss or poison-countdown labels.
+
+SHARED GAMEPLAY SYSTEMS
+Campaign scripts were removed. Enemy_Entity uses a dedicated EnemyController node
+for each enemy type. Ranged controllers fire a Weapon child whose exported
+projectile_scene points to a configured Projectile scene. The cannon uses the
+same Weapon. Pickups use scripts/pickup/pickup.gd with a kind set per scene.
+LevelManager owns level timing, bounds, boss finish state, and preview setup;
+GameUi handles the result screen.

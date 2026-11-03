@@ -16,9 +16,6 @@
 
 [ext_resource type="Script" path="res://scripts/misc/level_extender.gd" id="level_extender"]
 
-[ext_resource type="PackedScene" path="res://level_objects/water/water.tscn" id="water_scene"]
-[ext_resource type="Material" path="res://assets/gfx/gfx_resources/material/water.tres" id="water_material"]
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2n7ho"]
 shader = ExtResource("8_jnmbr")
 
@@ -87,18 +84,6 @@ script = ExtResource("3_0wob2")
 
 [node name="Items" type="TileMapLayer" parent="LevelObjects" unique_id=933369512]
 tile_set = SubResource("TileSet_2n7ho")
-
-[node name="WaterLayer" type="CanvasGroup" parent="." index="4" unique_id=994649338]
-material = ExtResource("water_material")
-position = Vector2(0, -16)
-
-[node name="Water" parent="WaterLayer" index="0" unique_id=662158307 instance=ExtResource("water_scene")]
-offset_left = -96.0
-offset_top = 24.0
-offset_right = 3960.0
-offset_bottom = 116.0
-
-extend_to_tilemap = true
 
 [node name="FrontPixelLayer" type="CanvasGroup" parent="." unique_id=921904768]
 oversampling_with_scale = 1

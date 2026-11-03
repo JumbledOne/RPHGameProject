@@ -14,6 +14,11 @@ func _ready() -> void:
 	_origin_y = position.y
 
 func _physics_process(delta: float) -> void:
-	super(delta)
+	# AnimatableBody2D defers synchronized position changes until the physics step.
+	# Write once so bobbing does not overwrite the pending horizontal movement.
+	var next_position := position
+	if enabled and moving:
+		next_position += direction * speed * delta
 	_elapsed += delta
-	position.y = _origin_y + sin((_elapsed / maxf(bob_period, 0.1) + bob_phase) * TAU) * bob_height
+	next_position.y = _origin_y + sin((_elapsed / maxf(bob_period, 0.1) + bob_phase) * TAU) * bob_height
+	position = next_position

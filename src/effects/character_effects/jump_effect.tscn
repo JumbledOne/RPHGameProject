@@ -1,0 +1,122 @@
+[gd_scene format=3 uid="uid://087v034dkrrn"]
+
+[ext_resource type="Texture2D" uid="uid://b3mg0tvfjdduq" path="res://assets/gfx/textures/circle_16px.png" id="2_83lxv"]
+
+[sub_resource type="Curve" id="Curve_2n7ho"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.08333333, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.274105, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Animation" id="Animation_7sv4p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ParticlesRight:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ParticlesLeft:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_t3id2"]
+resource_name = "jump_effect"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ParticlesRight:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ParticlesLeft:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kttjl"]
+_data = {
+&"RESET": SubResource("Animation_7sv4p"),
+&"jump_effect": SubResource("Animation_t3id2")
+}
+
+[node name="JumpEffect" type="Node2D" unique_id=107079101]
+
+[node name="ParticlesRight" type="CPUParticles2D" parent="." unique_id=933262359]
+emitting = false
+texture = ExtResource("2_83lxv")
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 1.0
+direction = Vector2(1, -0.2)
+spread = 20.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 64.0
+initial_velocity_max = 100.0
+damping_min = 100.0
+damping_max = 100.0
+scale_amount_min = 0.5
+scale_amount_max = 0.5
+scale_amount_curve = SubResource("Curve_2n7ho")
+
+[node name="ParticlesLeft" type="CPUParticles2D" parent="." unique_id=1897037438]
+emitting = false
+texture = ExtResource("2_83lxv")
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 1.0
+direction = Vector2(-1, -0.2)
+spread = 20.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 64.0
+initial_velocity_max = 100.0
+damping_min = 100.0
+damping_max = 100.0
+scale_amount_min = 0.5
+scale_amount_max = 0.5
+scale_amount_curve = SubResource("Curve_2n7ho")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2128142835]
+libraries/ = SubResource("AnimationLibrary_kttjl")
+autoplay = &"jump_effect"

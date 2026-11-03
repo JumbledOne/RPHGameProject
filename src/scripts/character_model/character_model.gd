@@ -7,6 +7,10 @@ extends EntitySprite
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var character_sprite: Sprite2D = $CharacterSprite
+@onready var effect_floor: Marker2D = $EffectFloor
+
+const JUMP_EFFECT: PackedScene = preload("res://effects/character_effects/jump_effect.tscn")
+const LAND_EFFECT: PackedScene = preload("res://effects/character_effects/land_effect.tscn")
 
 const DAMAGE_ANIM_SCALE: float = 2.0
 const LANDING_ANIM_SCALE: float = 4.0
@@ -24,14 +28,32 @@ var _jumped: bool = false
 var _reached_peak: bool = false
 func _ready() -> void:
 	super._ready()
-	entity.damaged.connect(_on_damaged)
 	# Submersible renames itself when ready, so wait for the entity
 	if not entity.is_node_ready():
 		await entity.ready
+	var platformer := entity as PlatformerEntity
+	if platformer != null:
+		platformer.jumped.connect(_on_jumped)
+		platformer.landed.connect(_on_landed)
 	var submersible: Submersible = entity.get_node_or_null("Submersible")
 	if submersible:
 		submersible.water_entered.connect(_on_water_entered)
 		submersible.water_exited.connect(_on_water_exited)
+
+func _on_jumped() -> void:
+	_spawn_effect(JUMP_EFFECT)
+
+func _on_landed() -> void:
+	_spawn_effect(LAND_EFFECT)
+
+func _spawn_effect(effect_scene: PackedScene) -> void:
+	var scene_parent := entity.get_parent() as Node2D
+	if scene_parent == null:
+		return
+	var effect := effect_scene.instantiate() as Node2D
+	effect.transform = scene_parent.global_transform.affine_inverse() * effect_floor.global_transform
+	effect.z_index = z_index
+	scene_parent.add_child(effect)
 	
 func _process(_delta: float) -> void:
 	# Movement Animations

@@ -1,6 +1,21 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene format=3 uid="uid://cf5xtoxdhurg6"]
 
-[ext_resource type="Script" path="res://effects/vanish_cloud/vanish_cloud.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://b3mg0tvfjdduq" path="res://assets/gfx/textures/circle_16px.png" id="1_2sbom"]
+[ext_resource type="Script" uid="uid://cx58ypx01kl3m" path="res://effects/eat/particle_play_once.gd" id="2_rep68"]
 
-[node name="VanishCloud" type="Node2D"]
-script = ExtResource("1")
+[sub_resource type="Curve" id="Curve_aln1s"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.6067414, 0.0, 0, 0]
+point_count = 2
+
+[node name="VanishCloud" type="CPUParticles2D" unique_id=663059444]
+texture = ExtResource("1_2sbom")
+explosiveness = 1.0
+lifetime_randomness = 1.0
+direction = Vector2(0, -1)
+spread = 90.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 32.0
+initial_velocity_max = 64.0
+scale_amount_min = 0.8
+scale_amount_curve = SubResource("Curve_aln1s")
+script = ExtResource("2_rep68")

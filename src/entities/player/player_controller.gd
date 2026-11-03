@@ -2,6 +2,14 @@ extends Node
 
 @onready var player: PlayerEntity = $".."
 
+func _ready() -> void:
+	player.died.connect(_on_player_died)
+
+func _on_player_died() -> void:
+	set_process_input(false)
+	set_physics_process(false)
+	player.horizontal_movement = 0.0
+
 func _input(event: InputEvent) -> void:
 	if GameManager.is_paused or not LevelManager.game_started or player.is_queued_for_deletion():
 		return
@@ -23,4 +31,4 @@ func _input(event: InputEvent) -> void:
 		player.do_attack()
 
 func _physics_process(_delta: float) -> void:
-	player.horizontal_movement = 0.0 if GameManager.is_paused else Input.get_axis("left", "right")
+	player.horizontal_movement = 0.0 if GameManager.is_paused or not LevelManager.game_started else Input.get_axis("left", "right")

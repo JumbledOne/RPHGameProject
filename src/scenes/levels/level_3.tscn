@@ -1,50 +1,47 @@
-[gd_scene format=4 uid="uid://ikmhfiq4q14g"]
+[gd_scene format=3 uid="uid://ikmhfiq4q14g"]
 
-[ext_resource type="PackedScene" path="res://scenes/base_level/base_level.tscn" id="base_level"]
-[ext_resource type="Texture2D" path="res://assets/gfx/sprites/stage3_plantation_era_640x360.png" id="background"]
-[ext_resource type="PackedScene" path="res://level_objects/level_end/level_end.tscn" id="level_end"]
-[ext_resource type="Texture2D" path="res://assets/gfx/sprites/stage3_plantation_era_640x360.png" id="era_texture"]
-
-
-
+[ext_resource type="PackedScene" uid="uid://d3sq81x0hgxf0" path="res://scenes/base_level/base_level.tscn" id="base_level"]
+[ext_resource type="PackedScene" path="res://level_objects/water/water.tscn" id="water_scene"]
+[ext_resource type="Material" path="res://assets/gfx/gfx_resources/material/water.tres" id="water_material"]
 [ext_resource type="PackedScene" path="res://level_objects/features/pickups/cacao.tscn" id="element_0"]
-[ext_resource type="PackedScene" path="res://level_objects/features/pickups/durian.tscn" id="element_1"]
-[ext_resource type="PackedScene" path="res://level_objects/features/pickups/eagle.tscn" id="element_2"]
-[ext_resource type="PackedScene" path="res://level_objects/features/enemies/cacao.tscn" id="element_3"]
-[ext_resource type="PackedScene" path="res://level_objects/features/enemies/durian.tscn" id="element_4"]
-[ext_resource type="PackedScene" path="res://level_objects/rolling_cart/rolling_cart.tscn" id="element_5"]
 [ext_resource type="PackedScene" path="res://level_objects/falling_crate/falling_crate.tscn" id="element_6"]
 [ext_resource type="PackedScene" path="res://level_objects/features/enemies/japanese.tscn" id="element_7"]
+[ext_resource type="Texture2D" uid="uid://fp4ql0mobqko" path="res://assets/gfx/sprites/stage3_plantation_era_640x360.png" id="era_texture"]
+[ext_resource type="PackedScene" uid="uid://dbnw6oy0ghfh2" path="res://level_objects/level_end/level_end.tscn" id="level_end"]
 
-[node name="Level3" instance=ExtResource("base_level")]
+[node name="Level3" unique_id=1092861558 instance=ExtResource("base_level")]
 
-[node name="Sprite2D" parent="Background" index="0"]
+[node name="Sprite2D" parent="Background" parent_id_path=PackedInt32Array(1712092851) index="0" unique_id=577926699]
 texture = ExtResource("era_texture")
 
-[node name="LevelEnd" parent="LevelObjects" index="1" instance=ExtResource("level_end")]
+[node name="Fog" parent="BackgroundEffects" parent_id_path=PackedInt32Array(1973781473) index="1" unique_id=322353296 node_paths=PackedStringArray("tilemap")]
+offset_left = 0.0
+offset_right = 2560.0
+tilemap = NodePath("../../TileMapLayer")
+
+[node name="LevelEnd" parent="LevelObjects" parent_id_path=PackedInt32Array(949556748) index="1" unique_id=1275552209 instance=ExtResource("level_end")]
 position = Vector2(2496, 0)
 
-[node name="Cacao" parent="LevelObjects" instance=ExtResource("element_0")]
+[node name="Cacao" parent="LevelObjects" parent_id_path=PackedInt32Array(949556748) index="2" unique_id=561336417 instance=ExtResource("element_0")]
 position = Vector2(240, -64)
 
-[node name="DurianPickup" parent="LevelObjects" instance=ExtResource("element_1")]
-position = Vector2(352, -36)
-
-[node name="EaglePickup" parent="LevelObjects" instance=ExtResource("element_2")]
-position = Vector2(448, -96)
-
-[node name="RottenCacao" parent="LevelObjects" instance=ExtResource("element_3")]
-position = Vector2(1088, -24)
-
-[node name="EvilDurian" parent="LevelObjects" instance=ExtResource("element_4")]
-position = Vector2(1376, -24)
-
-[node name="RollingCart" parent="LevelObjects" instance=ExtResource("element_5")]
-position = Vector2(704, -24)
-
-[node name="FallingCrate" parent="LevelObjects" instance=ExtResource("element_6")]
+[node name="FallingCrate" parent="LevelObjects" parent_id_path=PackedInt32Array(949556748) index="3" unique_id=946119551 instance=ExtResource("element_6")]
 position = Vector2(896, -192)
 
-[node name="JapaneseColonizer" parent="LevelObjects" instance=ExtResource("element_7")]
+[node name="JapaneseColonizer" parent="LevelObjects" parent_id_path=PackedInt32Array(949556748) index="4" unique_id=1055392971 instance=ExtResource("element_7")]
 position = Vector2(2112, -24)
 boss = true
+
+[node name="WaterLayer" type="CanvasGroup" parent="." index="4" unique_id=994649338]
+material = ExtResource("water_material")
+position = Vector2(0, -16)
+
+[node name="Water" parent="WaterLayer" index="0" unique_id=662158307 node_paths=PackedStringArray("tilemap") instance=ExtResource("water_scene")]
+offset_left = 0.0
+offset_top = 24.0
+offset_right = 2560.0
+offset_bottom = 116.0
+tilemap = NodePath("../../TileMapLayer")
+extend_to_tilemap = true
+
+[editable path="Background"]

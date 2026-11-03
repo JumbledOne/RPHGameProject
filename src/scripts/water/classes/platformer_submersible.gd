@@ -36,4 +36,4 @@ func _on_p_entity_exited(from_top: bool) -> void:
 	_platformer.terminal_velocity_factor = 1.0
 	_platformer.allow_midair_jump = false
 	if from_top:
-		_platformer.velocity.y -= _platformer.jump_velocity
+		_platformer.force_jump()

@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://effects/character_effects/run_particles.gd" id="1_script"]
+
+[sub_resource type="Curve" id="Curve_run_scale"]
+_data = [Vector2(0, 0), 0.0, 2.9389353, 0, 0, Vector2(0.65745854, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -6.3152, 0.0, 0, 0]
+point_count = 3
+
+[node name="Particles" type="CPUParticles2D"]
+emitting = false
+lifetime = 0.5
+direction = Vector2(1, -1)
+spread = 90.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 32.0
+initial_velocity_max = 64.0
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_run_scale")
+script = ExtResource("1_script")

@@ -1,15 +1,16 @@
 [gd_scene format=3]
-[ext_resource type="Script" path="res://level_objects/features/enemies/ranged_campaign_enemy.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/enemy/Enemy_Entity.gd" id="1"]
 [ext_resource type="Texture2D" path="res://assets/gfx/sprites/character_spritesheets/American_Colonizer_Sprite.png" id="2"]
 [ext_resource type="PackedScene" path="res://scripts/health_display/health_display.tscn" id="health_display"]
 [ext_resource type="PackedScene" path="res://level_objects/features/projectiles/american.tscn" id="projectile"]
 [ext_resource type="Script" path="res://scripts/entity/entity_sprite.gd" id="entity_sprite"]
 
+[ext_resource type="Script" path="res://scripts/enemy/controllers/american_controller.gd" id="controller_script"]
+[ext_resource type="Script" path="res://scripts/weapon/weapon.gd" id="weapon_script"]
 [sub_resource type="RectangleShape2D" id="Shape"]
 size = Vector2(24, 48)
 [node name="AmericanEnemy" type="CharacterBody2D"]
 script = ExtResource("1")
-projectile_scene = ExtResource("projectile")
 animation_row = 1
 [node name="Sprite2D" type="Sprite2D" parent="."]
 script = ExtResource("entity_sprite")
@@ -22,3 +23,11 @@ region_rect = Rect2(0, 0, 32, 64)
 shape = SubResource("Shape")
 
 [node name="HealthDisplay" parent="." instance=ExtResource("health_display")]
+
+[node name="EnemyController" type="Node2D" parent="."]
+script = ExtResource("controller_script")
+
+[node name="Weapon" type="Node2D" parent="."]
+script = ExtResource("weapon_script")
+projectile_scene = ExtResource("projectile")
+position = Vector2(24, -8)

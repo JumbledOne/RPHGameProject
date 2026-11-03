@@ -4,6 +4,7 @@ var failures := 0
 var fixture: Node2D
 var player: PlayerEntity
 var features: Node2D
+var objects: Node2D
 
 func _ready() -> void:
 	_run.call_deferred()
@@ -20,7 +21,7 @@ func frames(count: int) -> void:
 func spawn(path: String, at: Vector2) -> Node2D:
 	var node = load(path).instantiate()
 	node.position = at
-	features.objects.add_child(node)
+	objects.add_child(node)
 	if node is Entity:
 		check(node.get_node("HealthDisplay").linked_entity == node, "Enemy uses shared heart display")
 		check(node.find_children("*", "Label", true, false).is_empty(), "Enemy has no numeric health labels")
@@ -34,8 +35,11 @@ func make_fixture(character: PlayerClass) -> void:
 	get_tree().root.add_child(fixture)
 	get_tree().current_scene = fixture
 	features = Node2D.new()
-	features.set_script(preload("res://scripts/campaign/campaign_level.gd"))
 	fixture.add_child(features)
+	objects = Node2D.new()
+	features.add_child(objects)
+	ScenePlacer.register_level_layers(objects, objects, objects)
+	LevelManager.configure_level(180, false, false, Vector2.ZERO, 128)
 	var body := StaticBody2D.new()
 	var collider := CollisionShape2D.new()
 	var rectangle := RectangleShape2D.new()
@@ -60,35 +64,41 @@ func _run() -> void:
 			check(player.jump_velocity > 512 and player.max_jump_time < 1, "Ata movement buff")
 		if character is BagoboCharacter:
 			check(player.jump_velocity < 512 and player.max_midair_jumps == 1, "Bagobo double jump")
+		player.health = 1
 		spawn("res://level_objects/features/pickups/durian.tscn", player.position)
 		await frames(4)
-		check(player.durians == 1, "Durian stacks at full health")
+		check(player.health == 3 and player.durians == 0, "Durian pickup restores two health without adding inventory")
 		player.hurt(1)
 		player.hurt(1)
 		check(player.health == 2 and not player.can_damage, "Entity damage cooldown blocks repeated contacts")
+		player.durians = 1
 		player.eat_durian()
 		check(player.health == 3 and player.durians == 0, "Eating consumes one fruit and heals one heart")
 		spawn("res://level_objects/features/pickups/eagle.tscn", player.position)
 		await frames(4)
-		var eagle_effect := player.get_status_effect(EagleEffect)
+		var jump_boost_effect := player.get_status_effect(JumpBoostEffect)
 		player.velocity.y = -player.jump_velocity
 		player.jumped.emit()
-		check(eagle_effect != null and player.velocity.y < -player.jump_velocity and not player.has_status_effect(EagleEffect), "Eagle effect boosts one jump and consumes itself")
+		var powered_jump_audio := player.get_children().filter(func(child): return child is AudioStreamPlayer2D and child.stream == preload("res://assets/audio/sfx/powered_jump.wav"))
+		check(jump_boost_effect != null and player.velocity.y < -player.jump_velocity and not player.has_status_effect(JumpBoostEffect), "Jump boost increases one jump and consumes itself")
+		check(powered_jump_audio.size() == 1 and powered_jump_audio[0].playing, "Jump boost plays the powered jump sound when consumed")
+		player._play_stomp_audio()
+		var stomp_audio := player.get_children().filter(func(child): return child is AudioStreamPlayer2D and child.stream == preload("res://assets/audio/sfx/stomp.wav"))
+		check(stomp_audio.size() == 1 and stomp_audio[0].playing, "Enemy stomp plays the stomp sound")
 		player.position = Vector2(200, -32)
 		player.velocity = Vector2.ZERO
 		var cacao = spawn("res://level_objects/features/enemies/cacao.tscn", Vector2(360, -24))
 		player.durians = 1
 		player.do_attack()
 		await frames(30)
-		check(player.durians == 0 and cacao.health == 2, "Thrown durian removes exactly one enemy heart")
-		var hearts = cacao.get_node("HealthDisplay").get_children()
-		check(hearts.size() == 3 and hearts[0].texture == preload("res://assets/gfx/sprites/hearts1.png") and hearts[2].texture == preload("res://assets/gfx/sprites/hearts3.png"), "Enemy damage updates filled and empty hearts")
+		check(player.durians == 0 and not is_instance_valid(cacao), "Thrown durian defeats the default one-heart enemy")
 		player.can_damage = true
-		cacao.attack_clock = 9.99
-		cacao._physics_process(0.02)
+		var poison_cacao = spawn("res://level_objects/features/enemies/cacao.tscn", Vector2(360, -24))
+		poison_cacao.attack_clock = 9.99
+		poison_cacao._physics_process(0.02)
 		check(player.health == 2, "Cacao poison ticks after ten seconds")
 		player.heal(1)
-		cacao.queue_free()
+		poison_cacao.queue_free()
 		var spikes = spawn("res://level_objects/features/enemies/durian.tscn", player.position + Vector2(30, 0))
 		player.can_damage = true
 		spikes._physics_process(0.02)
@@ -98,30 +108,36 @@ func _run() -> void:
 		var friar = spawn("res://level_objects/features/enemies/spanish.tscn", Vector2(400, -24))
 		friar._physics_process(0.01)
 		check(friar.sprite.visible and friar.health_display.visible and not player.has_status_effect(BlindnessEffect), "Friar stays visible before its attack lands")
-		friar.shot_clock = 0
-		var friar_projectile_count: int = features.objects.get_child_count()
+		friar.controller.shot_clock = 0
+		var friar_projectile_count: int = objects.get_child_count()
 		friar._physics_process(0.01)
-		check(features.objects.get_child_count() == friar_projectile_count + 1, "Friar telegraphs blindness with a projectile")
-		var friar_projectile = features.objects.get_child(features.objects.get_child_count() - 1)
+		check(objects.get_child_count() == friar_projectile_count + 1, "Friar telegraphs blindness with a projectile")
+		var friar_projectile = objects.get_child(objects.get_child_count() - 1)
 		friar_projectile._hit(player)
 		check(player.has_status_effect(BlindnessEffect), "Friar projectile applies blindness on impact")
 		friar.queue_free()
 		for kind in ["japanese", "american"]:
 			var shooter = spawn("res://level_objects/features/enemies/%s.tscn" % kind, Vector2(420, -24))
-			var count: int = features.objects.get_child_count()
+			var count: int = objects.get_child_count()
 			shooter._physics_process(0.01)
-			check(features.objects.get_child_count() == count + 1, "%s fires during burst" % kind)
-			count = features.objects.get_child_count()
+			check(objects.get_child_count() == count + 1, "%s fires during burst" % kind)
+			count = objects.get_child_count()
 			shooter.attack_clock = 3.1
-			shooter.shot_clock = 0
+			shooter.controller.shot_clock = 0
 			shooter._physics_process(0.01)
-			check(features.objects.get_child_count() == count, "%s rests after burst" % kind)
+			check(objects.get_child_count() == count, "%s rests after burst" % kind)
 			shooter.queue_free()
 		var cannon = spawn("res://level_objects/features/cannon.tscn", Vector2(600, -20))
-		var count: int = features.objects.get_child_count()
-		cannon.clock = cannon.fire_interval
-		cannon._physics_process(0.01)
-		check(features.objects.get_child_count() == count + 1, "Cannon fires")
+		var count: int = objects.get_child_count()
+		cannon._on_screen_entered()
+		cannon._physics_process(0.9)
+		check(objects.get_child_count() == count, "Cannon waits after appearing on screen")
+		cannon._physics_process(0.11)
+		check(objects.get_child_count() == count + 1, "Cannon fires after one second on screen")
+		var cannonball := objects.get_child(objects.get_child_count() - 1) as Projectile
+		check(cannonball != null and not cannonball.rotates, "Cannonball does not rotate")
+		check(cannon.get_node_or_null("CannonFireEffect") != null, "Cannon creates its firing effect")
+		check(cannon.get_node("CannonFire").playing, "Cannon plays its firing sound")
 		for i in range(15):
 			LevelManager.register_collectible()
 		LevelManager.add_cacao(15)

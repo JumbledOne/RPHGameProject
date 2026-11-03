@@ -1,26 +1,22 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene format=3 uid="uid://dq7v2kxgwih0i"]
 
-[ext_resource type="Script" path="res://scripts/level_objects/floating_platform.gd" id="1"]
-[ext_resource type="Texture2D" path="res://assets/gfx/sprites/tilemap-updated.png" id="2"]
-
-[sub_resource type="AtlasTexture" id="Texture"]
-atlas = ExtResource("2")
-region = Rect2(32, 352, 32, 32)
+[ext_resource type="Script" path="res://level_objects/floating_driftwood/floating_driftwood.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://bhf3wfxa3l4m2" path="res://assets/gfx/sprites/large_driftwood.png" id="2_yoobk"]
 
 [sub_resource type="RectangleShape2D" id="Shape"]
-size = Vector2(32, 8)
+size = Vector2(96, 16)
 
-[node name="FloatingDriftwood" type="AnimatableBody2D"]
-collision_layer = 1
+[node name="FloatingDriftwood" type="AnimatableBody2D" unique_id=502400292]
 collision_mask = 0
 script = ExtResource("1")
+bob_height = 5.0
 direction = Vector2(-1, 0)
 speed = 32.0
-bob_height = 5.0
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("Texture")
-flip_v = false
+start_on_screen = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 12)
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1215169155]
+texture = ExtResource("2_yoobk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1813621832]
+position = Vector2(0, 6)
 shape = SubResource("Shape")

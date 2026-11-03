@@ -5,7 +5,7 @@ The five reusable base scripts live in `scripts/level_objects/`. Each concrete i
 | Class | Behavior | Final-plan implementations |
 | --- | --- | --- |
 | StaticHazard | Player-only contact damage with a per-player cooldown | Spike barricade, barbed wire, road barrier |
-| FallingHazard | Horizontal player proximity below the object triggers a shake warning, gravity drop, ground landing, then reset | Falling wooden crate, building/construction debris |
+| FallingHazard | Horizontal player proximity below the object triggers a shake warning and gravity drop; contact beneath it hurts only during the fall, and it resets after leaving the screen | Falling wooden crate, building/construction debris |
 | MovingPlatform | Solid platform moves horizontally in one direction and carries passengers | River-crossing boat (bamboo raft art), market crate (movement disabled) |
 | HazardPlatform | Solid top and underside; only inset side strips deal damage and knockback | Moving car (jeepney art), rolling cart, rolling cannonball (knockback only) |
 | FloatingPlatform | Safe moving-platform motion plus sine-wave vertical bobbing | Floating driftwood (water-side atlas tile) |
@@ -14,7 +14,7 @@ Movement uses the shared `ConstantMovingPlatform` implementation in `scripts/mov
 
 Damage calls the existing player `hurt(amount)` API. Zero damage still allows knockback for the less punishing rolling cannonball described in the plan. HazardPlatform scenes require a rectangular CollisionShape2D; side sensors derive from that rectangle at runtime and leave the top edge safe.
 
-Falling hazards use `trigger_distance`, `warning_time`, `fall_gravity`, `terminal_speed`, and `reset_delay`. A shape cast stops the falling area at solid terrain while excluding the triggering player. Landed objects remain damaging until reset; market crates are the separate solid, climbable variant.
+Falling hazards use `trigger_distance`, `warning_time`, `fall_gravity`, and `terminal_speed`. A shape cast stops the falling area at solid terrain while excluding the triggering player. Landed objects stay harmless until they leave the screen and reset; market crates are the separate solid, climbable variant.
 
 The plans' existing terrain and water mechanics remain in the level. Cannon/projectile firing is outside these five object classes. Dedicated boat and rubble art can replace the current reused textures without changing behavior.
 

@@ -19,7 +19,7 @@ func _physics_process(delta: float) -> void:
 		if _cooldowns[id] <= 0.0:
 			_cooldowns.erase(id)
 	for body in get_overlapping_bodies():
-		if body.is_in_group("player") and body.has_method("hurt"):
+		if body.is_in_group("player") and body.has_method("hurt") and _can_hurt_body(body):
 			var id := body.get_instance_id()
 			if _cooldowns.has(id):
 				continue
@@ -31,3 +31,6 @@ func _physics_process(delta: float) -> void:
 				body.velocity += Vector2(absf(knockback.x) * direction, knockback.y)
 			if damage > 0:
 				body.hurt(damage)
+
+func _can_hurt_body(_body: Node2D) -> bool:
+	return true

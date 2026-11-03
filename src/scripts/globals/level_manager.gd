@@ -28,6 +28,7 @@ const NEW_LIFE_THRESHOLD: int = 10
 const BASE_ATTACK_DURATION: float = 0.75
 const BUFF_DURATION: float = 3.0
 const BUFF_ATTACK_SPEED: float = 1.5
+const DEATH_RESET_DELAY: float = 2.0
 
 var selected_level: int = 0
 var current_level: int = 0
@@ -45,11 +46,51 @@ var score_multiplier: int = 1
 var buff_end_msec: int = 0
 var boss_defeated := false
 var preview_scene_path: String = ""
+var time_limit: float = MAX_LEVEL_TIME
+var elapsed := 0.0
+var require_boss_to_finish := false
+var player_death_altitude := 128.0
+var _death_reset_id: int = 0
+
+func _physics_process(delta: float) -> void:
+	if game_started and not GameManager.is_paused:
+		elapsed += delta
+		if time_limit > 0 and elapsed >= time_limit and is_instance_valid(GameManager.player):
+			GameManager.player.die()
+
+func configure_level(limit: float, require_boss: bool, bounds_enabled: bool, bounds: Vector2, death_altitude: float) -> void:
+	time_limit = limit
+	require_boss_to_finish = require_boss
+	player_death_altitude = death_altitude
+	if bounds_enabled:
+		level_left_boundary = bounds.x
+		level_right_boundary = bounds.y
+	if is_instance_valid(GameManager.player):
+		GameManager.player.death_altitude = death_altitude
+
+func get_time_left() -> float:
+	return maxf(time_limit - elapsed, 0.0)
+
+func finish_level() -> bool:
+	if require_boss_to_finish and not boss_defeated:
+		return false
+	if game_started:
+		game_end.call_deferred(GameEnd.WON)
+	return true
+
+func preview_level(scene: Node2D) -> void:
+	if get_tree().current_scene == scene and not scene.scene_file_path.is_empty():
+		preview_scene_path = scene.scene_file_path
+		GameManager.player = null
+		get_tree().change_scene_to_file.call_deferred("res://scenes/game_scene/game_scene.tscn")
 
 func start_game(level: int, preserve_lives: bool = false) -> void:
+	_death_reset_id += 1
 	current_level = clampi(level, 0, get_level_count() - 1)
 	selected_level = current_level
 	game_started = true
+	elapsed = 0.0
+	time_limit = MAX_LEVEL_TIME
 	level_left_boundary = -INF
 	level_right_boundary = INF
 	if not preserve_lives:
@@ -64,14 +105,21 @@ func lose_life() -> void:
 	if not game_started:
 		return
 	game_started = false
+	Audio.music.stop()
 	lives_left -= 1
 	lives_changed.emit(lives_left)
+	_death_reset_id += 1
+	var reset_id := _death_reset_id
+	await get_tree().create_timer(DEATH_RESET_DELAY).timeout
+	if reset_id != _death_reset_id:
+		return
 	if lives_left > 0:
 		InterfaceManager.do_on_transition(start_game.bind(current_level, true))
 	else:
 		game_end(GameEnd.LOST)
 
 func game_end(result: GameEnd = GameEnd.OTHER) -> void:
+	_death_reset_id += 1
 	game_started = false
 	GameManager.set_pause(false)
 	game_ended.emit(result)
@@ -148,6 +196,7 @@ func add_cacao(amount: int = 1) -> void:
 		collect()
 
 func _reset_level_stats() -> void:
+	require_boss_to_finish = false
 	boss_defeated = false
 	collected = 0
 	cacao = 0

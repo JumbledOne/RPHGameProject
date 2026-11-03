@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://csejyfhx1agur" path="res://scenes/game_ui/time_limit_label.gd" id="4_hk0ve"]
 [ext_resource type="Script" uid="uid://c775cjq8gm03g" path="res://scenes/game_ui/lives_tracker.gd" id="4_lives"]
 [ext_resource type="Script" uid="uid://tevhhdkniwy6" path="res://scenes/game_ui/ui_health_display.gd" id="5_health"]
-[ext_resource type="Script" uid="uid://cophwkptxqm66" path="res://scripts/campaign/campaign_ui.gd" id="6_results"]
+[ext_resource type="Script" path="res://scenes/game_ui/game_ui.gd" id="6_results"]
 [ext_resource type="PackedScene" uid="uid://xstkh3pxo8h4" path="res://scenes/game_ui/end_screen/end_screen.tscn" id="11_26vp0"]
 [ext_resource type="PackedScene" uid="uid://cctkd37r6nwkq" path="res://scenes/game_scene/Blind_Overlay.tscn" id="blind_overlay"]
 

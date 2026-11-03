@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://bp5oh8rt5d3g3"]
+
+[ext_resource type="Script" uid="uid://c00uv2qeipeyj" path="res://level_objects/jeepney/jeepney.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://bmra7b1uo5a0g" path="res://assets/gfx/sprites/tilemap-updated.png" id="2"]
+[ext_resource type="AudioStream" uid="uid://cbk1ws2kp6hpf" path="res://assets/audio/sfx/jeepney_appear_sound.wav" id="3_swpok"]
+[ext_resource type="AudioStream" uid="uid://8koe4f00ll0f" path="res://assets/audio/sfx/jeepney_running_sound.wav" id="4_s8qhr"]
+
+[sub_resource type="AtlasTexture" id="Texture"]
+atlas = ExtResource("2")
+region = Rect2(208, 336, 224, 80)
+
+[sub_resource type="RectangleShape2D" id="Shape"]
+size = Vector2(224, 80)
+
+[node name="Jeepney" type="AnimatableBody2D" unique_id=1961898958]
+collision_mask = 0
+script = ExtResource("1")
+notifier_rect = Rect2(-112, -40, 224, 80)
+start_on_screen = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=761653628]
+texture = SubResource("Texture")
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2111967016]
+shape = SubResource("Shape")
+
+[node name="AppearSound" type="AudioStreamPlayer2D" parent="." unique_id=21596130]
+stream = ExtResource("3_swpok")
+
+[node name="RunningSound" type="AudioStreamPlayer2D" parent="." unique_id=1519196467]
+stream = ExtResource("4_s8qhr")

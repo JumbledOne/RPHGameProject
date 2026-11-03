@@ -16,4 +16,7 @@ func spawn():
 
 func _on_player_died():
 	GameManager.player = null
-	InterfaceManager.do_on_transition(spawn)
+	if get_tree().get_first_node_in_group("level_root") == null:
+		await get_tree().create_timer(0.5).timeout
+		if is_inside_tree():
+			spawn()
